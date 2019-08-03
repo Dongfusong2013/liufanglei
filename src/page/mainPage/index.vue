@@ -1,9 +1,9 @@
 
 <template>
   <div class="dynamicContainer">
-   <div class="headContainer">
+   
       <HeadTop textColor="#000"></HeadTop>
-   </div>   
+   
    <div class="scrollContainer">
     <el-carousel :interval="5000" arrow="always" height="500px" ref="carousel" >      
         <el-carousel-item v-for="(item, index) in srcollPis" :key="index">     

@@ -85,7 +85,6 @@ export default {
         .rightView{
             width: 123px;
             background-color: aliceblue;
-
         }
     }
 </style>

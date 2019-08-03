@@ -19,9 +19,9 @@ export default {
 
 <style lang="less" scoped>
   @import "./style/common"; 
-  #app{
-      width: 1400px;
-      // height: 810px
-      // ;
-  }
+  // #app{
+  //     // width: 1400px;
+  //     // height: 810px
+  //     // ;
+  // }
 </style>

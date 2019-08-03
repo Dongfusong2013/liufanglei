@@ -3,8 +3,7 @@
     <HeadTop textColor='#000'/> 
     <div class="aboutContainer">
       <ScrollPicAbout/>
-    </div>
-        
+    </div>        
 	</div>
 </template>
 

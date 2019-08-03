@@ -15,7 +15,6 @@
   </div>
 </template>
 
-
 <script>
   import {mapState, mapMutations} from "vuex";
 
@@ -25,11 +24,11 @@
     data() {
       return {
         items: [
-          {content: '首页', path: '/'},
-          {content: '作品', path: '/design'},
+          {content: '首页', path: '/'},          
           {content: '项目', path: '/project'},
-          {content: '文明印记', path: '/history'},
+          {content: '作品', path: '/design'},
           {content: '关于', path: '/about'},
+          {content: '文明印记', path: '/history'},          
         ],
       }
     },
@@ -56,15 +55,19 @@
 
 <style lang="less" scoped>
 
+  @padding-edge: 120px;
+  @head-height:94px;
+
   .head-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;    
     align-items: center;
     width: 100%;
-    height: 94px;
-    padding-left: 120px;
-    padding-right: 120px;
+    height: @head-height;
+    box-sizing: border-box;//非常重要由默认的content改为border,padding之后不影响整个宽度
+    padding-left:  @padding-edge;
+    padding-right:  120px;
   }
 
   #leftTitle {    
@@ -88,7 +91,6 @@
     font-weight: bold;
     color: rgba(69, 69, 69, 1);
   }
-
 
   .active {
     border-bottom: 3px solid white;
