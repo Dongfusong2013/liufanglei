@@ -4,7 +4,6 @@ import Router from 'vue-router'
 import MainPage from '@/page/mainPage'
 import ProjectPage from '@/page/projectPage'
 import DesignPage from '@/page/designPage'
-
 import AboutPage from '@/page/aboutPage'
 import HistoryPage from '@/page/historyPage'
 

@@ -1,20 +1,31 @@
 
 <template>
-  <div class="scroll_container">    
+  <div class="scroll_container">
     <el-carousel :interval="5000" arrow="never" height="650px" ref="carousel">
+      <el-carousel-item>
+        <MainItem :nextPic="nextPic" />
+      </el-carousel-item>
       <el-carousel-item v-for="(item, index) in items" :key="index">
-            <ProjectItem :projects="item.data" :prePic="prePic" :nextPic="nextPic" :isFirst="isFirst" :isLast="isLast"/> 
+          <ProjectItem
+            :projects="item.data"
+            :prePic="prePic"
+            :nextPic="nextPic"
+            :isFirst="isFirst"
+            :isLast="isLast"
+          />
       </el-carousel-item>
     </el-carousel>
   </div>
 </template>
 <script>
-import ProjectItem from './ProjectItem'
+import ProjectItem from "./ProjectItem";
+import MainItem from "./MainItem";
 
 export default {
   name: "ScrollPicProject",
   components: {
-      ProjectItem,      
+    ProjectItem,
+    MainItem
   },
   data() {
     return {
@@ -75,17 +86,17 @@ export default {
               src: "/static/works/项目_006.jpg",
               name: "北京香港马会会所"
             }
-          ],
-        },
+          ]
+        }
       ],
       index: 0,
       maxCount: 2
     };
   },
   methods: {
-    isTrue(){    
-        console.log("isture....");
-        return true;
+    isTrue() {
+      console.log("isture....");
+      return true;
     },
     prePic() {
       console.log("pre...");
@@ -107,10 +118,9 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+
 .scroll_container {
   width: 100%;
   height: 100%;
-  z-index: 100;
 }
-
 </style>

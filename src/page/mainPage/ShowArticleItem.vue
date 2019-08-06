@@ -1,6 +1,7 @@
 <template>
   <div class="newItem">
-          <div class="time">{{timeTitle}}</div>
+    
+        <div class="time">{{timeTitle}}</div>
           <div class="picAndContent">
             <div class="pic">
               <img :src="picSrc" alt="" height="100%" width="100%">
@@ -15,7 +16,7 @@
             </div>
           </div>
           <div class="sep"></div>
-        </div>
+        </div>    
 </template>
 
 <script>
@@ -32,6 +33,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  
+
     .newItem {
       display: flex;
       flex-direction: column;

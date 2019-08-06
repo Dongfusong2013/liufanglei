@@ -1,13 +1,13 @@
-<template>
-  <div>
-    <div class="design-container">
-      <HeadTop textColor="#ffff"></HeadTop>
-      <div class="designContent">
-        <ScrollPic />
+<template>  
+    <div class="design-container"> 
+      <HeadTop textColor="#ffff"></HeadTop>             
+      <div class="backgroundImg">
+          <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
       </div>
-    </div>
-
-  </div>
+        <div class="designContent">
+            <ScrollPic />      
+        </div> 
+      </div>
 </template>
 
 <script>
@@ -24,16 +24,15 @@ export default {
 </script>
 
 <style lang="less">
+@import "../appStyle";
+
 .design-container {
-  background-size: 100%, 100%;
-  background: aliceblue url("/static/home/首页_02.png") no-repeat fixed top;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100%;  
+  width: 100%;
 }
 
 .designContent {
-  width: 85%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;

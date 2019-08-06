@@ -30,42 +30,31 @@ export default {
   },
   data(){
       return {
-          index:0,
-          maxCount:3,
+          index:0,          
           // heigth:'680px'
           items:[
             {
                 picSrc:'/static/design/设计灵感_03.jpg',
                 title:'北京怀柔雁西湖国际会议中心',
                 added:'汉唐飞扬 鸿雁展翼'
-            },
-            {
-                picSrc:'/static/design/诗词.jpeg',
-                title:'汉服之赋 • 2019-夏',
-                added:'刘方磊'
-            },
-            {
-                picSrc:'/static/design/龙图.jpg',
-                title:'龙与太极 • 2019-夏',
-                added:'刘方磊'
-            },
+            }
           ]
       }
   },
   methods:{
     prePic(){
        console.log('pre...');
-        this.index  =  (this.index - 1) % this.maxCount;
+        this.index  =  (this.index - 1) % this.items.length;
         this.$refs.carousel.setActiveItem(this.index);
         
      },
      nextPic(){
        console.log('next...');
-       this.index  =  (this.index + 1) % this.maxCount;
+       this.index  =  (this.index + 1) % this.items.length;
        this.$refs.carousel.setActiveItem(this.index);
      },
      isLast(){
-        return this.index == this.maxCount - 1;
+        return this.index == this.items.length - 1;
      },
      isFirst(){
        return this.index == 0;
@@ -82,11 +71,11 @@ export default {
     flex-direction: column;
     justify-content: center;
     width: 100%;    
-    height: 100%;
-    background-color: white;
-    // z-index: 100;    
-    margin-top: 20px;
-    margin-bottom: 70px;
+    height: 100%;    
+    z-index: 100;    
+    // background-color: antiquewhite;
+    // margin-top: 20px;
+    // margin-bottom: 70px;
   }
  
   .picContainer{

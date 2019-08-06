@@ -1,6 +1,8 @@
 <template>
   <div class="projectItemContainer">
-    <img
+    
+    <div class="picContainer">
+      <img
       src="/static/works/left_arrow.jpg"
       class="leftArrow"
       v-if="!isFirst()"
@@ -12,7 +14,6 @@
       v-if="!isLast()"
       @click="nextPic()"
     />
-    <div class="picContainer">
       <div v-for="(item, index) in projects" :key="index">
         <div class="picItem">
           <div class="pic">
@@ -50,16 +51,23 @@ export default {
 }
 
 .picContainer {
+  // background-color: bisque;  
   display: flex;
-  flex-direction: row;
+  flex-direction: row;  
+  // justify-content: center;
+  margin-left: 70px;
+  align-items: center;
   flex-wrap: wrap;
+
   .picItem {
-    .pic {
+    margin-right: 10px;
+    background-color: aliceblue;
+    .pic {      
       width: 264px;
       height: 264px;
     }
-    .descrip {
-      font-size: 13;
+    #descrip {
+      font-size: 13px;
     }
   }
 }

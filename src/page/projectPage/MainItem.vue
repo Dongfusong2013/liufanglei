@@ -1,5 +1,5 @@
 <template>
-  <div class="mainContainer">
+  <div class="mainContainer cover">
     <div class="imageView">
       <img src="/static/about/大图@2x.png" height="100%" />
     </div>
@@ -37,7 +37,7 @@ export default {
 <style lang="less" scoped>
 
 @import './scrollItem.less';
-
+@import '../appStyle';
 
 .mainContainer{
   display: flex;

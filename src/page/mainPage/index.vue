@@ -1,111 +1,149 @@
 
 <template>
   <div class="dynamicContainer">
-   
-      <HeadTop textColor="#000"></HeadTop>
-   
-   <div class="scrollContainer">
-    <el-carousel :interval="5000" arrow="always" height="500px" ref="carousel" >      
-        <el-carousel-item v-for="(item, index) in srcollPis" :key="index">     
-          <div class="pic">
-            <img :src="item" alt="" height="100%" width="100%"> 
-          </div> 
-        </el-carousel-item>       
-    </el-carousel >
-   </div>
-   
-    <div class="contentView">
+    <div class="backgroundImg">
+      <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
+    </div>
+    <!-- <div class="scrollContainer cover"></div>  -->
+    <HeadTop textColor="#fff"></HeadTop>
+      <el-carousel :interval="5000" arrow="always" height="580px" ref="carousel">
+        <el-carousel-item v-for="(item, index) in srcollPis" :key="index">
+          <div class="picContainer">
+            <div class="picScroll">
+            <img :src="item" alt height="100%" width="100%" />
+          </div>
+          </div>          
+        </el-carousel-item>
+      </el-carousel>
+    
+    <div class="contentView cover">
       <div class="leftView">
-        <div class="title">美学理念</div>
+        <div class="title titleSpace">美学理念</div>
         <div class="line"></div>
         <div class="mainPic">
-          <img src="/static/works/项目_004.jpg" alt="" height="100%" width="100%">
+          <img src="/static/works/项目_004.jpg" alt height="100%" width="100%" />
         </div>
         <div class="article">
-          <div class="title">汉唐飞扬，以道营器</div>
+          <div class="title titleSpace">汉唐飞扬，以道营器</div>
           <div class="subtitle">汉唐飞扬，以道营器汉唐飞扬，以道营器</div>
-          <div class="content">
-            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉
-            唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐
-            飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉
-            唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。
+          <div class="contentFont contentTop">
+            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉
+            唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬
+            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉
+            唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬
+            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉
+            唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬
+            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉
+            唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬
           </div>
         </div>
       </div>
       <div class="rightView">
         <div class="title">新闻</div>
-        <div class="line"></div>        
+        <div class="line"></div>
         <div v-for="(item, index) in arctiles" :key="index">
-            <ShowArticleItem  :timeTitle="item.timeTitle"
+          <ShowArticleItem
+            :timeTitle="item.timeTitle"
             :picSrc="item.picSrc"
             :articleTitle="item.articleTitle"
-            :articleSumary="item.articleSumary"            
-            />
-          </div>
+            :articleSumary="item.articleSumary"
+          />
+        </div>
       </div>
     </div>
   </div>
   <!-- <div>
     dongfusong
-  </div> -->
+  </div>-->
 </template>
 
 <script>
-import HeadTop from '@/components/HeadTop.vue'
+import HeadTop from "@/components/HeadTop.vue";
 import ShowArticleItem from "./ShowArticleItem";
 // import MainContentView from '../components/MainContentView'
 
 export default {
   name: "MainPage",
-  components:{
-     HeadTop,
-     ShowArticleItem,    
+  components: {
+    HeadTop,
+    ShowArticleItem
   },
-  data(){
-      return {
-         srcollPis:["/static/design/设计灵感_03.jpg","/static/design/设计灵感_03.jpg","/static/design/设计灵感_03.jpg"],         
-          arctiles:[
-            {timeTitle:'五月 2019 人民网', articleTitle:'汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事',
-             picSrc:'/static/works/项目_003.jpg', articleSumary:'二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……'},
-             {timeTitle:'五月 2019 人民网', articleTitle:'汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事',
-             picSrc:'/static/works/项目_004.jpg', articleSumary:'二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……'},
-             {timeTitle:'五月 2019 人民网', articleTitle:'汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事',
-             picSrc:'/static/works/项目_005.jpg', articleSumary:'二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……'},            
-          ]
-      }
+  data() {
+    return {
+      srcollPis: [
+        "/static/workdetail/项目详情_07.jpg",        
+        "/static/workdetail/项目详情_03.jpg",        
+      ],
+      arctiles: [
+        {
+          timeTitle: "五月 2019 人民网",
+          articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+          picSrc: "/static/works/项目_003.jpg",
+          articleSumary:
+            "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
+        },
+        {
+          timeTitle: "五月 2019 人民网",
+          articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+          picSrc: "/static/works/项目_004.jpg",
+          articleSumary:
+            "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
+        },
+        {
+          timeTitle: "五月 2019 人民网",
+          articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+          picSrc: "/static/works/项目_005.jpg",
+          articleSumary:
+            "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……" +
+            "北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…"
+        }
+      ]
+    };
   }
 };
 </script>
 
 <style lang='less' scoped>
-.headContainer{
+@import "../appStyle";
+
+.scrollContainer{
+  position: absolute;
+  width: 1440px;
+  height: 587px;
+  top:95px;
+}
+
+.picContainer{
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.scrollContainer1{  
-  background-color: #F5F5F5;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;  
-  
-  .pic{
-     display: flex;
-     flex-direction: row;
-     justify-content: center;     
-  }
+.picScroll {  
+  width: 1440px;
+  height: 800px;
+  padding: 0px 100px;
 }
-.contentView {  
+
+.headContainer {
   display: flex;
   flex-direction: row;
-  align-items: center;  
+  justify-content: center;
+}
+
+.contentView {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 70px 120px;
+  width: 1440px;
+  box-sizing: border-box;
+  // background-color: antiquewhite;
 
   .leftView {
-    // width: 730px;
-    // margin-right: 94px;
-    .title {      
+    // background-color: aliceblue;
+    // margin-right: 80px;
+    .title {
       font-size: 30px;
       font-family: PingFangSC-Regular;
       font-weight: 400;
@@ -121,7 +159,7 @@ export default {
     .mainPic {
       margin-top: 36px;
       background-color: beige;
-      width: 730px;
+      width: 728px;
       height: 310px;
     }
     .article {
@@ -135,16 +173,23 @@ export default {
         font-weight: bold;
         color: rgba(51, 51, 51, 1);
         line-height: 24px;
-        margin-bottom: 3px;
       }
+      .titleSpace {
+        margin-bottom: 4px;
+      }
+
       .subtitle {
         font-size: 16px;
         font-family: Helvetica;
         color: rgba(102, 102, 102, 1);
         line-height: 19px;
-        margin-bottom: 10px;
       }
-      .content {
+      .contentTop {
+        margin-top: 17px;
+      }
+
+      .contentFont {
+        max-width: 729px;
         font-size: 16px;
         font-family: Helvetica;
         color: rgba(153, 153, 153, 1);
@@ -152,11 +197,10 @@ export default {
       }
     }
   }
+
   .rightView {
-    // width: 364px;
+    // background-color: antiquewhite;
     .title {
-      // width: 363px;
-      // height: 42px;
       font-size: 30px;
       font-family: PingFangSC-Regular;
       font-weight: 400;
@@ -168,14 +212,13 @@ export default {
       width: 49px;
       height: 4px;
       background-color: black;
-    }   
+    }
   }
-  .dynamicContainer {
-    background-size: 100%, 100%;
-    background-color: aliceblue;
+  .dynamicContainer {    
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
   }
 }
 </style>
-

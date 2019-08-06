@@ -1,7 +1,10 @@
 <template>
   <div class="container">
-    <HeadTop textColor='#000'/> 
-    <div class="aboutContainer">
+    <HeadTop textColor='#ffff'/> 
+    <div class="backgroundImg">
+      <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
+    </div>    
+    <div class="aboutContainer cover">
       <ScrollPicAbout/>
     </div>        
 	</div>
@@ -29,6 +32,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
   
+  @import '../appStyle';
+
   .container{
         width: 100%;      
         display: flex;
