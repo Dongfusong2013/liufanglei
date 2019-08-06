@@ -20,14 +20,12 @@
       />
     </div>
 
-    <div class="aboutItem">
-      <div class="item">
+    <div class="wholeContainer">
+      <div class="item cover">
         <div class="topDown">
-          <div class="lr_item">
-            <div class="sm-picView">
-              <div class="sm-pic">
-                <img src="/static/about/21.png" alt width="100%" height="100%" />
-              </div>
+          <div class="lr_item part-vertical-bottom">
+            <div class="sm-pic">
+              <img src="/static/about/21.png" alt width="100%" height="100%" />
             </div>
             <div class="contentView">
               <div class="titleFont">北京香港马会会所</div>
@@ -41,11 +39,10 @@
             </div>
           </div>
           <div class="lr_item">
-            <div class="sm-picView">
               <div class="sm-pic">
                 <img src="/static/about/21.png" alt width="100%" height="100%" />
               </div>
-            </div>
+
             <div class="contentView">
               <div class="titleFont">淄博市齐盛国际大酒店 (淄博国宾馆)</div>
               <div>
@@ -59,13 +56,12 @@
           </div>
         </div>
 
-        <div class="topDown">
-          <div class="lr_item">
-            <div class="sm-picView">
+        <div class="topDown ">
+          <div class="lr_item part-vertical-bottom">
               <div class="sm-pic">
                 <img src="/static/about/21.png" alt width="100%" height="100%" />
               </div>
-            </div>
+
             <div class="contentView">
               <div class="titleFont">首都师范大学国际文化学院大厦</div>
               <div>
@@ -78,11 +74,11 @@
             </div>
           </div>
           <div class="lr_item">
-            <div class="sm-picView">
+
               <div class="sm-pic">
                 <img src="/static/about/21.png" alt width="100%" height="100%" />
               </div>
-            </div>
+
             <div class="contentView">
               <div class="titleFont">北航科技大厦</div>
               <div>
@@ -95,6 +91,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -102,11 +99,11 @@
 
 
 <script>
-import PicItem from "./PicItem";
+
 export default {
   name: "FourItems",
   components: {
-    PicItem
+
   },
   props: {
     title: { type: String },
@@ -123,7 +120,48 @@ export default {
 
 
 <style lang="less" scoped>
-@import "./scrollItem.less";
+@import '../appStyle.less';
+
+
+.aboutItem{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.wholeContainer{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0px 110px;
+}
+
+.part-vertical-bottom{
+    margin-bottom: 89px;
+}
+
+
+.item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftArrow {
+  position: absolute;
+  left: 80px;
+  top: 300px;
+}
+
+.rightArrow {
+  position: absolute;
+  right: 80px;
+  top: 300px;
+}
+
 
 .titleFont {
   font-size: 20px;
@@ -148,14 +186,7 @@ export default {
   line-height: 24px;
 }
 
-.item {
-  margin-top: 80px;
-  width: 80%;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;  
-}
+
 
 .innerMargin {
   margin-bottom: 13px;
@@ -168,23 +199,13 @@ export default {
   align-items: center;
 }
 
-.sm-picView {
-  width: 254px;
-  height: 180px;
-  background: linear-gradient(
-    90deg,
-    rgba(196, 232, 250, 1) 0%,
-    rgba(250, 233, 207, 1) 100%
-  );
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+
   .sm-pic {
     width: 245px;
     height: 171px;
+    box-shadow:2px 2px 5px #333333;
   }
-}
+
 .lr_item {
   box-sizing: border-box;
   width: 570px;
@@ -193,7 +214,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 89px;
+
   .contentView {
     margin-top: 10px;
     margin-bottom: 20px;
@@ -205,4 +226,3 @@ export default {
   }
 }
 </style>
-

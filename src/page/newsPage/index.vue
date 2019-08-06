@@ -12,7 +12,6 @@
 import HeadTop from '../components/HeadTop.vue'
 import ScrollPicNews from '../components/ScrollPicNews.vue'
 
-
 export default {
   name: 'NewsPage',
   data () {
@@ -20,7 +19,7 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  
+
   components:{
       HeadTop,
       ScrollPicNews,

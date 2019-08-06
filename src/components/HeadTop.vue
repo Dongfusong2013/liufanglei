@@ -1,6 +1,6 @@
 <template>
 <div class="head-container">
-    <div id="leftTitle" v-bind:style="{color:textColor}">
+    <div id="leftTitle" v-bind:style="{color:textColor}" @click="gotoPage('/cover')">
       LFL
     </div>
     <div id="menueItems">
@@ -48,6 +48,10 @@
         this.setActiveIndex(index);
       },
 
+      gotoPage(path){
+        this.$router.push(path);
+        console.log('-----gotopage=====');
+      },
       isActive(index) {
         return index == this.activeIndex;
       }
@@ -55,8 +59,8 @@
   }
 </script>
 
-<style lang="less" scoped>  
-  .head-container {        
+<style lang="less" scoped>
+  .head-container {
     width: 100%;
     height: 94px;
     display: flex;
@@ -64,7 +68,7 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 0px 120px;      
+    padding: 0px 120px;
   }
 
   #leftTitle {

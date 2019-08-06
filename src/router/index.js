@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Cover from '@/page/coverPage'
 import MainPage from '@/page/mainPage'
 import ProjectPage from '@/page/projectPage'
 import DesignPage from '@/page/designPage'
@@ -14,9 +15,14 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Cover',
+      component: Cover
+    },
+    {
+      path: '/main',
       name: 'mainPage',
       component: MainPage
-    }, 
+    },
     {
       path: '/project',
       name: 'ProjectPage',
@@ -36,7 +42,7 @@ export default new Router({
       path: '/about',
       name: 'AboutPage',
       component: AboutPage
-    },    
-    
+    },
+
   ]
 })

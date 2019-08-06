@@ -4,40 +4,38 @@
     <div class="backgroundImg">
       <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
     </div>
-    <!-- <div class="scrollContainer cover"></div>  -->
     <HeadTop textColor="#fff"></HeadTop>
-      <el-carousel :interval="5000" arrow="always" height="580px" ref="carousel">
-        <el-carousel-item v-for="(item, index) in srcollPis" :key="index">
-          <div class="picContainer">
-            <div class="picScroll">
+    <div class="scrollContainer cover"></div>
+
+    <el-carousel :interval="5000" arrow="always" height="580px" ref="carousel">
+      <el-carousel-item v-for="(item, index) in srcollPis" :key="index">
+        <div class="picContainer">
+          <div class="picScroll">
             <img :src="item" alt height="100%" width="100%" />
           </div>
-          </div>          
-        </el-carousel-item>
-      </el-carousel>
-    
+        </div>
+      </el-carousel-item>
+    </el-carousel>
+
     <div class="contentView cover">
       <div class="leftView">
         <div class="title titleSpace">美学理念</div>
         <div class="line"></div>
         <div class="mainPic">
-          <img src="/static/works/项目_004.jpg" alt height="100%" width="100%" />
+          <img src="/static/main/美学理念.png" alt height="100%" width="100%" />
         </div>
         <div class="article">
           <div class="title titleSpace">汉唐飞扬，以道营器</div>
           <div class="subtitle">汉唐飞扬，以道营器汉唐飞扬，以道营器</div>
           <div class="contentFont contentTop">
-            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉
+            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞
             唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬
-            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉
-            唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬
-            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉
-            唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬
-            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉
+            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞
             唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬
           </div>
         </div>
       </div>
+
       <div class="rightView">
         <div class="title">新闻</div>
         <div class="line"></div>
@@ -71,28 +69,28 @@ export default {
   data() {
     return {
       srcollPis: [
-        "/static/workdetail/项目详情_07.jpg",        
-        "/static/workdetail/项目详情_03.jpg",        
+        "/static/main/scroll1.png",
+        "/static/workdetail/项目详情_03.jpg"
       ],
       arctiles: [
         {
           timeTitle: "五月 2019 人民网",
           articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-          picSrc: "/static/works/项目_003.jpg",
+          picSrc: "/static/main/1.png",
           articleSumary:
             "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
         },
         {
           timeTitle: "五月 2019 人民网",
           articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-          picSrc: "/static/works/项目_004.jpg",
+          picSrc: "/static/main/2.png",
           articleSumary:
             "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
         },
         {
           timeTitle: "五月 2019 人民网",
           articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-          picSrc: "/static/works/项目_005.jpg",
+          picSrc: "/static/main/3.png",
           articleSumary:
             "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……" +
             "北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…"
@@ -106,20 +104,20 @@ export default {
 <style lang='less' scoped>
 @import "../appStyle";
 
-.scrollContainer{
+.scrollContainer {
   position: absolute;
   width: 1440px;
-  height: 587px;
-  top:95px;
+  height: 580px;
+  top: 102px;
 }
 
-.picContainer{
+.picContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.picScroll {  
+.picScroll {
   width: 1440px;
   height: 800px;
   padding: 0px 100px;
@@ -214,11 +212,9 @@ export default {
       background-color: black;
     }
   }
-  .dynamicContainer {    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
+  .dynamicContainer {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

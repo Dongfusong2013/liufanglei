@@ -4,11 +4,11 @@
       <img src="/static/about/大图@2x.png" height="100%" />
     </div>
     <div class="contentView">
-      <div class="title">
-        实践与荣誉
+      <div class="title titleTop title-content-margin-bottom">
+        用建筑向世界讲述中国故事
         <div class="line-style"></div>
       </div>
-      <div>        
+      <div>
         <div class="content">工作室始终坚持进行顶级建筑实践，为中国 乃至世界，贡献美与智慧。</div>
         <div class="detail">
           工作室始终坚持进行顶级建筑实践，为中国和世界，贡献值美学智慧。工作室始终坚持进行顶级建筑实践，
@@ -35,13 +35,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "./scrollItem.less";
+@import "../appStyle";
 
-@import './scrollItem.less';
-@import '../appStyle';
-
-.mainContainer{
+.mainContainer {
   display: flex;
   flex-direction: row;
+  width: 1380px;
+  height: 640px;
 }
 .imageView {
   width: 850px;
@@ -52,12 +53,15 @@ export default {
   // flex: 1;
   display: flex;
   flex-direction: column;
-  padding-left: 4.875rem;
+  padding-left: 50px;
   padding-right: 120px;
 }
 
+.title-content-margin-bottom{
+  margin-bottom: 156px;
+}
+
 .content {
-  margin-top: 174px;
   font-size: 20px;
   font-family: PingFangSC-Semibold;
   font-weight: 600;
@@ -83,9 +87,15 @@ export default {
   right: 120px;
 }
 
+.titleTop {
+  margin-top: 40px;
+}
 
 .title {
   font-size: 30px;
+  font-family: Helvetica;
+  color: rgba(51, 51, 51, 1);
+  line-height: 36px;
 }
 .line-style {
   margin-top: 0.75rem;

@@ -1,6 +1,9 @@
 <template>
   <div class="history-contaienr">
-    <HeadTop textColor='#000'/> 
+    <div class="backgroundImg">
+      <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
+    </div>
+    <HeadTop textColor='#ffff'/>
      <baidu-map class="map" center="北京">
      <!-- <button v-on:click="show"></button> -->
        <div class="tabContainer">
@@ -20,11 +23,11 @@
        <bm-marker :position="{lng: 116.404, lat: 39.915}" :dragging="true" @click="openWindow" animation="BMAP_ANIMATION_BOUNCE">
       <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
       <bm-info-window  class="window-style" :position="{lng: 116.404, lat: 39.915}" :show="show" @close="infoWindowClose" @open="infoWindowOpen">
-        
+
         <div class="window-style">
           我爱北京天安门
         </div>
-      </bm-info-window> 
+      </bm-info-window>
       </bm-marker>
   </baidu-map>
 	</div>
@@ -41,13 +44,13 @@ export default {
       show:false
     }
   },
-  
+
   components:{
       HeadTop,
       // BaiduMap,
   },
- 
-  methods:{   
+
+  methods:{
     openWindow(){
         console.log("open window...");
         this.show = true;
@@ -60,13 +63,14 @@ export default {
       this.show = true
       console.log("----------open-------");
     }
-    
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
+    @import '../appStyle';
     .history-contaienr{
         width: 100%;
         height: 100%;
@@ -75,18 +79,18 @@ export default {
         align-items: center;
         position: relative;
     }
-    
+
     .map {
     width: 100%;
     height: 700px;
-    
+
     .window-style{
       width: 100px;
       height: 200px;
       background-color: aliceblue;
     }
   }
-  
+
   .tabContainer{
     display: flex;
     flex-direction: row;
@@ -95,7 +99,7 @@ export default {
     position: absolute;
     top:120px;
     left:580px;
-    
+
     .tabItem{
        padding: 4px 3px;
        // line-height: 15px;
@@ -107,8 +111,8 @@ export default {
        color: black;
        font-weight:bold;
     }
-    
-    .itemActive{      
+
+    .itemActive{
        color: white;
        background-color: black;
     }

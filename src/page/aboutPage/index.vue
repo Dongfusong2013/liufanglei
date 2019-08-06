@@ -4,7 +4,7 @@
     <div class="backgroundImg">
       <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
     </div>    
-    <div class="aboutContainer cover">
+    <div class="aboutContainer">
       <ScrollPicAbout/>
     </div>        
 	</div>
@@ -36,11 +36,7 @@ export default {
 
   .container{
         width: 100%;      
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        align-items: center;
-        position: relative;
+        height: 100%;
     }
     .aboutContainer{
        width:100%;
