@@ -169,7 +169,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 70px 120px;
+    padding: 40px 120px;
     width: 1440px;
     box-sizing: border-box;
     // background-color: antiquewhite;
