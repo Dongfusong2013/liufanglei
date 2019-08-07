@@ -2,7 +2,7 @@
   <div class="projectItemContainer">
     <img src="/static/works/left_arrow.jpg" class="leftArrow" v-if="!isFirst()" @click="prePic()" />
     <img src="/static/works/right_arrow.jpg" class="rightArrow" v-if="!isLast()" @click="nextPic()" />
-    <div class="picContainer cover">
+    <div class="picContainer cover" @click="goTo('/projectInfo')">
       <div v-for="(item, index) in projects" :key="index">
         <div class="picItem">
           <div class="pic">
@@ -36,6 +36,11 @@
     },
     data() {
       return {};
+    },
+    methods:{
+      goTo(path){
+          this.$router.push(path);
+      }
     }
   };
 </script>
@@ -85,8 +90,8 @@
       background-color: aliceblue;
       box-sizing: border-box;
       margin-top: 15px;
-      margin-left: 40px;
-
+      margin-left: 40px;      
+      border:1px solid gainsboro;
       .pic {
         width: 340px;
         height: 256px;

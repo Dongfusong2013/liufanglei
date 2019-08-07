@@ -19,24 +19,24 @@
       />
     </div>
     <div class="scroll-view cover">
-      <div class="bg-title-font">刘方磊</div>
+      <div class="bg-title-font title-padding-top">刘方磊</div>
       <div class="line line-top"></div>
       <div class="row-box-space-between box-top">
         <div class="pic-size">
-          <img src="/static/about/个人简介_03.jpg" alt height="100%" width="100%" />
+          <img src="/static/about/liufanglei.png" alt height="100%" width="100%" />
         </div>
         <div>
           <div class="sm-title-font">任职</div>
           <div class="content-top">
             <div class="sm-content-font">
-              北京市建筑设计研究院有限公司(BIAD)
-              副总建筑师
+              <div>北京市建筑设计研究院有限公司(BIAD)</div>
+              <div>副总建筑师</div>
             </div>
             <div class="sm-content-font">教授级高级建筑师</div>
             <div class="sm-content-font">国家一级注册建筑师</div>
             <div class="sm-content-font">APEC峰会主会场 总建筑师</div>
             <div class="sm-content-font">一带一路高峰论坛会场 总建筑师</div>
-            <div class="sm-content-font">杭州G20峰会主会场  总建筑师</div>
+            <div class="sm-content-font">杭州G20峰会主会场 总建筑师</div>
             <div class="sm-content-font">杭州G20峰会室内装饰 总建筑师</div>
             <div class="sm-content-font">厦门金砖会晤主场 总建筑师</div>
             <div class="sm-content-font">福州数字中国会展中心 总建筑师</div>
@@ -46,24 +46,23 @@
         <div>
           <div class="sm-title-font">专题报道</div>
           <div class="content-top">
-            <div class="sm-content-font">CCTV‐1《开讲啦》20170603
-              著名建筑师刘方磊开讲
+            <div class="sm-content-font">
+              <div>CCTV‐1《开讲啦》20170603</div>
+              <div>著名建筑师刘方磊开讲</div>
             </div>
-            <div class="sm-content-font">CCTV‐1《开讲啦》20170603
-              著名建筑师刘方磊开讲
+            <div class="sm-content-font">
+              <div>CCTV‐1《开讲啦》20170603</div>
+              <div>著名建筑师刘方磊开讲</div>
             </div>
-            <div class="sm-content-font">CCTV‐1《开讲啦》20170603
-              著名建筑师刘方磊开讲
+            <div class="sm-content-font">
+              <div>CCTV‐1《开讲啦》20170603</div>
+              <div>著名建筑师刘方磊开讲</div>
             </div>
-            <div class="sm-content-font">CCTV‐1《开讲啦》20170603
-              著名建筑师刘方磊开讲
+            <div class="sm-content-font">
+              <div>CCTV‐1《开讲啦》20170603</div>
+              <div>著名建筑师刘方磊开讲</div>
             </div>
-            <div class="sm-content-font">CCTV‐1《开讲啦》20170603
-              著名建筑师刘方磊开讲
-            </div>
-            <div class="sm-content-font">CCTV‐1《开讲啦》20170603
-              著名建筑师刘方磊开讲
-            </div>
+            <div class="blue-font top-space">下载完整简历</div>
           </div>
         </div>
       </div>
@@ -93,6 +92,10 @@ export default {
 
 <style lang="less" scoped>
 @import "../appStyle";
+
+.top-space{
+  margin-top: 64px;
+}
 
 .leftArrow {
   position: absolute;
@@ -130,7 +133,11 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 30px 30px;
+  padding: 40px 50px;
+}
+
+.padding-top{
+  padding-bottom: 64px;
 }
 
 .row-box-space-between {
@@ -169,5 +176,11 @@ export default {
   font-family: Helvetica;
   color: rgba(102, 102, 102, 1);
   line-height: 24px;
+}
+.blue-font {
+  font-size: 16px;
+  font-family: STSong;
+  color: rgba(0, 18, 226, 1);
+  line-height: 19px;
 }
 </style>

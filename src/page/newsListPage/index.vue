@@ -27,7 +27,10 @@
                 {{item.time}}
               </div>
               <div class="time-font">
-                观看 {{item.count}}
+                <span style="margin-left: 8px;">
+                  <img src="/static/news/眼睛.png" alt="">
+                </span>
+                <span>{{item.count}}</span>
               </div>
             </div>
             <div class="new-item">
@@ -67,7 +70,10 @@
                 {{item.time}}
               </div>
               <div class="time-font">
-                观看 {{item.count}}
+                <span style="margin-left: 8px;">
+                  <img src="/static/news/眼睛.png" alt="">
+                </span>
+                <span>{{item.count}}</span>
               </div>
             </div>
             <div class="article-item">
@@ -311,7 +317,7 @@
         activeIndex: 0,
         articles: [{
             time: '五月十二日 2019 | 人民网',
-            src: '/static/news/美学理念item.png',
+            src: '/static/news/item1.png',
             title: '汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事',
             subTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
             content: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。',
@@ -319,7 +325,7 @@
           },
           {
             time: '五月十二日 2019 | 人民网',
-            src: '/static/news/位图.png',
+            src: '/static/news/item2.png',
             title: '汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事',
             subTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
             content: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。',

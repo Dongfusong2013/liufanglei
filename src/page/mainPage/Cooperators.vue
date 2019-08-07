@@ -49,7 +49,7 @@
 
       <div class="item-right-margin column-box-center">
         <div class="sm-pic-size sm-pic-bottom">
-          <img src="/static/main/1symbl.png" alt="" height="100%" width="100%">
+          <img src="/static/main/编组 1.png" alt="" height="100%" width="100%">
         </div>
         <div class="sm-content-font">
           010 - 87213595
@@ -58,7 +58,7 @@
 
       <div class="item-right-margin column-box-center">
         <div class="sm-pic-size sm-pic-bottom">
-          <img src="/static/main/1symbl.png" alt="" height="100%" width="100%">
+          <img src="/static/main/编组 2.png" alt="" height="100%" width="100%">
         </div>
         <div class="sm-content-font">
           23429486@qq.com
@@ -66,7 +66,7 @@
       </div>
       <div class="column-box-center">
         <div class="sm-pic-size sm-pic-bottom">
-          <img src="/static/main/1symbl.png" alt="" height="100%" width="100%">
+          <img src="/static/main/编组 3.png" alt="" height="100%" width="100%">
         </div>
         <div class="sm-content-font">
           北京市西城区百万庄大街11号
@@ -90,7 +90,7 @@
   @import '../appStyle';
 
   .box-right-offset {
-    margin-left: 70px;
+    margin-left: 100px;
   }
 
   .title-margin-top {
@@ -112,7 +112,6 @@
   .sm-pic-size {
     width: 66px;
     height: 66px;
-    background-color: aliceblue;
   }
 
   .bg-title-font {
@@ -151,9 +150,10 @@
   }
 
   .pic-size {
-    width: 290px;
-    height: 240px;
-    background-color: aliceblue;
+    width: 289px;
+    height: 230px;
+    // background-color: aliceblue;
+    border:1px solid gainsboro;
   }
 
   .row-box-center {

@@ -28,12 +28,7 @@
         <div @click="goTo('/history')">
           <span style="margin-right: 8px;">文明印迹</span>
           <span>MARK OF CIVILIZATION</span>
-        </div>
-
-        <div class="next-pic-size">
-          <img src="/static/home/right_btn.png" alt="" height="100%" width="100%">
-        </div>
-
+        </div>        
       </div>
     </div>
   </div>
@@ -56,7 +51,7 @@
 
   .next-pic-size {
       height: 48px;
-      width: 48px;
+      width: 96px;
   }
 
   #content-box>div {
@@ -84,6 +79,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .self-item{
+    align-self: flex-end;
   }
 
   .content-font {

@@ -8,7 +8,7 @@ import DesignPage from '@/page/designPage'
 import AboutPage from '@/page/aboutPage'
 import HistoryPage from '@/page/historyPage'
 import NewsListPage from '@/page/newsListPage'
-
+import ProjectInfo from '@/page/projectInfoPage'
 
 Vue.use(Router)
 
@@ -18,6 +18,11 @@ export default new Router({
       path: '/',
       name: 'Cover',
       component: Cover
+    },
+    {
+      path: '/projectinfo',
+      name: 'ProjectInfo',
+      component: ProjectInfo
     },
     {
       path: '/newsList',
