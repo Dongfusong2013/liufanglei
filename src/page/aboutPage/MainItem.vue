@@ -85,8 +85,8 @@ export default {
   position: absolute;
   width: 28px;
   height: 28px;
-  bottom: 72px;
-  right: 120px;
+  bottom: 72px;  
+  right: 150px;
 }
 
 .titleTop {

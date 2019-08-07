@@ -19,7 +19,7 @@ export default {
 <style lang="less" scoped>
 @import "./style/common";
 #app{
-    width: 1400px;
+    width: 1440px;
     height: 900px;
 }
 
