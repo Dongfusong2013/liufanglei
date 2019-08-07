@@ -20,7 +20,7 @@
       <div class="leftView">
         <div class="row-box-space-between">
           <div class="title titleSpace">美学理念</div>
-          <div class="more-font sm-margint-top" @click="goto('/newsList')">
+          <div class="more-font sm-margint-top" @click="goto('/newsList',0)">
             MORE >>
           </div>
         </div>
@@ -44,7 +44,7 @@
       <div class="rightView">
         <div class="row-box-space-between">
           <div class="title titleSpace">新闻</div>
-          <div class="more-font sm-margint-top" @click="goto('/newsList')">
+          <div class="more-font sm-margint-top" @click="goto('/newsList',1)">
             MORE >>
           </div>
         </div>
@@ -55,26 +55,34 @@
         </div>
       </div>
     </div>
+
+    <div>
+      <Cooperators/>
+    </div>
   </div>
-  <!-- <div>
-    dongfusong
-  </div>-->
 </template>
 
 <script>
   import HeadTop from "@/components/HeadTop.vue";
   import ShowArticleItem from "./ShowArticleItem";
-  // import MainContentView from '../components/MainContentView'
+  import Cooperators from './Cooperators'
 
   export default {
     name: "MainPage",
     components: {
       HeadTop,
-      ShowArticleItem
+      ShowArticleItem,
+      Cooperators,
     },
     methods: {
-      goto(path) {
-        this.$router.push(path);
+      goto(path,index) {
+        var info = {
+          path:path,
+          query:{
+            index:index,
+          }
+        }
+        this.$router.push(info);
         console.log('-----', path);
       }
     },

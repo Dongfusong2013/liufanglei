@@ -6,14 +6,14 @@
     </div>
     <div class="whole-box cover">
       <div class="tab-container tab-box-padding-top">
-        <div class="tab-margin-right tab-box" :class="{'tab-active':isActive(0)}" @click="tabTo(0)">
-          新闻
-        </div>
-        <div class="tab-box" :class="{'tab-active':isActive(1)}" @click="tabTo(1)">
+        <div class="tab-box tab-margin-right " :class="{'tab-active':isActive(0)}" @click="tabTo(0)">
           理念
         </div>
+        <div class="tab-box" :class="{'tab-active':isActive(1)}" @click="tabTo(1)">
+          新闻
+        </div>
       </div>
-      <div class="main-content-box main-content-margin-top" v-if="isActive(0)">
+      <div class="main-content-box main-content-margin-top" v-if="isActive(1)">
         <div class="title-box title title-margin-left">
           新闻
           <div class="title-line">
@@ -52,7 +52,7 @@
 
         </div>
       </div>
-      <div class="main-content-box main-content-margin-top" v-else-if="isActive(1)">
+      <div class="main-content-box main-content-margin-top" v-else-if="isActive(0)">
         <div class="title-box title title-margin-left">
           理念
           <div class="title-line">
@@ -104,8 +104,11 @@
 <style lang="less" scoped>
   @import '../appStyle';
 
-  .title-line{
-    margin-top: 10px;  background-color: #000000; width:49px; height:7px;
+  .title-line {
+    margin-top: 10px;
+    background-color: #000000;
+    width: 49px;
+    height: 7px;
   }
 
   .sm-font {
@@ -290,6 +293,7 @@
     },
     methods: {
       tabTo(value) {
+        console.log("pass parram", this.$route.query);
         this.activeIndex = value;
         console.log("active index to", value);
       },
@@ -297,15 +301,19 @@
         return this.activeIndex === value;
       }
     },
+    beforeMount(){
+       console.log("======", this.$route.query);
+       this.activeIndex = parseInt(this.$route.query.index);
+    },
+
     data() {
       return {
         activeIndex: 0,
-        articles:[
-          {
+        articles: [{
             time: '五月十二日 2019 | 人民网',
             src: '/static/news/news.png',
             title: '汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事',
-            subTitle:'汉唐飞扬，以道营器汉唐飞扬，以道营器',
+            subTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
             content: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。',
             count: '1245'
           },
@@ -313,7 +321,7 @@
             time: '五月十二日 2019 | 人民网',
             src: '/static/news/news.png',
             title: '汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事',
-            subTitle:'汉唐飞扬，以道营器汉唐飞扬，以道营器',
+            subTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
             content: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。',
             count: '1245'
           }

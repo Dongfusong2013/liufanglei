@@ -26,7 +26,7 @@
     data() {
       return {
         items: [
-          {content: '交流', path: '/'},
+          {content: '交流', path: '/main'},
           {content: '项目', path: '/project'},
           {content: '作品', path: '/design'},
           {content: '关于', path: '/about'},
