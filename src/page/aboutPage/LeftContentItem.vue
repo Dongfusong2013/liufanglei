@@ -6,7 +6,7 @@
     <div class="rightArrow">
       <img src="/static/works/right_arrow.jpg" width="28px" height="56px" v-if="!isLast()" @click="nextPic()" />
     </div>
-    <div class="item cover">
+    <div class="item main-margin-top cover">
       <div class="contentView content-left-margin">
         <div class="b-titleFont">{{title}}</div>
         <div class="b-contentFont title-content-space">{{subTitle}}</div>
@@ -71,6 +71,10 @@
 
 <style lang="less" scoped>
   @import "../appStyle";
+
+  .main-margin-top{
+    margin-top: 20px;
+  }
 
   .leftArrow {
     position: absolute;

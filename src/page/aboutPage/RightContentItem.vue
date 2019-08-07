@@ -6,7 +6,7 @@
     <div class="rightArrow">
       <img src="/static/works/right_arrow.jpg" width="28px" height="56px" v-if="!isLast()" @click="nextPic()" />
     </div>
-    <div class="item cover">
+    <div class="item cover main-margin-top">
       <div class="picView">
         <div v-for="picItem in pics" :key="picItem">
           <div class="pic pic-maring-right">
@@ -31,12 +31,10 @@
 </template>
 
 <script>
-
   export default {
     name: "RightContentItem",
 
-    components: {
-    },
+    components: {},
     props: {
       title: {
         type: String
@@ -72,13 +70,21 @@
 <style lang="less" scoped>
   @import "../appStyle";
 
+  .main-margin-top {
+    margin-top: 20px;
+  }
+
   .leftArrow {
     position: absolute;
     left: 80px;
     top: 300px;
   }
 
-  .content-left-margin{
+.main-margin-top{
+    margin-top: 20px;
+  }
+
+  .content-left-margin {
     margin-left: 40px;
   }
 
@@ -89,8 +95,8 @@
     z-index: 120;
   }
 
-  .pic-maring-right{
-      margin-right:20px;
+  .pic-maring-right {
+    margin-right: 20px;
   }
 
   .aboutItem {

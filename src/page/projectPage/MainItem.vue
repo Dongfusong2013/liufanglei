@@ -38,6 +38,7 @@ export default {
 @import "./scrollItem.less";
 @import "../appStyle";
 
+
 .mainContainer {
   display: flex;
   flex-direction: row;

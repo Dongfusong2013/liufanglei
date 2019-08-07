@@ -1,6 +1,6 @@
 <template>
 <div class="head-container">
-    <div id="leftTitle" v-bind:style="{color:textColor}" @click="gotoPage('/cover')">
+    <div id="leftTitle" v-bind:style="{color:textColor}" @click="gotoPage('/')">
       LFL
     </div>
     <div id="menueItems">

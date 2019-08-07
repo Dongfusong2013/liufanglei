@@ -1,12 +1,12 @@
-<template>  
-    <div class="design-container"> 
-      <HeadTop textColor="#ffff"></HeadTop>             
+<template>
+    <div class="design-container">
+      <HeadTop textColor="#ffff"></HeadTop>
       <div class="backgroundImg">
           <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
       </div>
         <div class="designContent">
-            <ScrollPic />      
-        </div> 
+            <ScrollPic />
+        </div>
       </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
 @import "../appStyle";
 
 .design-container {
-  height: 100%;  
+  height: 100%;
   width: 100%;
 }
 
