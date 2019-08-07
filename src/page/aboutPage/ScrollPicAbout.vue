@@ -4,6 +4,9 @@
       <el-carousel-item>
         <MainItem :nextPic="nextPic" />
       </el-carousel-item>
+       <el-carousel-item>
+          <SelfItem :isFirst="isFirst" :isLast="isLast" :nextPic="nextPic" :prePic="prePic" />
+       </el-carousel-item>
       <el-carousel-item v-for="(item,index) in leftContentData" :key="index">
         <LeftContentItem :isFirst="isFirst" :isLast="isLast" :nextPic="nextPic" :prePic="prePic" :title='item.title'
           :subTitle="item.subTitle" :rewards="item.rewards" :pics="item.pics" />
@@ -24,6 +27,7 @@
   import LeftContentItem from "./LeftContentItem";
   import FourItems from './FourItems';
   import RightContentItem from './RightContentItem'
+  import SelfItem from './SelfItem'
 
   export default {
     name: "ScrollPicAbout",
@@ -87,11 +91,12 @@
       LeftContentItem,
       RightContentItem,
       FourItems,
+      SelfItem,
     },
 
     computed: {
       totalCount() {
-        return this.leftContentData.length + this.rightContentData.length + 1+1;
+        return this.leftContentData.length + this.rightContentData.length + 3;
       }
     },
     methods: {

@@ -5,6 +5,9 @@
         <el-carousel-item>
           <MainView :nextPic="nextPic"></MainView>
         </el-carousel-item>
+        <el-carousel-item>
+          <PicView/>
+        </el-carousel-item>
         <el-carousel-item v-for="(item, index) in items" :key="index">
           <div class="wholeContainer">
             <img src="/static/works/left_arrow.jpg" class="leftArrow" v-if="!isFirst()" @click="prePic()" />
@@ -32,10 +35,11 @@
 </template>
 <script>
   import MainView from './MainView';
-
+  import PicView from './PicView';
   export default {
     components: {
-      MainView
+      MainView,
+      PicView,
     },
     data() {
       return {

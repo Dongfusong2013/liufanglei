@@ -147,7 +147,7 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 0px 110px;
+    padding: 0px 120px;
   }
 
   .part-vertical-bottom {
