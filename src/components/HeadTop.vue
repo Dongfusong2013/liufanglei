@@ -82,7 +82,7 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    // padding-right: 150px;
+    padding-right: 150px;
   }
   .item {
     color: white;
