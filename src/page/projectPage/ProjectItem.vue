@@ -43,7 +43,6 @@
 <style lang="less" scoped>
   @import "../appStyle";
 
-  // arrow
   .leftArrow {
     position: absolute;
     left: 40px;
@@ -76,6 +75,10 @@
     flex-direction: row;
     flex-wrap: wrap;
 
+    .picItem:hover {
+      box-shadow: 2px 2px 5px #333333;
+    }
+
     .picItem {
       width: 340px;
       height: 300px;
@@ -83,7 +86,6 @@
       box-sizing: border-box;
       margin-top: 15px;
       margin-left: 40px;
-      box-shadow: 2px 2px 5px #333333;
 
       .pic {
         width: 340px;

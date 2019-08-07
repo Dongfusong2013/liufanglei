@@ -7,20 +7,43 @@
       北京—杭州—厦门，营造中国与世界的沟通之所 建筑语言：功能流线，空间结构，形态外延，文化内涵
     </div>
 
-    <div class="row-box-center title-margin-top">
-      <div class="pic-size pic-right-margin">
-        <img src="/static/main/金砖.png" alt="" height="100%" width="100%">
-      </div>
-      <div class="pic-size pic-right-margin">
-        <img src="/static/main/G20.png" alt="" height="100%" width="100%">
-      </div>
-      <div class="pic-size pic-right-margin">
-        <img src="/static/main/一带一路.png" alt="" height="100%" width="100%">
-      </div>
-      <div class="pic-size pic-right-margin">
-        <img src="/static/main/apec.png" alt="" height="100%" width="100%">
-      </div>
+    <div style="width: 100%;" class=" title-margin-top">
+      <el-carousel :interval="5000" arrow="always" height="240px" ref="carousel">
+        <el-carousel-item>
+          <div class="row-box-center">
+            <div class="pic-size pic-right-margin">
+              <img src="/static/main/金砖.png" alt="" height="100%" width="100%">
+            </div>
+            <div class="pic-size pic-right-margin">
+              <img src="/static/main/G20.png" alt="" height="100%" width="100%">
+            </div>
+            <div class="pic-size pic-right-margin">
+              <img src="/static/main/一带一路.png" alt="" height="100%" width="100%">
+            </div>
+            <div class="pic-size pic-right-margin">
+              <img src="/static/main/apec.png" alt="" height="100%" width="100%">
+            </div>
+          </div>
+          </el-carousel-item>
+           <el-carousel-item>
+            <div class="row-box-center">
+              <div class="pic-size pic-right-margin">
+                <img src="/static/main/金砖.png" alt="" height="100%" width="100%">
+              </div>
+              <div class="pic-size pic-right-margin">
+                <img src="/static/main/G20.png" alt="" height="100%" width="100%">
+              </div>
+              <div class="pic-size pic-right-margin">
+                <img src="/static/main/一带一路.png" alt="" height="100%" width="100%">
+              </div>
+              <div class="pic-size pic-right-margin">
+                <img src="/static/main/apec.png" alt="" height="100%" width="100%">
+              </div>
+            </div>
+            </el-carousel-item>
+      </el-carousel>
     </div>
+
 
     <div class="row-box-center box-right-offset" style="margin-top: 162px; margin-bottom: 79px;">
 
@@ -66,7 +89,7 @@
 <style lang="less" scoped>
   @import '../appStyle';
 
-  .box-right-offset{
+  .box-right-offset {
     margin-left: 70px;
   }
 
