@@ -1,7 +1,7 @@
 <template>
   <div class="mainContainer cover">
     <div class="imageView">
-      <img src="/static/about/大图@2x.png" height="100%" />
+      <img src="/static/about/night.jpeg" height="100%" />
     </div>
     <div class="contentView">
       <div class="title titleTop title-content-margin-bottom">

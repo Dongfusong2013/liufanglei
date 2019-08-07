@@ -110,6 +110,7 @@
 
   .item {
     width: 100%;
+    padding: 0px 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
