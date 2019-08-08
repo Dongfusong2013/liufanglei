@@ -65,6 +65,10 @@ export default {
   name: "ProjectInfo",
   components: {
     HeadTop
+  },
+  mounted(){
+      console.log("=======");
+      console.log(this.$route.query.projectId);
   }
 };
 </script>

@@ -2,9 +2,9 @@
   <div class="projectItemContainer">
     <img src="/static/works/left_arrow.jpg" class="leftArrow" v-if="!isFirst()" @click="prePic()" />
     <img src="/static/works/right_arrow.jpg" class="rightArrow" v-if="!isLast()" @click="nextPic()" />
-    <div class="picContainer cover" @click="goTo('/projectInfo')">
+    <div class="picContainer cover">
       <div v-for="(item, index) in projects" :key="index">
-        <div class="picItem">
+        <div class="picItem"  @click="goTo('/projectInfo', item.id)">
           <div class="pic">
             <img height="100%" width="100%" v-bind:src="item.src" />
           </div>
@@ -38,8 +38,15 @@
       return {};
     },
     methods:{
-      goTo(path){
-          this.$router.push(path);
+      goTo(path, id){
+
+        var info = {
+          path:path,
+          query:{
+            projectId:id,
+          }
+        }
+          this.$router.push(info);
       }
     }
   };
@@ -90,7 +97,7 @@
       background-color: aliceblue;
       box-sizing: border-box;
       margin-top: 15px;
-      margin-left: 40px;      
+      margin-left: 40px;
       border:1px solid gainsboro;
       .pic {
         width: 340px;

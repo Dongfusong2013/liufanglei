@@ -30,13 +30,10 @@
           <img src="/static/main/美学理念.png" alt height="100%" width="100%" />
         </div>
         <div class="article">
-          <div class="title titleSpace">汉唐飞扬，以道营器</div>
-          <div class="subtitle">汉唐飞扬，以道营器汉唐飞扬，以道营器</div>
+          <div class="title titleSpace">{{idea.title}}</div>
+          <div class="subtitle">{{idea.subTitle}}</div>
           <div class="contentFont contentTop">
-            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞
-            唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬
-            汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞
-            唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬
+              {{idea.summary}}
           </div>
         </div>
       </div>
@@ -86,6 +83,17 @@
         console.log('-----', path);
       }
     },
+    mounted: function () {
+        // GET /someUrl
+        this.$http.get('http://localhost:9931/xitenggame/welcome').then(response => {
+             console.log(response.data);
+            // get body data
+            // this.someData = response.body;
+
+        }, response => {
+            console.log("......error");
+        });
+    },
     data() {
       return {
         srcollPis: [
@@ -93,25 +101,36 @@
           "/static/workdetail/项目详情_03.jpg"
         ],
         arctiles: [{
-            timeTitle: "五月 2019 人民网",
+            timeTitle: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
             picSrc: "/static/main/1.png",
             articleSumary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
           },
           {
-            timeTitle: "五月 2019 人民网",
+            timeTitle: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
             picSrc: "/static/main/2.png",
             articleSumary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
           },
           {
-            timeTitle: "五月 2019 人民网",
+            timeTitle: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
             picSrc: "/static/main/3.png",
             articleSumary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……" +
               "北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…"
           }
-        ]
+        ],
+        idea:
+          {
+            picSrc:'/static/main/美学理念.png',
+            title:'汉唐飞扬，以道营器',
+            subTitle:'汉唐飞扬，以道营器汉唐飞扬，以道营器',
+            summary:
+            '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞'+
+            '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬'+
+            '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞'+
+            '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬',
+          },
       };
     }
   };
@@ -127,7 +146,6 @@
     justify-content: space-between;
     align-items: center;
   }
-
 
   .sm-margint-top {
     margin-top: 4px;
