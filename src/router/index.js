@@ -9,12 +9,12 @@ import AboutPage from '@/page/aboutPage'
 import HistoryPage from '@/page/historyPage'
 import NewsListPage from '@/page/newsListPage'
 import ProjectInfo from '@/page/projectInfoPage'
+import AdminPage from '@/page/adminPage'
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'Cover',
       component: Cover
@@ -54,6 +54,10 @@ export default new Router({
       name: 'AboutPage',
       component: AboutPage
     },
-
+    {
+      path: '/admin',
+      name: 'AdminPage',
+      component: AdminPage
+    },
   ]
 })

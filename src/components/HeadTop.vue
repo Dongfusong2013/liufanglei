@@ -84,6 +84,7 @@
     flex-direction: row;
     padding-right: 150px;
   }
+
   .item {
     color: white;
     font: inherit;
