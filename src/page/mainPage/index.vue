@@ -85,8 +85,8 @@
     },
     mounted: function () {
         // GET /someUrl
-        this.$http.get('http://localhost:9931/xitenggame/welcome').then(response => {
-             console.log(response.data);
+        this.$http.get('/api/welcome').then(response => {
+             console.log(response);
             // get body data
             // this.someData = response.body;
 
