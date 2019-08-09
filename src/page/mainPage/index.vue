@@ -84,9 +84,8 @@
       }
     },
     beforeMount: function() {
-      var baseUrl = "www.fangleiliu.com/liufanglei_server"
-      // var baseUrl ="/api"
-      var addedUrl = '/mainPage/content';
+
+      var addedUrl = '/liufanglei_server/mainPage/content';
       var requestUrl = baseUrl + addedUrl;
 
       this.$http.post(requestUrl).then(response => {
