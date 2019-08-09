@@ -64,7 +64,7 @@
     </div>
 
     <div class="sm-content-font" style="margin-bottom: 61px;">Copyright@ 2008-2020 BlueFocus. All Rights Reserved
-      京ICP备19003641</div>
+      京ICP备19030662号-2</div>
   </div>
 </template>
 
