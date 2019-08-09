@@ -2,7 +2,7 @@
   <div class="page-view">
     <div class="leftArrow">
       <img
-        src="/static/works/left_arrow.jpg"
+        src="/static/index/left-white.png"
         width="28px"
         height="56px"
         v-if="!isFirst()"
@@ -11,7 +11,7 @@
     </div>
     <div class="rightArrow">
       <img
-        src="/static/works/right_arrow.jpg"
+        src="/static/index/right-white.png"
         width="28px"
         height="56px"
         v-if="!isLast()"

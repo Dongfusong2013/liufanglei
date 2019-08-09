@@ -6,12 +6,12 @@
           <MainView :nextPic="nextPic"></MainView>
         </el-carousel-item>
         <el-carousel-item>
-          <PicView/>
+          <PicView :isFirst="isFirst" :isLast='isLast' :prePic='prePic' :nextPic='nextPic'/>
         </el-carousel-item>
         <el-carousel-item v-for="(item, index) in items" :key="index">
           <div class="wholeContainer">
-            <img src="/static/works/left_arrow.jpg" class="leftArrow" v-if="!isFirst()" @click="prePic()" />
-            <img src="/static/works/right_arrow.jpg" class="rightArrow" v-if="!isLast()" @click="nextPic()" />
+            <img src="/static/index/left-white.png" class="leftArrow" v-if="!isFirst()" @click="prePic()" />
+            <img src="/static/index/right-white.png" class="rightArrow" v-if="!isLast()" @click="nextPic()" />
             <div class="scrollContainer">
               <div class="picContainer">
                 <img :src="item.picSrc" alt="" height="100%" width="100%">

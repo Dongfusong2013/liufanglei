@@ -1,10 +1,10 @@
 <template>
   <div class="aboutItem">
     <div class="leftArrow">
-      <img src="/static/index/left_white.png" width="28px" height="56px" v-if="!isFirst()" @click="prePic()" />
+      <img src="/static/index/left-white.png" width="28px" height="56px" v-if="!isFirst()" @click="prePic()" />
     </div>
     <div class="rightArrow">
-      <img src="/static/index/right_white.png" width="28px" height="56px" v-if="!isLast()" @click="nextPic()" />
+      <img src="/static/index/right-white.png" width="28px" height="56px" v-if="!isLast()" @click="nextPic()" />
     </div>
     <div class="item main-margin-top cover">
       <div class="contentView content-left-margin">
@@ -72,7 +72,7 @@
 <style lang="less" scoped>
   @import "../appStyle";
 
-  .main-margin-top{
+  .main-margin-top {
     margin-top: 20px;
   }
 
@@ -80,21 +80,26 @@
     position: absolute;
     left: 80px;
     top: 300px;
+    width: 30px;
+    height: 50px;
   }
 
-  .content-left-margin{
-    margin-left: 40px;
-  }
 
   .rightArrow {
     position: absolute;
     right: 80px;
     top: 300px;
-    z-index: 120;
+    width: 30px;
+    height: 50px;
   }
 
-  .pic-maring-right{
-      margin-right:20px;
+  .content-left-margin {
+    margin-left: 40px;
+  }
+
+
+  .pic-maring-right {
+    margin-right: 20px;
   }
 
   .aboutItem {

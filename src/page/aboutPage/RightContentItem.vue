@@ -1,10 +1,10 @@
 <template>
   <div class="aboutItem">
     <div class="leftArrow">
-      <img src="/static/works/left_arrow.jpg" width="28px" height="56px" v-if="!isFirst()" @click="prePic()" />
+      <img src="/static/index/left-white.png" width="28px" height="56px" v-if="!isFirst()" @click="prePic()" />
     </div>
     <div class="rightArrow">
-      <img src="/static/works/right_arrow.jpg" width="28px" height="56px" v-if="!isLast()" @click="nextPic()" />
+      <img src="/static/index/right-white.png" width="28px" height="56px" v-if="!isLast()" @click="nextPic()" />
     </div>
     <div class="item cover main-margin-top">
       <div class="picView">

@@ -1,10 +1,15 @@
 <template>
   <div class="projectItemContainer">
-    <img src="/static/works/left_arrow.jpg" class="leftArrow" v-if="!isFirst()" @click="prePic()" />
-    <img src="/static/works/right_arrow.jpg" class="rightArrow" v-if="!isLast()" @click="nextPic()" />
+    <div class="leftArrow">
+      <img src="/static/index/left-white.png" height="100%" width="100%" v-if="!isFirst()" @click="prePic()" />
+    </div>
+    <div class="rightArrow">
+    <img src="/static/index/right_white.png" height="100%" width="100%" v-if="!isLast()" @click="nextPic()" />
+    </div>
+
     <div class="picContainer cover">
       <div v-for="(item, index) in projects" :key="index">
-        <div class="picItem"  @click="goTo('/projectInfo', item.id)">
+        <div class="picItem" @click="goTo('/projectInfo', item.id)">
           <div class="pic">
             <img height="100%" width="100%" v-bind:src="item.src" />
           </div>
@@ -37,16 +42,16 @@
     data() {
       return {};
     },
-    methods:{
-      goTo(path, id){
+    methods: {
+      goTo(path, id) {
 
         var info = {
-          path:path,
-          query:{
-            projectId:id,
+          path: path,
+          query: {
+            projectId: id,
           }
         }
-          this.$router.push(info);
+        this.$router.push(info);
       }
     }
   };
@@ -59,16 +64,16 @@
     position: absolute;
     left: 40px;
     top: 300px;
-    width: 49px;
-    height: 49px;
+    width: 30px;
+    height: 50px;
   }
 
   .rightArrow {
     position: absolute;
     right: 40px;
     top: 300px;
-    width: 49px;
-    height: 49px;
+    width: 30px;
+    height: 50px;
   }
 
   .projectItemContainer {
@@ -98,7 +103,8 @@
       box-sizing: border-box;
       margin-top: 15px;
       margin-left: 40px;
-      border:1px solid gainsboro;
+      border: 1px solid gainsboro;
+
       .pic {
         width: 340px;
         height: 256px;
