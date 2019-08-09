@@ -8,16 +8,16 @@ module.exports = {
   dev: {
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {
-      '/api': {
-        target: 'http://localhost:9931',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': 'xitenggame'
-        }
-      }
-    },
+    assetsPublicPath: './',
+    // proxyTable: {
+    //   '/api': {
+    //     target: 'http://localhost:9931',
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/api': 'xitenggame'
+    //     }
+    //   }
+    // },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

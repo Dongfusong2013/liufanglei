@@ -33,7 +33,7 @@
           <div class="title titleSpace">{{idea.title}}</div>
           <div class="subtitle">{{idea.subTitle}}</div>
           <div class="contentFont contentTop">
-              {{idea.summary}}
+            {{idea.summary}}
           </div>
         </div>
       </div>
@@ -46,15 +46,15 @@
           </div>
         </div>
         <div class="line"></div>
-        <div v-for="(item, index) in arctiles" :key="index">
+        <div v-for="(item, index) in articles" :key="index">
           <ShowArticleItem :timeTitle="item.timeTitle" :picSrc="item.picSrc" :articleTitle="item.articleTitle"
-            :articleSumary="item.articleSumary" />
+            :articleSumary="item.articleSummary" />
         </div>
       </div>
     </div>
 
     <div>
-      <Cooperators/>
+      <Cooperators />
     </div>
   </div>
 </template>
@@ -72,27 +72,34 @@
       Cooperators,
     },
     methods: {
-      goto(path,index) {
+      goto(path, index) {
         var info = {
-          path:path,
-          query:{
-            index:index,
+          path: path,
+          query: {
+            index: index,
           }
         }
         this.$router.push(info);
         console.log('-----', path);
       }
     },
-    mounted: function () {
-        // GET /someUrl
-        this.$http.get('/api/welcome').then(response => {
-             console.log(response);
-            // get body data
-            // this.someData = response.body;
+    beforeMount: function() {
+      var baseUrl = "www.fangleiliu.com/liufanglei_server"
+      // var baseUrl ="/api"
+      var addedUrl = '/mainPage/content';
+      var requestUrl = baseUrl + addedUrl;
 
-        }, response => {
-            console.log("......error");
-        });
+      this.$http.post(requestUrl).then(response => {
+        console.log(response.body);
+        // get body data
+        // this.someData = response.body;
+        this.idea = response.body.ideaMsg;
+        this.articles = [...response.body.articles];
+      }, response => {
+        console.log("......error");
+      });
+
+
     },
     data() {
       return {
@@ -100,37 +107,36 @@
           "/static/main/scroll1.png",
           "/static/workdetail/项目详情_03.jpg"
         ],
-        arctiles: [{
-            timeTitle: "五月 2019 | 人民网",
-            articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            picSrc: "/static/main/1.png",
-            articleSumary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
-          },
-          {
-            timeTitle: "五月 2019 | 人民网",
-            articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            picSrc: "/static/main/2.png",
-            articleSumary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
-          },
-          {
-            timeTitle: "五月 2019 | 人民网",
-            articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            picSrc: "/static/main/3.png",
-            articleSumary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……" +
-              "北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…"
-          }
+        articles: [
+          // {
+          //   timeTitle: "五月 2019 | 人民网",
+          //   articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+          //   picSrc: "/static/main/1.png",
+          //   articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
+          // },
+          // {
+          //   timeTitle: "五月 2019 | 人民网",
+          //   articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+          //   picSrc: "/static/main/2.png",
+          //   articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
+          // },
+          // {
+          //   timeTitle: "五月 2019 | 人民网",
+          //   articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+          //   picSrc: "/static/main/3.png",
+          //   articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……" +
+          //     "北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…"
+          // }
         ],
-        idea:
-          {
-            picSrc:'/static/main/美学理念.png',
-            title:'汉唐飞扬，以道营器',
-            subTitle:'汉唐飞扬，以道营器汉唐飞扬，以道营器',
-            summary:
-            '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞'+
-            '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬'+
-            '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞'+
-            '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬',
-          },
+        idea: {
+          // picSrc: '/static/main/美学理念.png',
+          // title: '汉唐飞扬，以道营器',
+          // subTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
+          // summary: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞' +
+          //   '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬' +
+          //   '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞' +
+          //   '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬',
+        },
       };
     }
   };

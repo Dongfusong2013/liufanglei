@@ -1,10 +1,11 @@
 <template>
   <div class="view column-box-center cover">
     <div class="bg-title-font title-margin-top">合作单位</div>
+    <div class="line line-top"></div>
     <div class="sm-title-font content-margin-top">北京—杭州—厦门，营造中国与世界的沟通之所 建筑语言：功能流线，空间结构，形态外延，文化内涵</div>
 
     <div style="width: 100%;" class="title-margin-top">
-      <el-carousel :interval="5000" arrow="always" height="240px" ref="carousel">
+      <el-carousel :interval="5000" arrow="always" height="280px" ref="carousel">
         <el-carousel-item>
           <div class="row-box-center">
             <div class="pic-size pic-right-margin">
@@ -62,99 +63,105 @@
       </div>
     </div>
 
-    <div
-      class="sm-content-font"
-      style="margin-bottom: 61px;"
-    >Copyright@ 2008-2020 BlueFocus. All Rights Reserved 京ICP备19003641</div>
+    <div class="sm-content-font" style="margin-bottom: 61px;">Copyright@ 2008-2020 BlueFocus. All Rights Reserved
+      京ICP备19003641</div>
   </div>
 </template>
 
 <script>
-export default {
-  name: "Cooperators"
-};
+  export default {
+    name: "Cooperators"
+  };
 </script>
 
 <style lang="less" scoped>
-@import "../appStyle";
+  @import "../appStyle";
 
-.box-right-offset {
-  margin-left: 100px;
-}
+  .box-right-offset {
+    margin-left: 100px;
+  }
 
-.title-margin-top {
-  margin-top: 80px;
-}
+  .title-margin-top {
+    margin-top: 80px;
+  }
 
-.content-margin-top {
-  margin-top: 36px;
-}
+  .content-margin-top {
+    margin-top: 36px;
+  }
 
-.item-right-margin {
-  margin-right: 142px;
-}
+  .item-right-margin {
+    margin-right: 142px;
+  }
 
-.sm-pic-bottom {
-  margin-bottom: 20px;
-}
+  .line {
+    width: 49px;
+    height: 4px;
+    background: rgba(28, 28, 28, 1);
+  }
+  .line-top{
+    margin-top: 11px;
+  }
 
-.sm-pic-size {
-  width: 66px;
-  height: 66px;
-}
+  .sm-pic-bottom {
+    margin-bottom: 20px;
+  }
 
-.bg-title-font {
-  font-size: 30px;
-  font-family: PingFangSC-Regular;
-  font-weight: 400;
-  color: rgba(51, 51, 51, 1);
-  line-height: 42px;
-}
+  .sm-pic-size {
+    width: 66px;
+    height: 66px;
+  }
 
-.sm-title-font {
-  font-size: 14px;
-  font-family: PingFangSC-Regular;
-  font-weight: 400;
-  color: rgba(51, 51, 51, 1);
-  line-height: 22px;
-}
+  .bg-title-font {
+    font-size: 30px;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 42px;
+  }
 
-.sm-content-font {
-  font-size: 16px;
-  font-family: Helvetica;
-  color: rgba(102, 102, 102, 1);
-  line-height: 19px;
-}
+  .sm-title-font {
+    font-size: 14px;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 22px;
+  }
 
-.pic-right-margin {
-  margin-right: 13px;
-}
+  .sm-content-font {
+    font-size: 16px;
+    font-family: Helvetica;
+    color: rgba(102, 102, 102, 1);
+    line-height: 19px;
+  }
 
-.column-box-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .pic-right-margin {
+    margin-right: 13px;
+  }
 
-.pic-size {
-  width: 289px;
-  height: 230px;
-  // background-color: aliceblue;
-  border: 1px solid gainsboro;
-}
+  .column-box-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.pic-size:hover{
-    box-shadow: 2px 2px 5px #333333;
-}
+  .pic-size {
+    width: 290px;
+    height: 240px;
+    // background-color: aliceblue;
+  }
 
-.row-box-center {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
+  .pic-size:hover {
+    // box-shadow: 2px 2px 5px #333333;
+  }
 
-.view {
-  width: 100%;
-  // height: 618px;
-}
+  .row-box-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .view {
+    width: 100%;
+    // height: 618px;
+  }
 </style>
