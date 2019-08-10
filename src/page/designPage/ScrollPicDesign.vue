@@ -54,7 +54,7 @@
     },
     computed:{
       totalCount(){
-          return this.items.length + 1;
+          return this.items.length + 2;
       }
     },
     methods: {
@@ -103,20 +103,20 @@
     height: 100%;
   }
 
-  .leftArrow {
+ .leftArrow {
     position: absolute;
-    left: 50px;
-    top: 270px;
-    width: 40px;
-    z-index: 101;
+    left: 70px;
+    top: 300px;
+    width: 30px;
+    height: 50px;
   }
 
   .rightArrow {
     position: absolute;
-    right: 50px;
-    top: 270px;
-    width: 40px;
-    z-index: 101;
+    right: 70px;
+    top: 300px;
+    width: 30px;
+    height: 50px;
   }
 
   .spe-line {

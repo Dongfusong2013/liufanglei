@@ -46,6 +46,7 @@ export default {
   bottom: 72px;
   right: 150px;
 }
+
 .row-box-space-between {
   display: flex;
   flex-direction: row;

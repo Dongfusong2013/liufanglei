@@ -62,7 +62,7 @@
 
   .leftArrow {
     position: absolute;
-    left: 40px;
+    left: 50px;
     top: 300px;
     width: 30px;
     height: 50px;
@@ -70,7 +70,7 @@
 
   .rightArrow {
     position: absolute;
-    right: 40px;
+    right: 50px;
     top: 300px;
     width: 30px;
     height: 50px;

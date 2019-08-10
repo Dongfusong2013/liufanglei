@@ -1,7 +1,11 @@
 <template>
   <div class="page-view">
-    <img src="/static/index/left-white.png" class="leftArrow" v-if="!isFirst()" @click="prePic()" />
-    <img src="/static/index/right-white.png" class="rightArrow" v-if="!isLast()" @click="nextPic()" />
+    <div class="leftArrow">
+      <img src="/static/index/left-white.png" height="100%" width="100%" v-if="!isFirst()" @click="prePic()" />
+    </div>
+    <div class="rightArrow">
+    <img src="/static/index/right-white.png" height="100%" width="100%" v-if="!isLast()" @click="nextPic()" />
+    </div>   
     <div class="content-view row-wraper wrapp-right-offset cover">
       <div class="pic-size pic-margin-right" v-for="(item, index) in pics" :key="index">
         <img :src="item" alt="" height="100%" width="100%">
@@ -51,24 +55,21 @@
 
 <style lang="less" scoped>
   @import '../appStyle';
-
-  .leftArrow {
+ .leftArrow {
     position: absolute;
-    left: 50px;
-    top: 270px;
-    width: 40px;
-    z-index: 101;
+    left: 70px;
+    top: 300px;
+    width: 30px;
+    height: 50px;
   }
 
   .rightArrow {
     position: absolute;
-    right: 50px;
-    top: 270px;
-    width: 40px;
-    z-index: 101;
+    right: 70px;
+    top: 300px;
+    width: 30px;
+    height: 50px;
   }
-
-
   .wrapp-right-offset {
     padding-left: 40px;
   }
