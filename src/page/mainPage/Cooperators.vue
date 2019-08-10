@@ -148,11 +148,7 @@
     width: 290px;
     height: 240px;
     // background-color: aliceblue;
-  }
-
-  .pic-size:hover {
-    // box-shadow: 2px 2px 5px #333333;
-  }
+  }  
 
   .row-box-center {
     display: flex;

@@ -15,8 +15,11 @@
           为中国和世界，贡献值美学智慧。工作室始终坚持进行顶级建筑实践，为中国和世界，贡献值美学智慧。
         </div>
       </div>
-      <div class="nextArrow">
-        <img src="/static/about/下一页@2x.png" alt @click="nextPic()" />
+      <div class="row-box-space-between nextArrow-position" @click="nextPic()">
+        <div class="nextFont" style="margin-right: 10px;">NEXT</div>
+        <div class="next-pic-size">
+          <img src="/static/home/right_btn.png" alt height="100%" width="100%" />
+        </div>
       </div>
     </div>
   </div>
@@ -38,7 +41,29 @@ export default {
 @import "./scrollItem.less";
 @import "../appStyle";
 
+.nextArrow-position {
+  position: absolute;
+  bottom: 72px;
+  right: 150px;
+}
+.row-box-space-between {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+ .nextFont {
+    font-size: 14px;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(69, 69, 69, 1);
+    line-height: 20px;
 
+  }
+
+.next-pic-size {
+  width: 48px;
+  height: 48px;
+}
 .mainContainer {
   display: flex;
   flex-direction: row;
@@ -58,8 +83,7 @@ export default {
   padding-right: 120px;
 }
 
-
-.title-content-margin-bottom{
+.title-content-margin-bottom {
   margin-bottom: 156px;
 }
 
@@ -85,7 +109,7 @@ export default {
   position: absolute;
   width: 28px;
   height: 28px;
-  bottom: 72px;  
+  bottom: 72px;
   right: 150px;
 }
 

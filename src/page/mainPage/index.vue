@@ -8,10 +8,8 @@
 
     <el-carousel :interval="5000" arrow="always" height="580px" ref="carousel">
       <el-carousel-item v-for="(item, index) in srcollPis" :key="index">
-        <div class="picContainer">
-          <div class="picScroll">
-            <img :src="item" alt height="100%" width="100%" />
-          </div>
+        <div class="picContainer">          
+          <img :src="item" alt height="100%" width="100%" />          
         </div>
       </el-carousel-item>
     </el-carousel>
@@ -84,7 +82,8 @@
       }
     },
     beforeMount: function() {
-
+      var baseUrl = "www.fangleiliu.com"
+      // var baseUrl ="/api";
       var addedUrl = '/liufanglei_server/mainPage/content';
       var requestUrl = baseUrl + addedUrl;
 
@@ -174,6 +173,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 
   .picScroll {
