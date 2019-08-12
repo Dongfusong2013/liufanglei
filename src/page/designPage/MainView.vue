@@ -19,12 +19,12 @@
             NEXT
           </div>
           <div class="next-pic-size">
-            <img src="/static/home/right_btn.png" alt="" height="100%" width="100%">
+            <img src="/static/index/next-btn.png" alt="" height="100%" width="100%">
           </div>
         </div>
       </div>
       <div class="pic-size">
-        <img src="/static/design/个人作品.png" alt="">
+        <img src="http://pw0ddarc5.bkt.clouddn.com/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E5%93%81.png" alt="">
       </div>
     </div>
   </div>

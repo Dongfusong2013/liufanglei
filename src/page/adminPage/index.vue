@@ -12,6 +12,19 @@
     <div class="submit_btn">
       <el-button type="primary" @click="submit">提交</el-button>
     </div>
+    <div>
+      <el-upload
+        action="/api/thirdApi/qiniu/img"
+        list-type="picture-card"
+        :on-preview="handlePictureCardPreview"
+        :on-remove="handleRemove"
+      >
+        <i class="el-icon-plus"></i>
+      </el-upload>
+      <el-dialog :visible.sync="dialogVisible">
+        <img width="100%" :src="dialogImageUrl" alt />
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -29,6 +42,8 @@ Quill.register("modules/ImageResize", ImageResize);
 export default {
   data() {
     return {
+      dialogImageUrl: "",
+      dialogVisible: false,
       content: "<h3>说些什么吧~~</h3>",
       editorOption: {
         modules: {
@@ -37,10 +52,11 @@ export default {
           },
           ImageExtend: {
             loading: true,
-            name: "img",
-            action: '' + "/v1/addimg/food",
+            name: "file",
+            action: "/api" + "/thirdApi/qiniu/img",
             response: res => {
-              return res.image_path;
+              console.log("---", res);
+              return res.imgPath;
             }
           },
           toolbar: {
@@ -50,7 +66,7 @@ export default {
                 QuillWatch.emit(this.quill.id);
               }
             }
-          },
+          }
         }
       }
     };
@@ -64,6 +80,13 @@ export default {
     }
   },
   methods: {
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
     onEditorReady(editor) {
       console.log("editor ready!", editor);
     },

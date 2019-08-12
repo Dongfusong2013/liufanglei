@@ -20,7 +20,7 @@
           NEXT
         </div>
         <div class="next-pic-size">
-          <img src="/static/home/right_btn.png" alt="" height="100%" width="100%">
+          <img src="/static/index/next-btn.png" alt="" height="100%" width="100%">
         </div>
       </div>
     </div>

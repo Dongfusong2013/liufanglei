@@ -28,10 +28,10 @@
           <img src="/static/main/美学理念.png" alt height="100%" width="100%" />
         </div>
         <div class="article">
-          <div class="title titleSpace">{{idea.title}}</div>
-          <div class="subtitle">{{idea.subTitle}}</div>
+          <div class="title titleSpace">{{ideaArticle.title}}</div>
+          <div class="subtitle">{{ideaArticle.subTitle}}</div>
           <div class="contentFont contentTop">
-            {{idea.summary}}
+            {{ideaArticle.summary}}
           </div>
         </div>
       </div>
@@ -81,10 +81,10 @@
         console.log('-----', path);
       }
     },
-    beforeMount: function() {
-      var baseUrl = "www.fangleiliu.com"
-      // var baseUrl ="/api";
-      var addedUrl = '/liufanglei_server/mainPage/content';
+    beforeMount: function() {      
+      var baseUrl ="/api";
+      // var baseUrl = "/liufanglei_server";
+      var addedUrl = '/mainPage/content';
       var requestUrl = baseUrl + addedUrl;
 
       this.$http.post(requestUrl).then(response => {
@@ -96,8 +96,6 @@
       }, response => {
         console.log("......error");
       });
-
-
     },
     data() {
       return {
@@ -126,7 +124,7 @@
               "北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…"
           }
         ],
-        idea: {
+        ideaArticle: {
           picSrc: '/static/main/美学理念.png',
           title: '汉唐飞扬，以道营器',
           subTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
