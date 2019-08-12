@@ -35,7 +35,6 @@
           </div>
         </div>
       </div>
-
       <div class="rightView">
         <div class="row-box-space-between">
           <div class="title titleSpace">新闻</div>
@@ -54,6 +53,19 @@
     <div>
       <Cooperators />
     </div>
+    <el-backtop  :bottom="100" :visibility-height="100">
+        <div
+          style="{
+        height: 100%;
+        width: 100%;
+        background-color: #f2f5f6;
+        box-shadow: 0 0 6px rgba(0,0,0, .12);
+        text-align: center;
+        line-height: 40px;
+        color: #1989fa;        
+      }"
+        >UP</div>
+      </el-backtop>
   </div>
 </template>
 

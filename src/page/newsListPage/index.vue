@@ -1,6 +1,7 @@
 <template>
   <div class="page-view">
     <HeadTop textColor="#ffff"></HeadTop>
+
     <div class="backgroundImg">
       <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
     </div>
@@ -42,7 +43,6 @@
           </div>
         </div>
         <div class="top-box top-box-size"></div>
-        
       </div>
 
       <div class="main-content-box main-content-margin-top" v-else-if="isActive(0)">
@@ -81,6 +81,21 @@
       <div class="row-box-center pag-bottom">
         <el-pagination background layout="prev, pager, next" :total="100"></el-pagination>
       </div>
+    </div>    
+    <div >
+      <el-backtop  :bottom="100" :visibility-height="100">
+        <div
+          style="{
+        height: 100%;
+        width: 100%;
+        background-color: #f2f5f6;
+        box-shadow: 0 0 6px rgba(0,0,0, .12);
+        text-align: center;
+        line-height: 40px;
+        color: #1989fa;        
+      }"
+        >UP</div>
+      </el-backtop>
     </div>
   </div>
 </template>
@@ -175,7 +190,7 @@
   margin-bottom: 20px;
 }
 
-.pag-bottom{
+.pag-bottom {
   margin-bottom: 100px;
 }
 
@@ -201,6 +216,11 @@
   font-weight: 400;
   color: rgba(153, 153, 153, 1);
   line-height: 22px;
+}
+
+.page-component__scroll {
+}
+.el-scrollbar__wrap {
 }
 
 .pic-box {
@@ -285,6 +305,7 @@ export default {
     }
   },
   beforeMount() {
+    window.scrollTo(0, 0);
     console.log("======", this.$route.query);
     this.activeIndex = parseInt(this.$route.query.index);
   },

@@ -29,15 +29,16 @@
 </template>
 
 <script>
+
 import { quillEditor, Quill } from "vue-quill-editor";
-import { container, ImageExtend, QuillWatch } from "quill-image-extend-module";
-import ImageResize from "quill-image-resize-module";
+// import { container, ImageExtend, QuillWatch } from "quill-image-extend-module";
+// import ImageResize from "quill-image-resize-module";
 
 // import { baseUrl, baseImgPath } from "@/config/env";
 
-Quill.register("modules/ImageExtend", ImageExtend);
+// Quill.register("modules/ImageExtend", ImageExtend);
 // use resize module
-Quill.register("modules/ImageResize", ImageResize);
+// Quill.register("modules/ImageResize", ImageResize);
 
 export default {
   data() {
@@ -46,28 +47,28 @@ export default {
       dialogVisible: false,
       content: "<h3>说些什么吧~~</h3>",
       editorOption: {
-        modules: {
-          ImageResize: {
-            modules: ["Resize", "DisplaySize", "Toolbar"]
-          },
-          ImageExtend: {
-            loading: true,
-            name: "file",
-            action: "/api" + "/thirdApi/qiniu/img",
-            response: res => {
-              console.log("---", res);
-              return res.imgPath;
-            }
-          },
-          toolbar: {
-            container: container,
-            handlers: {
-              image: function() {
-                QuillWatch.emit(this.quill.id);
-              }
-            }
-          }
-        }
+        // modules: {
+        //   ImageResize: {
+        //     modules: ["Resize", "DisplaySize", "Toolbar"]
+        //   },
+        //   ImageExtend: {
+        //     loading: true,
+        //     name: "file",
+        //     action: "/api" + "/thirdApi/qiniu/img",
+        //     response: res => {
+        //       console.log("---", res);
+        //       return res.imgPath;
+        //     }
+        //   },
+        //   toolbar: {
+        //     container: container,
+        //     handlers: {
+        //       image: function() {
+        //         QuillWatch.emit(this.quill.id);
+        //       }
+        //     }
+        //   }
+        // }
       }
     };
   },
@@ -99,6 +100,7 @@ export default {
 </script>
 
 <style lang="less">
+
 // @import "../../style/mixin";
 .edit_container {
   padding: 40px;
