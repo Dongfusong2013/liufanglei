@@ -47,7 +47,7 @@
           <div class="line"></div>
           <div @click="gotoPage('/articleDetail')">
             <div class="mainPic">
-              <img src="/static/news/视频.png" alt height="100%" width="100%" />
+              <img src="/static/workdetail/项目详情_14.jpg" alt height="100%" width="100%" />
             </div>
             <div class="article">
               <div class="title titleSpace">{{ideaArticle.title}}</div>
