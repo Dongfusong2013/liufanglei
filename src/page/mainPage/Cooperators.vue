@@ -148,7 +148,7 @@
     width: 290px;
     height: 240px;
     // background-color: aliceblue;
-  }  
+  }
 
   .row-box-center {
     display: flex;
