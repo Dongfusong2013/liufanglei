@@ -11,6 +11,7 @@ import NewsListPage from '@/page/newsListPage'
 import ProjectInfo from '@/page/projectInfoPage'
 import AdminPage from '@/page/adminPage'
 import NewsDetail from '@/page/newsDetail'
+import ArticleDetail from '@/page/articleDetail'
 
 Vue.use(Router)
 
@@ -18,7 +19,12 @@ export default new Router({
   routes: [{
       path: '/',
       name: 'Cover',
-      component: Cover
+      component: Cover,
+    },
+    {
+       path:'/articleDetail',
+       name:'ArticleDetail',
+       component:ArticleDetail
     },
     {
       path: '/projectinfo',

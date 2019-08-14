@@ -14,7 +14,7 @@
         >理念</div>
         <div class="tab-box" :class="{'tab-active':isActive(1)}" @click="tabTo(1)">新闻</div>
       </div>
-      <div class="main-content-box main-content-margin-top" v-if="isActive(1)">
+      <div class="main-content-box main-content-margin-top" v-if="isActive(1)" @click="gotoPage('/newsDetail')">
         <div class="title-box title title-margin-left">
           新闻
           <div class="title-line"></div>
@@ -45,7 +45,7 @@
         <div class="top-box top-box-size"></div>
       </div>
 
-      <div class="main-content-box main-content-margin-top" v-else-if="isActive(0)">
+      <div class="main-content-box main-content-margin-top" v-else-if="isActive(0)" @click="gotoPage('/articleDetail')">
         <div class="title-box title title-margin-left">
           理念
           <div class="title-line"></div>
@@ -81,7 +81,7 @@
       <div class="row-box-center pag-bottom">
         <el-pagination background layout="prev, pager, next" :total="100"></el-pagination>
       </div>
-    </div>    
+    </div>
     <div >
       <el-backtop  :bottom="100" :visibility-height="100">
         <div
@@ -92,7 +92,7 @@
         box-shadow: 0 0 6px rgba(0,0,0, .12);
         text-align: center;
         line-height: 40px;
-        color: #1989fa;        
+        color: #1989fa;
       }"
         >UP</div>
       </el-backtop>
@@ -302,6 +302,9 @@ export default {
     },
     isActive(value) {
       return this.activeIndex === value;
+    },
+    gotoPage(path){
+      this.$router.push(path);
     }
   },
   beforeMount() {
@@ -309,6 +312,7 @@ export default {
     console.log("======", this.$route.query);
     this.activeIndex = parseInt(this.$route.query.index);
   },
+
 
   data() {
     return {

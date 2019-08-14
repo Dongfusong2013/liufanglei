@@ -24,7 +24,7 @@
         </div>
 
         <div class="line"></div>
-        <div @click="gotoPage('/newsDetail')">
+        <div @click="gotoPage('/articleDetail')">
           <div class="mainPic">
             <img src="/static/main/美学理念.png" alt height="100%" width="100%" />
           </div>
@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <div class="rightView" @click="gotoPage('/newsDetail')">
+      <div class="rightView">
         <div class="row-box-space-between">
           <div class="title titleSpace">新闻</div>
           <div class="more-font sm-margint-top" @click="goto('/newsList',1)">
@@ -45,13 +45,12 @@
           </div>
         </div>
         <div class="line"></div>
-        <div v-for="(item, index) in articles" :key="index">
+        <div v-for="(item, index) in articles" :key="index" @click="gotoPage('/newsDetail')">
           <ShowArticleItem :timeTitle="item.timeTitle" :picSrc="item.picSrc" :articleTitle="item.articleTitle"
             :articleSumary="item.articleSummary" />
         </div>
       </div>
     </div>
-
     <div>
       <Cooperators />
     </div>
