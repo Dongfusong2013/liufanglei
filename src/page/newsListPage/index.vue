@@ -169,7 +169,7 @@
   }
 
   .top-box-size {
-    width: 100px;
+    width: 150px;
   }
 
   .tab-active {
