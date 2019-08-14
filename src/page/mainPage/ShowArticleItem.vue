@@ -1,6 +1,5 @@
 <template>
   <div class="newItem">
-    
         <div class="time">{{timeTitle}}</div>
           <div class="picAndContent">
             <div class="pic">
@@ -8,21 +7,21 @@
             </div>
             <div class="desc">
               <div class="title">
-                {{articleTitle}}                            
+                {{articleTitle}}
               </div>
               <div class="content">
-                {{articleSumary}}                
+                {{articleSumary}}
                 </div>
             </div>
           </div>
           <div class="sep"></div>
-        </div>    
+        </div>
 </template>
 
 <script>
 export default {
   name:"ShowArticleItem",
-  
+
   props:{
      'timeTitle':'',
      'picSrc':'',
@@ -33,7 +32,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  
+
 
     .newItem {
       display: flex;
@@ -82,7 +81,5 @@ export default {
         background-color: #e8e8e8;
       }
     }
-  
+
 </style>
-
-

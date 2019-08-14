@@ -8,8 +8,8 @@
 
     <el-carousel :interval="5000" arrow="always" height="580px" ref="carousel">
       <el-carousel-item v-for="(item, index) in srcollPis" :key="index">
-        <div class="picContainer">          
-          <img :src="item" alt height="100%" width="100%" />          
+        <div class="picContainer">
+          <img :src="item" alt height="100%" width="100%" />
         </div>
       </el-carousel-item>
     </el-carousel>
@@ -24,18 +24,20 @@
         </div>
 
         <div class="line"></div>
-        <div class="mainPic">
-          <img src="/static/main/美学理念.png" alt height="100%" width="100%" />
-        </div>
-        <div class="article">
-          <div class="title titleSpace">{{ideaArticle.title}}</div>
-          <div class="subtitle">{{ideaArticle.subTitle}}</div>
-          <div class="contentFont contentTop">
-            {{ideaArticle.summary}}
+        <div @click="gotoPage('/newsDetail')">
+          <div class="mainPic">
+            <img src="/static/main/美学理念.png" alt height="100%" width="100%" />
+          </div>
+          <div class="article">
+            <div class="title titleSpace">{{ideaArticle.title}}</div>
+            <div class="subtitle">{{ideaArticle.subTitle}}</div>
+            <div class="contentFont contentTop">
+              {{ideaArticle.summary}}
+            </div>
           </div>
         </div>
       </div>
-      <div class="rightView">
+      <div class="rightView" @click="gotoPage('/newsDetail')">
         <div class="row-box-space-between">
           <div class="title titleSpace">新闻</div>
           <div class="more-font sm-margint-top" @click="goto('/newsList',1)">
@@ -53,19 +55,17 @@
     <div>
       <Cooperators />
     </div>
-    <el-backtop  :bottom="100" :visibility-height="100">
-        <div
-          style="{
+    <el-backtop :bottom="100" :visibility-height="100">
+      <div style="{
         height: 100%;
         width: 100%;
         background-color: #f2f5f6;
         box-shadow: 0 0 6px rgba(0,0,0, .12);
         text-align: center;
         line-height: 40px;
-        color: #1989fa;        
-      }"
-        >UP</div>
-      </el-backtop>
+        color: #1989fa;
+      }">UP</div>
+    </el-backtop>
   </div>
 </template>
 
@@ -91,10 +91,14 @@
         }
         this.$router.push(info);
         console.log('-----', path);
+      },
+      gotoPage(path) {
+        console.log("============");
+        this.$router.push(path);
       }
     },
-    beforeMount: function() {      
-      var baseUrl ="/api";
+    beforeMount: function() {
+      var baseUrl = "/api";
       // var baseUrl = "/liufanglei_server";
       var addedUrl = '/mainPage/content';
       var requestUrl = baseUrl + addedUrl;
@@ -115,8 +119,7 @@
           "/static/main/scroll1.png",
           "/static/workdetail/项目详情_03.jpg"
         ],
-        articles: [
-          {
+        articles: [{
             timeTitle: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
             picSrc: "/static/main/1.png",
