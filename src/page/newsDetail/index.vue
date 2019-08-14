@@ -51,21 +51,21 @@
           <img src="/static/workdetail/项目详情_03.jpg" alt="" width="100%" height="100%">
         </div>
         <div class="sm-font-black sm-top-margin content-font">
-          <div class="big-top-margin">
+          <div class="sm-top-margin">
             “一带一路”,中国与世界各国共同绘制的一幅恢宏画卷正徐徐展开——
           </div>
-          <div class="big-top-margin">
+          <div class="sm-top-margin">
             国家主席习近平首次提出“丝绸之路经济带”是在2013年9月访问哈萨克斯坦时的演讲中,他指出,横贯东西、连接欧亚的丝绸之路,完全可以成为不同种族、不同信仰、不同文化背景的国家共享和平、共同发展的新的丝绸之路。
             时隔一个月后,他又在访问印度尼西亚时提出了共同建设“21世纪海上丝绸之路”。
           </div>
-          <div class="big-top-margin">
-                   推进“丝绸之路经济带”和“21世纪海上丝绸之路”建设,是习近平主席统筹国内国际两个大局,顺应地区和全球合作潮流,契合沿线国家和地区发展需要,立足当前、着眼长远提出的重大倡议和构想。
+          <div class="sm-margint-top">
+              推进“丝绸之路经济带”和“21世纪海上丝绸之路”建设,是习近平主席统筹国内国际两个大局,顺应地区和全球合作潮流,契合沿线国家和地区发展需要,立足当前、着眼长远提出的重大倡议和构想。
           </div>
-          <div class="big-top-margin">
+          <div class="sm-top-margin">
             “‘一带一路’追求的是百花齐放的大利,不是一枝独秀的小利。”习近平主席在今年首访中东期间在当地媒体发表署名文章说。在一系列实际举措中,一个个合作
             项目开花结果,叠加起丰富的丝路“风光”,在时光的度量尺上,镌刻下“一带一路”建设全面推进的坚实步伐。
           </div>
-          <div class="big-top-margin">
+          <div class="sm-top-margin">
             2016年既是中国“十三五”规划开局之年,也是中国与沿线国家全力推进“一带一路”建设的年份。时间将进一步认证:“一带一路”成为沿线国家和地区的协奏曲,在内外联动、海陆统筹的对外开放新布局中,使古老的“丝绸之路”延伸成为现代版“国际大合唱”。
           </div>
         </div>
@@ -167,7 +167,7 @@
 
   .content-font {
     font-size: 16px;
-    font-family: STSongti-SC-Bold;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     color: rgba(51, 51, 51, 1);
     line-height: 28px;

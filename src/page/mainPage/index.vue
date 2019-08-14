@@ -85,7 +85,11 @@
         text-align: center;
         line-height: 40px;
         color: #1989fa;
-      }">UP</div>
+      }">
+      <div style="width: 48px; height: 48px;">
+        <img src="/static/index/top.png" alt="" height="100%" width="100%">
+      </div>
+      </div>
     </el-backtop>
   </div>
 </template>
