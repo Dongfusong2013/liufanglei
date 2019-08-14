@@ -8,15 +8,15 @@ module.exports = {
   dev: {
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/',
     // proxyTable: {
     //   '/api': {
     //     target: 'http://localhost:9931',
     //     changeOrigin: true,
     //     pathRewrite: {
     //       '^/api': 'liufanglei_server'
-    //     }            
-    //   }    
+    //     }
+    //   }
     // },
 
     // Various Dev Server settings

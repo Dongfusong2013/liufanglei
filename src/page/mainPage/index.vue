@@ -16,25 +16,47 @@
 
     <div class="contentView cover">
       <div class="leftView">
-        <div class="row-box-space-between">
-          <div class="title titleSpace">美学理念</div>
-          <div class="more-font sm-margint-top" @click="goto('/newsList',0)">
-            MORE >>
-          </div>
-        </div>
-
-        <div class="line"></div>
-        <div @click="gotoPage('/articleDetail')">
-          <div class="mainPic">
-            <img src="/static/main/美学理念.png" alt height="100%" width="100%" />
-          </div>
-          <div class="article">
-            <div class="title titleSpace">{{ideaArticle.title}}</div>
-            <div class="subtitle">{{ideaArticle.subTitle}}</div>
-            <div class="contentFont contentTop">
-              {{ideaArticle.summary}}
+        <div>
+          <div class="row-box-space-between">
+            <div class="title titleSpace">美学理念</div>
+            <div class="more-font sm-margint-top" @click="goto('/newsList',0)">
+              MORE >>
             </div>
           </div>
+          <div class="line"></div>
+          <div @click="gotoPage('/articleDetail')">
+            <div class="mainPic">
+              <img src="/static/main/美学理念.png" alt height="100%" width="100%" />
+            </div>
+            <div class="article">
+              <div class="title titleSpace">{{ideaArticle.title}}</div>
+              <div class="subtitle sm-margint-top">{{ideaArticle.subTitle}}</div>
+              <div class="contentFont contentTop">
+                {{ideaArticle.summary}}
+              </div>
+            </div>
+        </div>
+        </div>
+        <div>
+          <div class="row-box-space-between big-top-margin">
+            <div class="title titleSpace">专题报道</div>
+            <div class="more-font sm-margint-top" @click="goto('/newsList',2)">
+              MORE >>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div @click="gotoPage('/articleDetail')">
+            <div class="mainPic">
+              <img src="/static/news/视频.png" alt height="100%" width="100%" />
+            </div>
+            <div class="article">
+              <div class="title titleSpace">{{ideaArticle.title}}</div>
+              <div class="subtitle sm-margint-top">{{ideaArticle.subTitle}}</div>
+              <div class="contentFont contentTop">
+                {{ideaArticle.summary}}
+              </div>
+            </div>
+        </div>
         </div>
       </div>
       <div class="rightView">
@@ -118,7 +140,8 @@
           "/static/main/scroll1.png",
           "/static/workdetail/项目详情_03.jpg"
         ],
-        articles: [{
+        articles: [
+          {
             timeTitle: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
             picSrc: "/static/main/1.png",
@@ -134,18 +157,33 @@
             timeTitle: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
             picSrc: "/static/main/3.png",
-            articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……" +
-              "北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…北京雁栖湖成功举办，在此让世界见识了…"
-          }
+            articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办..."
+          },
+          {
+            timeTitle: "五月 2019 | 人民网",
+            articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+            picSrc: "/static/main/1.png",
+            articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
+          },
+          {
+            timeTitle: "五月 2019 | 人民网",
+            articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+            picSrc: "/static/main/2.png",
+            articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
+          },
+          {
+            timeTitle: "五月 2019 | 人民网",
+            articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+            picSrc: "/static/main/1.png",
+            articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
+          },
         ],
         ideaArticle: {
           picSrc: '/static/main/美学理念.png',
           title: '汉唐飞扬，以道营器',
           subTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
           summary: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞' +
-            '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬' +
-            '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞' +
-            '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬',
+            '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬'
         },
       };
     }
@@ -155,6 +193,9 @@
 <style lang='less' scoped>
   @import "../appStyle";
 
+  .big-top-margin{
+      margin-top: 60px;
+  }
 
   .row-box-space-between {
     display: flex;
