@@ -1,7 +1,6 @@
 <template>
   <div class="page-view">
     <HeadTop textColor="#ffff"></HeadTop>
-
     <div class="backgroundImg">
       <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
     </div>

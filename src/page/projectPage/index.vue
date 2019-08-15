@@ -4,7 +4,7 @@
       <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
     </div>
     <HeadTop textColor="#fff"></HeadTop>
-    <div class="scrollContainer cover"></div> 
+    <div class="scrollContainer cover"></div>
     <ScrollPicProject />
   </div>
 </template>
@@ -12,13 +12,22 @@
 <script>
 import HeadTop from "@/components/HeadTop.vue";
 import ScrollPicProject from "./ScrollPicProject";
-
+import {mapMutations} from 'Vuex';
 export default {
   name: "ProjectPage",
   data() {
     return {
       msg: "Welcome to Your Vue.js App"
     };
+  },
+
+  methods:{
+    ...mapMutations('menueActive',['setActiveIndex']),
+  },
+
+  beforeMount() {
+    console.log("----before mount projectPage-----");
+    this.setActiveIndex(1);
   },
 
   components: {

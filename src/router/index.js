@@ -22,19 +22,22 @@ export default new Router({
       component: Cover,
     },
     {
-       path:'/articleDetail',
-       name:'ArticleDetail',
-       component:ArticleDetail
+      path: '/articleDetail',
+      name: 'ArticleDetail',
+      component: ArticleDetail
     },
     {
       path: '/projectinfo',
       name: 'ProjectInfo',
-      component: ProjectInfo
+      component: ProjectInfo,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/newsList',
       name: 'newsListPage',
-      component: NewsListPage
+      component: NewsListPage,
     },
     {
       path: '/main',
@@ -59,7 +62,7 @@ export default new Router({
     {
       path: '/about',
       name: 'AboutPage',
-      component: AboutPage
+      component: AboutPage,
     },
     {
       path: '/newsDetail',

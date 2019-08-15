@@ -6,11 +6,9 @@
     <div class="rightArrow">
       <img src="/static/index/right-white.png" width="28px" height="56px" v-if="!isLast()" @click="nextPic()" />
     </div>
-    <Frame isPaddingView='true'>
-        <slot>
+    <slot>
 
-        </slot>
-    </Frame>
+    </slot>
   </div>
 </template>
 

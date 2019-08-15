@@ -13,18 +13,27 @@
 <script>
 import HeadTop from '@/components/HeadTop.vue'
 import ScrollPicAbout from './ScrollPicAbout.vue'
-
+import {mapMutations} from "vuex";
 export default {
+
+
   name: 'AboutPage',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+   methods: {
+    ...mapMutations('menueActive', ['setActiveIndex']),
+  },
 
   components:{
       HeadTop,
       ScrollPicAbout,
+  },
+  beforeMount() {
+    console.log("---before mount----");
+    this.setActiveIndex(3);
   }
 }
 </script>

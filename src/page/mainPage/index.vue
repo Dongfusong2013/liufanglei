@@ -97,8 +97,8 @@
 <script>
   import HeadTop from "@/components/HeadTop.vue";
   import ShowArticleItem from "./ShowArticleItem";
-  import Cooperators from './Cooperators'
-
+  import Cooperators from './Cooperators';
+  import {mapMutations} from 'Vuex';
   export default {
     name: "MainPage",
     components: {
@@ -107,6 +107,7 @@
       Cooperators,
     },
     methods: {
+      ...mapMutations('menueActive', ['setActiveIndex']),
       goto(path, index) {
         var info = {
           path: path,
@@ -123,6 +124,9 @@
       }
     },
     beforeMount: function() {
+      console.log("---before mount----");
+      this.setActiveIndex(0);
+
       var baseUrl = "/api";
       // var baseUrl = "/liufanglei_server";
       var addedUrl = '/mainPage/content';

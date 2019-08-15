@@ -13,14 +13,22 @@
 <script>
 import HeadTop from '@/components/HeadTop.vue'
 import ScrollPic from "./ScrollPicDesign.vue";
+import {mapMutations} from 'Vuex';
 
 export default {
   name: "DesignPage",
   components: {
     HeadTop,
     ScrollPic
+  },
+  methods:{
+    ...mapMutations('menueActive', ['setActiveIndex']),
+  },
+  beforeMount() {
+      this.setActiveIndex(2);
   }
 };
+
 </script>
 
 <style lang="less">

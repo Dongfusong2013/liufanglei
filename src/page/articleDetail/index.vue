@@ -97,8 +97,12 @@
     components: {
       HeadTop,
     },
+    methods:{
+
+    },
     beforeMount() {
       window.scrollTo(0, 0);
+      this.setActiveIndex(3);
     }
   }
 </script>

@@ -90,6 +90,9 @@
         },
       }
     },
+    beforeMount(){
+
+    },
     computed: {
       isClosed() {
         return this.openStatus === false;
