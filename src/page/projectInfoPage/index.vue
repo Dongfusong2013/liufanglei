@@ -1,9 +1,5 @@
 <template>
-  <div class="page-view">
-    <div class="backgroundImg">
-      <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
-    </div>
-    <HeadTop textColor="#fff" />
+  <Frame>
     <div class="content-view  cover">
       <div class="column-space-between left-view-height">
         <div class="content-wrapper">
@@ -72,21 +68,26 @@
         </div>
       </div>
     </div>
-  </div>
-  </div>
+  </Frame>
 </template>
 
+
+
 <script>
-  import HeadTop from "@/components/HeadTop";
+  import Frame from '@/components/Frame'
 
   export default {
     name: "ProjectInfo",
     components: {
-      HeadTop
+      Frame
     },
     data() {
       return {
         openStatus: false,
+        user:{
+          name:'dfsxxxx',
+          age:'34',
+        },
       }
     },
     computed: {
