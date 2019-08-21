@@ -19,7 +19,7 @@
         :on-preview="handlePictureCardPreview"
         :on-remove="handleRemove"
       >
-        <i class="el-icon-plus"></i>
+      <i class="el-icon-plus"></i>
       </el-upload>
       <el-dialog :visible.sync="dialogVisible">
         <img width="100%" :src="dialogImageUrl" alt />

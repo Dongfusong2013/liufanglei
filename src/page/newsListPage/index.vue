@@ -71,8 +71,6 @@
             <div class="line line-margin-top line-margint-bottom"></div>
           </div>
         </div>
-
-
         <div class="top-box top-box-size"></div>
       </div>
 

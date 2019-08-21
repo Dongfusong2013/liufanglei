@@ -1,74 +1,76 @@
 <template>
-  <Frame>
-    <div class="content-view  cover">
-      <div class="column-space-between left-view-height">
-        <div class="content-wrapper">
-          <div class="title-font">北京雁栖湖会议中心</div>
-          <div class="content-font content-margin-top">
-            <div>第22届APEC(北京APEC)峰会主会场</div>
-            <div>第一届“一带一路”国际合作高峰论坛主会场</div>
-            <div>第二届“一带一路”国际合作高峰论坛主会场</div>
-          </div>
-          <div class="line sm-line-top"></div>
-        </div>
-        <div class="column-space-between">
-          <div class="item-space-bottom">
-            <div class="sm-title-font title-content-bottom">设计者</div>
-            <div class="content-font">刘方磊，2015年6月5日交付</div>
-          </div>
-          <div class="item-space-bottom">
-            <div class="sm-title-font title-content-bottom">设计理念</div>
-            <div class="content-font">汉唐飞扬，鸿雁展翅</div>
-          </div>
-          <div class="item-space-bottom">
-            <div class="sm-title-font title-content-bottom">建设规模</div>
-            <div class="content-font">4.2万平方米</div>
-          </div>
-          <div class="item-space-bottom">
-            <div class="sm-title-font title-content-bottom">项目类型</div>
-            <div class="content-font">总体规划，公共空间，会议中心，地标</div>
-          </div>
-          <div class="line sm-line-top"></div>
-        </div>
-        <div>
-          <div class="sm-title-font">所在地</div>
-          <div style="marginTop:10px" class="content-font">
-            <span>
-              <img src="/static/project/位置.png" alt />
-            </span>
-            <span>北京市怀柔区国际会都1号</span>
-          </div>
-        </div>
-      </div>
-      <div class="pic-left-margin">
-        <div class="pic-size ">
-          <img src="/static/about/大图@2x.png" height="100%" width="100%" />
-        </div>
-        <div class="hori-box box-top" @click="toggle()" v-if="isClosed">
-          <div class="text-center">
-            详情介绍 >>
-          </div>
-        </div>
-        <div class="hori-box-open box-top " @click="toggle()" v-else-if="!isClosed">
-          <div class="text-center">
-            详情介绍 <<
-          </div>
-            <div style="padding: 10px 10px;">
-              与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-              与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-              与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-              与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-              与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-              与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-              与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-              与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-              与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-              与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+  <div>
+    <Frame>
+      <div class="content-view  cover">
+        <div class="column-space-between left-view-height">
+          <div class="content-wrapper">
+            <div class="title-font">北京雁栖湖会议中心</div>
+            <div class="content-font content-margin-top">
+              <div>第22届APEC(北京APEC)峰会主会场</div>
+              <div>第一届“一带一路”国际合作高峰论坛主会场</div>
+              <div>第二届“一带一路”国际合作高峰论坛主会场</div>
             </div>
+            <div class="line sm-line-top"></div>
+          </div>
+          <div class="column-space-between">
+            <div class="item-space-bottom">
+              <div class="sm-title-font title-content-bottom">设计者</div>
+              <div class="content-font">刘方磊，2015年6月5日交付</div>
+            </div>
+            <div class="item-space-bottom">
+              <div class="sm-title-font title-content-bottom">设计理念</div>
+              <div class="content-font">汉唐飞扬，鸿雁展翅</div>
+            </div>
+            <div class="item-space-bottom">
+              <div class="sm-title-font title-content-bottom">建设规模</div>
+              <div class="content-font">4.2万平方米</div>
+            </div>
+            <div class="item-space-bottom">
+              <div class="sm-title-font title-content-bottom">项目类型</div>
+              <div class="content-font">总体规划，公共空间，会议中心，地标</div>
+            </div>
+            <div class="line sm-line-top"></div>
+          </div>
+          <div>
+            <div class="sm-title-font">所在地</div>
+            <div style="marginTop:10px" class="content-font">
+              <span>
+                <img src="/static/project/位置.png" alt />
+              </span>
+              <span>北京市怀柔区国际会都1号</span>
+            </div>
+          </div>
+        </div>
+        <div class="pic-left-margin">
+          <div class="pic-size ">
+            <img src="/static/about/大图@2x.png" height="100%" width="100%" />
+          </div>
+          <div class="hori-box box-top" @click="toggle()" v-if="isClosed">
+            <div class="text-center">
+              详情介绍 >>
+            </div>
+          </div>
+          <div class="hori-box-open box-top " @click="toggle()" v-else-if="!isClosed">
+            <div class="text-center">详情介绍 << </div>
+           <div style="padding: 10px 10px;">
+                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
-  </Frame>
+    </Frame>
+  </div>
+
 </template>
 
 
@@ -84,13 +86,13 @@
     data() {
       return {
         openStatus: false,
-        user:{
-          name:'dfsxxxx',
-          age:'34',
+        user: {
+          name: 'dfsxxxx',
+          age: '34',
         },
       }
     },
-    beforeMount(){
+    beforeMount() {
 
     },
     computed: {
