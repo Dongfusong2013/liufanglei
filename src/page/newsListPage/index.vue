@@ -10,7 +10,7 @@
         <div class="tab-box tab-margin-right" :class="{'tab-active':isActive(1)}" @click="tabTo(1)">新闻</div>
         <div class="tab-box" :class="{'tab-active':isActive(2)}" @click="tabTo(2)">专题</div>
       </div>
-      <div class="main-content-box main-content-margin-top" v-if="isActive(1)" @click="gotoPage('/newsDetail')">
+      <div class="main-content-box main-content-margin-top" v-if="isActive(1)" >
         <div class="title-box title title-margin-left">
           新闻
           <div class="title-line"></div>
@@ -26,7 +26,7 @@
                 <span>{{item.viewCount}}</span>
               </div>
             </div>
-            <div class="new-item">
+            <div class="new-item" @click="gotoPage('/articleDetail', 'newsArticle', item.id)">
               <div class="pic-box">
                 <img :src="item.picSrc" alt height="100%" width="100%" />
               </div>
@@ -41,7 +41,7 @@
         <div class="top-box top-box-size"></div>
       </div>
 
-      <div class="main-content-box main-content-margin-top" v-else-if="isActive(0)" @click="gotoPage('/articleDetail')">
+      <div class="main-content-box main-content-margin-top" v-else-if="isActive(0)">
         <div class="title-box title title-margin-left">
           理念
           <div class="title-line"></div>
@@ -58,9 +58,9 @@
                 <span>{{item.viewCount}}</span>
               </div>
             </div>
-            <div class="article-item">
+            <div class="article-item"  @click="gotoPage('/articleDetail', 'ideaArticle', item.id)">
               <div class="big-pic-margin-bottom bg-pic">
-                <img :src="item.picSrc" alt />
+                <img :src="item.picSrc" height="100%" width="100%" />
               </div>
               <div class="newInfo-box">
                 <div class="article-title">{{item.articleTitle}}</div>
@@ -74,7 +74,7 @@
         <div class="top-box top-box-size"></div>
       </div>
 
-      <div class="main-content-box main-content-margin-top" v-else-if="isActive(2)" @click="gotoPage('/articleDetail')">
+      <div class="main-content-box main-content-margin-top" v-else-if="isActive(2)" >
         <div class="title-box title title-margin-left">
           专题报道
           <div class="title-line"></div>
@@ -91,7 +91,7 @@
                 <span>{{item.viewCount}}</span>
               </div>
             </div>
-            <div class="article-item">
+            <div class="article-item" @click="gotoPage('/articleDetail', 'ideaArtile', item.id)">
               <div class="big-pic-margin-bottom bg-vi-pic ">
                 <img :src="item.picSrc" alt height="100%" width="100%" />
               </div>
@@ -108,9 +108,11 @@
 
         <div class="top-box top-box-size"></div>
       </div>
+
       <div class="row-box-center pag-bottom">
-        <el-pagination background layout="prev, pager, next" :total="100"></el-pagination>
+        <Pagination v-show="total>0" :total="total" :page.sync="pageNo" :limit.sync="pageCount" @pagination="fetchData" />
       </div>
+
     </div>
     <div>
       <el-backtop :bottom="100" :visibility-height="100">
@@ -136,6 +138,7 @@
 
 <style lang="less" scoped>
   @import "../appStyle";
+
 
   .title-line {
     margin-top: 10px;
@@ -221,6 +224,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: start;
+
   }
 
   .time-margin-bottom {
@@ -324,11 +328,16 @@
 
 <script>
   import HeadTop from "@/components/HeadTop.vue";
+  import Pagination from '@/components/Pagination/index.vue'
+  import {
+    fetchArticleList
+  } from '@/api/article.js'
 
   export default {
     name: "NewsListPage",
     components: {
-      HeadTop
+      HeadTop,
+      Pagination
     },
     methods: {
       tabTo(value) {
@@ -339,20 +348,65 @@
       isActive(value) {
         return this.activeIndex === value;
       },
-      gotoPage(path) {
-        this.$router.push(path);
+      gotoPage(path, articleType, id) {
+        console.log("============");
+         var info = {
+          path: path,
+          query: {
+            articleType: articleType,
+            id:id
+          }
+        }
+        this.$router.push(info);
+      },
+
+      fetchData(activeIndex) {
+        var articleType = "";
+        if (activeIndex == 0) {
+          articleType = 'ideaArticle'
+        } else if (this.activeIndex == 1) {
+          articleType = 'newsArticle'
+        } else {
+          articleType = 'newsArticle'
+        }
+
+        fetchArticleList("api/article/list", {
+          pageNo: this.pageNo - 1,
+          pageSize: this.pageSize,
+          articleType: articleType
+        }).then((response) => {
+          var msg = response.data;
+          console.log("msg===", msg);
+          this.total = msg.data.totalElements;
+          this.pageSize = msg.data.totalPages;
+          if (articleType === 'ideaArticle') {
+            this.articles = msg.data.content;
+          } else if (articleType === 'newsArticle'){
+            this.newsItems = msg.data.content;
+          }else{
+            this.vidieoItems = msg.data.content;
+          }
+        })
       }
     },
     beforeMount() {
       window.scrollTo(0, 0);
       console.log("======", this.$route.query);
       this.activeIndex = parseInt(this.$route.query.index);
+      this.fetchData(0);
+      this.fetchData(1);
+      this.fetchData(2);
     },
 
 
     data() {
       return {
         activeIndex: 0,
+        pageNo: 1,
+        pageSize: 10,
+        pageCount: 0,
+        total: 10,
+
         articles: [{
           author: "五月十二日 2019 | 人民网",
           picSrc: "/static/news/item1.png",
