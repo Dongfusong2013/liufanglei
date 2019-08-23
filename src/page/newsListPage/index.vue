@@ -18,21 +18,21 @@
         <div class="news-list">
           <div class="news-item-box" v-for="(item, index) in newsItems" :key="index">
             <div class="row-box-space-between">
-              <div class="time-font time-margin-bottom">{{item.time}}</div>
+              <div class="time-font time-margin-bottom">{{item.author}}</div>
               <div class="time-font">
                 <span style="margin-left: 8px;">
                   <img src="/static/news/眼睛.png" alt />
                 </span>
-                <span>{{item.count}}</span>
+                <span>{{item.viewCount}}</span>
               </div>
             </div>
             <div class="new-item">
               <div class="pic-box">
-                <img :src="item.src" alt height="100%" width="100%" />
+                <img :src="item.picSrc" alt height="100%" width="100%" />
               </div>
               <div class="newInfo-box pic-conent-left-margin">
-                <div class="article-title">{{item.title}}</div>
-                <div class="content-title content-maring-top">{{item.content}}</div>
+                <div class="article-title">{{item.articleTitle}}</div>
+                <div class="content-title content-maring-top">{{item.articleSubTitle}}</div>
               </div>
             </div>
             <div class="line line-margin-top line-margint-bottom"></div>
@@ -50,22 +50,22 @@
         <div class="news-list">
           <div class="news-item-box" v-for="(item, index) in articles" :key="index">
             <div class="row-box-space-between">
-              <div class="time-font time-margin-bottom">{{item.time}}</div>
+              <div class="time-font time-margin-bottom">{{item.displayTime}}</div>
               <div class="time-font">
                 <span style="margin-left: 8px;">
                   <img src="/static/news/眼睛.png" alt />
                 </span>
-                <span>{{item.count}}</span>
+                <span>{{item.viewCount}}</span>
               </div>
             </div>
             <div class="article-item">
               <div class="big-pic-margin-bottom bg-pic">
-                <img :src="item.src" alt />
+                <img :src="item.picSrc" alt />
               </div>
               <div class="newInfo-box">
-                <div class="article-title">{{item.title}}</div>
-                <div class="content-title content-maring-top">{{item.subTitle}}</div>
-                <div class="sm-font content-maring-top">{{item.content}}</div>
+                <div class="article-title">{{item.articleTitle}}</div>
+                <div class="content-title content-maring-top">{{item.articleSubTitle}}</div>
+                <div class="sm-font content-maring-top">{{item.articleSummary}}</div>
               </div>
             </div>
             <div class="line line-margin-top line-margint-bottom"></div>
@@ -83,22 +83,22 @@
         <div class="news-list">
           <div class="news-item-box" v-for="(item, index) in vidieoItems" :key="index">
             <div class="row-box-space-between">
-              <div class="time-font time-margin-bottom">{{item.time}}</div>
+              <div class="time-font time-margin-bottom">{{item.displayTime}}</div>
               <div class="time-font">
                 <span style="margin-left: 8px;">
                   <img src="/static/news/眼睛.png" alt />
                 </span>
-                <span>{{item.count}}</span>
+                <span>{{item.viewCount}}</span>
               </div>
             </div>
             <div class="article-item">
               <div class="big-pic-margin-bottom bg-vi-pic ">
-                <img :src="item.src" alt height="100%" width="100%"/>
+                <img :src="item.picSrc" alt height="100%" width="100%" />
               </div>
               <div class="newInfo-box">
-                <div class="article-title">{{item.title}}</div>
-                <div class="content-title content-maring-top">{{item.subTitle}}</div>
-                <div class="sm-font content-maring-top">{{item.content}}</div>
+                <div class="article-title">{{item.articleTitle}}</div>
+                <div class="content-title content-maring-top">{{item.articleSubTitle}}</div>
+                <div class="sm-font content-maring-top">{{item.articleSummary}}</div>
               </div>
             </div>
             <div class="line line-margin-top line-margint-bottom"></div>
@@ -123,9 +123,9 @@
           line-height: 40px;
           color: #1989fa;
         }">
-        <div style="width: 48px; height: 48px;">
-          <img src="/static/index/top.png" alt="" height="100%" width="100%">
-        </div>
+          <div style="width: 48px; height: 48px;">
+            <img src="/static/index/top.png" alt="" height="100%" width="100%">
+          </div>
         </div>
       </el-backtop>
     </div>
@@ -159,6 +159,7 @@
     width: 594px;
     height: 252px;
   }
+
   .bg-vi-pic {
     width: 594px;
     height: 354px;
@@ -353,95 +354,32 @@
       return {
         activeIndex: 0,
         articles: [{
-            time: "五月十二日 2019 | 人民网",
-            src: "/static/news/item1.png",
-            title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            subTitle: "汉唐飞扬，以道营器汉唐飞扬，以道营器",
-            content: "汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。",
-            count: "1245"
-          },
-          {
-            time: "五月十二日 2019 | 人民网",
-            src: "/static/news/item2.png",
-            title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            subTitle: "汉唐飞扬，以道营器汉唐飞扬，以道营器",
-            content: "汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。",
-            count: "1245"
-          }
-        ],
+          author: "五月十二日 2019 | 人民网",
+          picSrc: "/static/news/item1.png",
+          displayTime: "2019-5-4",
+          articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+          articleSubTitle: "汉唐飞扬，以道营器汉唐飞扬，以道营器",
+          articleSummary: "汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。",
+          viewCount: "1245"
+        }],
         newsItems: [{
-            time: "五月十二日 2019 | 人民网",
-            src: "/static/news/news.png",
-            title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            content: "国际合作高峰论坛在北京雁栖湖成功举办，在此让世界见识了，二〇一五年，",
-            count: "1245"
-          },
-          {
-            time: "五月十二日 2019 | 人民网",
-            src: "/static/news/news.png",
-            title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            content: "国际合作高峰论坛在北京雁栖湖成功举办，在此让世界见识了，二〇一五年，",
-            count: "1245"
-          },
-          {
-            time: "五月十二日 2019 | 人民网",
-            src: "/static/news/news.png",
-            title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            content: "国际合作高峰论坛在北京雁栖湖成功举办，在此让世界见识了，二〇一五年，",
-            count: "1245"
-          },
-          {
-            time: "五月十二日 2019 | 人民网",
-            src: "/static/news/news.png",
-            title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            content: "国际合作高峰论坛在北京雁栖湖成功举办，在此让世界见识了，二〇一五年，",
-            count: "1245"
-          },
-          {
-            time: "五月十二日 2019 | 人民网",
-            src: "/static/news/news.png",
-            title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            content: "国际合作高峰论坛在北京雁栖湖成功举办，在此让世界见识了，二〇一五年，",
-            count: "1245"
-          },
-          {
-            time: "五月十二日 2019 | 人民网",
-            src: "/static/news/news.png",
-            title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            content: "国际合作高峰论坛在北京雁栖湖成功举办，在此让世界见识了，二〇一五年，",
-            count: "1245"
-          },
-          {
-            time: "五月十二日 2019 | 人民网",
-            src: "/static/news/news.png",
-            title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            content: "国际合作高峰论坛在北京雁栖湖成功举办，在此让世界见识了，二〇一五年，",
-            count: "1245"
-          },
-          {
-            time: "五月十二日 2019 | 人民网",
-            src: "/static/news/news.png",
-            title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            content: "国际合作高峰论坛在北京雁栖湖成功举办，在此让世界见识了，二〇一五年，",
-            count: "1245"
-          }
-        ],
-        vidieoItems: [
-          {
-          time: "五月十二日 2019 | 人民网",
-          src: "/static/news/视频.png",
-          title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-          content: "国际合作高峰论坛在北京雁栖湖成功举办，在此让世界见识了，二〇一五年，",
-          count: "1245"
-        },
-        {
-          time: "五月十二日 2019 | 人民网",
-          src: "/static/news/视频.png",
-          title: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-          content: "国际合作高峰论坛在北京雁栖湖成功举办，在此让世界见识了，二〇一五年，...",
-          count: "1245"
-        },
-        ]
+          author: "五月十二日 2019 | 人民网",
+          picSrc: "/static/news/item1.png",
+          displayTime: "2019-5-4",
+          articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+          articleSubTitle: "汉唐飞扬，以道营器汉唐飞扬，以道营器",
+          articleSummary: "汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。",
+          viewCount: "1245"
+        }],
+        vidieoItems: [{
+          author: "五月十二日 2019 | 人民网",
+          displayTime: "2019-5-4",
+          picSrc: "/static/news/item1.png",
+          articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+          articleSubTitle: "汉唐飞扬，以道营器汉唐飞扬，以道营器",
+          articleSummary: "汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。",
+          viewCount: "1245"
+        }]
       };
     }
   };

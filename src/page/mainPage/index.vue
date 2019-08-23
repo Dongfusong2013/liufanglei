@@ -29,10 +29,10 @@
               <img src="/static/main/美学理念.png" alt height="100%" width="100%" />
             </div>
             <div class="article">
-              <div class="title titleSpace">{{ideaArticle.title}}</div>
-              <div class="subtitle sm-margint-top">{{ideaArticle.subTitle}}</div>
+              <div class="title titleSpace">{{ideaArticle.articleTitle}}</div>
+              <div class="subtitle sm-margint-top">{{ideaArticle.artileSubTitle}}</div>
               <div class="contentFont contentTop">
-                {{ideaArticle.summary}}
+                {{ideaArticle.articleSummary}}
               </div>
             </div>
         </div>
@@ -50,10 +50,10 @@
               <img src="/static/workdetail/项目详情_14.jpg" alt height="100%" width="100%" />
             </div>
             <div class="article">
-              <div class="title titleSpace">{{ideaArticle.title}}</div>
-              <div class="subtitle sm-margint-top">{{ideaArticle.subTitle}}</div>
+              <div class="title titleSpace">{{ideaArticle.articleTitle}}</div>
+              <div class="subtitle sm-margint-top">{{ideaArticle.artileSubTitle}}</div>
               <div class="contentFont contentTop">
-                {{ideaArticle.summary}}
+                {{ideaArticle.articleSummary}}
               </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
         </div>
         <div class="line"></div>
         <div v-for="(item, index) in articles" :key="index" @click="gotoPage('/newsDetail')">
-          <ShowArticleItem :timeTitle="item.timeTitle" :picSrc="item.picSrc" :articleTitle="item.articleTitle"
+          <ShowArticleItem :timeTitle="item.author" :picSrc="item.picSrc" :articleTitle="item.articleTitle"
             :articleSumary="item.articleSummary" />
         </div>
       </div>
@@ -150,37 +150,19 @@
         ],
         articles: [
           {
-            timeTitle: "五月 2019 | 人民网",
+            author: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
             picSrc: "/static/main/1.png",
             articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
           },
           {
-            timeTitle: "五月 2019 | 人民网",
-            articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            picSrc: "/static/main/2.png",
-            articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
-          },
-          {
-            timeTitle: "五月 2019 | 人民网",
-            articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            picSrc: "/static/main/3.png",
-            articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办..."
-          },
-          {
-            timeTitle: "五月 2019 | 人民网",
+            author: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
             picSrc: "/static/main/1.png",
             articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
           },
           {
-            timeTitle: "五月 2019 | 人民网",
-            articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-            picSrc: "/static/main/2.png",
-            articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
-          },
-          {
-            timeTitle: "五月 2019 | 人民网",
+            author: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
             picSrc: "/static/main/1.png",
             articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
@@ -188,9 +170,9 @@
         ],
         ideaArticle: {
           picSrc: '/static/main/美学理念.png',
-          title: '汉唐飞扬，以道营器',
-          subTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
-          summary: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞' +
+          articleTitle: '汉唐飞扬，以道营器',
+          artileSubTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
+          articleSummary: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞' +
             '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬'
         },
       };
