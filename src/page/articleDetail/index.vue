@@ -10,15 +10,15 @@
       <div class="left-view">
         <div id='time-view'>
           <div class="big-font">
-            乙亥年 七月初十
+            {{article.displayTime}}
           </div>
           <div class="big-font">
-            2019.9.10 11:35
+            {{article.displayTime}}
           </div>
         </div>
         <div id='lable-view' class="big-top-margin">
           <div class="sm-font">
-            来源：刘方磊工作室
+            来源：{{article.author}}
             <div class="sep-line sm-top-margin">
             </div>
           </div>
@@ -45,36 +45,19 @@
       </div>
       <div class="main-view big-left-margin">
         <div class="title-font">
-          论汉唐飞扬的前世今生
+          {{article.articleTitle}}
         </div>
-        <div style="width:594px;height:305px; background-color: #42B983;" class="big-top-margin">
-          <img src="/static/main/美学理念.png" alt="" width="100%" height="100%">
-        </div>
+        <!-- <div style="width:594px;height:305px; background-color: #42B983;" class="big-top-margin">
+          <img :src="article.picSrc" alt="" width="100%" height="100%">
+        </div> -->
         <div class="sm-font-black sm-top-margin content-font">
-          <div class="big-top-margin">
-            “一带一路”,中国与世界各国共同绘制的一幅恢宏画卷正徐徐展开——
-          </div>
-          <div class="big-top-margin">
-            国家主席习近平首次提出“丝绸之路经济带”是在2013年9月访问哈萨克斯坦时的演讲中,他指出,横贯东西、连接欧亚的丝绸之路,完全可以成为不同种族、不同信仰、不同文化背景的国家共享和平、共同发展的新的丝绸之路。
-            时隔一个月后,他又在访问印度尼西亚时提出了共同建设“21世纪海上丝绸之路”。
-          </div>
-          <div class="big-top-margin">
-                   推进“丝绸之路经济带”和“21世纪海上丝绸之路”建设,是习近平主席统筹国内国际两个大局,顺应地区和全球合作潮流,契合沿线国家和地区发展需要,立足当前、着眼长远提出的重大倡议和构想。
-          </div>
-          <div class="big-top-margin">
-            “‘一带一路’追求的是百花齐放的大利,不是一枝独秀的小利。”习近平主席在今年首访中东期间在当地媒体发表署名文章说。在一系列实际举措中,一个个合作
-            项目开花结果,叠加起丰富的丝路“风光”,在时光的度量尺上,镌刻下“一带一路”建设全面推进的坚实步伐。
-          </div>
-          <div class="big-top-margin">
-            2016年既是中国“十三五”规划开局之年,也是中国与沿线国家全力推进“一带一路”建设的年份。时间将进一步认证:“一带一路”成为沿线国家和地区的协奏曲,在内外联动、海陆统筹的对外开放新布局中,使古老的“丝绸之路”延伸成为现代版“国际大合唱”。
-          </div>
+          <div v-html="article.htmlContent"></div>
         </div>
       </div>
     </div>
-    <div >
-      <el-backtop  :bottom="100" :visibility-height="100">
-        <div
-          style="{
+    <div>
+      <el-backtop :bottom="100" :visibility-height="100">
+        <div style="{
         height: 100%;
         width: 100%;
         background-color: #f2f5f6;
@@ -82,28 +65,53 @@
         text-align: center;
         line-height: 40px;
         color: #1989fa;
-      }"
-        >UP</div>
+      }">UP</div>
       </el-backtop>
     </div>
   </div>
 </template>
 
 <script>
-  import HeadTop from '@/components/HeadTop'
+  import HeadTop from '@/components/HeadTop';
+  import {
+    fetchArticleDetail
+  } from "@/api/article";
 
   export default {
     name: 'ArticleDetail',
     components: {
       HeadTop,
     },
-    methods:{
-
-    },
     beforeMount() {
       window.scrollTo(0, 0);
-      this.setActiveIndex(3);
-    }
+      this.getArticle();
+      // this.setActiveIndex(3);
+    },
+    methods: {
+      getArticle() {
+        console.log("====",this.$route);
+        const query =this.$route.query;
+        const articleType = query.articleType;
+        const id = query.id;
+        console.log(articleType + '-' + id);
+        fetchArticleDetail("api/article/get",articleType, id).then((response) => {
+          console.log("resonse", response.data.data);
+          this.article = response.data.data;
+        });
+      }
+    },
+    data() {
+      return {
+        article: {
+          displayTime: '五月 | 十七日',
+          picSrc: "/static/index/首页_02.png",
+          author: '刘方磊',
+          articleTitle: '论汉唐飞扬的前世今生',
+          articleSubTitle: '',
+          htmlContent: '<p> 我是正文。。。dfsdfsdfsadfsd</p>',
+        }
+      }
+    },
   }
 </script>
 

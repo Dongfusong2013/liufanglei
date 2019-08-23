@@ -24,13 +24,13 @@
             </div>
           </div>
           <div class="line"></div>
-          <div @click="gotoPage('/articleDetail')">
+          <div @click="gotoPage('/articleDetail', 'ideaArticle', 1)">
             <div class="mainPic">
-              <img src="/static/main/美学理念.png" alt height="100%" width="100%" />
+              <img :src="ideaArticle.picSrc" alt height="100%" width="100%" />
             </div>
             <div class="article">
               <div class="title titleSpace">{{ideaArticle.articleTitle}}</div>
-              <div class="subtitle sm-margint-top">{{ideaArticle.artileSubTitle}}</div>
+              <div class="subtitle sm-margint-top">{{ideaArticle.articleSubTitle}}</div>
               <div class="contentFont contentTop">
                 {{ideaArticle.articleSummary}}
               </div>
@@ -45,13 +45,13 @@
             </div>
           </div>
           <div class="line"></div>
-          <div @click="gotoPage('/articleDetail')">
+          <div @click="gotoPage('/articleDetail', 'ideaArticle', 1)">
             <div class="mainPic">
-              <img src="/static/workdetail/项目详情_14.jpg" alt height="100%" width="100%" />
+              <img :src="ideaArticle.picSrc" alt height="100%" width="100%" />
             </div>
             <div class="article">
               <div class="title titleSpace">{{ideaArticle.articleTitle}}</div>
-              <div class="subtitle sm-margint-top">{{ideaArticle.artileSubTitle}}</div>
+              <div class="subtitle sm-margint-top">{{ideaArticle.articleSubTitle}}</div>
               <div class="contentFont contentTop">
                 {{ideaArticle.articleSummary}}
               </div>
@@ -67,7 +67,7 @@
           </div>
         </div>
         <div class="line"></div>
-        <div v-for="(item, index) in articles" :key="index" @click="gotoPage('/newsDetail')">
+        <div v-for="(item, index) in newsArticles" :key="index" @click="gotoPage('/articleDetail', 'newsArticle',item.id)">
           <ShowArticleItem :timeTitle="item.author" :picSrc="item.picSrc" :articleTitle="item.articleTitle"
             :articleSumary="item.articleSummary" />
         </div>
@@ -99,6 +99,8 @@
   import ShowArticleItem from "./ShowArticleItem";
   import Cooperators from './Cooperators';
   import {mapMutations} from 'Vuex';
+  import {fetchMainArticleList} from '@/api/article.js'
+
   export default {
     name: "MainPage",
     components: {
@@ -118,9 +120,16 @@
         this.$router.push(info);
         console.log('-----', path);
       },
-      gotoPage(path) {
+      gotoPage(path, articleType, id) {
         console.log("============");
-        this.$router.push(path);
+         var info = {
+          path: path,
+          query: {
+            articleType: articleType,
+            id:id
+          }
+        }
+        this.$router.push(info);
       }
     },
     beforeMount: function() {
@@ -128,19 +137,14 @@
       this.setActiveIndex(0);
 
       var baseUrl = "/api";
-      // var baseUrl = "/liufanglei_server";
-      var addedUrl = '/mainPage/content';
+      var addedUrl = '/mainPage/articleList';
       var requestUrl = baseUrl + addedUrl;
 
-      this.$http.post(requestUrl).then(response => {
-        console.log(response.body);
-        // get body data
-        // this.someData = response.body;
-        this.idea = response.body.ideaMsg;
-        this.articles = [...response.body.articles];
-      }, response => {
-        console.log("......error");
-      });
+      fetchMainArticleList(requestUrl).then((response)=>{
+          console.log("fetchMainArticleList",response);
+          this.ideaArticle = response.data.ideaArticle;
+          this.newsArticles = response.data.newsArticles;
+      })
     },
     data() {
       return {
@@ -148,30 +152,37 @@
           "/static/main/scroll1.png",
           "/static/workdetail/项目详情_03.jpg"
         ],
-        articles: [
+        newsArticles: [
           {
+            id:1,
             author: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+            articleSubTitle: "汉唐飞扬汉唐飞扬",
             picSrc: "/static/main/1.png",
             articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
           },
           {
+            id:2,
             author: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+            articleSubTitle: "汉唐飞扬汉唐飞扬",
             picSrc: "/static/main/1.png",
             articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
           },
           {
+            id:3,
             author: "五月 2019 | 人民网",
             articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
+            articleSubTitle: "汉唐飞扬汉唐飞扬",
             picSrc: "/static/main/1.png",
             articleSummary: "二〇一五年，“一带一路”国际合作高峰论坛在 北京雁栖湖成功举办，在此让世界见识了……"
           },
         ],
         ideaArticle: {
+          id:2,
           picSrc: '/static/main/美学理念.png',
           articleTitle: '汉唐飞扬，以道营器',
-          artileSubTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
+          articleSubTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
           articleSummary: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞' +
             '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬'
         },
