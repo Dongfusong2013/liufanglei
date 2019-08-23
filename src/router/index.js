@@ -10,7 +10,6 @@ import HistoryPage from '@/page/historyPage'
 import NewsListPage from '@/page/newsListPage'
 import ProjectInfo from '@/page/projectInfoPage'
 import AdminPage from '@/page/adminPage'
-import NewsDetail from '@/page/newsDetail'
 import ArticleDetail from '@/page/articleDetail'
 
 Vue.use(Router)
@@ -63,11 +62,6 @@ export default new Router({
       path: '/about',
       name: 'AboutPage',
       component: AboutPage,
-    },
-    {
-      path: '/newsDetail',
-      name: 'NewsDetail',
-      component: NewsDetail
     },
     {
       path: '/admin',

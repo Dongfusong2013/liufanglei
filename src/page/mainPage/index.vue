@@ -7,9 +7,9 @@
     <div class="scrollContainer cover"></div>
 
     <el-carousel :interval="5000" arrow="always" height="580px" ref="carousel">
-      <el-carousel-item v-for="(item, index) in srcollPis" :key="index">
+      <el-carousel-item v-for="(item, index) in scrollImages" :key="index">
         <div class="picContainer">
-          <img :src="item" alt height="100%" width="100%" />
+          <img :src="item.imagePath" alt height="100%" width="100%" />
         </div>
       </el-carousel-item>
     </el-carousel>
@@ -144,13 +144,24 @@
           console.log("fetchMainArticleList",response);
           this.ideaArticle = response.data.ideaArticle;
           this.newsArticles = response.data.newsArticles;
+          this.scrollImages = response.data.scrollImages;
       })
     },
     data() {
       return {
-        srcollPis: [
-          "/static/main/scroll1.png",
-          "/static/workdetail/项目详情_03.jpg"
+        scrollImages: [
+          {
+              imagePath:"/static/main/scroll1.png",
+              articleType:'',
+              articleId:'',
+              present:'',
+          },
+          {
+              imagePath:"/static/workdetail/项目详情_03.jpg",
+              articleType:'',
+              articleId:'',
+              present:'',
+          },
         ],
         newsArticles: [
           {
