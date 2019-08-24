@@ -10,7 +10,7 @@
         <div class="tab-box tab-margin-right" :class="{'tab-active':isActive(1)}" @click="tabTo(1)">新闻</div>
         <div class="tab-box" :class="{'tab-active':isActive(2)}" @click="tabTo(2)">专题</div>
       </div>
-      <div class="main-content-box main-content-margin-top" v-if="isActive(1)" >
+      <div class="main-content-box main-content-margin-top" v-if="isActive(1)">
         <div class="title-box title title-margin-left">
           新闻
           <div class="title-line"></div>
@@ -58,7 +58,7 @@
                 <span>{{item.viewCount}}</span>
               </div>
             </div>
-            <div class="article-item"  @click="gotoPage('/articleDetail', 'ideaArticle', item.id)">
+            <div class="article-item" @click="gotoPage('/articleDetail', 'ideaArticle', item.id)">
               <div class="big-pic-margin-bottom bg-pic">
                 <img :src="item.picSrc" height="100%" width="100%" />
               </div>
@@ -74,14 +74,14 @@
         <div class="top-box top-box-size"></div>
       </div>
 
-      <div class="main-content-box main-content-margin-top" v-else-if="isActive(2)" >
+      <div class="main-content-box1 main-content-margin-top" v-else-if="isActive(2)">
         <div class="title-box title title-margin-left">
           专题报道
           <div class="title-line"></div>
         </div>
 
         <div class="news-list">
-          <div class="news-item-box" v-for="(item, index) in vidieoItems" :key="index">
+          <div class="news-item-box content_margin_left" v-for="(item, index) in vidieoItems" :key="index">
             <div class="row-box-space-between">
               <div class="time-font time-margin-bottom">{{format(item.displayTime)}} | {{item.author}} </div>
               <div class="time-font">
@@ -91,9 +91,10 @@
                 <span>{{item.viewCount}}</span>
               </div>
             </div>
-            <div class="article-item" @click="gotoPage('/articleDetail', 'ideaArtile', item.id)">
+            <div class="article-item " @click="gotoPage('/articleDetail', 'newsArticle', item.id)">
               <div class="big-pic-margin-bottom bg-vi-pic ">
-                <img :src="item.picSrc" alt height="100%" width="100%" />
+                <!-- <img :src="item.picSrc" alt height="100%" width="100%" /> -->
+                <VideoPlayerComponent width="594" height="354" :picSrc="item.picSrc" videoSrc="https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm" />
               </div>
               <div class="newInfo-box">
                 <div class="article-title">{{item.articleTitle}}</div>
@@ -104,8 +105,6 @@
             <div class="line line-margin-top line-margint-bottom"></div>
           </div>
         </div>
-
-
         <div class="top-box top-box-size"></div>
       </div>
 
@@ -206,11 +205,6 @@
     justify-content: space-between;
   }
 
-  .news-list {
-    // display: flex;
-    // flex-direction: column;
-  }
-
   .content-maring-top {
     margin-top: 12px;
   }
@@ -284,6 +278,20 @@
     margin-right: 27px;
   }
 
+  .content_margin_left{
+    margin-left: 178px;
+  }
+
+
+  .main-content-box1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-between;
+    align-items: stretch;
+  }
+
   .main-content-box {
     width: 100%;
     height: 100%;
@@ -329,6 +337,7 @@
 <script>
   import HeadTop from "@/components/HeadTop.vue";
   import Pagination from '@/components/Pagination/index.vue'
+  import VideoPlayerComponent from '@/components/VideoPlayerComponent.vue'
   import {
     fetchArticleList
   } from '@/api/article.js'
@@ -337,12 +346,13 @@
     name: "ArticleList",
     components: {
       HeadTop,
-      Pagination
+      Pagination,
+      VideoPlayerComponent
     },
     methods: {
-      format(displayStr){
-         var date = new Date(displayStr);
-         return date.toDateString();
+      format(displayStr) {
+        var date = new Date(displayStr);
+        return date.toDateString();
       },
       tabTo(value) {
         console.log("pass parram", this.$route.query);
@@ -354,11 +364,11 @@
       },
       gotoPage(path, articleType, id) {
         console.log("============");
-         var info = {
+        var info = {
           path: path,
           query: {
             articleType: articleType,
-            id:id
+            id: id
           }
         }
         this.$router.push(info);
@@ -368,10 +378,10 @@
         var articleType = "";
         if (activeIndex == 0) {
           articleType = 'ideaArticle'
-        } else if (this.activeIndex == 1) {
+        } else if (activeIndex == 1) {
           articleType = 'newsArticle'
         } else {
-          articleType = 'ideaArtic'
+          articleType = 'ideaArticle'
         }
 
         fetchArticleList("api/article/list", {
@@ -385,10 +395,11 @@
           this.pageSize = msg.data.totalPages;
           if (articleType === 'ideaArticle') {
             this.articles = msg.data.content;
-          } else if (articleType === 'newsArticle'){
+          } else if (articleType === 'newsArticle') {
             this.newsItems = msg.data.content;
-            this.vidieoItems = msg.data.content;//暂时
-          }else{
+            this.vidieoItems = msg.data.content; //暂时
+            console.log("newsarticles", this.newsItems);
+          } else {
             this.vidieoItems = msg.data.content;
           }
         })
@@ -398,7 +409,7 @@
       window.scrollTo(0, 0);
       console.log("======", this.$route.query);
       this.activeIndex = parseInt(this.$route.query.index);
-      for (let i = 0; i < this.indexCount; i++){
+      for (let i = 0; i < this.indexCount; i++) {
         this.fetchData(i);
       }
     },
@@ -406,7 +417,7 @@
     data() {
       return {
         activeIndex: 0,
-        indexCount:3,
+        indexCount: 3,
         pageNo: 1,
         pageSize: 10,
         pageCount: 0,

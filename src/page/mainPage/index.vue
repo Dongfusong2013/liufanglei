@@ -47,7 +47,8 @@
           <div class="line"></div>
           <div @click="gotoPage('/articleDetail', 'ideaArticle', 1)">
             <div class="mainPic">
-              <img :src="ideaArticle.picSrc" alt height="100%" width="100%" />
+                <!-- <img :src="item.picSrc" alt height="100%" width="100%" /> -->
+                <VideoPlayerComponent width="728" height="310" :picSrc="ideaArticle.picSrc" videoSrc="https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm" />
             </div>
             <div class="article">
               <div class="title titleSpace">{{ideaArticle.articleTitle}}</div>
@@ -98,8 +99,9 @@
   import HeadTop from "@/components/HeadTop.vue";
   import ShowArticleItem from "./ShowArticleItem";
   import Cooperators from './Cooperators';
-  import {mapMutations} from 'Vuex';
+  import {mapMutations} from 'vuex';
   import {fetchMainArticleList} from '@/api/article.js'
+  import VideoPlayerComponent from '@/components/VideoPlayerComponent.vue'
 
   export default {
     name: "MainPage",
@@ -107,6 +109,7 @@
       HeadTop,
       ShowArticleItem,
       Cooperators,
+      VideoPlayerComponent,
     },
     methods: {
       ...mapMutations('menueActive', ['setActiveIndex']),

@@ -10,7 +10,7 @@
       <div class="left-view">
         <div id='time-view'>
           <div class="big-font">
-            {{format(article.displayTime)}} |
+            {{format(article.displayTime)}}
           </div>
         </div>
         <div id='lable-view' class="big-top-margin">
@@ -50,6 +50,9 @@
         <div class="sm-font-black sm-top-margin content-font">
           <div v-html="article.htmlContent"></div>
         </div>
+        <div v-if="isVideo">
+             <VideoPlayerComponent width="594" height="305" :picSrc="article.picSrc" videoSrc="https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm" />
+        </div>
       </div>
     </div>
     <div>
@@ -70,6 +73,7 @@
 
 <script>
   import HeadTop from '@/components/HeadTop';
+  import VideoPlayerComponent from '@/components/VideoPlayerComponent.vue'
   import {
     fetchArticleDetail
   } from "@/api/article";
@@ -78,13 +82,20 @@
     name: 'ArticleDetail',
     components: {
       HeadTop,
+      VideoPlayerComponent,
     },
     beforeMount() {
       window.scrollTo(0, 0);
       this.getArticle();
       // this.setActiveIndex(3);
     },
+    computed:{
+      isVideo(){
+          return this.articleType === 'videoArticle';
+      },
+    },
     methods: {
+
       format(displayStr){
          var date = new Date(displayStr);
          return date.toDateString();
@@ -93,6 +104,7 @@
         console.log("====",this.$route);
         const query =this.$route.query;
         const articleType = query.articleType;
+        this.articleType = articleType;
         const id = query.id;
         console.log(articleType + '-' + id);
         fetchArticleDetail("api/article/get",articleType, id).then((response) => {
@@ -103,6 +115,7 @@
     },
     data() {
       return {
+        articleType:'',
         article: {
           displayTime: '五月 | 十七日',
           picSrc: "/static/index/首页_02.png",

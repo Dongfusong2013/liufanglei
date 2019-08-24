@@ -11,11 +11,17 @@ import ArticleList from '@/page/articleListPage'
 import ProjectInfo from '@/page/projectInfoPage'
 import AdminPage from '@/page/adminPage'
 import ArticleDetail from '@/page/articleDetail'
+import TestPage from '@/page/TestPage'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [{
+      path: '/testPage',
+      name: 'testPage',
+      component: TestPage,
+    },
+    {
       path: '/',
       name: 'Cover',
       component: Cover,

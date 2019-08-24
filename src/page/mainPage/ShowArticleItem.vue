@@ -1,6 +1,6 @@
 <template>
   <div class="newItem">
-    <div class="time">{{displayTime}} | {{author}}</div>
+    <div class="time">{{getFormat(displayTime)}} | {{author}}</div>
     <div class="picAndContent">
       <div class="pic">
         <img :src="picSrc" alt="" height="100%" width="100%">
@@ -19,16 +19,23 @@
 </template>
 
 <script>
+  import {dateFormat} from '@/utils/dateFormat.js'
+
   export default {
     name: "ShowArticleItem",
-
     props: {
       'displayTime':'',
       'picSrc': '',
       'articleTitle': '',
       'articleSumary': '',
       'author':'',
-    }
+    },
+    methods:{
+        getFormat(displayTime){
+          return dateFormat(displayTime);
+        }
+    },
+
   }
 </script>
 

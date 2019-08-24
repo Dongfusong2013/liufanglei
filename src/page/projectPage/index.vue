@@ -12,7 +12,7 @@
 <script>
 import HeadTop from "@/components/HeadTop.vue";
 import ScrollPicProject from "./ScrollPicProject";
-import {mapMutations} from 'Vuex';
+import {mapMutations} from 'vuex';
 export default {
   name: "ProjectPage",
   data() {

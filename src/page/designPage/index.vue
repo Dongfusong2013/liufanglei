@@ -13,7 +13,7 @@
 <script>
 import HeadTop from '@/components/HeadTop.vue'
 import ScrollPic from "./ScrollPicDesign.vue";
-import {mapMutations} from 'Vuex';
+import {mapMutations} from 'vuex';
 
 export default {
   name: "DesignPage",
