@@ -10,10 +10,7 @@
       <div class="left-view">
         <div id='time-view'>
           <div class="big-font">
-            {{article.displayTime}}
-          </div>
-          <div class="big-font">
-            {{article.displayTime}}
+            {{format(article.displayTime)}} |
           </div>
         </div>
         <div id='lable-view' class="big-top-margin">
@@ -88,6 +85,10 @@
       // this.setActiveIndex(3);
     },
     methods: {
+      format(displayStr){
+         var date = new Date(displayStr);
+         return date.toDateString();
+      },
       getArticle() {
         console.log("====",this.$route);
         const query =this.$route.query;

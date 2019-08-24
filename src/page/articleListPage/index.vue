@@ -18,7 +18,7 @@
         <div class="news-list">
           <div class="news-item-box" v-for="(item, index) in newsItems" :key="index">
             <div class="row-box-space-between">
-              <div class="time-font time-margin-bottom">{{item.author}}</div>
+              <div class="time-font time-margin-bottom">{{format(item.displayTime)}} | {{item.author}}</div>
               <div class="time-font">
                 <span style="margin-left: 8px;">
                   <img src="/static/news/眼睛.png" alt />
@@ -50,7 +50,7 @@
         <div class="news-list">
           <div class="news-item-box" v-for="(item, index) in articles" :key="index">
             <div class="row-box-space-between">
-              <div class="time-font time-margin-bottom">{{item.displayTime}}</div>
+              <div class="time-font time-margin-bottom">{{format(item.displayTime)}} | {{item.author}}</div>
               <div class="time-font">
                 <span style="margin-left: 8px;">
                   <img src="/static/news/眼睛.png" alt />
@@ -83,7 +83,7 @@
         <div class="news-list">
           <div class="news-item-box" v-for="(item, index) in vidieoItems" :key="index">
             <div class="row-box-space-between">
-              <div class="time-font time-margin-bottom">{{item.displayTime}}</div>
+              <div class="time-font time-margin-bottom">{{format(item.displayTime)}} | {{item.author}} </div>
               <div class="time-font">
                 <span style="margin-left: 8px;">
                   <img src="/static/news/眼睛.png" alt />
@@ -334,12 +334,16 @@
   } from '@/api/article.js'
 
   export default {
-    name: "NewsListPage",
+    name: "ArticleList",
     components: {
       HeadTop,
       Pagination
     },
     methods: {
+      format(displayStr){
+         var date = new Date(displayStr);
+         return date.toDateString();
+      },
       tabTo(value) {
         console.log("pass parram", this.$route.query);
         this.activeIndex = value;
@@ -367,7 +371,7 @@
         } else if (this.activeIndex == 1) {
           articleType = 'newsArticle'
         } else {
-          articleType = 'newsArticle'
+          articleType = 'ideaArtic'
         }
 
         fetchArticleList("api/article/list", {
@@ -383,6 +387,7 @@
             this.articles = msg.data.content;
           } else if (articleType === 'newsArticle'){
             this.newsItems = msg.data.content;
+            this.vidieoItems = msg.data.content;//暂时
           }else{
             this.vidieoItems = msg.data.content;
           }
@@ -393,46 +398,46 @@
       window.scrollTo(0, 0);
       console.log("======", this.$route.query);
       this.activeIndex = parseInt(this.$route.query.index);
-      this.fetchData(0);
-      this.fetchData(1);
-      this.fetchData(2);
+      for (let i = 0; i < this.indexCount; i++){
+        this.fetchData(i);
+      }
     },
-
 
     data() {
       return {
         activeIndex: 0,
+        indexCount:3,
         pageNo: 1,
         pageSize: 10,
         pageCount: 0,
         total: 10,
 
         articles: [{
-          author: "五月十二日 2019 | 人民网",
-          picSrc: "/static/news/item1.png",
-          displayTime: "2019-5-4",
-          articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-          articleSubTitle: "汉唐飞扬，以道营器汉唐飞扬，以道营器",
-          articleSummary: "汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。",
-          viewCount: "1245"
+          author: "",
+          picSrc: "",
+          displayTime: "",
+          articleTitle: "",
+          articleSubTitle: "",
+          articleSummary: "",
+          viewCount: ""
         }],
         newsItems: [{
-          author: "五月十二日 2019 | 人民网",
-          picSrc: "/static/news/item1.png",
-          displayTime: "2019-5-4",
-          articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-          articleSubTitle: "汉唐飞扬，以道营器汉唐飞扬，以道营器",
-          articleSummary: "汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。",
-          viewCount: "1245"
+          author: "",
+          picSrc: "",
+          displayTime: "",
+          articleTitle: "",
+          articleSubTitle: "",
+          articleSummary: "",
+          viewCount: ""
         }],
         vidieoItems: [{
-          author: "五月十二日 2019 | 人民网",
-          displayTime: "2019-5-4",
-          picSrc: "/static/news/item1.png",
-          articleTitle: "汉唐飞扬设计师刘方磊开奖了：用建筑讲述中国故事",
-          articleSubTitle: "汉唐飞扬，以道营器汉唐飞扬，以道营器",
-          articleSummary: "汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬。",
-          viewCount: "1245"
+          author: "",
+          picSrc: "",
+          displayTime: "",
+          articleTitle: "",
+          articleSubTitle: "",
+          articleSummary: "",
+          viewCount: ""
         }]
       };
     }

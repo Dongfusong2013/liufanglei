@@ -7,7 +7,7 @@ import ProjectPage from '@/page/projectPage'
 import DesignPage from '@/page/designPage'
 import AboutPage from '@/page/aboutPage'
 import HistoryPage from '@/page/historyPage'
-import NewsListPage from '@/page/newsListPage'
+import ArticleList from '@/page/articleListPage'
 import ProjectInfo from '@/page/projectInfoPage'
 import AdminPage from '@/page/adminPage'
 import ArticleDetail from '@/page/articleDetail'
@@ -34,9 +34,9 @@ export default new Router({
       }
     },
     {
-      path: '/newsList',
-      name: 'newsListPage',
-      component: NewsListPage,
+      path: '/articleListPage',
+      name: 'ArticleList',
+      component: ArticleList,
     },
     {
       path: '/main',

@@ -19,7 +19,7 @@
         <div>
           <div class="row-box-space-between">
             <div class="title titleSpace">美学理念</div>
-            <div class="more-font sm-margint-top" @click="goto('/newsList',0)">
+            <div class="more-font sm-margint-top" @click="goto('/articleListPage',0)">
               MORE >>
             </div>
           </div>
@@ -40,7 +40,7 @@
         <div>
           <div class="row-box-space-between big-top-margin">
             <div class="title titleSpace">专题报道</div>
-            <div class="more-font sm-margint-top" @click="goto('/newsList',2)">
+            <div class="more-font sm-margint-top" @click="goto('/articleListPage',2)">
               MORE >>
             </div>
           </div>
@@ -62,14 +62,14 @@
       <div class="rightView">
         <div class="row-box-space-between">
           <div class="title titleSpace">新闻</div>
-          <div class="more-font sm-margint-top" @click="goto('/newsList',1)">
+          <div class="more-font sm-margint-top" @click="goto('/articleListPage',1)">
             MORE >>
           </div>
         </div>
         <div class="line"></div>
         <div v-for="(item, index) in newsArticles" :key="index" @click="gotoPage('/articleDetail', 'newsArticle',item.id)">
-          <ShowArticleItem :timeTitle="item.author" :picSrc="item.picSrc" :articleTitle="item.articleTitle"
-            :articleSumary="item.articleSummary" />
+          <ShowArticleItem  :picSrc="item.picSrc" :articleTitle="item.articleTitle"
+            :articleSumary="item.articleSummary" :author="item.author" :displayTime="item.displayTime"/>
         </div>
       </div>
     </div>

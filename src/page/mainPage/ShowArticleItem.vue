@@ -1,6 +1,6 @@
 <template>
   <div class="newItem">
-    <div class="time">{{timeTitle}}</div>
+    <div class="time">{{displayTime}} | {{author}}</div>
     <div class="picAndContent">
       <div class="pic">
         <img :src="picSrc" alt="" height="100%" width="100%">
@@ -23,10 +23,11 @@
     name: "ShowArticleItem",
 
     props: {
-      'timeTitle': '',
+      'displayTime':'',
       'picSrc': '',
       'articleTitle': '',
-      'articleSumary': ''
+      'articleSumary': '',
+      'author':'',
     }
   }
 </script>
