@@ -44,14 +44,18 @@
         <div class="title-font">
           {{article.articleTitle}}
         </div>
+        <div class="sm-title-font sm-top-margin">
+          {{article.articleSubTitle}}
+        </div>
         <!-- <div style="width:594px;height:305px; background-color: #42B983;" class="big-top-margin">
           <img :src="article.picSrc" alt="" width="100%" height="100%">
         </div> -->
+        <div v-if="isVideo" class="sm-top-margin">
+          <VideoPlayerComponent :picSrc="picSrc"
+          :videoSrc="videoSrc" width="594" height="305" />
+        </div>
         <div class="sm-font-black sm-top-margin content-font">
           <div v-html="article.htmlContent"></div>
-        </div>
-        <div v-if="isVideo">
-             <VideoPlayerComponent width="594" height="305" :picSrc="article.picSrc" videoSrc="https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm" />
         </div>
       </div>
     </div>
@@ -84,30 +88,36 @@
       HeadTop,
       VideoPlayerComponent,
     },
-    beforeMount() {
+    created() {
       window.scrollTo(0, 0);
       this.getArticle();
-      // this.setActiveIndex(3);
     },
-    computed:{
-      isVideo(){
-          return this.articleType === 'videoArticle';
+    computed: {
+      isVideo() {
+        return this.articleType === 'focusArticle';
       },
+      picSrc(){
+        return this.article.picSrc;
+      },
+      videoSrc(){
+        return this.article.videoSrc;
+      }
+
     },
     methods: {
-
-      format(displayStr){
-         var date = new Date(displayStr);
-         return date.toDateString();
+      format(displayStr) {
+        var date = new Date(displayStr);
+        return date.toDateString();
       },
       getArticle() {
-        console.log("====",this.$route);
-        const query =this.$route.query;
+        console.log("====", this.$route);
+        const query = this.$route.query;
         const articleType = query.articleType;
         this.articleType = articleType;
         const id = query.id;
         console.log(articleType + '-' + id);
-        fetchArticleDetail("api/article/get",articleType, id).then((response) => {
+
+        fetchArticleDetail("api/article/get", articleType, id).then((response) => {
           console.log("resonse", response.data.data);
           this.article = response.data.data;
         });
@@ -115,14 +125,15 @@
     },
     data() {
       return {
-        articleType:'',
+        articleType: '',
         article: {
-          displayTime: '五月 | 十七日',
-          picSrc: "/static/index/首页_02.png",
-          author: '刘方磊',
-          articleTitle: '论汉唐飞扬的前世今生',
+          displayTime: '',
+          picSrc: "",
+          author: '',
+          articleTitle: '',
           articleSubTitle: '',
-          htmlContent: '<p> 我是正文。。。dfsdfsdfsadfsd</p>',
+          videoSrc:'',
+          htmlContent: '',
         }
       }
     },

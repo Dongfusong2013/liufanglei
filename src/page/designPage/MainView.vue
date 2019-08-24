@@ -14,7 +14,8 @@
           </div>
         </div>
         <div style="align-self: flex-end; margin-bottom: 64px; display: flex; flex-direction: row;
-         align-items: center; margin-right: 30px;" @click="nextPic()">
+         align-items: center; margin-right: 30px;"
+          @click="nextPic()">
           <div class="nextFont" style="margin-right: 10px;">
             NEXT
           </div>
@@ -33,9 +34,9 @@
 <script>
   export default {
     name: 'MainView',
-    props:{
-      nextPic:{
-        type:Function
+    props: {
+      nextPic: {
+        type: Function
       }
     }
   }

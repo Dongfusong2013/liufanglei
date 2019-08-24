@@ -91,10 +91,10 @@
                 <span>{{item.viewCount}}</span>
               </div>
             </div>
-            <div class="article-item " @click="gotoPage('/articleDetail', 'newsArticle', item.id)">
+            <div class="article-item " @click="gotoPage('/articleDetail', 'focusArticle', item.id)">
               <div class="big-pic-margin-bottom bg-vi-pic ">
                 <!-- <img :src="item.picSrc" alt height="100%" width="100%" /> -->
-                <VideoPlayerComponent width="594" height="354" :picSrc="item.picSrc" videoSrc="https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm" />
+                <VideoPlayerComponent width="594" height="354" :picSrc="item.picSrc" :videoSrc="item.videoSrc" />
               </div>
               <div class="newInfo-box">
                 <div class="article-title">{{item.articleTitle}}</div>
@@ -381,7 +381,7 @@
         } else if (activeIndex == 1) {
           articleType = 'newsArticle'
         } else {
-          articleType = 'ideaArticle'
+          articleType = 'focusArticle'
         }
 
         fetchArticleList("api/article/list", {
@@ -390,22 +390,19 @@
           articleType: articleType
         }).then((response) => {
           var msg = response.data;
-          console.log("msg===", msg);
           this.total = msg.data.totalElements;
           this.pageSize = msg.data.totalPages;
           if (articleType === 'ideaArticle') {
             this.articles = msg.data.content;
           } else if (articleType === 'newsArticle') {
             this.newsItems = msg.data.content;
-            this.vidieoItems = msg.data.content; //暂时
-            console.log("newsarticles", this.newsItems);
           } else {
-            this.vidieoItems = msg.data.content;
+            this.vidieoItems = msg.data.content; //暂时
           }
         })
       }
     },
-    beforeMount() {
+    created() {
       window.scrollTo(0, 0);
       console.log("======", this.$route.query);
       this.activeIndex = parseInt(this.$route.query.index);

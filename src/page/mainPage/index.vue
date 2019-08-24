@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="line"></div>
-          <div @click="gotoPage('/articleDetail', 'ideaArticle', 1)">
+          <div @click="gotoPage('/articleDetail', 'ideaArticle', ideaArticle.id)">
             <div class="mainPic">
               <img :src="ideaArticle.picSrc" alt height="100%" width="100%" />
             </div>
@@ -45,16 +45,16 @@
             </div>
           </div>
           <div class="line"></div>
-          <div @click="gotoPage('/articleDetail', 'ideaArticle', 1)">
+          <div @click="gotoPage('/articleDetail', 'focusArticle', focusArticle.id)">
             <div class="mainPic">
                 <!-- <img :src="item.picSrc" alt height="100%" width="100%" /> -->
-                <VideoPlayerComponent width="728" height="310" :picSrc="ideaArticle.picSrc" videoSrc="https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm" />
+                <VideoPlayerComponent width="728" height="310" :picSrc="focusArticle.picSrc" videoSrc="https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm" />
             </div>
             <div class="article">
-              <div class="title titleSpace">{{ideaArticle.articleTitle}}</div>
-              <div class="subtitle sm-margint-top">{{ideaArticle.articleSubTitle}}</div>
+              <div class="title titleSpace">{{focusArticle.articleTitle}}</div>
+              <div class="subtitle sm-margint-top">{{focusArticle.articleSubTitle}}</div>
               <div class="contentFont contentTop">
-                {{ideaArticle.articleSummary}}
+                {{focusArticle.articleSummary}}
               </div>
             </div>
         </div>
@@ -146,6 +146,7 @@
       fetchMainArticleList(requestUrl).then((response)=>{
           console.log("fetchMainArticleList",response);
           this.ideaArticle = response.data.ideaArticle;
+          this.focusArticle = response.data.focusArticle;
           this.newsArticles = response.data.newsArticles;
           this.scrollImages = response.data.scrollImages;
       })
@@ -200,6 +201,14 @@
           articleSummary: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞' +
             '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬'
         },
+        focusArticle:{
+            id:1,
+            picSrc: '/static/main/美学理念.png',
+            articleTitle: '汉唐飞扬，以道营器',
+            articleSubTitle: '汉唐飞扬，以道营器汉唐飞扬，以道营器',
+            articleSummary: '汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞' +
+              '唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬汉唐飞扬'
+        }
       };
     }
   };

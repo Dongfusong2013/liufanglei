@@ -23,6 +23,17 @@
     components: {
       videoPlayer
     },
+    //watch非常重要
+    watch:{
+       videoSrc:function(value){
+          console.log("--videoSrc---",value);
+          this.playerOptions.sources[0].src = value;
+       },
+       picSrc:function(value){
+         console.log("--picSrc---",value);
+         this.playerOptions.poster = value;
+       }
+    },
     data() {
       return {
         playerOptions: {
