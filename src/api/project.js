@@ -12,8 +12,7 @@ export function fetchProjectDetail(id) {
 
 export function fetchProjectList(data) {
   return axios({
-    method: 'post',
-    url: "/api/project/list",
-    data:data
+    method: 'get',
+    url: "api/project/list",
   });
 }

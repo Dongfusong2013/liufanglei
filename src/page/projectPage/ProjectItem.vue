@@ -11,9 +11,9 @@
       <div v-for="(item, index) in projects" :key="index">
         <div class="picItem" @click="goTo('/projectInfo', item.id)">
           <div class="pic">
-            <img height="100%" width="100%" v-bind:src="item.src" />
+            <img height="100%" width="100%" v-bind:src="item.picSrc" />
           </div>
-          <div id="descrip">{{item.name}}</div>
+          <div id="descrip">{{item.projectName}}</div>
         </div>
       </div>
     </div>
@@ -22,6 +22,9 @@
 <script>
   export default {
     name: "ProjectItem",
+    beforeMount(){
+      console.log("===project",this.projects);
+    },
     props: {
       isLast: {
         type: Function
@@ -44,11 +47,10 @@
     },
     methods: {
       goTo(path, id) {
-
         var info = {
           path: path,
           query: {
-            projectId: id,
+            id: id,
           }
         }
         this.$router.push(info);

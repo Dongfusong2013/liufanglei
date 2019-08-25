@@ -55,7 +55,6 @@
                 </div>
             </div>
           </div>
-
         </div>
       </div>
     </Frame>
@@ -90,7 +89,8 @@
       }
     },
     beforeMount() {
-        var projectId = 13;
+        // console.log("projectInfo",this.$route.query);
+        var projectId = this.$route.query.id;
         fetchProjectDetail(projectId).then((response)=>{
             console.log(response.data);
             this.projectInfo = response.data.data;

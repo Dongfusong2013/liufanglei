@@ -20,6 +20,7 @@
 <script>
 import ProjectItem from "./ProjectItem";
 import MainItem from "./MainItem";
+import {fetchProjectList} from '@/api/project.js'
 
 export default {
   name: "ScrollPicProject",
@@ -27,83 +28,48 @@ export default {
     ProjectItem,
     MainItem
   },
+  beforeMount(){
+    fetchProjectList().then((response)=>{
+          console.log("fetch project list",response.data.data);
+          var list = response.data.data;
+          var items = [];
+           var index = 0;
+           while(index < list.length){
+             var data = [];
+             for (let i = 0; i < 6 && index < list.length; i++){
+                data.push(list[index++])
+             }
+             items.push({data});
+           }
+           this.items = items;
+    });
+  },
+
   data() {
     return {
       items: [
         {
-          page: 1,
           data: [
             {
               id:1,
-              src: "/static/works/项目_001.jpg",
-              name: "第九届厦门金砖会晤--会议中心及会展中心"
+              picSrc: "",
+              projectName: ""
             },
             {
               id:2,
-              src: "/static/works/项目_002.jpg",
-              name: "第22届APEC（北京APEC）峰会主会场"
+              picSrc: "",
+              projectName: ""
             },
-            {
-              id:3,
-              src: "/static/works/项目_003.jpg",
-              name: "雁栖湖国际会展中心"
-            },
-            {
-              id:4,
-              src: "/static/works/项目_004.jpg",
-              name: "福州数字会展中心"
-            },
-            {
-              id:5,
-              src: "/static/works/项目_005.jpg",
-              name: "安平丝网会展中心"
-            },
-            {
-              id:6,
-              src: "/static/works/项目_006.jpg",
-              name: "北京香港马会会所"
-            }
           ]
         },
-        {
-          page: 2,
-          data: [
-            {
-              id:1,
-              src: "/static/works/项目_001.jpg",
-              name: "第九届厦门金砖会晤--会议中心及会展中心"
-            },
-            {
-              id:2,
-              src: "/static/works/项目_002.jpg",
-              name: "第22届APEC（北京APEC）峰会主会场"
-            },
-            {
-              id:3,
-              src: "/static/works/项目_003.jpg",
-              name: "雁栖湖国际会展中心"
-            },
-            {
-              id:4,
-              src: "/static/works/项目_004.jpg",
-              name: "福州数字会展中心"
-            },
-            {
-              id:5,
-              src: "/static/works/项目_005.jpg",
-              name: "安平丝网会展中心"
-            },
-            {
-              id:6,
-              src: "/static/works/项目_006.jpg",
-              name: "北京香港马会会所"
-            }
-          ]
-        }
       ],
       index: 0,
-      maxCount: 2
     };
+  },
+  computed:{
+     maxCount(){
+        return this.items.length + 1;
+    },
   },
   methods: {
     isTrue() {
