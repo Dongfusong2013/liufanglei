@@ -1,8 +1,8 @@
 import axios from 'axios'
-export function fetchArticleDetail(url, articleType, id) {
+export function fetchArticleDetail(articleType, id) {
   return axios({
     method: 'get',
-    url: url,
+    url: "api/article/get",
     params: {
       id,
       articleType

@@ -118,7 +118,7 @@
         const id = query.id;
         console.log(articleType + '-' + id);
 
-        fetchArticleDetail("api/article/get", articleType, id).then((response) => {
+        fetchArticleDetail(articleType, id).then((response) => {
           console.log("resonse", response.data.data);
           this.article = response.data.data;
         });
