@@ -8,7 +8,7 @@
 
     <el-carousel :interval="5000" arrow="always" height="580px" ref="carousel">
       <el-carousel-item v-for="(item, index) in scrollImages" :key="index">
-        <div class="picContainer">
+        <div class="picContainer" @click="gotoPage('/articleDetail', item.articleType, item.articleId)">
           <img :src="item.imagePath" alt height="100%" width="100%" />
         </div>
       </el-carousel-item>

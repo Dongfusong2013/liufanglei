@@ -10,15 +10,12 @@ export function fetchArticleDetail(url, articleType, id) {
   });
 }
 
-
 export function fetchMainArticleList(url) {
   return axios({
     method: 'get',
     url: url,
   });
 }
-
-
 
 export function fetchArticleList(url, data) {
   return axios({
