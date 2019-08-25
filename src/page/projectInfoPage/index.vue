@@ -6,7 +6,15 @@
           <div class="content-wrapper">
             <div class="title-font">{{projectInfo.projectName}}</div>
             <div class="content-font content-margin-top">
-              {{projectInfo.description}}
+              <div>
+              {{projectInfo.description1}}
+              </div>
+              <div>
+              {{projectInfo.description2}}
+              </div>
+              <div>
+              {{projectInfo.description3}}
+              </div>
             </div>
             <div class="line sm-line-top"></div>
           </div>
