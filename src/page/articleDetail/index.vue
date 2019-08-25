@@ -10,7 +10,7 @@
       <div class="left-view">
         <div id='time-view'>
           <div class="big-font">
-            {{format(article.displayTime)}}
+            {{getFormat(article.displayTime)}}
           </div>
         </div>
         <div id='lable-view' class="big-top-margin">
@@ -81,6 +81,7 @@
   import {
     fetchArticleDetail
   } from "@/api/article";
+  import {dateFormat} from '@/utils/dateFormat.js'
 
   export default {
     name: 'ArticleDetail',
@@ -101,13 +102,13 @@
       },
       videoSrc(){
         return this.article.videoSrc;
-      }
+      },
+
 
     },
     methods: {
-      format(displayStr) {
-        var date = new Date(displayStr);
-        return date.toDateString();
+      getFormat(displayTime){
+        return dateFormat(displayTime);
       },
       getArticle() {
         console.log("====", this.$route);

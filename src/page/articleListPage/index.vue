@@ -341,6 +341,7 @@
   import {
     fetchArticleList
   } from '@/api/article.js'
+  import {dateFormat} from '@/utils/dateFormat.js'
 
   export default {
     name: "ArticleList",
@@ -351,8 +352,7 @@
     },
     methods: {
       format(displayStr) {
-        var date = new Date(displayStr);
-        return date.toDateString();
+         return dateFormat(displayStr);
       },
       tabTo(value) {
         console.log("pass parram", this.$route.query);
