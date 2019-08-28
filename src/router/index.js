@@ -6,7 +6,7 @@ import MainPage from '@/page/mainPage'
 import ProjectPage from '@/page/projectPage'
 import DesignPage from '@/page/designPage'
 import AboutPage from '@/page/aboutPage'
-import HistoryPage from '@/page/historyPage'
+import CivilizationPage from '@/page/civilizationPage'
 import ArticleList from '@/page/articleListPage'
 import ProjectInfo from '@/page/projectInfoPage'
 import AdminPage from '@/page/adminPage'
@@ -60,9 +60,9 @@ export default new Router({
       component: DesignPage
     },
     {
-      path: '/history',
-      name: 'HistoryPage',
-      component: HistoryPage
+      path: '/civilization',
+      name: 'civilization',
+      component: CivilizationPage
     },
     {
       path: '/about',

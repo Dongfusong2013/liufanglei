@@ -30,7 +30,7 @@
           {content: '项目', path: '/project'},
           {content: '作品', path: '/design'},
           {content: '关于', path: '/about'},
-          {content: '文明印记', path: '/history'},
+          {content: '文明印记', path: '/civilization'},
         ],
       }
     },

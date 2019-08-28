@@ -22,7 +22,7 @@
           <span style="margin-right: 8px;">关于</span>
           <span>ABOUT</span>
         </div>
-        <div @click="goTo('/history',4)">
+        <div @click="goTo('/civilization',4)">
           <span style="margin-right: 8px;">文明印迹</span>
           <span>MARK OF CIVILIZATION</span>
         </div>

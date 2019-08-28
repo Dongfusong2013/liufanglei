@@ -20,7 +20,15 @@
             </div>
           </div>
           <div class="sm-font sm-top-margin">
+            <div v-if="isIdea">
             标签：理念 | 文章
+            </div>
+            <div v-else-if="isNews">
+            标签：新闻 | 文章
+            </div>
+            <div v-else>
+            标签：专题 | 文章
+            </div>
             <div class="sep-line sm-top-margin">
             </div>
           </div>
@@ -94,6 +102,12 @@
       this.getArticle();
     },
     computed: {
+      isNews(){
+        return this.articleType === 'newsArticle';
+      },
+      isIdea(){
+        return this.articleType === 'ideaArticle';
+      },
       isVideo() {
         return this.articleType === 'focusArticle';
       },
