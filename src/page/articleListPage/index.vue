@@ -384,7 +384,7 @@
           articleType = 'focusArticle'
         }
 
-        fetchArticleList("api/article/list", {
+        fetchArticleList({
           pageNo: this.pageNo - 1,
           pageSize: this.pageSize,
           articleType: articleType

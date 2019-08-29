@@ -139,11 +139,7 @@
       console.log("---before mount----");
       this.setActiveIndex(0);
 
-      var baseUrl = "/api";
-      var addedUrl = '/mainPage/articleList';
-      var requestUrl = baseUrl + addedUrl;
-
-      fetchMainArticleList(requestUrl).then((response)=>{
+      fetchMainArticleList().then((response)=>{
           console.log("fetchMainArticleList",response);
           this.ideaArticle = response.data.ideaArticle;
           this.focusArticle = response.data.focusArticle;

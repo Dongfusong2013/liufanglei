@@ -14,7 +14,7 @@
     </div>
     <div>
       <el-upload
-        action="/api/thirdApi/qiniu/img"
+        action="/liufanglei_server/thirdApi/qiniu/img"
         list-type="picture-card"
         :on-preview="handlePictureCardPreview"
         :on-remove="handleRemove"
