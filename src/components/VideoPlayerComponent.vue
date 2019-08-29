@@ -60,8 +60,7 @@
   }
 </script>
 
-<style>
-
+<style lang="less">
   .video-js .vjs-big-play-button {
     left: 43%;
     top: 43%;

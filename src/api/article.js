@@ -17,7 +17,7 @@ export function fetchMainArticleList(url) {
   });
 }
 
-export function fetchArticleList(url, data) {
+export function fetchArticleList(data) {
   return axios({
     method: 'post',
     url: "liufanglei_server/article/list",
