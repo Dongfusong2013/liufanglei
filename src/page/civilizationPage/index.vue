@@ -30,7 +30,10 @@
         <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map> -->
 
         <div v-for="(item, index) in locationList" :key="index">
-          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)">
+          <bm-marker :position="item.position"  @mouseover="openLocationWindow(item)"
+           @click="gotoLocation(item)"
+           :icon="{url: item.url, size: {width: 300, height: 157}}"
+           >
             <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
           </bm-marker>
         </div>
@@ -161,6 +164,7 @@
               lng: 116.404,
               lat: 39.915
             },
+            url:"http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '5.0',
             footCount: 314,
             name: '故宫博物院，中国',
@@ -173,6 +177,7 @@
               lng: 116.404,
               lat: 49.915
             },
+            url:"http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '4.8',
             footCount: 314,
             name: '故宫博物院，中国',
@@ -185,6 +190,7 @@
               lng: 400.404,
               lat: 69.915
             },
+            url:"http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '4.4',
             footCount: 314,
             name: '故宫博物院，中国',
@@ -197,6 +203,7 @@
               lng: 400.404,
               lat: 69.915
             },
+            url:"http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '4.4',
             footCount: 314,
             name: '故宫博物院，中国',
@@ -209,6 +216,7 @@
               lng: 400.404,
               lat: 69.915
             },
+            url:"http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '4.4',
             footCount: 314,
             name: '故宫博物院，中国',
@@ -279,7 +287,7 @@
   .top-header {
     width: 100%;
     background: rgba(243, 245, 246, 1);
-    height: 88px;
+    height: 68px;
   }
 
   .control-list-title {
