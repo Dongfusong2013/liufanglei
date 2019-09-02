@@ -193,8 +193,8 @@
           {
             type: "历史遗迹",
             position: {
-              lng: 400.404,
-              lat: 69.915
+              lng: 106.404,
+              lat: 59.915
             },
             url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '4.4',
