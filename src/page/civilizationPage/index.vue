@@ -30,10 +30,7 @@
         <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map> -->
 
         <div v-for="(item, index) in locationList" :key="index">
-          <bm-marker :position="item.position"  @mouseover="openLocationWindow(item)"
-           @click="gotoLocation(item)"
-           :icon="{url: item.url, size: {width: 300, height: 157}}"
-           >
+          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)" :icon="{url: item.url, size: {width: 300, height: 157}}">
             <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
           </bm-marker>
         </div>
@@ -55,47 +52,55 @@
             </div>
           </div>
         </bm-info-window>
-        <div class="right-search-control">
+        <div class="left-search-control">
           <div class="row">
             <div>
               <el-input placeholder="搜索城市 输入关键字" style="width: 330px;" v-model="location" class="input-with-select">
-                <el-select v-model="selectType" style="width: 110px;" slot="prepend" placeholder="请选择">
-                  <el-option label="历史遗迹" value="历史遗迹"></el-option>
-                  <el-option label="现代建筑" value="现代建筑"></el-option>
-                  <el-option label="神秘探索" value="神秘探索"></el-option>
-                </el-select>
                 <el-button slot="append" icon="el-icon-search"></el-button>
               </el-input>
               <bm-local-search :auto-viewport="true" :keyword="location" :location="location"></bm-local-search>
             </div>
           </div>
-          <div class="zoom-control-pos">
-            <div class="zoom-constrol-bigger box-center" style="font-size: 26px; color: white;">
-              +
-            </div>
-            <div class="zoom-control-smaller box-center" style="font-size: 26px; color:#D3D3D3">
-              -
-            </div>
-          </div>
         </div>
       </baidu-map>
     </div>
-
-    <div class="left-list-control" :class="{'open_background':listShow}">
-
-      <div class="control-label box-center" @click="controlListTable">
-        <div v-if="listShow" style="color:white">
-          X
+    <div class="zoom-control-pos">
+      <div class="zoom-constrol-bigger box-center" style="font-size: 26px; color: white;">
+        +
+      </div>
+      <div class="zoom-control-smaller box-center" style="font-size: 26px; color:#D3D3D3">
+        -
+      </div>
+    </div>
+    <div class="right-list-control row-space-box" :class="{'open_background':listShow}">
+      <div class="row-space-box" style="align-self: flex-start ;">
+        <div>
+          <el-select v-model="selectType" style="width: 110px;" slot="prepend" placeholder="请选择">
+            <el-option label="全部" value="全部"></el-option>
+            <el-option label="历史遗迹" value="历史遗迹"></el-option>
+            <el-option label="现代建筑" value="现代建筑"></el-option>
+            <el-option label="神秘探索" value="神秘探索"></el-option>
+          </el-select>
         </div>
-        <div v-if="!listShow" style="color:white">
-          OK
+        <div class="control-label box-center" @click="controlListTable" :class="{'open_background':listShow}">
+          <div v-if="!listShow" style="width: 24px; height: 24px;">
+            <img src="/static/icon/排行关闭.png" height="100%" width="100%">
+          </div>
+          <div v-if="listShow" style="width: 24px; height: 24px;">
+            <img src="/static/icon/排行奖杯.png" height="100%" width="100%">
+          </div>
         </div>
       </div>
-      <div v-if="listShow" class="control-list-title">
-        {{selectType}}排行榜单
-      </div>
 
-      <div class="pop_window" v-if="listShow">
+      <div class="pop_window" v-if="!listShow">
+        <div>
+          <div style="padding-left: 20px; padding-top: 20px; padding-bottom: 10px;">
+            排行榜
+          </div>
+          <div style="margin-left: 20px; background-color: darkred; width: 49px; height: 2px;">
+
+          </div>
+        </div>
         <div style="padding-top: 20px;">
           <div v-for="(item, index) in locationList" :key="index">
             <div class="row-space-box list-padding item-margin-bottom" @click="gotoLocation(item)">
@@ -110,7 +115,8 @@
                   {{item.name}}
                 </div>
                 <div class="score-font">
-                  x x x x x {{item.score}}
+                  <rate :length="5"></rate>
+                  {{item.score}}
                 </div>
               </div>
               <div class="list-sm-content-font" style="align-self: flex-end;">
@@ -128,6 +134,7 @@
 <script>
   import HeadTop from '@/components/HeadTop.vue'
   // import SvgIcon from '@/components/SvgIcon'
+  import rate from 'vue-rate';
 
   export default {
     name: 'civilizationPage',
@@ -164,7 +171,7 @@
               lng: 116.404,
               lat: 39.915
             },
-            url:"http://developer.baidu.com/map/jsdemo/img/fox.gif",
+            url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '5.0',
             footCount: 314,
             name: '故宫博物院，中国',
@@ -177,7 +184,7 @@
               lng: 116.404,
               lat: 49.915
             },
-            url:"http://developer.baidu.com/map/jsdemo/img/fox.gif",
+            url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '4.8',
             footCount: 314,
             name: '故宫博物院，中国',
@@ -190,7 +197,7 @@
               lng: 400.404,
               lat: 69.915
             },
-            url:"http://developer.baidu.com/map/jsdemo/img/fox.gif",
+            url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '4.4',
             footCount: 314,
             name: '故宫博物院，中国',
@@ -203,7 +210,7 @@
               lng: 400.404,
               lat: 69.915
             },
-            url:"http://developer.baidu.com/map/jsdemo/img/fox.gif",
+            url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '4.4',
             footCount: 314,
             name: '故宫博物院，中国',
@@ -216,7 +223,7 @@
               lng: 400.404,
               lat: 69.915
             },
-            url:"http://developer.baidu.com/map/jsdemo/img/fox.gif",
+            url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
             score: '4.4',
             footCount: 314,
             name: '故宫博物院，中国',
@@ -262,7 +269,6 @@
         this.show = true
         console.log("----------open-------");
       }
-
     }
   }
 </script>
@@ -270,6 +276,10 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
   @import '../appStyle';
+
+  @headTopHeight: 60px;
+  @left-top: @headTopHeight + 8px;
+  @right-top: @left-top + 30px;
 
   .menueItem {
     margin-right: 80px;
@@ -287,7 +297,7 @@
   .top-header {
     width: 100%;
     background: rgba(243, 245, 246, 1);
-    height: 68px;
+    height: @headTopHeight;
   }
 
   .control-list-title {
@@ -312,10 +322,11 @@
     padding-left: 10px;
     padding-right: 10px;
   }
-  .myStyle{
-    width:38px;
-    height:38px;
-    border:2px solid rgba(255,255,255,1);
+
+  .myStyle {
+    width: 38px;
+    height: 38px;
+    border: 2px solid rgba(255, 255, 255, 1);
   }
 
   .score-font {
@@ -353,26 +364,32 @@
     line-height: 20px;
   }
 
-  .right-search-control {
+  .left-search-control {
     position: fixed;
-    top: 105px;
-    right: 10px;
+    top: @right-top;
+    left: 40px;
     width: 354px;
   }
 
-  .left-list-control {
+  .right-list-control {
     position: fixed;
-    top: 95px;
-    left: 8px;
-    width: 314px;
-    height: 656px;
+    top: @left-top;
+    right: 0px;
+    padding-right: 5px;
   }
 
   .open_background {
-    background: rgba(255, 255, 255, 1);
+    // background: rgba(255, 255, 255, 1);
+    // width: 514px;
+    // height: 656px;
   }
 
   .pop_window {
+    // position: absolute;
+    // top:100px;
+    // right: 400px;
+    width: 314px;
+    height: 656px;
     background: rgba(255, 255, 255, 1);
   }
 
@@ -445,8 +462,8 @@
 
   .zoom-control-pos {
     position: fixed;
-    right: 40px;
-    top: 300px;
+    left: 40px;
+    bottom: 100px;
   }
 
   .zoom-constrol-bigger {
