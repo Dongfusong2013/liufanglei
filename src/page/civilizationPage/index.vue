@@ -8,18 +8,18 @@
         文明印记
       </div>
       <div class="row-space-box" style="margin-right: 150px;">
-        <div style="margin-right: 40px; width: 64px; height: 56px; background-color: #475669;">
-          <!-- <svg-icon icon-class="guide" /> -->
-          <img src="" alt="" height="100%" width="100%">
+        <div class="menueItem row-box-center">
+          <div class="el-icon-place"></div>
         </div>
-        <div style="margin-right: 40px; width: 64px; height: 56px; background-color: #475669;">
-          <img src="" alt="" height="100%" width="100%">
+        <div class="menueItem row-box-center">
+          <div class="el-icon-bell"></div>
         </div>
-        <div style="margin-right: 40px; width: 64px; height: 56px; background-color: #475669;">
-          <img src="" alt="" height="100%" width="100%">
+        <div class="menueItem row-box-center">
+          <div class="el-icon-user"></div>
         </div>
-        <div style="margin-right: 40px; width: 64px; height: 56px; background-color: #475669;">
-          <img src="" alt="" height="100%" width="100%">
+        <div class="menueItem row-box-center">
+          <div class="myStyle">
+          </div>
         </div>
       </div>
     </div>
@@ -263,9 +263,9 @@
 <style lang="less">
   @import '../appStyle';
 
-  .menue-style {
-    float: left;
-    margin-right: 40px;
+  .menueItem {
+    margin-right: 80px;
+    font-size: 28px;
   }
 
   .web-title {
@@ -303,6 +303,11 @@
   .list-padding {
     padding-left: 10px;
     padding-right: 10px;
+  }
+  .myStyle{
+    width:38px;
+    height:38px;
+    border:2px solid rgba(255,255,255,1);
   }
 
   .score-font {
