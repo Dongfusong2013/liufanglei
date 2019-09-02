@@ -72,8 +72,8 @@
         -
       </div>
     </div>
-    <div class="right-list-control row-space-box" :class="{'open_background':listShow}">
-      <div class="row-space-box" style="align-self: flex-start ;">
+    <div class="right-list-control row-space-box">
+      <div class="row-space-box" style="align-self: flex-start; margin-top: 30px;">
         <div>
           <el-select v-model="selectType" style="width: 110px;" slot="prepend" placeholder="请选择">
             <el-option label="全部" value="全部"></el-option>
@@ -82,7 +82,7 @@
             <el-option label="神秘探索" value="神秘探索"></el-option>
           </el-select>
         </div>
-        <div class="control-label box-center" @click="controlListTable" :class="{'open_background':listShow}">
+        <div class="control-label box-center" @click="controlListTable">
           <div v-if="!listShow" style="width: 24px; height: 24px;">
             <img src="/static/icon/排行关闭.png" height="100%" width="100%">
           </div>
@@ -94,11 +94,10 @@
 
       <div class="pop_window" v-if="!listShow">
         <div>
-          <div style="padding-left: 20px; padding-top: 20px; padding-bottom: 10px;">
+          <div style="padding-left: 20px; padding-top: 10px; padding-bottom: 10px;">
             排行榜
           </div>
           <div style="margin-left: 20px; background-color: darkred; width: 49px; height: 2px;">
-
           </div>
         </div>
         <div style="padding-top: 20px;">
@@ -378,16 +377,7 @@
     padding-right: 5px;
   }
 
-  .open_background {
-    // background: rgba(255, 255, 255, 1);
-    // width: 514px;
-    // height: 656px;
-  }
-
   .pop_window {
-    // position: absolute;
-    // top:100px;
-    // right: 400px;
     width: 314px;
     height: 656px;
     background: rgba(255, 255, 255, 1);
