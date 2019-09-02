@@ -1,10 +1,30 @@
 <template>
   <div class="history-contaienr">
-    <div class="backgroundImg">
+    <!-- <div class="backgroundImg">
       <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
+    </div> -->
+    <div class="top-header row-space-box">
+      <div class="web-title" style="margin-left: 40px;">
+        文明印记
+      </div>
+      <div class="row-space-box" style="margin-right: 150px;">
+        <div style="margin-right: 40px; width: 64px; height: 56px; background-color: #475669;">
+          <!-- <svg-icon icon-class="guide" /> -->
+          <img src="" alt="" height="100%" width="100%">
+        </div>
+        <div style="margin-right: 40px; width: 64px; height: 56px; background-color: #475669;">
+          <img src="" alt="" height="100%" width="100%">
+        </div>
+        <div style="margin-right: 40px; width: 64px; height: 56px; background-color: #475669;">
+          <img src="" alt="" height="100%" width="100%">
+        </div>
+        <div style="margin-right: 40px; width: 64px; height: 56px; background-color: #475669;">
+          <img src="" alt="" height="100%" width="100%">
+        </div>
+      </div>
     </div>
-    <HeadTop textColor='#ffff' />
-    <div style="width: 100%; height: 100%;">
+    <!-- <HeadTop textColor='#ffff' /> -->
+    <div style="box-sizing: border-box; width: 100%; height: 100%; ">
       <baidu-map class="map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
         <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
         <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map> -->
@@ -32,26 +52,34 @@
             </div>
           </div>
         </bm-info-window>
+        <div class="right-search-control">
+          <div class="row">
+            <div>
+              <el-input placeholder="搜索城市 输入关键字" style="width: 330px;" v-model="location" class="input-with-select">
+                <el-select v-model="selectType" style="width: 110px;" slot="prepend" placeholder="请选择">
+                  <el-option label="历史遗迹" value="历史遗迹"></el-option>
+                  <el-option label="现代建筑" value="现代建筑"></el-option>
+                  <el-option label="神秘探索" value="神秘探索"></el-option>
+                </el-select>
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+              <bm-local-search :auto-viewport="true" :keyword="location" :location="location"></bm-local-search>
+            </div>
+          </div>
+          <div class="zoom-control-pos">
+            <div class="zoom-constrol-bigger box-center" style="font-size: 26px; color: white;">
+              +
+            </div>
+            <div class="zoom-control-smaller box-center" style="font-size: 26px; color:#D3D3D3">
+              -
+            </div>
+          </div>
+        </div>
       </baidu-map>
     </div>
 
-    <div class="right-search-control">
-      <div class="row">
-        <div>
-          <el-input placeholder="搜索城市 输入关键字" style="width: 330px;" v-model="location" class="input-with-select">
-            <el-select v-model="selectType" style="width: 110px;" slot="prepend" placeholder="请选择">
-              <el-option label="历史遗迹" value="1"></el-option>
-              <el-option label="现代建筑" value="2"></el-option>
-              <el-option label="神秘探索" value="3"></el-option>
-            </el-select>
-            <el-button slot="append" icon="el-icon-search"></el-button>
-          </el-input>
-          <bm-local-search :auto-viewport="true" :location="location"></bm-local-search>
-        </div>
-      </div>
-    </div>
-
     <div class="left-list-control" :class="{'open_background':listShow}">
+
       <div class="control-label box-center" @click="controlListTable">
         <div v-if="listShow" style="color:white">
           X
@@ -60,8 +88,12 @@
           OK
         </div>
       </div>
+      <div v-if="listShow" class="control-list-title">
+        {{selectType}}排行榜单
+      </div>
+
       <div class="pop_window" v-if="listShow">
-        <div style="padding-top: 30px;">
+        <div style="padding-top: 20px;">
           <div v-for="(item, index) in locationList" :key="index">
             <div class="row-space-box list-padding item-margin-bottom" @click="gotoLocation(item)">
               <div class="list-number">
@@ -92,10 +124,13 @@
 
 <script>
   import HeadTop from '@/components/HeadTop.vue'
-  // import BaiduMap from 'vue-baidu-map'
+  // import SvgIcon from '@/components/SvgIcon'
 
   export default {
     name: 'civilizationPage',
+    // components:{
+    //   SvgIcon
+    // },
     data() {
       return {
         mapStyle: {
@@ -108,7 +143,7 @@
             }
           }],
         },
-        selectType: {},
+        selectType: "历史遗迹",
         centerPosition: {
           lng: 116.404,
           lat: 39.915
@@ -121,6 +156,7 @@
         listShow: false,
         location: '',
         locationList: [{
+            type: "历史遗迹",
             position: {
               lng: 116.404,
               lat: 39.915
@@ -132,6 +168,7 @@
             picSrc: '/static/design/door.jpeg',
           },
           {
+            type: "历史遗迹",
             position: {
               lng: 116.404,
               lat: 49.915
@@ -143,6 +180,7 @@
             picSrc: '/static/design/door.jpeg',
           },
           {
+            type: "历史遗迹",
             position: {
               lng: 400.404,
               lat: 69.915
@@ -154,6 +192,7 @@
             picSrc: '/static/design/door.jpeg',
           },
           {
+            type: "历史遗迹",
             position: {
               lng: 400.404,
               lat: 69.915
@@ -165,6 +204,7 @@
             picSrc: '/static/design/door.jpeg',
           },
           {
+            type: "历史遗迹",
             position: {
               lng: 400.404,
               lat: 69.915
@@ -175,7 +215,6 @@
             descript: '世界上最宏大的宫廷建筑群',
             picSrc: '/static/design/door.jpeg',
           },
-
         ]
       }
     },
@@ -224,6 +263,38 @@
 <style lang="less">
   @import '../appStyle';
 
+  .menue-style {
+    float: left;
+    margin-right: 40px;
+  }
+
+  .web-title {
+    font-size: 20px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 28px;
+  }
+
+  .top-header {
+    width: 100%;
+    background: rgba(243, 245, 246, 1);
+    height: 88px;
+  }
+
+  .control-list-title {
+    position: absolute;
+    top: 10px;
+    left: 80px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(23, 0, 0, 1);
+    line-height: 24px;
+    font-size: 18px;
+  }
+
   .row {
     display: flex;
     flex-direction: row;
@@ -269,7 +340,7 @@
     line-height: 20px;
   }
 
-  .right-search-control{
+  .right-search-control {
     position: fixed;
     top: 105px;
     right: 10px;
@@ -278,9 +349,9 @@
 
   .left-list-control {
     position: fixed;
-    top: 105px;
-    left: 10px;
-    width: 330px;
+    top: 95px;
+    left: 8px;
+    width: 314px;
     height: 656px;
   }
 
@@ -309,6 +380,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 
   .anchorBL {
@@ -347,13 +419,38 @@
     line-height: 22px;
   }
 
+
   .history-contaienr {
-    width: 100%;
+    background: rgba(243, 245, 246, 1);
+    width: 1550px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
+  }
+
+  .zoom-control-pos {
+    position: fixed;
+    right: 40px;
+    top: 300px;
+  }
+
+  .zoom-constrol-bigger {
+    width: 40px;
+    height: 40px;
+    background: rgba(160, 0, 0, 1);
+    border-radius: 4px 4px 0px 0px;
+    color: white;
+    border: 1px solid rgba(226, 226, 226, 1);
+  }
+
+  .zoom-control-smaller {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 0px 0px 4px 4px;
+    border: 1px solid rgba(226, 226, 226, 1);
   }
 
   .map {
