@@ -74,7 +74,7 @@
     </div>
     <div class="right-list-control row-space-box">
       <div class="row-space-box" style="align-self: flex-start; margin-top: 30px;">
-        <div>
+        <div style="margin-right: 10px;">
           <el-select v-model="selectType" style="width: 110px;" slot="prepend" placeholder="请选择">
             <el-option label="全部" value="全部"></el-option>
             <el-option label="历史遗迹" value="历史遗迹"></el-option>
