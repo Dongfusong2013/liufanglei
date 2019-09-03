@@ -1,50 +1,27 @@
 <template>
   <div class="history-contaienr">
-    <!-- <div class="backgroundImg">
-      <img src="/static/index/首页_02.png" alt height="100%" width="100%" />
-    </div> -->
-    <div class="top-header row-space-box">
-      <div class="web-title" style="margin-left: 40px;">
-        文明印记
-      </div>
-      <div class="row-space-box" style="margin-right: 150px;">
-        <div class="menueItem row-box-center">
-          <div class="el-icon-place"></div>
-        </div>
-        <div class="menueItem row-box-center">
-          <div class="el-icon-bell"></div>
-        </div>
-        <div class="menueItem row-box-center">
-          <div class="el-icon-user"></div>
-        </div>
-        <div class="menueItem row-box-center">
-          <div class="myStyle">
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- <HeadTop textColor='#ffff' /> -->
+    <AppHeader noBackground="true"/>
     <div style="box-sizing: border-box; width: 100%; height: 100%; ">
       <baidu-map class="map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
         <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
         <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map> -->
 
-        <div v-for="(item, index) in locationList" :key="index">
-          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)" :icon="{url: item.url, size: {width: 300, height: 157}}">
+        <div v-for="(item, index) in locationListByType" :key="index">
+          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)" :icon="{url: item.url, size: {width: 40, height: 40}}">
             <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
           </bm-marker>
         </div>
 
         <bm-info-window :position="selectedLocation.position" :width="windowWidth" :height="windowHeight" :show="show"
           @close="infoWindowClose" @open="infoWindowOpen">
-          <div style="width: 100%; height: 157px;">
-            <img :src="selectedLocation.picSrc" height="100%" width="100%">
+          <div style="width: 100%; height: 157px;" @click="gotoPage('/civilInfo')">
+            <img :src="selectedLocation.picSrc" height="100%" width="100%" >
             <div class="row-space-box title-font title-top">
               <div>
                 {{selectedLocation.name}}
               </div>
               <div class="">
-                5.0
+               5.0
               </div>
             </div>
             <div class="content_font content-top">
@@ -79,7 +56,7 @@
             <el-option label="全部" value="全部"></el-option>
             <el-option label="历史遗迹" value="历史遗迹"></el-option>
             <el-option label="现代建筑" value="现代建筑"></el-option>
-            <el-option label="神秘探索" value="神秘探索"></el-option>
+            <el-option label="流行热门" value="流行热门"></el-option>
           </el-select>
         </div>
         <div class="control-label box-center" @click="controlListTable">
@@ -91,17 +68,20 @@
           </div>
         </div>
       </div>
-
       <div class="pop_window" v-if="!listShow">
         <div>
           <div style="padding-left: 20px; padding-top: 10px; padding-bottom: 10px;">
-            排行榜
+            <div style="display: flex; flex-direction: row;  align-items: center ;">
+             <div style="margin-left: 10px;">
+               排行榜
+             </div>
+            </div>
           </div>
-          <div style="margin-left: 20px; background-color: darkred; width: 49px; height: 2px;">
+          <div style="margin-left: 20px; background-color: darkred; width: 80px; height: 2px;">
           </div>
         </div>
         <div style="padding-top: 20px;">
-          <div v-for="(item, index) in locationList" :key="index">
+          <div v-for="(item, index) in locationListByType" :key="index">
             <div class="row-space-box list-padding item-margin-bottom" @click="gotoLocation(item)">
               <div class="list-number">
                 {{formatNumber(index+1)}}
@@ -113,13 +93,13 @@
                 <div>
                   {{item.name}}
                 </div>
-                <div class="score-font">
-                  <rate :length="5"></rate>
-                  {{item.score}}
+                <div style="width: 150px;">
+                   <el-rate v-model="item.score" text-color="#1F2D3D"	 disabled show-score >
+                  </el-rate>
                 </div>
               </div>
               <div class="list-sm-content-font" style="align-self: flex-end;">
-                321人打卡
+                {{item.footCount}}人打卡
               </div>
             </div>
           </div>
@@ -131,15 +111,29 @@
 </template>
 
 <script>
-  import HeadTop from '@/components/HeadTop.vue'
-  // import SvgIcon from '@/components/SvgIcon'
-  import rate from 'vue-rate';
+  import AppHeader from '@/components/appHeader/index.vue'
 
   export default {
     name: 'civilizationPage',
-    // components:{
-    //   SvgIcon
-    // },
+    components:{
+      AppHeader
+    },
+    computed: {
+      locationListByType() {
+        if (this.selectType === "全部") {
+          return this.locationList;
+        }
+
+        let locationListResult = [];
+        for (let i = 0; i < this.locationList.length; i++) {
+          if (this.locationList[i].type === this.selectType) {
+            locationListResult.push(this.locationList[i]);
+          }
+
+        }
+        return locationListResult;
+      }
+    },
     data() {
       return {
         mapStyle: {
@@ -152,9 +146,9 @@
             }
           }],
         },
-        selectType: "历史遗迹",
+        selectType: "全部",
         centerPosition: {
-          lng: 116.404,
+          lng: 126.404,
           lat: 39.915
         },
         windowWidth: 296,
@@ -167,12 +161,12 @@
         locationList: [{
             type: "历史遗迹",
             position: {
-              lng: 116.404,
+              lng: 136.404,
               lat: 39.915
             },
-            url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
-            score: '5.0',
-            footCount: 314,
+            url: "/static/civil/足迹.svg",
+            score: 4.9,
+            footCount: 1500,
             name: '故宫博物院，中国',
             descript: '世界上最宏大的宫廷建筑群',
             picSrc: '/static/design/door.jpeg',
@@ -180,65 +174,63 @@
           {
             type: "历史遗迹",
             position: {
-              lng: 116.404,
-              lat: 49.915
+              lng: 400.404,
+              lat: 69.915
             },
-            url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
-            score: '4.8',
-            footCount: 314,
-            name: '故宫博物院，中国',
-            descript: '世界上最宏大的宫廷建筑群',
-            picSrc: '/static/design/door.jpeg',
+            url: "/static/civil/历史遗迹.png",
+            score: 4.8,
+            footCount: 1314,
+            name: '罗马角斗场，意大利',
+            descript: '世界上最大的角斗场',
+            picSrc: '/static/civil/罗马角斗场.jpeg',
           },
           {
-            type: "历史遗迹",
+            type: "流行热门",
             position: {
               lng: 106.404,
               lat: 59.915
             },
-            url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
-            score: '4.4',
-            footCount: 314,
-            name: '故宫博物院，中国',
-            descript: '世界上最宏大的宫廷建筑群',
-            picSrc: '/static/design/door.jpeg',
+            url: "/static/civil/足迹.svg",
+            score: 4.4,
+            footCount: 914,
+            name: '德国大教堂，德国',
+            descript: '网络观看最多的欧洲教堂',
+            picSrc: '/static/civil/德国大教堂.jpeg',
           },
           {
-            type: "历史遗迹",
+            type: "现代建筑",
             position: {
-              lng: 400.404,
+              lng: 108.404,
               lat: 69.915
             },
-            url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
-            score: '4.4',
-            footCount: 314,
-            name: '故宫博物院，中国',
+            url: "/static/civil/足迹.svg",
+            score: 4.4,
+            footCount: 904,
+            name: '香港交易所，中国',
             descript: '世界上最宏大的宫廷建筑群',
-            picSrc: '/static/design/door.jpeg',
+            picSrc: '/static/civil/现代建筑2.jpeg',
           },
           {
-            type: "历史遗迹",
+            type: "现代建筑",
             position: {
-              lng: 400.404,
-              lat: 69.915
+              lng: 116.404,
+              lat: 49.915
             },
-            url: "http://developer.baidu.com/map/jsdemo/img/fox.gif",
-            score: '4.4',
-            footCount: 314,
-            name: '故宫博物院，中国',
+
+            url: "/static/civil/足迹.svg",
+            score: 4.4,
+            footCount: 659,
+            name: '中国银行，中国',
             descript: '世界上最宏大的宫廷建筑群',
-            picSrc: '/static/design/door.jpeg',
+            picSrc: '/static/civil/现代建筑1.jpeg',
           },
         ]
       }
     },
-
-    components: {
-      HeadTop,
-      // BaiduMap,
-    },
-
     methods: {
+      gotoPage(path){
+          this.$router.push(path);
+      },
       controlListTable() {
         this.listShow = !this.listShow;
       },
@@ -273,25 +265,13 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less">
+<style lang="less" scoped >
   @import '../appStyle';
 
   @headTopHeight: 60px;
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
 
-  .menueItem {
-    margin-right: 80px;
-    font-size: 28px;
-  }
-
-  .web-title {
-    font-size: 20px;
-    font-family: PingFangSC;
-    font-weight: 600;
-    color: rgba(23, 0, 0, 1);
-    line-height: 28px;
-  }
 
   .top-header {
     width: 100%;
@@ -322,11 +302,6 @@
     padding-right: 10px;
   }
 
-  .myStyle {
-    width: 38px;
-    height: 38px;
-    border: 2px solid rgba(255, 255, 255, 1);
-  }
 
   .score-font {
     font-size: 12px;
@@ -378,7 +353,7 @@
   }
 
   .pop_window {
-    width: 314px;
+    width: 334px;
     height: 656px;
     background: rgba(255, 255, 255, 1);
   }

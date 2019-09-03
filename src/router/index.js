@@ -12,6 +12,7 @@ import ProjectInfo from '@/page/projectInfoPage'
 import AdminPage from '@/page/adminPage'
 import ArticleDetail from '@/page/articleDetail'
 import TestPage from '@/page/TestPage'
+import CivilInfo from '@/page/civilInfo'
 
 Vue.use(Router)
 
@@ -63,6 +64,11 @@ export default new Router({
       path: '/civilization',
       name: 'civilization',
       component: CivilizationPage
+    },
+     {
+      path: '/civilInfo',
+      name: 'civilInfo',
+      component:CivilInfo
     },
     {
       path: '/about',
