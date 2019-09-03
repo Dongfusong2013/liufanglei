@@ -20,8 +20,10 @@
         </div>
       </div>
     </div> -->
-
-    <div class="top-header-size row-space-box" :class="{'set-background':noGround}">
+<!-- :class="{'set-background':noGround}" -->
+    <div class="top-header-size row-space-box "
+      :class="{'set-backoground':noGround}"
+    >
       <div class="web-title" style="margin-left: 40px;">
         神奇的大脚
       </div>
@@ -48,8 +50,11 @@
 <script>
   export default {
     name: 'AppHeader',
-    props() {
+    props:{
       noBackground: String
+    },
+    mounted() {
+        console.log(this.noBackground);
     },
     computed: {
       noGround() {
@@ -58,13 +63,13 @@
     },
     data(){
       return {
-        classObj1:{
-          color:white,
-          background: rgba(243, 245, 246, 1)
-        },
-        classObj2:{
-          color:black
-        }
+        // classObj1:{
+        //   color:'white',
+        //   background: 'rgba(243, 245, 246, 1)'
+        // },
+        // classObj2:{
+        //   color:'black'
+        // }
       }
     },
     methods: {

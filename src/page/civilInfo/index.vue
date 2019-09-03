@@ -3,7 +3,7 @@
     <div class="backgroundImg">
       <img src="/static/civil/故宫-午门.png" alt height="100%" width="100%" />
     </div>
-    <AppHeader noBackground='true'/>
+    <AppHeader noBackground="true"/>
     <div>
         北京、沈阳明清皇宫 中国
     </div>

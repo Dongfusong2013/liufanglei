@@ -1,6 +1,6 @@
 <template>
   <div class="history-contaienr">
-    <AppHeader noBackground="true"/>
+    <AppHeader noBackground="false"/>
     <div style="box-sizing: border-box; width: 100%; height: 100%; ">
       <baidu-map class="map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
         <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
