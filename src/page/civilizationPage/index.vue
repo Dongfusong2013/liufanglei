@@ -1,6 +1,6 @@
 <template>
   <div class="history-contaienr">
-    <AppHeader noBackground="false"/>
+    <AppHeader noBackground="false" />
     <div style="box-sizing: border-box; width: 100%; height: 100%; ">
       <baidu-map class="map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
         <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
@@ -15,13 +15,13 @@
         <bm-info-window :position="selectedLocation.position" :width="windowWidth" :height="windowHeight" :show="show"
           @close="infoWindowClose" @open="infoWindowOpen">
           <div style="width: 100%; height: 157px;" @click="gotoPage('/civilInfo')">
-            <img :src="selectedLocation.picSrc" height="100%" width="100%" >
+            <img :src="selectedLocation.picSrc" height="100%" width="100%">
             <div class="row-space-box title-font title-top">
               <div>
                 {{selectedLocation.name}}
               </div>
               <div class="">
-               5.0
+                5.0
               </div>
             </div>
             <div class="content_font content-top">
@@ -72,9 +72,9 @@
         <div>
           <div style="padding-left: 20px; padding-top: 10px; padding-bottom: 10px;">
             <div style="display: flex; flex-direction: row;  align-items: center ;">
-             <div style="margin-left: 10px;">
-               排行榜
-             </div>
+              <div style="margin-left: 10px;">
+                排行榜
+              </div>
             </div>
           </div>
           <div style="margin-left: 20px; background-color: darkred; width: 80px; height: 2px;">
@@ -94,7 +94,7 @@
                   {{item.name}}
                 </div>
                 <div style="width: 150px;">
-                   <el-rate v-model="item.score" text-color="#1F2D3D"	 disabled show-score >
+                  <el-rate v-model="item.score" text-color="#1F2D3D" disabled show-score>
                   </el-rate>
                 </div>
               </div>
@@ -115,7 +115,7 @@
 
   export default {
     name: 'civilizationPage',
-    components:{
+    components: {
       AppHeader
     },
     computed: {
@@ -228,8 +228,8 @@
       }
     },
     methods: {
-      gotoPage(path){
-          this.$router.push(path);
+      gotoPage(path) {
+        this.$router.push(path);
       },
       controlListTable() {
         this.listShow = !this.listShow;
@@ -265,7 +265,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" scoped >
+<style lang="less" scoped>
   @import '../appStyle';
 
   @headTopHeight: 60px;
