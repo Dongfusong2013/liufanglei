@@ -4,87 +4,230 @@
       <div class="time-line">
         <div class="slider-node" :style="{left: slider.left + '%', width:  slider.width + '%'}"></div>
 
-        <div v-for="(item, index) in time_tike_list" :key="index">
-          <div class="time-tick" :style="{left: item.left + '%'}" @click="gotoTick(item)">
-            <div class="label">{{item.content}}</div>
+        <div v-for="(item, index) in time_tick_list" :key="index">
+          <div class="time-tick" :style="{left: timeToLeft(item) + '%'}" @click="goto(item)">
+            <div class="label">{{item}}</div>
           </div>
         </div>
       </div>
+      <button @click="toFirst"> to first</button>
     </div>
 
-    <div style="position: absolute; top:300px; left:0px; width: 100%;">
-      <div class="left-arrow arrow-size">
+
+    <div style="position: fixed; top:300px; left:0px; width: 100%;" class="scroll-pictures" ref="divScroll">
+      <!-- <div class="scroll-pictures"> -->
+      <div v-for="(item, index) in pictures" :key="index">
+        <div style="margin-left: 0px; height: 300px; width: 400px; background-color: #2483D5;">
+          <!-- <img src="" height="100%" width="100%"> -->
+          {{item.time}}
+        </div>
+      </div>
+      <!-- </div> -->
+      <div class="left-arrow arrow-size" @click="scrollTo('left')">
         <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
       </div>
-      <div class="right-arrow arrow-size">
+      <div class="right-arrow arrow-size" @click="scrollTo('right')">
         <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
       </div>
-      <div class="scroll-pictures" v-for="(item, index) in ">
-        <div style="height: 100%; width: 500px; background-color: #2483D5;">
-          <img src="" height="100%" width="100%">
-         </div>
-      </div>
     </div>
-    </div>
+  </div>
 
 
 </template>
 ,
 <script>
+  import BScroll from 'better-scroll';
   export default {
     name: 'ScrollTimeView',
+    created() {
+      this.initTimeTickList();
+      this.$nextTick(() => {
+        let scroll = new BScroll(this.$refs.divScroll, {
+          click: true,
+          startX: 0,
+          startY: 0,
+          scrollX: true,
+          scrollY: false,
+          probeType: 2,
+          momentum: true,
+        });
+        scroll.on('scroll', (pos) => {
+          console.log("scroll position...", pos);
+          this.scrollX = pos.x;
+        });
+      });
+    },
+    watch: {
+      scrollX(newVal) {
+        this.gotoTick(this.posToTime(newVal));
+      }
+    },
     methods: {
-      gotoTick(item) {
-        this.slider.left = item.left;
-        this.slider.width = item.period / this.total_period * 100;
+      goto(time) {
+        let length  = this.time_tick_list.length;
+        if (time == this.time_tick_list[length - 1]){
+            return;
+        }
+        this.scrollX = this.timeToPos(time);
+      },
+      initTimeTickList() {
+        let period = 0;
+        let currentTime = this.startTime;
+        this.time_tick_list.push(this.startTime);
+        while (currentTime < this.endTime) {
+          currentTime += this.unit_period;
+          this.time_tick_list.push(currentTime);
+          if (currentTime >= this.endTime) {
+            this.total_period = currentTime - this.startTime;
+            console.log("total period", this.total_period);
+            break;
+          }
+        }
+        this.slider.left = 0;
+        this.slider.width = this.timeToWidth(this.startTime);
+        console.log(this.time_tick_list);
+      },
+      posToTime(scrollX) {
+        let pic = this.posToPic(scrollX);
+        return pic.time;
+      },
+      posToPic(scrollX) {
+        let x = 0;
+        for (let i = 0; i < this.pictures.length; i++) {
+          x += this.pictures[i].width;
+          if (x > scrollX) {
+            return this.pictures[i];
+          }
+        }
+      },
+      timeToPos(time) {
+        let t = 0;
+        let scrollX = 0;
+        for (let i = 0; i < this.pictures.length; i++) {
+          t += this.pictures[i].time;
+          scrollX += this.pictures[i].width;
+          if (t >= time) {
+            return scrollX;
+          }
+        }
+        return 0;
+      },
+      toFirst() {
+        console.log("to first");
+        this.scrollX = 0;
+      },
+
+      timeToLeft(nowTime) {
+        let left = (nowTime - this.startTime) / this.total_period * 100;
+        return left;
+      },
+      timeToWidth(nowTime) {
+        let width = this.calcShowPeriod(nowTime) / this.total_period * 100;
+        console.log("---width---", width);
+        return width;
+      },
+      gotoTick(nowTime) {
+        this.slider.left = this.timeToLeft(nowTime);
+        this.slider.width = this.timeToWidth(nowTime);
+        this.$refs.divScroll.scrollTo(this.scrollX, 0, 10);
+      },
+      calcShowPeriod(beginTime) {
+        const windowWidth = 1400;
+        let width = 0;
+        let endTime = beginTime;
+        for (let i = 0; i < this.pictures.length; i++) {
+          let currentPicture = this.pictures[i];
+          if (currentPicture.time > beginTime) {
+              width += currentPicture.width;
+          }
+          if (width > windowWidth) {
+            endTime = currentPicture.time;
+            break;
+          }
+        }
+        console.log("-page period--", endTime - beginTime);
+        return endTime - beginTime;
+      },
+      scrollTo(type) {
+        console.log("scrollto" + type);
+        if (type == "right") {
+          this.scrollX += 400;
+        } else {
+          this.scrollX -= 400;
+        }
       }
     },
 
     data() {
       return {
-        current_period: 3,
-        total_period: 100,
-
+        unit_period: 10,
+        total_period: 0,
+        endTime: 2019,
+        startTime: 1980,
+        startX: 0,
+        scrollX: 0,
+        scroll: null,
         slider: {
-          left: 40,
-          width: 4.48,
+          left: 0,
+          width: 0,
         },
+        pictures: [{
+            time: 1980,
+            url: '',
+            width: 400,
+          },
+          {
+            time: 1990,
+            url: '',
+            width: 400,
+          },
+          {
+            time: 1995,
+            url: '',
+            width: 400,
+          },
+          {
+            time: 2000,
+            url: '',
+            width: 400,
+          },
+          {
+            time: 2004,
+            url: '',
+            width: 400,
+          },
+          {
+            time: 2010,
+            url: '',
+            width: 400,
+          },
 
-        time_tike_list: [{
-            content: '目前',
-            left: 0,
-            period: 1.4,
-            startPos: 1,
-            pictures: []
+          {
+            time: 2016,
+            url: '',
+            width: 400,
           },
           {
-            content: '2010',
-            left: 10,
-            period: 1,
-            startPos: 5,
-            pictures: []
+            time: 2017,
+            url: '',
+            width: 400,
+          },
+
+          {
+            time: 2018,
+            url: '',
+            width: 400,
           },
           {
-            content: '2000',
-            left: 20,
-            period: 4,
-            startPos: 10,
-            pictures: []
+            time: 2020,
+            url: '',
+            width: 400,
           },
-          {
-            content: '1990',
-            left: 30,
-            period: 3,
-            startPos: 50,
-            pictures: []
-          },
-          {
-            content: '1980',
-            left: 40,
-            period: 5,
-            startPos: 60,
-            pictures: []
-          },
+
+        ],
+
+        time_tick_list: [
+          // {time:'', content:''}
         ],
       }
     }
@@ -100,13 +243,13 @@
   .left-arrow {
     position: fixed;
     left: 40px;
-    top: 450px;
+    top: 420px;
   }
 
   .right-arrow {
     position: fixed;
     right: 40px;
-    top: 450px;
+    top: 420px;
   }
 
   .slider-node {
@@ -125,7 +268,7 @@
     display: flex;
     color: #939598;
     height: 100%;
-    width: 1000px;
+    width: 1300px;
   }
 
   .label {
@@ -181,11 +324,7 @@
     background-color: aliceblue;
     display: flex;
     flex-direction: row;
-    justify-content: stretch;
     width: 100%;
-    height: 400px;
-    overflow-x: scroll;
-    /* 定义超出此盒子滚动 */
-    overflow-y: none;
+    overflow: hidden;
   }
 </style>
