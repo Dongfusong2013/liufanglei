@@ -154,17 +154,17 @@
       },
       scrollTo(type) {
         if (type == "right") {
-          if (this.scrollX + 400 > this.maxWidth - windowWidth){
+          if (this.scrollX + 200 > this.maxWidth - windowWidth){
                return;
           }
-          this.scrollX += 400;
+          this.scrollX += 200;
           console.log("scrollto" + type+":" +this.scrollX);
         } else {
-          if (this.scrollX - 400 < 0){
+          if (this.scrollX - 200 < 0){
             return;
           }
           console.log("scrollto" + type+":" +this.scrollX);
-          this.scrollX -= 400;
+          this.scrollX -= 200;
         }
       }
     },
@@ -194,6 +194,16 @@
           },
           {
             time: 1995,
+            url: '',
+            width: 400,
+          },
+           {
+            time: 1998,
+            url: '',
+            width: 400,
+          },
+           {
+            time: 1999,
             url: '',
             width: 400,
           },
@@ -230,11 +240,15 @@
             width: 400,
           },
           {
+            time: 2019,
+            url: '',
+            width: 400,
+          },
+          {
             time: 2020,
             url: '',
             width: 400,
           },
-
         ],
 
         time_tick_list: [
