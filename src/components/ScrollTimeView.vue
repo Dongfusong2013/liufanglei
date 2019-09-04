@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="toFirst"> to first</button>
     <div class="scroll-view">
       <div class="time-line">
         <div class="slider-node" :style="{left: slider.left + '%', width:  slider.width + '%'}"></div>
@@ -10,7 +11,7 @@
           </div>
         </div>
       </div>
-      <button @click="toFirst"> to first</button>
+
     </div>
 
     <div style="position: fixed; top:300px; left:0px; width: 100%;" class="scroll-pictures" ref="divScroll">
@@ -83,11 +84,11 @@
           }
         }
         let maxWidth = 0;
-        for (let i = 0; i < this.pictures.length; i++){
-            maxWidth += this.pictures[i].width;
+        for (let i = 0; i < this.pictures.length; i++) {
+          maxWidth += this.pictures[i].width;
         }
         this.maxWidth = maxWidth;
-        console.log("maxwidth",this.maxWidth);
+        console.log("maxwidth", this.maxWidth);
         this.slider.left = 0;
         this.slider.width = this.timeToWidth(this.startTime);
         console.log(this.time_tick_list);
@@ -106,14 +107,14 @@
         }
       },
       timeToPos(time) {
-          let scrollX = 0;
-          for (let i = 0; i < this.pictures.length; i++){
-              if (this.pictures[i].time == time){
-                  break;
-              }
-              scrollX += this.pictures[i].width;
+        let scrollX = 0;
+        for (let i = 0; i < this.pictures.length; i++) {
+          if (this.pictures[i].time == time) {
+            break;
           }
-          return scrollX;
+          scrollX += this.pictures[i].width;
+        }
+        return scrollX;
       },
       toFirst() {
         console.log("to first");
@@ -154,16 +155,16 @@
       },
       scrollTo(type) {
         if (type == "right") {
-          if (this.scrollX + 200 > this.maxWidth - windowWidth){
-               return;
-          }
-          this.scrollX += 200;
-          console.log("scrollto" + type+":" +this.scrollX);
-        } else {
-          if (this.scrollX - 200 < 0){
+          if (this.scrollX + 200 > this.maxWidth - windowWidth) {
             return;
           }
-          console.log("scrollto" + type+":" +this.scrollX);
+          this.scrollX += 200;
+          console.log("scrollto" + type + ":" + this.scrollX);
+        } else {
+          if (this.scrollX - 200 < 0) {
+            return;
+          }
+          console.log("scrollto" + type + ":" + this.scrollX);
           this.scrollX -= 200;
         }
       }
@@ -188,6 +189,21 @@
             width: 400,
           },
           {
+            time: 1983,
+            url: '',
+            width: 400,
+          },
+          {
+            time: 1984,
+            url: '',
+            width: 400,
+          },
+          {
+            time: 1985,
+            url: '',
+            width: 400,
+          },
+          {
             time: 1990,
             url: '',
             width: 400,
@@ -197,12 +213,12 @@
             url: '',
             width: 400,
           },
-           {
+          {
             time: 1998,
             url: '',
             width: 400,
           },
-           {
+          {
             time: 1999,
             url: '',
             width: 400,
