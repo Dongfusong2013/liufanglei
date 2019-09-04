@@ -13,7 +13,6 @@
       <button @click="toFirst"> to first</button>
     </div>
 
-
     <div style="position: fixed; top:300px; left:0px; width: 100%;" class="scroll-pictures" ref="divScroll">
       <!-- <div class="scroll-pictures"> -->
       <div v-for="(item, index) in pictures" :key="index">
@@ -31,12 +30,11 @@
       </div>
     </div>
   </div>
-
-
 </template>
 ,
 <script>
   import BScroll from 'better-scroll';
+  const windowWidth = 1400;
   export default {
     name: 'ScrollTimeView',
     created() {
@@ -64,9 +62,10 @@
     },
     methods: {
       goto(time) {
-        let length  = this.time_tick_list.length;
-        if (time == this.time_tick_list[length - 1]){
-            return;
+        let length = this.time_tick_list.length;
+        if (time == this.time_tick_list[length - 1]) {
+          this.scrollX = this.maxWidth - windowWidth;
+          return;
         }
         this.scrollX = this.timeToPos(time);
       },
@@ -83,6 +82,12 @@
             break;
           }
         }
+        let maxWidth = 0;
+        for (let i = 0; i < this.pictures.length; i++){
+            maxWidth += this.pictures[i].width;
+        }
+        this.maxWidth = maxWidth;
+        console.log("maxwidth",this.maxWidth);
         this.slider.left = 0;
         this.slider.width = this.timeToWidth(this.startTime);
         console.log(this.time_tick_list);
@@ -101,16 +106,14 @@
         }
       },
       timeToPos(time) {
-        let t = 0;
-        let scrollX = 0;
-        for (let i = 0; i < this.pictures.length; i++) {
-          t += this.pictures[i].time;
-          scrollX += this.pictures[i].width;
-          if (t >= time) {
-            return scrollX;
+          let scrollX = 0;
+          for (let i = 0; i < this.pictures.length; i++){
+              if (this.pictures[i].time == time){
+                  break;
+              }
+              scrollX += this.pictures[i].width;
           }
-        }
-        return 0;
+          return scrollX;
       },
       toFirst() {
         console.log("to first");
@@ -132,15 +135,16 @@
         this.$refs.divScroll.scrollTo(this.scrollX, 0, 10);
       },
       calcShowPeriod(beginTime) {
-        const windowWidth = 1400;
         let width = 0;
         let endTime = beginTime;
+        console.log("calcShowPeriod...begintime:", beginTime);
         for (let i = 0; i < this.pictures.length; i++) {
           let currentPicture = this.pictures[i];
-          if (currentPicture.time > beginTime) {
-              width += currentPicture.width;
+          if (currentPicture.time >= beginTime) {
+            console.log("add to", currentPicture.time);
+            width += currentPicture.width;
           }
-          if (width > windowWidth) {
+          if (width >= windowWidth || i == this.pictures.length - 1) {
             endTime = currentPicture.time;
             break;
           }
@@ -149,10 +153,17 @@
         return endTime - beginTime;
       },
       scrollTo(type) {
-        console.log("scrollto" + type);
         if (type == "right") {
+          if (this.scrollX + 400 > this.maxWidth - windowWidth){
+               return;
+          }
           this.scrollX += 400;
+          console.log("scrollto" + type+":" +this.scrollX);
         } else {
+          if (this.scrollX - 400 < 0){
+            return;
+          }
+          console.log("scrollto" + type+":" +this.scrollX);
           this.scrollX -= 400;
         }
       }
