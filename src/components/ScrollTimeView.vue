@@ -33,13 +33,13 @@
 
 <script>
   import BScroll from 'better-scroll';
-  const windowWidth = 1300;
+  const windowWidth = 1350;
   const pic_marginRight = 20;
   export default {
     name: 'ScrollTimeView',
     created() {
-      this.init();
       this.$nextTick(() => {
+
         let scroll = new BScroll(this.$refs.divScroll, {
           click: true,
           startX: 0,
@@ -53,25 +53,127 @@
           console.log("scroll position...", pos);
           this.scrollX = pos.x;
         });
+        this.init();
       });
     },
-    watch: {
-      scrollX(newVal) {
-        // this.gotoTick(this.posToTime(newVal));
-      }
-    },
+
     methods: {
+
+      //点击箭头，滑动scrollX
+      scrollTo(type) {
+        if (type == "right") {
+          if (this.scrollX + 200 > this.maxScrollX - windowWidth) {
+            this.scrollX = this.maxScrollX - windowWidth;
+          } else {
+            this.scrollX += 200;
+            console.log("scrollto" + type + ":" + this.scrollX);
+          }
+
+        } else {
+          if (this.scrollX - 200 < 0) {
+            this.scrollX = 0;
+          } else {
+            console.log("scrollto" + type + ":" + this.scrollX);
+            this.scrollX -= 200;
+          }
+        }
+        this.gotoByScroll(this.scrollX);
+      },
+
+      gotoByScroll(scrollX) {
+        let {
+          fixWidth,
+          picIndex,
+          nowTime
+        } = this.scrollXToPicInfo(scrollX);
+        this.slider.left = this.timeToLeft(nowTime);
+        this.slider.width = this.startPicToWidth(picIndex, fixWidth);
+        this.$refs.divScroll.scrollTo(scrollX, 0, 10);
+      },
+
+      scrollXToPicInfo(scrollX) {
+        let totalWidth = 0;
+        let fixWidth = 0;
+        let picIndex = 0;
+        let nowTime = 0;
+        for (let i = 0; i < this.pictures.length; i++) {
+          let currentPic = this.pictures[i];
+          totalWidth += currentPic.width + pic_marginRight;
+          if (totalWidth >= scrollX) {
+            fixWidth = currentPic.width + pic_marginRight - (totalWidth - scrollX);
+            picIndex = i;
+            nowTime = currentPic.time;
+            break;
+          }
+        }
+        return {
+          fixWidth,
+          picIndex,
+          nowTime
+        }
+      },
+
+      //没有误差的
       gotoTickTime(time) {
+        console.log("tike", time);
+        let nowTime = time;
+        let pictureIndex = 0;
         let length = this.time_tick_list.length;
-        //点击最后一个节点的时候做特殊处理
-        if (time == this.time_tick_list[length - 1]) {
+        if (this.time_tick_list[length - 1] === time) {
           this.scrollX = this.maxScrollX - windowWidth;
+          this.gotoByScroll(this.scrollX);
           return;
         }
-        this.scrollX = this.timeToPos(time);
-        this.slider.left = this.scrollX / this.maxScrollX * 100;
-        this.slider.width = this.timeToWidth(time);
+
+        for (let i = 0; i < this.pictures.length; i++) {
+          if (this.pictures[i].time >= time) {
+            nowTime = this.pictures[i].time;
+            pictureIndex = i;
+            console.log("tick", nowTime, pictureIndex);
+            break;
+          }
+        }
+
+        this.slider.left = this.timeToLeft(nowTime);
+        this.slider.width = this.startPicToWidth(pictureIndex, 0);
+        this.scrollX = this.startPicToScrollX(pictureIndex);
         this.$refs.divScroll.scrollTo(this.scrollX, 0, 10);
+      },
+
+      //通过时间计算left的比例
+      timeToLeft(nowTime) {
+        let left = (nowTime - this.startTime) / this.total_period * 100;
+        return left;
+      },
+
+      startPicToScrollX(pictureIndex) {
+        let scrollX = 0;
+        for (let i = 0; i < this.pictures.length && i < pictureIndex; i++) {
+          scrollX += this.pictures[i].width + pic_marginRight;
+        }
+        return scrollX;
+      },
+
+      startPicToWidth(pictureIndex, fixWidth) {
+        let totalWidth = 0;
+        totalWidth -= fixWidth;
+        console.log("totalWidth", totalWidth);
+        let startTime = this.pictures[pictureIndex].time;
+        let endTime = startTime;
+        for (let i = pictureIndex; i < this.pictures.length; i++) {
+          totalWidth += this.pictures[i].width + pic_marginRight;
+          endTime = this.pictures[i].time;
+          console.log("add to ", endTime+ "total",totalWidth + "width"+this.pictures[i].width);
+          if (totalWidth >= windowWidth) {
+            break;
+          }
+        }
+        let width = (endTime - startTime) / this.total_period * 100;
+        console.log("==startPicToWidth==", fixWidth, width);
+        if (width === 0) {
+          width = 1 / this.total_period * 100;
+        }
+        return width;
       },
 
       init() {
@@ -98,110 +200,21 @@
 
         //初始化滑块的位置
         this.slider.left = 0;
-        this.slider.width = this.timeToWidth(this.startTime);
+        this.slider.width = this.startPicToWidth(0, 0);
+        this.toStartScrollX();
         console.log(this.time_tick_list);
       },
 
-      posToTime(scrollX) {
-        let pic = this.posToPic(scrollX);
-        return pic.time;
-      },
-
-      //通过scrollX定位到具体图片
-      posToPic(scrollX) {
-        let x = 0;
-        for (let i = 0; i < this.pictures.length; i++) {
-          x += this.pictures[i].width + pic_marginRight;
-          //涉及取前一个还是后一个的问题
-          if (x > scrollX) {
-            this.fixSurplusWidth = this.pictures[i].width -  (x - scrollX);
-            return this.pictures[i];
-          }
-        }
-      },
-
-      //通过时间确定scrollx的位置
-      timeToPos(time) {
-        let scrollX = 0;
-        for (let i = 0; i < this.pictures.length; i++) {
-          if (this.pictures[i].time == time) {
-            break;
-          }
-          scrollX += this.pictures[i].width + pic_marginRight;
-        }
-        return scrollX;
-      },
-
       toStartScrollX() {
-        console.log("to first");
-        this.scrollX = 0;
-      },
-
-      //通过时间计算left的比例
-      timeToLeft(nowTime) {
-        let left = (nowTime - this.startTime) / this.total_period * 100;
-        return left;
-      },
-
-      //根据时间计算节点长度
-      timeToWidth(nowTime) {
-        let width = this.calcShowPeriod(nowTime) / this.total_period * 100;
-        console.log("---width---", width);
-        return width;
-      },
-
-      //控制界面动画
-      gotoTick(nowTime) {
-        this.slider.left = this.timeToLeft(nowTime);
-        this.slider.width = this.timeToWidth(nowTime);
-        this.$refs.divScroll.scrollTo(this.scrollX, 0, 10);
-      },
-      //计算开始时间之后一屏幕显示的时间范围
-      calcShowPeriod(beginTime) {
-        let width = 0;
-        width -= this.fixSurplusWidth;
-        let endTime = beginTime;
-        console.log("calcShowPeriod...begintime:", beginTime);
-        for (let i = 0; i < this.pictures.length; i++) {
-          let currentPicture = this.pictures[i];
-          //找到开始时间后进行累加
-          if (currentPicture.time >= beginTime) {
-            console.log("add to", currentPicture.time);
-            width += currentPicture.width;
-          }
-          //到了一个屏幕宽度或者最后一个
-          if (width >= windowWidth || i == this.pictures.length - 1) {
-            endTime = currentPicture.time;
-            break;
-          }
-        }
-        console.log("-page period--", endTime - beginTime);
-        return endTime - beginTime;
-      },
-      //点击箭头，滑动scrollX
-      scrollTo(type) {
-        if (type == "right") {
-          if (this.scrollX + 200 > this.maxScrollX - windowWidth) {
-            this.scrollX = this.maxScrollX - windowWidth;
-            return;
-          }
-          this.scrollX += 200;
-          console.log("scrollto" + type + ":" + this.scrollX);
-        } else {
-          if (this.scrollX - 200 < 0) {
-            this.scrollX = 0;
-            return;
-          }
-          console.log("scrollto" + type + ":" + this.scrollX);
-          this.scrollX -= 200;
-        }
+        this.$refs.divScroll.scrollTo(0, 0, 10);
       }
+
     },
 
     //多个照片行取并操作
     data() {
       return {
-        fixSurplusWidth:0,
+        fixSurplusWidth: 0,
         unit_period: 5,
         total_period: 0,
         endTime: 2019,
@@ -280,7 +293,7 @@
             height: 380,
           },
           {
-            time: 2017,
+            time: 2016,
             url: '',
             width: 400,
             height: 280,
@@ -292,13 +305,13 @@
             height: 180,
           },
           {
-            time: 2017,
+            time: 2018,
             url: '',
             width: 400,
             height: 180,
           },
           {
-            time: 2017,
+            time: 2019,
             url: '',
             width: 330,
             height: 280,
@@ -320,7 +333,7 @@
 </script>
 
 <style lang="less">
-  @windowWidth: 1300px;
+  @windowWidth: 1350px;
   @pic_marginRight: 20px;
 
   .arrow-size {
@@ -425,7 +438,6 @@
     display: flex;
     align-items: flex-end;
     flex-direction: row;
-    width: 100%;
     overflow: hidden;
   }
 </style>
