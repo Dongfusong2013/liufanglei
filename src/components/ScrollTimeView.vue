@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="toStartScrollX"> to first</button>
+    <button @click="toStartScrollX" class="toTopStyle"> back to top</button>
     <div class="scroll-view">
       <div class="time-line">
         <div class="slider-node" :style="{left: slider.left + '%', width:  slider.width + '%'}"></div>
@@ -195,7 +195,7 @@
 
     data() {
       return {
-        unit_period: 10,
+        unit_period: 5,
         total_period: 0,
         endTime: 2019,
         startTime: 1980,
@@ -357,7 +357,7 @@
     display: flex;
     color: #939598;
     height: 100%;
-    width: 1300px;
+    width: 1203px;
   }
 
   .label {
@@ -406,6 +406,13 @@
     height: 2rem;
     /* height: 800px; */
     vertical-align: baseline;
+  }
+
+
+  .toTopStyle{
+    position: fixed;
+    right:90px;
+    top: 100px;
   }
 
   .scroll-pictures {
