@@ -57,7 +57,7 @@
     },
     watch: {
       scrollX(newVal) {
-        this.gotoTick(this.posToTime(newVal));
+        // this.gotoTick(this.posToTime(newVal));
       }
     },
     methods: {
@@ -69,6 +69,9 @@
           return;
         }
         this.scrollX = this.timeToPos(time);
+        this.slider.left = this.scrollX / this.maxScrollX * 100;
+        this.slider.width = this.timeToWidth(time);
+        this.$refs.divScroll.scrollTo(this.scrollX, 0, 10);
       },
 
       init() {
