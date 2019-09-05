@@ -5,7 +5,7 @@
       <div class="time-line">
         <div class="slider-node" :style="{left: slider.left + '%', width:  slider.width + '%'}"></div>
         <div v-for="(item, index) in time_tick_list" :key="index">
-          <div class="time-tick" :style="{left: timeToLeft(item) + '%'}" @click="goto(item)">
+          <div class="time-tick" :style="{left: timeToLeft(item) + '%'}" @click="gotoTickTime(item)">
             <div class="label">{{item}}</div>
           </div>
         </div>
@@ -61,7 +61,7 @@
       }
     },
     methods: {
-      goto(time) {
+      gotoTickTime(time) {
         let length = this.time_tick_list.length;
         //点击最后一个节点的时候做特殊处理
         if (time == this.time_tick_list[length - 1]) {
@@ -277,7 +277,7 @@
             height: 380,
           },
           {
-            time: 2016,
+            time: 2017,
             url: '',
             width: 400,
             height: 280,
@@ -289,13 +289,13 @@
             height: 180,
           },
           {
-            time: 2018,
+            time: 2017,
             url: '',
             width: 400,
             height: 180,
           },
           {
-            time: 2019,
+            time: 2017,
             url: '',
             width: 330,
             height: 280,
