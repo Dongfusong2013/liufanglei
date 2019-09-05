@@ -109,8 +109,9 @@
         let x = 0;
         for (let i = 0; i < this.pictures.length; i++) {
           x += this.pictures[i].width + pic_marginRight;
-          //??
+          //涉及取前一个还是后一个的问题
           if (x > scrollX) {
+            this.fixSurplusWidth = this.pictures[i].width -  (x - scrollX);
             return this.pictures[i];
           }
         }
@@ -155,6 +156,7 @@
       //计算开始时间之后一屏幕显示的时间范围
       calcShowPeriod(beginTime) {
         let width = 0;
+        width -= this.fixSurplusWidth;
         let endTime = beginTime;
         console.log("calcShowPeriod...begintime:", beginTime);
         for (let i = 0; i < this.pictures.length; i++) {
@@ -193,8 +195,10 @@
       }
     },
 
+    //多个照片行取并操作
     data() {
       return {
+        fixSurplusWidth:0,
         unit_period: 5,
         total_period: 0,
         endTime: 2019,
@@ -210,99 +214,97 @@
             time: 1980,
             url: '',
             width: 100,
-            height:100,
+            height: 100,
           },
           {
             time: 1983,
             url: '',
             width: 300,
-            height:300,
+            height: 300,
           },
           {
             time: 1984,
             url: '',
             width: 400,
-            height:200,
+            height: 200,
           },
           {
             time: 1985,
             url: '',
             width: 240,
-            height:200,
+            height: 200,
           },
           {
             time: 1990,
             url: '',
             width: 300,
-            height:230,
+            height: 230,
           },
           {
             time: 1995,
             url: '',
             width: 200,
-            height:280,
+            height: 280,
           },
           {
             time: 1998,
             url: '',
             width: 340,
-            height:180,
+            height: 180,
           },
           {
             time: 1999,
             url: '',
             width: 400,
-            height:280,
+            height: 280,
           },
           {
             time: 2000,
             url: '',
             width: 200,
-            height:280,
+            height: 280,
           },
           {
             time: 2004,
             url: '',
             width: 400,
-            height:380,
+            height: 380,
           },
           {
             time: 2010,
             url: '',
             width: 100,
-            height:380,
+            height: 380,
           },
-
           {
             time: 2016,
             url: '',
             width: 400,
-            height:280,
+            height: 280,
           },
           {
             time: 2017,
             url: '',
             width: 400,
-            height:180,
+            height: 180,
           },
-
           {
             time: 2018,
             url: '',
             width: 400,
-            height:180,
+            height: 180,
           },
           {
             time: 2019,
             url: '',
             width: 330,
-            height:280,
+            height: 280,
           },
           {
             time: 2020,
             url: '',
             width: 210,
-            height:170,
+            height: 170,
           },
         ],
 
@@ -315,18 +317,17 @@
 </script>
 
 <style lang="less">
-
-  @windowWidth:1300px;
-  @pic_marginRight:20px;
+  @windowWidth: 1300px;
+  @pic_marginRight: 20px;
 
   .arrow-size {
     width: 40px;
     height: 58px;
   }
 
-  .picStyle{
-      margin-right: @pic_marginRight;
-      background-color: bisque;
+  .picStyle {
+    margin-right: @pic_marginRight;
+    background-color: bisque;
   }
 
   .left-arrow {
@@ -409,9 +410,9 @@
   }
 
 
-  .toTopStyle{
+  .toTopStyle {
     position: fixed;
-    right:90px;
+    right: 90px;
     top: 100px;
   }
 
