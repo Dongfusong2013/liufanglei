@@ -25,7 +25,7 @@
       :class="{'set-backoground':noGround}"
     >
       <div class="web-title" style="margin-left: 40px;">
-        神奇的大脚
+        穿跃
       </div>
       <div class="row-space-box" style="margin-right: 150px;">
         <div class="menueItem row-box-center" @click="gotoPage('/civilization')">
@@ -74,7 +74,7 @@
     },
     methods: {
       gotoPage(path) {
-        this.$router.push(path);
+         this.$router.push(path);
       }
     }
   }

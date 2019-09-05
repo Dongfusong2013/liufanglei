@@ -1,23 +1,21 @@
 <template>
   <div>
-    <button @click="toFirst"> to first</button>
+    <button @click="toStartScrollX"> to first</button>
     <div class="scroll-view">
       <div class="time-line">
         <div class="slider-node" :style="{left: slider.left + '%', width:  slider.width + '%'}"></div>
-
         <div v-for="(item, index) in time_tick_list" :key="index">
           <div class="time-tick" :style="{left: timeToLeft(item) + '%'}" @click="goto(item)">
             <div class="label">{{item}}</div>
           </div>
         </div>
       </div>
-
     </div>
 
-    <div style="position: fixed; top:300px; left:0px; width: 100%;" class="scroll-pictures" ref="divScroll">
+    <div style="position: fixed; top:300px; left:0px;" class="scroll-pictures" ref="divScroll">
       <!-- <div class="scroll-pictures"> -->
       <div v-for="(item, index) in pictures" :key="index">
-        <div style="margin-left: 0px; height: 300px; width: 400px; background-color: #2483D5;">
+        <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle">
           <!-- <img src="" height="100%" width="100%"> -->
           {{item.time}}
         </div>
@@ -32,14 +30,15 @@
     </div>
   </div>
 </template>
-,
+
 <script>
   import BScroll from 'better-scroll';
-  const windowWidth = 1400;
+  const windowWidth = 1300;
+  const pic_marginRight = 20;
   export default {
     name: 'ScrollTimeView',
     created() {
-      this.initTimeTickList();
+      this.init();
       this.$nextTick(() => {
         let scroll = new BScroll(this.$refs.divScroll, {
           click: true,
@@ -64,13 +63,16 @@
     methods: {
       goto(time) {
         let length = this.time_tick_list.length;
+        //点击最后一个节点的时候做特殊处理
         if (time == this.time_tick_list[length - 1]) {
-          this.scrollX = this.maxWidth - windowWidth;
+          this.scrollX = this.maxScrollX - windowWidth;
           return;
         }
         this.scrollX = this.timeToPos(time);
       },
-      initTimeTickList() {
+
+      init() {
+        //初始化 time_tick_list
         let period = 0;
         let currentTime = this.startTime;
         this.time_tick_list.push(this.startTime);
@@ -83,68 +85,86 @@
             break;
           }
         }
-        let maxWidth = 0;
+        //计算最大
+        let maxScrollX = 0;
         for (let i = 0; i < this.pictures.length; i++) {
-          maxWidth += this.pictures[i].width;
+          maxScrollX += this.pictures[i].width + pic_marginRight;
         }
-        this.maxWidth = maxWidth;
-        console.log("maxwidth", this.maxWidth);
+        this.maxScrollX = maxScrollX;
+        console.log("maxScrollX", this.maxScrollX);
+
+        //初始化滑块的位置
         this.slider.left = 0;
         this.slider.width = this.timeToWidth(this.startTime);
         console.log(this.time_tick_list);
       },
+
       posToTime(scrollX) {
         let pic = this.posToPic(scrollX);
         return pic.time;
       },
+
+      //通过scrollX定位到具体图片
       posToPic(scrollX) {
         let x = 0;
         for (let i = 0; i < this.pictures.length; i++) {
-          x += this.pictures[i].width;
+          x += this.pictures[i].width + pic_marginRight;
+          //??
           if (x > scrollX) {
             return this.pictures[i];
           }
         }
       },
+
+      //通过时间确定scrollx的位置
       timeToPos(time) {
         let scrollX = 0;
         for (let i = 0; i < this.pictures.length; i++) {
           if (this.pictures[i].time == time) {
             break;
           }
-          scrollX += this.pictures[i].width;
+          scrollX += this.pictures[i].width + pic_marginRight;
         }
         return scrollX;
       },
-      toFirst() {
+
+      toStartScrollX() {
         console.log("to first");
         this.scrollX = 0;
       },
 
+      //通过时间计算left的比例
       timeToLeft(nowTime) {
         let left = (nowTime - this.startTime) / this.total_period * 100;
         return left;
       },
+
+      //根据时间计算节点长度
       timeToWidth(nowTime) {
         let width = this.calcShowPeriod(nowTime) / this.total_period * 100;
         console.log("---width---", width);
         return width;
       },
+
+      //控制界面动画
       gotoTick(nowTime) {
         this.slider.left = this.timeToLeft(nowTime);
         this.slider.width = this.timeToWidth(nowTime);
         this.$refs.divScroll.scrollTo(this.scrollX, 0, 10);
       },
+      //计算开始时间之后一屏幕显示的时间范围
       calcShowPeriod(beginTime) {
         let width = 0;
         let endTime = beginTime;
         console.log("calcShowPeriod...begintime:", beginTime);
         for (let i = 0; i < this.pictures.length; i++) {
           let currentPicture = this.pictures[i];
+          //找到开始时间后进行累加
           if (currentPicture.time >= beginTime) {
             console.log("add to", currentPicture.time);
             width += currentPicture.width;
           }
+          //到了一个屏幕宽度或者最后一个
           if (width >= windowWidth || i == this.pictures.length - 1) {
             endTime = currentPicture.time;
             break;
@@ -153,15 +173,18 @@
         console.log("-page period--", endTime - beginTime);
         return endTime - beginTime;
       },
+      //点击箭头，滑动scrollX
       scrollTo(type) {
         if (type == "right") {
-          if (this.scrollX + 200 > this.maxWidth - windowWidth) {
+          if (this.scrollX + 200 > this.maxScrollX - windowWidth) {
+            this.scrollX = this.maxScrollX - windowWidth;
             return;
           }
           this.scrollX += 200;
           console.log("scrollto" + type + ":" + this.scrollX);
         } else {
           if (this.scrollX - 200 < 0) {
+            this.scrollX = 0;
             return;
           }
           console.log("scrollto" + type + ":" + this.scrollX);
@@ -186,84 +209,100 @@
         pictures: [{
             time: 1980,
             url: '',
-            width: 400,
+            width: 100,
+            height:100,
           },
           {
             time: 1983,
             url: '',
-            width: 400,
+            width: 300,
+            height:300,
           },
           {
             time: 1984,
             url: '',
             width: 400,
+            height:200,
           },
           {
             time: 1985,
             url: '',
-            width: 400,
+            width: 240,
+            height:200,
           },
           {
             time: 1990,
             url: '',
-            width: 400,
+            width: 300,
+            height:230,
           },
           {
             time: 1995,
             url: '',
-            width: 400,
+            width: 200,
+            height:280,
           },
           {
             time: 1998,
             url: '',
-            width: 400,
+            width: 340,
+            height:180,
           },
           {
             time: 1999,
             url: '',
             width: 400,
+            height:280,
           },
           {
             time: 2000,
             url: '',
-            width: 400,
+            width: 200,
+            height:280,
           },
           {
             time: 2004,
             url: '',
             width: 400,
+            height:380,
           },
           {
             time: 2010,
             url: '',
-            width: 400,
+            width: 100,
+            height:380,
           },
 
           {
             time: 2016,
             url: '',
             width: 400,
+            height:280,
           },
           {
             time: 2017,
             url: '',
             width: 400,
+            height:180,
           },
 
           {
             time: 2018,
             url: '',
             width: 400,
+            height:180,
           },
           {
             time: 2019,
             url: '',
-            width: 400,
+            width: 330,
+            height:280,
           },
           {
             time: 2020,
             url: '',
-            width: 400,
+            width: 210,
+            height:170,
           },
         ],
 
@@ -276,9 +315,18 @@
 </script>
 
 <style lang="less">
+
+  @windowWidth:1300px;
+  @pic_marginRight:20px;
+
   .arrow-size {
     width: 40px;
     height: 58px;
+  }
+
+  .picStyle{
+      margin-right: @pic_marginRight;
+      background-color: bisque;
   }
 
   .left-arrow {
@@ -360,10 +408,11 @@
     vertical-align: baseline;
   }
 
-
   .scroll-pictures {
+    width: @windowWidth;
     background-color: aliceblue;
     display: flex;
+    align-items: flex-end;
     flex-direction: row;
     width: 100%;
     overflow: hidden;
