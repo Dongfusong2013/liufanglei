@@ -58,23 +58,21 @@
     },
 
     methods: {
-
       //点击箭头，滑动scrollX
+
       scrollTo(type) {
+        let step = 200;
         if (type == "right") {
-          if (this.scrollX + 200 > this.maxScrollX - windowWidth) {
+          if (this.scrollX + step > this.maxScrollX - windowWidth) {
             this.scrollX = this.maxScrollX - windowWidth;
           } else {
-            this.scrollX += 200;
-            console.log("scrollto" + type + ":" + this.scrollX);
+            this.scrollX += step;
           }
-
         } else {
-          if (this.scrollX - 200 < 0) {
+          if (this.scrollX - step < 0) {
             this.scrollX = 0;
           } else {
-            console.log("scrollto" + type + ":" + this.scrollX);
-            this.scrollX -= 200;
+            this.scrollX -= step;
           }
         }
         this.gotoByScroll(this.scrollX);
@@ -96,13 +94,20 @@
         let fixWidth = 0;
         let picIndex = 0;
         let nowTime = 0;
+        // console.log("scrollX", scrollX);
         for (let i = 0; i < this.pictures.length; i++) {
           let currentPic = this.pictures[i];
           totalWidth += currentPic.width + pic_marginRight;
           if (totalWidth >= scrollX) {
-            fixWidth = currentPic.width + pic_marginRight - (totalWidth - scrollX);
-            picIndex = i;
-            nowTime = currentPic.time;
+            if (totalWidth == scrollX ) {
+              picIndex = i+1;
+              nowTime = this.pictures[picIndex].time;
+              fixWidth = 0;
+            } else {
+              picIndex = i;
+              nowTime = this.pictures[i].time;
+              fixWidth = currentPic.width + pic_marginRight - (totalWidth - scrollX);
+            }
             break;
           }
         }
@@ -115,7 +120,6 @@
 
       //没有误差的
       gotoTickTime(time) {
-        console.log("tike", time);
         let nowTime = time;
         let pictureIndex = 0;
         let length = this.time_tick_list.length;
@@ -129,7 +133,6 @@
           if (this.pictures[i].time >= time) {
             nowTime = this.pictures[i].time;
             pictureIndex = i;
-            console.log("tick", nowTime, pictureIndex);
             break;
           }
         }
@@ -157,19 +160,18 @@
       startPicToWidth(pictureIndex, fixWidth) {
         let totalWidth = 0;
         totalWidth -= fixWidth;
-        console.log("totalWidth", totalWidth);
+
         let startTime = this.pictures[pictureIndex].time;
         let endTime = startTime;
         for (let i = pictureIndex; i < this.pictures.length; i++) {
           totalWidth += this.pictures[i].width + pic_marginRight;
           endTime = this.pictures[i].time;
-          console.log("add to ", endTime+ "total",totalWidth + "width"+this.pictures[i].width);
+          console.log("add to ", endTime + "total", totalWidth + "width" + this.pictures[i].width);
           if (totalWidth >= windowWidth) {
             break;
           }
         }
         let width = (endTime - startTime) / this.total_period * 100;
-        console.log("==startPicToWidth==", fixWidth, width);
         if (width === 0) {
           width = 1 / this.total_period * 100;
         }
@@ -178,6 +180,11 @@
 
       init() {
         //初始化 time_tick_list
+        this.startTime = this.pictures[0].time;
+        this.endTime = this.pictures[this.pictures.length - 1].time;
+        this.unit_period = 1;
+        console.log("===init===",this.startTime, this.endTime, this.unit_period);
+
         let period = 0;
         let currentTime = this.startTime;
         this.time_tick_list.push(this.startTime);
@@ -190,6 +197,7 @@
             break;
           }
         }
+
         //计算最大
         let maxScrollX = 0;
         for (let i = 0; i < this.pictures.length; i++) {
@@ -217,8 +225,8 @@
         fixSurplusWidth: 0,
         unit_period: 5,
         total_period: 0,
-        endTime: 2019,
-        startTime: 1980,
+        endTime: 0,
+        startTime: 0,
         startX: 0,
         scrollX: 0,
         scroll: null,
@@ -226,72 +234,7 @@
           left: 0,
           width: 0,
         },
-        pictures: [{
-            time: 1980,
-            url: '',
-            width: 100,
-            height: 100,
-          },
-          {
-            time: 1983,
-            url: '',
-            width: 300,
-            height: 300,
-          },
-          {
-            time: 1984,
-            url: '',
-            width: 400,
-            height: 200,
-          },
-          {
-            time: 1985,
-            url: '',
-            width: 240,
-            height: 200,
-          },
-          {
-            time: 1990,
-            url: '',
-            width: 300,
-            height: 230,
-          },
-          {
-            time: 1995,
-            url: '',
-            width: 200,
-            height: 280,
-          },
-          {
-            time: 1998,
-            url: '',
-            width: 340,
-            height: 180,
-          },
-          {
-            time: 1999,
-            url: '',
-            width: 400,
-            height: 280,
-          },
-          {
-            time: 2000,
-            url: '',
-            width: 200,
-            height: 280,
-          },
-          {
-            time: 2004,
-            url: '',
-            width: 400,
-            height: 380,
-          },
-          {
-            time: 2010,
-            url: '',
-            width: 100,
-            height: 380,
-          },
+        pictures: [
           {
             time: 2016,
             url: '',
@@ -315,6 +258,24 @@
             url: '',
             width: 330,
             height: 280,
+          },
+          {
+            time: 2020,
+            url: '',
+            width: 210,
+            height: 170,
+          },
+          {
+            time: 2020,
+            url: '',
+            width: 210,
+            height: 170,
+          },
+          {
+            time: 2020,
+            url: '',
+            width: 210,
+            height: 170,
           },
           {
             time: 2020,
@@ -374,7 +335,7 @@
     display: flex;
     color: #939598;
     height: 100%;
-    width: 1203px;
+    width: 1210px;
   }
 
   .label {
