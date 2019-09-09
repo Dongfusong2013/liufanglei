@@ -26,7 +26,10 @@
         <RaddarChart></RaddarChart>
       </div>
     </div>
-    <div style="position: absolute; left:0px; top:600px">
+    <div style="width: 100%; height: 100%;">
+      <div class="view-title view-pos">
+        历史文明
+      </div>
       <ScrollTimeView></ScrollTimeView>
     </div>
   </div>
@@ -52,6 +55,21 @@
 
 <style lang="less" scoped>
   // @import '../appStyle.less';
+
+  .view-pos {
+    color: #000000;
+    margin-left: 86px;
+    margin-top: 40px;
+    margin-bottom: 27px;
+  }
+
+  .view-title {
+    font-size: 24px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 32px;
+  }
 
   .location-view {
     position: absolute;
@@ -85,8 +103,8 @@
 
   .history-contaienr {
     color: white;
-    width: 1550px;
-    height: 1800px;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,6 +1,8 @@
 <template>
   <div class="history-container">
+
     <AppHeader noBackground="false" />
+
     <div style="box-sizing: border-box; width: 100%; height: 100%">
       <baidu-map class="map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
         <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
@@ -271,7 +273,7 @@
 <style lang="less">
   // @import '../appStyle';
 
-  @headTopHeight: 60px;
+  @headTopHeight: 68px;
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
 

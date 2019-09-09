@@ -1,8 +1,6 @@
 <template>
-  <div style="position: relative;">
-
-    <button @click="toStartScrollX" class="toTopStyle"> back to top</button>
-    <div class="scroll-view">
+  <div style="position: relative; height: 100%; width: 100%;">
+    <div class="scroll-view" style="margin-top: 10px; margin-left: 80px;">
       <div class="time-line">
         <div class="slider-node" :style="{left: slider.left + '%', width:  slider.width + '%'}"></div>
         <div v-for="(item, index) in time_tick_list" :key="index">
@@ -12,25 +10,29 @@
         </div>
       </div>
     </div>
-
-    <div style="" class="scroll-pictures" ref="divScroll">
-      <!-- <div class="scroll-pictures"> -->
-      <!-- <div style="display: flex; flex-direction: row; "> -->
-        <div v-for="(item, index) in pictures" :key="index">
-          <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle">
-            <img :src="item.url" height="100%" width="100%">
-            <div>故宫第12次</div>
-          </div>
+    <div class="scroll-pictures first-row" ref="divScroll_row1">
+      <div v-for="(item, index) in pictures1" :key="index">
+        <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle">
+          <img :src="item.url" height="100%" width="100%">
         </div>
-      <!-- </div> -->
-
-      <!-- </div> -->
-      <div class="left-arrow arrow-size" @click="scrollTo('left')">
-        <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
+        <div class="pic-title-font">故宫第12次</div>
+        <div class="pic-desc-font">2011.11.12</div>
       </div>
-      <div class="right-arrow arrow-size" @click="scrollTo('right')">
-        <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
+    </div>
+    <div style="color: ;" class="scroll-pictures second-row" ref="divScroll_row2">
+      <div v-for="(item, index) in pictures2" :key="index">
+        <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle">
+          <img :src="item.url" height="100%" width="100%">
+        </div>
+        <div class="pic-title-font">故宫第12次</div>
+        <div class="pic-desc-font">2011.11.12</div>
       </div>
+    </div>
+    <div class="left-arrow arrow-size" @click="scrollTo('left')">
+      <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
+    </div>
+    <div class="right-arrow arrow-size" @click="scrollTo('right')">
+      <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
   </div>
 </template>
@@ -44,7 +46,7 @@
     created() {
       this.$nextTick(() => {
 
-        let scroll = new BScroll(this.$refs.divScroll, {
+        let scroll1 = new BScroll(this.$refs.divScroll_row1, {
           click: true,
           startX: 0,
           startY: 0,
@@ -53,7 +55,21 @@
           probeType: 2,
           momentum: true,
         });
-        scroll.on('scroll', (pos) => {
+        scroll1.on('scroll', (pos) => {
+          console.log("scroll position...", pos);
+          this.scrollX = pos.x;
+        });
+
+        let scroll2 = new BScroll(this.$refs.divScroll_row2, {
+          click: true,
+          startX: 0,
+          startY: 0,
+          scrollX: true,
+          scrollY: false,
+          probeType: 2,
+          momentum: true,
+        });
+        scroll2.on('scroll', (pos) => {
           console.log("scroll position...", pos);
           this.scrollX = pos.x;
         });
@@ -89,7 +105,8 @@
         } = this.scrollXToPicInfo(scrollX);
         this.slider.left = this.timeToLeft(nowTime);
         this.slider.width = this.startPicToWidth(picIndex, fixWidth);
-        this.$refs.divScroll.scrollTo(scrollX, 0, 10);
+        this.$refs.divScroll_row1.scrollTo(scrollX, 0, 10);
+        this.$refs.divScroll_row2.scrollTo(scrollX, 0, 10);
       },
 
       scrollXToPicInfo(scrollX) {
@@ -98,17 +115,17 @@
         let picIndex = 0;
         let nowTime = 0;
         // console.log("scrollX", scrollX);
-        for (let i = 0; i < this.pictures.length; i++) {
-          let currentPic = this.pictures[i];
+        for (let i = 0; i < this.pictures1.length; i++) {
+          let currentPic = this.pictures1[i];
           totalWidth += currentPic.width + pic_marginRight;
           if (totalWidth >= scrollX) {
             if (totalWidth == scrollX) {
               picIndex = i + 1;
-              nowTime = this.pictures[picIndex].time;
+              nowTime = this.pictures1[picIndex].time;
               fixWidth = 0;
             } else {
               picIndex = i;
-              nowTime = this.pictures[i].time;
+              nowTime = this.pictures1[i].time;
               fixWidth = currentPic.width + pic_marginRight - (totalWidth - scrollX);
             }
             break;
@@ -132,9 +149,9 @@
           return;
         }
 
-        for (let i = 0; i < this.pictures.length; i++) {
-          if (this.pictures[i].time >= time) {
-            nowTime = this.pictures[i].time;
+        for (let i = 0; i < this.pictures1.length; i++) {
+          if (this.pictures1[i].time >= time) {
+            nowTime = this.pictures1[i].time;
             pictureIndex = i;
             break;
           }
@@ -143,7 +160,8 @@
         this.slider.left = this.timeToLeft(nowTime);
         this.slider.width = this.startPicToWidth(pictureIndex, 0);
         this.scrollX = this.startPicToScrollX(pictureIndex);
-        this.$refs.divScroll.scrollTo(this.scrollX, 0, 10);
+        this.$refs.divScroll_row1.scrollTo(this.scrollX, 0, 10);
+        this.$refs.divScroll_row2.scrollTo(this.scrollX, 0, 10);
       },
 
       //通过时间计算left的比例
@@ -154,8 +172,8 @@
 
       startPicToScrollX(pictureIndex) {
         let scrollX = 0;
-        for (let i = 0; i < this.pictures.length && i < pictureIndex; i++) {
-          scrollX += this.pictures[i].width + pic_marginRight;
+        for (let i = 0; i < this.pictures1.length && i < pictureIndex; i++) {
+          scrollX += this.pictures1[i].width + pic_marginRight;
         }
         return scrollX;
       },
@@ -164,12 +182,12 @@
         let totalWidth = 0;
         totalWidth -= fixWidth;
 
-        let startTime = this.pictures[pictureIndex].time;
+        let startTime = this.pictures1[pictureIndex].time;
         let endTime = startTime;
-        for (let i = pictureIndex; i < this.pictures.length; i++) {
-          totalWidth += this.pictures[i].width + pic_marginRight;
-          endTime = this.pictures[i].time;
-          console.log("add to ", endTime + "total", totalWidth + "width" + this.pictures[i].width);
+        for (let i = pictureIndex; i < this.pictures1.length; i++) {
+          totalWidth += this.pictures1[i].width + pic_marginRight;
+          endTime = this.pictures1[i].time;
+          console.log("add to ", endTime + "total", totalWidth + "width" + this.pictures1[i].width);
           if (totalWidth >= windowWidth) {
             break;
           }
@@ -183,8 +201,8 @@
 
       init() {
         //初始化 time_tick_list
-        this.startTime = this.pictures[0].time;
-        this.endTime = this.pictures[this.pictures.length - 1].time;
+        this.startTime = this.pictures1[0].time;
+        this.endTime = this.pictures1[this.pictures1.length - 1].time;
         this.unit_period = 5;
         console.log("===init===", this.startTime, this.endTime, this.unit_period);
 
@@ -203,21 +221,23 @@
 
         //计算最大
         let maxScrollX = 0;
-        for (let i = 0; i < this.pictures.length; i++) {
-          maxScrollX += this.pictures[i].width + pic_marginRight;
+        for (let i = 0; i < this.pictures1.length; i++) {
+          maxScrollX += this.pictures1[i].width + pic_marginRight;
         }
         this.maxScrollX = maxScrollX;
         console.log("maxScrollX", this.maxScrollX);
 
         //初始化滑块的位置
-        this.slider.left = 0;
-        this.slider.width = this.startPicToWidth(0, 0);
         this.toStartScrollX();
         console.log(this.time_tick_list);
       },
 
       toStartScrollX() {
-        this.$refs.divScroll.scrollTo(0, 0, 10);
+        this.slider.left = 0;
+        this.slider.width = this.startPicToWidth(0, 0);
+        this.scrollX = 0;
+        this.$refs.divScroll_row1.scrollTo(0, 0, 10);
+        this.$refs.divScroll_row2.scrollTo(0, 0, 10);
       },
 
     },
@@ -237,7 +257,7 @@
           left: 0,
           width: 0,
         },
-        pictures: [{
+        pictures1: [{
             time: 1990,
             url: '/static/location/1.png',
             width: 316,
@@ -335,6 +355,101 @@
           },
         ],
 
+        pictures2: [{
+            time: 1990,
+            url: '/static/location/6.png',
+            width: 216,
+            height: 158,
+            description: '故宫第12次重新修缮',
+            // timeStr:''
+          },
+          {
+            time: 1992,
+            url: '/static/location/7.png',
+            width: 317,
+            height: 175,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            time: 1993,
+            url: '/static/location/8.png',
+            width: 300,
+            height: 208,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            time: 1994,
+            url: '/static/location/9.png',
+            width: 174,
+            height: 208,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            time: 1995,
+            url: '/static/location/10.png',
+            width: 164,
+            height: 190,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            time: 2000,
+            url: '/static/location/5.png',
+            width: 204,
+            height: 187,
+          },
+          {
+            time: 2003,
+            url: '/static/location/4.png',
+            width: 227,
+            height: 208,
+          },
+          {
+            time: 2006,
+            url: '/static/location/8.png',
+            width: 300,
+            height: 208,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            time: 2010,
+            url: '/static/location/9.png',
+            width: 174,
+            height: 208,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            time: 2011,
+            url: '/static/location/10.png',
+            width: 164,
+            height: 190,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            time: 2014,
+            url: '/static/location/5.png',
+            width: 204,
+            height: 187,
+          },
+          {
+            time: 2016,
+            url: '/static/location/4.png',
+            width: 227,
+            height: 208,
+          },
+          {
+            time: 2019,
+            url: '/static/location/3.png',
+            width: 338,
+            height: 191,
+          },
+          {
+            time: 2020,
+            url: '/static/location/1.png',
+            width: 316,
+            height: 208,
+          },
+        ],
+
         time_tick_list: [
           // {time:'', content:''}
         ],
@@ -344,14 +459,30 @@
 </script>
 
 <style lang="less">
-  @windowWidth: 1385px;
+  @windowWidth: 1440px;
   @pic_marginRight: 20px;
+  @topOffset: 20px;
 
-  @topOffset: 10px;
+  .pic-desc-font {
+    font-size: 12px;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(23, 0, 0, 1);
+    line-height: 20px;
+  }
+
+  .pic-title-font {
+    // z-index: 4;
+    font-size: 16px;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(23, 0, 0, 1);
+    line-height: 24px;
+  }
 
   .arrow-size {
-    width: 40px;
-    height: 58px;
+    width: 28px;
+    height: 48px;
   }
 
   .picStyle {
@@ -361,14 +492,14 @@
 
   .left-arrow {
     position: absolute;
-    left: 40px;
-    top: 650px + @topOffset;
+    left: 80px;
+    top: 270px + @topOffset;
   }
 
   .right-arrow {
     position: absolute;
-    right: 40px;
-    top: 650px + @topOffset;
+    right: 80px;
+    top: 270px + @topOffset;
   }
 
   .slider-node {
@@ -421,18 +552,18 @@
     opacity: 1;
     width: 1px;
     cursor: pointer;
-    z-index: 1;
+    // z-index: 1;
     font-weight: 300;
     /* ?? */
     vertical-align: baseline;
   }
 
   .scroll-view {
-    // display: flex;
+    display: flex;
+    justify-content: center;
     position: absolute;
     cursor: ew-resize;
-    left: 100px;
-    top: 480px + @topOffset;
+
     width: 87.5vw;
     height: 2rem;
     /* height: 800px; */
@@ -441,15 +572,25 @@
 
   .toTopStyle {
     position: absolute;
-    right: 0px;
-    top: 830px + @topOffset;
+    right: 80px;
+    top: @topOffset;
     // align-self: flex-end;
   }
 
-  .scroll-pictures {
-    position: absolute;
-    top: 540px + @topOffset;
+  .first-row {
+    top: @topOffset + 60px;
     left: 0px;
+    // margin-top: 80px;
+  }
+
+  .second-row {
+    top: @topOffset + 110px;
+    left: 0px;
+    // margin-top: 40px;
+  }
+
+  .scroll-pictures {
+    position: relative;
     width: @windowWidth;
     // background-color: aliceblue;
     display: flex;
