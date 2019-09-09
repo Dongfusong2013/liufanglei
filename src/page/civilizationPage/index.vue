@@ -98,7 +98,7 @@
                 <div>
                   {{item.name}}
                 </div>
-                <div style="width: 150px;">
+                <div style="width: 100px;">
                   <el-rate v-model="item.score" text-color="#1F2D3D" disabled show-score>
                   </el-rate>
                 </div>
@@ -270,7 +270,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less">
+<style lang="less" scoped>
   // @import '../appStyle';
 
   @headTopHeight: 68px;
@@ -357,8 +357,8 @@
   }
 
   .pop_window {
-    width: 334px;
-    height: 656px;
+    width: 316px;
+    height: 598px;
     background: rgba(255, 255, 255, 1);
   }
 

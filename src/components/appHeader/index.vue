@@ -29,19 +29,25 @@
         <img src="/static/icon/Logo-white.png" height="100%" width="100%" v-if="noGround">
       </div>
       <div class="row-space-box" style="margin-right: 150px;">
+        <div class="menueItem"  @click="gotoPage('/')">
+            <div style="font-size: 24px;" class="el-icon-s-home"></div>
+        </div>
         <div class="menueItem" @click="gotoPage('/civilization')">
           <div style="width: 24px; height: 24px;">
-              <img src="/static/icon/地球-white.png" height="100%" width="100%">
+              <img src="/static/icon/地球.png" height="100%" width="100%" v-if="!noGround">
+              <img src="/static/icon/地球-white.png" height="100%" width="100%" v-if="noGround">
           </div>
         </div>
         <div class="menueItem row-box-center">
           <div style="width: 24px; height: 24px;">
-              <img src="/static/icon/地球.png" height="100%" width="100%">
+              <!-- <img src="/static/icon/地球.png" height="100%" width="100%"> -->
+              <div style="font-size: 24px;" class="el-icon-bell"></div>
           </div>
         </div>
         <div class="menueItem row-box-center">
           <div style="width: 24px; height: 24px;">
-              <img src="/static/icon/地球.png" height="100%" width="100%">
+              <!-- <img src="/static/icon/地球.png" height="100%" width="100%"> -->
+              <div style="font-size: 24px;" class="el-icon-user"></div>
           </div>
         </div>
         <div class="menueItem row-box-center">
@@ -112,7 +118,7 @@
   .myStyle {
     width: 38px;
     height: 38px;
-    border: 2px solid rgba(255, 255, 255, 1);
+    // border: 2px solid rgba(255, 255, 255, 1);
   }
 
   .top-header-size {

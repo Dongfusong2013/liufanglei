@@ -518,7 +518,7 @@
     display: flex;
     color: #939598;
     height: 100%;
-    width: 1210px;
+    width: 1280px;
   }
 
   .label {

@@ -7,7 +7,7 @@
        <el-carousel-item>
           <SelfItem :isFirst="isFirst" :isLast="isLast" :nextPic="nextPic" :prePic="prePic" />
        </el-carousel-item>
-      <el-carousel-item v-for="(item,index) in leftContentData" :key="index">
+     <el-carousel-item v-for="(item,index) in leftContentData" :key="index">
         <LeftContentItem :isFirst="isFirst" :isLast="isLast" :nextPic="nextPic" :prePic="prePic" :title='item.title'
           :subTitle="item.subTitle" :rewards="item.rewards" :pics="item.pics" />
       </el-carousel-item>
@@ -56,7 +56,7 @@
           },
           {
             title: "雁栖湖国际会议中心",
-            subTitle: "北京国际电影节主会场（永久)",            
+            subTitle: "北京国际电影节主会场（永久)",
             rewards: [
               "2015年全国优秀工程勘察设计行业 一等奖",
               "2015年北京市第十八届优秀工程 一等奖",

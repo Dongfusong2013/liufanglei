@@ -25,7 +25,7 @@
         <div class="pic-size">
           <img src="/static/about/liufanglei.png" alt height="100%" width="100%" />
         </div>
-        <div>
+        <div style="margin-left: 40px;">
           <div class="sm-title-font">任职</div>
           <div class="content-top">
             <div class="sm-content-font">
@@ -117,7 +117,8 @@ export default {
   position: relative;
 }
 .line-top {
-  margin-top: 8px;
+  margin-top: 80px;
+  margin-left:-40px;
 }
 .box-top {
   margin-top: 24px;
@@ -130,6 +131,9 @@ export default {
 }
 
 .scroll-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -144,6 +148,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 .pic-size {
   width: 340px;
