@@ -56,6 +56,11 @@
 <style lang="less" scoped>
   // @import '../appStyle.less';
 
+  .backgroundImg{
+    width: 100%;
+    height: 800px;
+  }
+
   .view-pos {
     color: #000000;
     margin-left: 86px;
