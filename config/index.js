@@ -8,16 +8,16 @@ module.exports = {
   dev: {
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {
-      '/liufanglei_server': {
-        target: 'http://localhost:9931',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/liufanglei_server': 'liufanglei_server'
-        }
-      }
-    },
+    assetsPublicPath: './',
+    // proxyTable: {
+    //   '/liufanglei_server': {
+    //     target: 'http://localhost:9931',
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/liufanglei_server': 'liufanglei_server'
+    //     }
+    //   }
+    // },
 
     // Various Dev Server  settings
     host: 'localhost', // can be overwritten by process.env.HOST
