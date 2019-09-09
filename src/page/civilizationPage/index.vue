@@ -1,7 +1,7 @@
 <template>
-  <div class="history-contaienr">
+  <div class="history-container">
     <AppHeader noBackground="false" />
-    <div style="box-sizing: border-box; width: 100%; height: 100%; ">
+    <div style="box-sizing: border-box; width: 100%; height: 100%">
       <baidu-map class="map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
         <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
         <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map> -->
@@ -35,6 +35,9 @@
               <el-input placeholder="搜索城市 输入关键字" style="width: 330px;" v-model="location" class="input-with-select">
                 <el-button slot="append" icon="el-icon-search"></el-button>
               </el-input>
+              <!-- <div style="width: 21px; height:21px;">
+                <img src="/static/icon/搜索.png" height="100%" width="100%">
+              </div> -->
               <bm-local-search :auto-viewport="true" :keyword="location" :location="location"></bm-local-search>
             </div>
           </div>
@@ -64,7 +67,7 @@
             <img src="/static/icon/排行关闭.png" height="100%" width="100%">
           </div>
           <div v-if="listShow" style="width: 24px; height: 24px;">
-            <img src="/static/icon/排行奖杯.png" height="100%" width="100%">
+            <img src="/static/icon/排行打开.png" height="100%" width="100%">
           </div>
         </div>
       </div>
@@ -164,7 +167,7 @@
               lng: 136.404,
               lat: 39.915
             },
-            url: "/static/civil/足迹.svg",
+            url: "/static/civil/历史遗迹.png",
             score: 4.9,
             footCount: 1500,
             name: '故宫博物院，中国',
@@ -190,7 +193,7 @@
               lng: 106.404,
               lat: 59.915
             },
-            url: "/static/civil/足迹.svg",
+            url: "/static/civil/历史遗迹.png",
             score: 4.4,
             footCount: 914,
             name: '德国大教堂，德国',
@@ -203,7 +206,7 @@
               lng: 108.404,
               lat: 69.915
             },
-            url: "/static/civil/足迹.svg",
+            url: "/static/civil/历史遗迹.png",
             score: 4.4,
             footCount: 904,
             name: '香港交易所，中国',
@@ -217,7 +220,7 @@
               lat: 49.915
             },
 
-            url: "/static/civil/足迹.svg",
+            url: "/static/civil/历史遗迹.png",
             score: 4.4,
             footCount: 659,
             name: '中国银行，中国',
@@ -265,13 +268,12 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" scoped>
-  @import '../appStyle';
+<style lang="less">
+  // @import '../appStyle';
 
   @headTopHeight: 60px;
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
-
 
   .top-header {
     width: 100%;
@@ -415,7 +417,7 @@
   }
 
 
-  .history-contaienr {
+  .history-container {
     background: rgba(243, 245, 246, 1);
     width: 1550px;
     height: 100%;

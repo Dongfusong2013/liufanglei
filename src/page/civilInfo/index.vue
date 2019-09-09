@@ -1,9 +1,9 @@
 <template>
   <div class="history-contaienr">
-    <!-- <div class="backgroundImg">
+    <div class="backgroundImg">
       <img src="/static/civil/故宫-午门.png" alt height="100%" width="100%" />
     </div>
-    <div style="position: fixed; top:0; width:100%">
+    <div style="position: absolute; top:0; width:100%">
       <AppHeader noBackground="true" />
     </div>
 
@@ -25,12 +25,10 @@
       <div style="width: 218px; height: 218px; margin-left: 203px;">
         <RaddarChart></RaddarChart>
       </div>
-    </div> -->
-    <div style="margin-top: 30px; background-color: #F0F8FF;">
+    </div>
+    <div style="position: absolute; left:0px; top:600px">
       <ScrollTimeView></ScrollTimeView>
     </div>
-
-
   </div>
 </template>
 
@@ -53,7 +51,7 @@
 </script>
 
 <style lang="less" scoped>
-  @import '../appStyle.less';
+  // @import '../appStyle.less';
 
   .location-view {
     position: absolute;
@@ -88,7 +86,7 @@
   .history-contaienr {
     color: white;
     width: 1550px;
-    height: 100%;
+    height: 1800px;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,6 +1,5 @@
 <template>
-  <div style="position: relative;">
-
+  <div>
     <button @click="toStartScrollX" class="toTopStyle"> back to top</button>
     <div class="scroll-view">
       <div class="time-line">
@@ -13,17 +12,14 @@
       </div>
     </div>
 
-    <div style="" class="scroll-pictures" ref="divScroll">
+    <div style="position: fixed; top:300px; left:0px;" class="scroll-pictures" ref="divScroll">
       <!-- <div class="scroll-pictures"> -->
-      <!-- <div style="display: flex; flex-direction: row; "> -->
-        <div v-for="(item, index) in pictures" :key="index">
-          <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle">
-            <img :src="item.url" height="100%" width="100%">
-            <div>故宫第12次</div>
-          </div>
+      <div v-for="(item, index) in pictures" :key="index">
+        <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle">
+          <!-- <img src="" height="100%" width="100%"> -->
+          {{item.time}}
         </div>
-      <!-- </div> -->
-
+      </div>
       <!-- </div> -->
       <div class="left-arrow arrow-size" @click="scrollTo('left')">
         <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
@@ -63,6 +59,7 @@
 
     methods: {
       //点击箭头，滑动scrollX
+
       scrollTo(type) {
         let step = 200;
         if (type == "right") {
@@ -102,8 +99,8 @@
           let currentPic = this.pictures[i];
           totalWidth += currentPic.width + pic_marginRight;
           if (totalWidth >= scrollX) {
-            if (totalWidth == scrollX) {
-              picIndex = i + 1;
+            if (totalWidth == scrollX ) {
+              picIndex = i+1;
               nowTime = this.pictures[picIndex].time;
               fixWidth = 0;
             } else {
@@ -185,8 +182,8 @@
         //初始化 time_tick_list
         this.startTime = this.pictures[0].time;
         this.endTime = this.pictures[this.pictures.length - 1].time;
-        this.unit_period = 5;
-        console.log("===init===", this.startTime, this.endTime, this.unit_period);
+        this.unit_period = 1;
+        console.log("===init===",this.startTime, this.endTime, this.unit_period);
 
         let period = 0;
         let currentTime = this.startTime;
@@ -218,7 +215,7 @@
 
       toStartScrollX() {
         this.$refs.divScroll.scrollTo(0, 0, 10);
-      },
+      }
 
     },
 
@@ -237,101 +234,54 @@
           left: 0,
           width: 0,
         },
-        pictures: [{
-            time: 1990,
-            url: '/static/location/1.png',
-            width: 316,
-            height: 208,
-            description: '故宫第12次重新修缮',
-            // timeStr:''
-          },
-          {
-            time: 1992,
-            url: '/static/location/2.png',
-            width: 280,
-            height: 194,
-            description: '故宫掠影：记录故宫的美丽',
-          },
-          {
-            time: 1993,
-            url: '/static/location/3.png',
-            width: 338,
-            height: 191,
-            description: '故宫掠影：记录故宫的美丽',
-          },
-          {
-            time: 1994,
-            url: '/static/location/4.png',
-            width: 171,
-            height: 207,
-            description: '故宫掠影：记录故宫的美丽',
-          },
-          {
-            time: 1995,
-            url: '/static/location/5.png',
-            width: 204,
-            height: 187,
-            description: '故宫掠影：记录故宫的美丽',
-          },
-          {
-            time: 2000,
-            url: '/static/location/5.png',
-            width: 204,
-            height: 187,
-          },
-          {
-            time: 2003,
-            url: '/static/location/4.png',
-            width: 171,
-            height: 207,
-          },
-          {
-            time: 2005,
-            url: '/static/location/4.png',
-            width: 171,
-            height: 207,
-          },
-          {
-            time: 2005,
-            url: '/static/location/1.png',
-            width: 316,
-            height: 208,
-          },
-          {
-            time: 2008,
-            url: '/static/location/2.png',
-            width: 280,
-            height: 194,
-          },
-          {
-            time: 2009,
-            url: '/static/location/4.png',
-            width: 171,
-            height: 207,
-          },
+        pictures: [
           {
             time: 2010,
-            url: '/static/location/1.png',
-            width: 316,
-            height: 208,
+            url: '',
+            width: 400,
+            height: 280,
           },
           {
-            time: 2012,
-            url: '/static/location/2.png',
-            width: 280,
-            height: 194,
+            time: 2017,
+            url: '',
+            width: 400,
+            height: 180,
           },
           {
-            time: 2013,
-            url: '/static/location/3.png',
-            width: 338,
-            height: 191,
+            time: 2018,
+            url: '',
+            width: 400,
+            height: 180,
+          },
+          {
+            time: 2019,
+            url: '',
+            width: 330,
+            height: 280,
           },
           {
             time: 2020,
-            url: '/static/location/1.png',
-            width: 316,
-            height: 208,
+            url: '',
+            width: 210,
+            height: 170,
+          },
+          {
+            time: 2020,
+            url: '',
+            width: 210,
+            height: 170,
+          },
+          {
+            time: 2020,
+            url: '',
+            width: 210,
+            height: 170,
+          },
+          {
+            time: 2020,
+            url: '',
+            width: 210,
+            height: 170,
           },
         ],
 
@@ -344,10 +294,8 @@
 </script>
 
 <style lang="less">
-  @windowWidth: 1385px;
+  @windowWidth: 1350px;
   @pic_marginRight: 20px;
-
-  @topOffset: 10px;
 
   .arrow-size {
     width: 40px;
@@ -360,15 +308,15 @@
   }
 
   .left-arrow {
-    position: absolute;
+    position: fixed;
     left: 40px;
-    top: 650px + @topOffset;
+    top: 420px;
   }
 
   .right-arrow {
-    position: absolute;
+    position: fixed;
     right: 40px;
-    top: 650px + @topOffset;
+    top: 420px;
   }
 
   .slider-node {
@@ -428,30 +376,26 @@
   }
 
   .scroll-view {
-    // display: flex;
-    position: absolute;
+    position: fixed;
     cursor: ew-resize;
-    left: 100px;
-    top: 480px + @topOffset;
+    left: 6.25vw;
+    top: 10.1rem;
     width: 87.5vw;
     height: 2rem;
     /* height: 800px; */
     vertical-align: baseline;
   }
 
+
   .toTopStyle {
-    position: absolute;
-    right: 0px;
-    top: 830px + @topOffset;
-    // align-self: flex-end;
+    position: fixed;
+    right: 90px;
+    top: 100px;
   }
 
   .scroll-pictures {
-    position: absolute;
-    top: 540px + @topOffset;
-    left: 0px;
     width: @windowWidth;
-    // background-color: aliceblue;
+    background-color: aliceblue;
     display: flex;
     align-items: flex-end;
     flex-direction: row;
