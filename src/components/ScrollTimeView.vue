@@ -23,7 +23,8 @@
     </div>
     <div style="color: ;" class="scroll-pictures second-row" ref="divScroll_row2">
       <div v-for="(item, index) in pictures2" :key="index">
-        <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle" @mouseover="showOver(index)" @click="showDetail">
+        <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle" @mouseover="showOver(index)"
+          @click="showDetail">
           <img :src="item.url" height="100%" width="100%">
           <div v-if="isActivePicture(index)" style="position: absolute; left:48px; top:8px; color:beige;">2013.9.0</div>
         </div>
@@ -37,20 +38,23 @@
     <div class="right-arrow arrow-size" @click="scrollTo('right')">
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
-    <div class="pop-pic-window column-normal-center"  v-if="showWindow" @click="closeDetailWindow">
-        <div class="detail-pic-size" style="margin-top: 50px;">
-            <img src="/static/picShare/1.png" height="100%" width="100%">
+    <div class="pop-pic-window column-normal-center" v-if="showWindow" @click="closeDetailWindow">
+      <div style="margin-top: 10px;">
+        在2019年8月19日那时....
+      </div>
+      <div class="detail-pic-size" style="margin-top: 50px;">
+        <img src="/static/picShare/1.png" height="100%" width="100%">
+      </div>
+      <div>
+        明国时期最厉害的武林高手齐聚一堂
+      </div>
+      <div style="display: flex; flex-direction: row;  justify-content: flex-start; margin-top: 40px; width: 800px; overflow: auto;">
+        <div v-for="(item, index) in pictures1" :key="index">
+          <div style="width: 100px; height: 80px; margin-right: 10px;">
+            <img :src="item.url" height="100%" width="100%">
+          </div>
         </div>
-        <div>
-          明国时期最厉害的武林高手齐聚一堂
-        </div>
-        <div style="display: flex; flex-direction: row;  justify-content: flex-start; margin-top: 40px; width: 800px; overflow: auto;">
-             <div v-for="(item, index) in pictures1" :key="index">
-                  <div style="width: 100px; height: 80px; margin-right: 10px;">
-                      <img :src="item.url"  height="100%" width="100%">
-                  </div>
-             </div>
-        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -96,11 +100,11 @@
     },
 
     methods: {
-      showDetail(){
-          this.showWindow = true;
+      showDetail() {
+        this.showWindow = true;
       },
-      closeDetailWindow(){
-          this.showWindow = false;
+      closeDetailWindow() {
+        this.showWindow = false;
       },
 
       isActivePicture(index) {
@@ -278,7 +282,7 @@
     //多个照片行取并操作
     data() {
       return {
-        showWindow:false,
+        showWindow: false,
         activeIndex: -1,
         fixSurplusWidth: 0,
         unit_period: 5,
@@ -498,9 +502,9 @@
   @pic_marginRight: 20px;
   @topOffset: 20px;
 
-  .detail-pic-size{
-      width: 600px;
-      height: 300px;
+  .detail-pic-size {
+    width: 600px;
+    height: 300px;
   }
 
   .pop-pic-window {
@@ -509,11 +513,11 @@
     height: 600px;
     background-color: black;
     position: fixed;
-    top:40px;
-    left:90px;
+    top: 40px;
+    left: 90px;
   }
 
-  .column-normal-center{
+  .column-normal-center {
     display: flex;
     flex-direction: column;
     align-items: center;
