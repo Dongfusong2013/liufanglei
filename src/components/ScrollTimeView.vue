@@ -12,8 +12,10 @@
     </div>
     <div class="scroll-pictures first-row" ref="divScroll_row1">
       <div v-for="(item, index) in pictures1" :key="index">
-        <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle">
-          <img :src="item.url" height="100%" width="100%">
+        <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle"
+          @mouseover="showOver(index)" @click="showDetail">
+          <img :src="item.url" height="100%" width="100%" />
+          <div v-if="isActivePicture(index)" style="position: absolute; left:48px; top:8px; color:beige;">2013.9.0</div>
         </div>
         <div class="pic-title-font">故宫第12次</div>
         <div class="pic-desc-font">2011.11.12</div>
@@ -21,8 +23,9 @@
     </div>
     <div style="color: ;" class="scroll-pictures second-row" ref="divScroll_row2">
       <div v-for="(item, index) in pictures2" :key="index">
-        <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle">
+        <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle" @mouseover="showOver(index)" @click="showDetail">
           <img :src="item.url" height="100%" width="100%">
+          <div v-if="isActivePicture(index)" style="position: absolute; left:48px; top:8px; color:beige;">2013.9.0</div>
         </div>
         <div class="pic-title-font">故宫第12次</div>
         <div class="pic-desc-font">2011.11.12</div>
@@ -34,6 +37,21 @@
     <div class="right-arrow arrow-size" @click="scrollTo('right')">
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
+    <div class="pop-pic-window column-normal-center"  v-if="showWindow" @click="closeDetailWindow">
+        <div class="detail-pic-size" style="margin-top: 50px;">
+            <img src="/static/picShare/1.png" height="100%" width="100%">
+        </div>
+        <div>
+          明国时期最厉害的武林高手齐聚一堂
+        </div>
+        <div style="display: flex; flex-direction: row;  justify-content: flex-start; margin-top: 40px; width: 800px; overflow: auto;">
+             <div v-for="(item, index) in pictures1" :key="index">
+                  <div style="width: 100px; height: 80px; margin-right: 10px;">
+                      <img :src="item.url"  height="100%" width="100%">
+                  </div>
+             </div>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -43,9 +61,9 @@
   const pic_marginRight = 20;
   export default {
     name: 'ScrollTimeView',
+
     created() {
       this.$nextTick(() => {
-
         let scroll1 = new BScroll(this.$refs.divScroll_row1, {
           click: true,
           startX: 0,
@@ -78,6 +96,21 @@
     },
 
     methods: {
+      showDetail(){
+          this.showWindow = true;
+      },
+      closeDetailWindow(){
+          this.showWindow = false;
+      },
+
+      isActivePicture(index) {
+        // return false;
+        return index === this.activeIndex;
+      },
+      showOver(index) {
+        console.log("====show over=====", index);
+        this.activeIndex = index;
+      },
       //点击箭头，滑动scrollX
       scrollTo(type) {
         let step = 200;
@@ -245,6 +278,8 @@
     //多个照片行取并操作
     data() {
       return {
+        showWindow:false,
+        activeIndex: -1,
         fixSurplusWidth: 0,
         unit_period: 5,
         total_period: 0,
@@ -462,6 +497,28 @@
   @windowWidth: 1440px;
   @pic_marginRight: 20px;
   @topOffset: 20px;
+
+  .detail-pic-size{
+      width: 600px;
+      height: 300px;
+  }
+
+  .pop-pic-window {
+    z-index: 100;
+    width: 1200px;
+    height: 600px;
+    background-color: black;
+    position: fixed;
+    top:40px;
+    left:90px;
+  }
+
+  .column-normal-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 
   .pic-desc-font {
     font-size: 12px;

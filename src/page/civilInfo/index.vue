@@ -31,7 +31,7 @@
       </div>
       <ScrollTimeView></ScrollTimeView>
     </div>
-    <div class="view-title share-pos" @click="gotoPage('/userPage')">
+    <div class="view-title share-pos">
       <div style="margin-left: 86px; margin-top: 40px; ">
         用户分享
       </div>
