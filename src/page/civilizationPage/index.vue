@@ -32,7 +32,7 @@
           </div>
         </bm-info-window>
         <div class="left-search-control">
-          <div class="row">
+          <div class="line-row">
             <div>
               <el-input placeholder="搜索城市 输入关键字" style="width: 330px;" v-model="location" class="input-with-select">
                 <el-button slot="append" icon="el-icon-search"></el-button>
@@ -47,10 +47,10 @@
       </baidu-map>
     </div>
     <div class="zoom-control-pos">
-      <div class="zoom-constrol-bigger box-center" style="font-size: 26px; color: white;">
+      <div class="zoom-constrol-bigger box-center-civil" style="font-size: 26px; color: white;">
         +
       </div>
-      <div class="zoom-control-smaller box-center" style="font-size: 26px; color:#D3D3D3">
+      <div class="zoom-control-smaller box-center-civil" style="font-size: 26px; color:#D3D3D3">
         -
       </div>
     </div>
@@ -64,7 +64,7 @@
             <el-option label="流行热门" value="流行热门"></el-option>
           </el-select>
         </div>
-        <div class="control-label box-center" @click="controlListTable">
+        <div class="control-label box-center-civil" @click="controlListTable">
           <div v-if="!listShow" style="width: 24px; height: 24px;">
             <img src="/static/icon/排行关闭.png" height="100%" width="100%">
           </div>
@@ -270,33 +270,33 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" scoped>
+<style lang="less">
   // @import '../appStyle';
 
   @headTopHeight: 68px;
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
 
-  .top-header {
-    width: 100%;
-    background: rgba(243, 245, 246, 1);
-    height: @headTopHeight;
-  }
+//   .top-header{
+//     width: 100%;
+//     background: rgba(243, 245, 246, 1);
+//     height: @headTopHeight;
+//   }
+//
+  // .control-list-title {
+  //   position: absolute;
+  //   top: 10px;
+  //   left: 80px;
+  //   margin-left: 10px;
+  //   margin-bottom: 30px;
+  //   font-family: PingFangSC;
+  //   font-weight: 400;
+  //   color: rgba(23, 0, 0, 1);
+  //   line-height: 24px;
+  //   font-size: 18px;
+  // }
 
-  .control-list-title {
-    position: absolute;
-    top: 10px;
-    left: 80px;
-    margin-left: 10px;
-    margin-bottom: 30px;
-    font-family: PingFangSC;
-    font-weight: 400;
-    color: rgba(23, 0, 0, 1);
-    line-height: 24px;
-    font-size: 18px;
-  }
-
-  .row {
+  .line-row {
     display: flex;
     flex-direction: row;
   }
@@ -304,15 +304,6 @@
   .list-padding {
     padding-left: 10px;
     padding-right: 10px;
-  }
-
-
-  .score-font {
-    font-size: 12px;
-    font-family: PingFangSC;
-    font-weight: 400;
-    color: rgba(23, 0, 0, 1);
-    line-height: 20px;
   }
 
   .list-number {
@@ -362,7 +353,7 @@
     background: rgba(255, 255, 255, 1);
   }
 
-  .box-center {
+  .box-center-civil {
     display: flex;
     flex-direction: row;
     justify-content: center;

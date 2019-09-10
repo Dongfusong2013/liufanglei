@@ -31,10 +31,13 @@
       </div>
       <ScrollTimeView></ScrollTimeView>
     </div>
-    <div class="view-title share-pos" >
-        <div style="margin-left: 86px;">
-          用户分享
-        </div>
+    <div class="view-title share-pos">
+      <div style="margin-left: 86px; margin-top: 40px; ">
+        用户分享
+      </div>
+      <div style="margin-top: 40px; ">
+        <PicShare></PicShare>
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +46,7 @@
   import RaddarChart from '@/components/RaddarChart.vue';
   import AppHeader from '@/components/appHeader';
   import ScrollTimeView from '@/components/ScrollTimeView';
+  import PicShare from '@/components/PicShare.vue'
 
   export default {
     name: 'Civilnfo',
@@ -50,24 +54,27 @@
       AppHeader,
       RaddarChart,
       ScrollTimeView,
+      PicShare,
     },
     mounted() {
       console.log("mounted....");
-    }
+    },
+
   }
 </script>
 
 <style lang="less" scoped>
   // @import '../appStyle.less';
 
-  .share-pos{
+  .share-pos {
     margin-top: 180px;
     width: 100%;
     height: 800px;
     box-sizing: border-box;
-    background-color: aliceblue;
+    // background-color: aliceblue;
   }
-  .backgroundImg{
+
+  .backgroundImg {
     width: 100%;
     height: 800px;
   }
