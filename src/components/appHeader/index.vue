@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="menueItem row-box-center">
-          <div class="myStyle">
+          <div class="myStyle" @click="gotoPage('/userPage')">
             <img src="/static/icon/头像.png" height="100%" width="100%">
           </div>
         </div>

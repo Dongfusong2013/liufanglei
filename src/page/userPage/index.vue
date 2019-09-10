@@ -4,9 +4,7 @@
     <AppHeader noBackground="false" />
 
     <div style="box-sizing: border-box; width: 100%; height: 100%">
-      <baidu-map class="map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
-        <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
-        <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map> -->
+      <baidu-map class="my-map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
 
         <div v-for="(item, index) in locationListByType" :key="index">
           <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)" :icon="{url: item.url, size: {width: 40, height: 40}}">
@@ -15,100 +13,114 @@
         </div>
 
         <bm-info-window :position="selectedLocation.position" :width="windowWidth" :height="windowHeight" :show="show"
-          @close="infoWindowClose" @open="infoWindowOpen">
-          <div style="width: 100%; height: 157px;" @click="gotoPage('/civilInfo')">
-            <img :src="selectedLocation.picSrc" height="100%" width="100%">
+          @close="infoWindowClose" @open="infoWindowOpen" :offset="window_offset">
+          <div @click="gotoPage('/addPicture')">
+            <div style="width:296px; height:168px;">
+              <img :src="selectedLocation.picSrc" height="100%" width="100%">
+            </div>
             <div class="row-space-box title-font title-top">
               <div>
                 {{selectedLocation.name}}
               </div>
               <div class="">
-                5.0
+                4.0
               </div>
             </div>
             <div class="content_font content-top">
               {{selectedLocation.descript}}
             </div>
+            <div class="normal-row" style="margin-top: 10px;">
+              <div>
+                <div class="el-icon-location"></div>
+              </div>
+              <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
+                地址
+              </div>
+              <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                北京市东城区景山前街4号
+              </div>
+            </div>
+
+            <div class="normal-row" style="margin-left: 8px; margin-top: 10px;">
+              <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px;">
+                未打卡
+              </div>
+              <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                已有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">379</span>人，打卡<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">6237</span>次
+              </div>
+            </div>
+            <div class="upload-box" style=" margin-left: 8px; margin-top: 10px;">
+              <div class="column-center" style="height: 100px; padding-top: 30px;">
+                <div class="control-font">您还没有上传过打卡照片</div>
+                <div style="width: 40px; height: 40px;">
+                  <img src="/static/icon/上传足迹.png" height="100%" width="100%">
+                </div>
+                <div class="control-font" style="color: rgba(221, 45, 74, 1);">立即打卡</div>
+              </div>
+            </div>
           </div>
         </bm-info-window>
-        <div class="left-search-control">
-          <div class="line-row">
-            <div>
-              <el-input placeholder="搜索城市 输入关键字" style="width: 330px;" v-model="location" class="input-with-select">
-                <el-button slot="append" icon="el-icon-search"></el-button>
-              </el-input>
-              <!-- <div style="width: 21px; height:21px;">
-                <img src="/static/icon/搜索.png" height="100%" width="100%">
-              </div> -->
-              <bm-local-search :auto-viewport="true" :keyword="location" :location="location"></bm-local-search>
+      </baidu-map>
+
+    </div>
+
+    <div style="width: 100%; position: absolute; top:670px">
+      <div class="normal-row" style="margin-left: 0px; width: 100%;">
+        <div style="width: 96px; height: 96px; margin-left: 100px;">
+          <img src="/static/icon/头像.png" height="100%" width="100%">
+        </div>
+        <div style="margin-left: 26px; display: flex; flex-direction: column; justify-content: center ; flex: 1;">
+          <div class="name-font">
+            光速兔子
+          </div>
+          <div class="normal-space-row" style="margin-top: 10px;">
+            <div class="normal-row">
+              <div class="desc-font">23429486</div>
+              <div class="normal-row">
+                <div class="number-font" style="margin-left: 28px; margin-right: 4px; ">18</div>
+                <div class="desc-font">获赞</div>
+              </div>
+              <div class="normal-row " style="margin-left: 28px; ">
+                <div class="number-font">119</div>
+                <div class="desc-font">关注</div>
+              </div>
+              <div class="normal-row" style="margin-left: 28px;">
+                <div class="number-font" style="">57</div>
+                <div class="desc-font">粉丝</div>
+              </div>
+            </div>
+
+            <div class="normal-row" style="margin-right: 190px;">
+              <div class="number-font" style="">57</div>
+              <div class="desc-font">张照片</div>
+              <div class="number-font" style="margin-left: 40px;">2019</div>
+            </div>
+          </div>
+          <div style="width: 100%;">
+
+          </div>
+          <div class="user-big-title normal-row" style="margin-top: 24px; margin-left: 10px;">
+            <div style="margin-right: 48px;">
+              关于
+            </div>
+            <div style="margin-right: 48px;">
+              所有照片
+            </div>
+            <div style="margin-right: 48px;">
+              故事集
             </div>
           </div>
         </div>
-      </baidu-map>
+      </div>
+
     </div>
+
     <div class="zoom-control-pos">
       <div class="zoom-constrol-bigger box-center" style="font-size: 26px; color: white;">
         +
       </div>
       <div class="zoom-control-smaller box-center" style="font-size: 26px; color:#D3D3D3">
         -
-      </div>
-    </div>
-    <div class="right-list-control row-space-box">
-      <div class="row-space-box" style="align-self: flex-start; margin-top: 30px;">
-        <div style="margin-right: 10px;">
-          <el-select v-model="selectType" style="width: 110px;" slot="prepend" placeholder="请选择">
-            <el-option label="全部" value="全部"></el-option>
-            <el-option label="历史遗迹" value="历史遗迹"></el-option>
-            <el-option label="现代建筑" value="现代建筑"></el-option>
-            <el-option label="流行热门" value="流行热门"></el-option>
-          </el-select>
-        </div>
-        <div class="control-label box-center" @click="controlListTable">
-          <div v-if="!listShow" style="width: 24px; height: 24px;">
-            <img src="/static/icon/排行关闭.png" height="100%" width="100%">
-          </div>
-          <div v-if="listShow" style="width: 24px; height: 24px;">
-            <img src="/static/icon/排行打开.png" height="100%" width="100%">
-          </div>
-        </div>
-      </div>
-      <div class="pop_window" v-if="!listShow">
-        <div>
-          <div style="padding-left: 20px; padding-top: 10px; padding-bottom: 10px;">
-            <div style="display: flex; flex-direction: row;  align-items: center ;">
-              <div style="margin-left: 10px;">
-                排行榜
-              </div>
-            </div>
-          </div>
-          <div style="margin-left: 20px; background-color: darkred; width: 80px; height: 2px;">
-          </div>
-        </div>
-        <div style="padding-top: 20px;">
-          <div v-for="(item, index) in locationListByType" :key="index">
-            <div class="row-space-box list-padding item-margin-bottom" @click="gotoLocation(item)">
-              <div class="list-number">
-                {{formatNumber(index+1)}}
-              </div>
-              <div class="list-pic">
-                <img :src="item.picSrc" height="100%" width="100%">
-              </div>
-              <div class="list-content-font">
-                <div>
-                  {{item.name}}
-                </div>
-                <div style="width: 100px;">
-                  <el-rate v-model="item.score" text-color="#1F2D3D" disabled show-score>
-                  </el-rate>
-                </div>
-              </div>
-              <div class="list-sm-content-font" style="align-self: flex-end;">
-                {{item.footCount}}人打卡
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -119,7 +131,7 @@
   import AppHeader from '@/components/appHeader/index.vue'
 
   export default {
-    name: 'civilizationPage',
+    name: 'UserPage',
     components: {
       AppHeader
     },
@@ -141,6 +153,10 @@
     },
     data() {
       return {
+        window_offset: {
+          width: 100,
+          height: 200
+        },
         mapStyle: {
           styleJson: [{
             "featureType": "all",
@@ -157,7 +173,7 @@
           lat: 39.915
         },
         windowWidth: 296,
-        windowHeight: 232,
+        windowHeight: 478,
         zoom: 3,
         show: false,
         selectedLocation: {},
@@ -247,11 +263,19 @@
         }
       },
       gotoLocation(location) {
-        this.centerPosition = location.position;
+        console.log("gotoLocation", location);
+        this.centerPosition = {
+          lng: location.position.lng,
+          lat: location.position.lat
+        };
         this.openLocationWindow(location);
       },
       openLocationWindow(location) {
         this.show = false;
+        this.centerPosition = {
+          lng: location.position.lng,
+          lat: location.position.lat
+        };
         this.selectedLocation = location;
         console.log(this.centerPosition);
         this.infoWindowOpen();
@@ -262,40 +286,85 @@
         console.log("----------close-------");
       },
       infoWindowOpen() {
-
         this.show = true
-        console.log("----------open-------");
+        console.log("----------open111-------1", this.selectedLocation);
       }
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" >
+<style lang="less">
   // @import '../appStyle';
 
   @headTopHeight: 68px;
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
 
-//   .top-header{
-//     width: 100%;
-//     background: rgba(243, 245, 246, 1);
-//     height: @headTopHeight;
-//   }
-//
-  // .control-list-title {
-  //   position: absolute;
-  //   top: 10px;
-  //   left: 80px;
-  //   margin-left: 10px;
-  //   margin-bottom: 30px;
-  //   font-family: PingFangSC;
-  //   font-weight: 400;
-  //   color: rgba(23, 0, 0, 1);
-  //   line-height: 24px;
-  //   font-size: 18px;
-  // }
+  .column-center{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+  }
+  .control-font {
+    font-size: 12px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    line-height: 20px;
+  }
+
+  .upload-box {
+    width: 280px;
+    height: 160px;
+    background: rgba(243, 245, 246, 1);
+    border-radius: 8px;
+  }
+
+  .user-big-title {
+    font-size: 20px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 28px;
+  }
+
+  .name-font {
+    font-size: 24px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 32px;
+  }
+
+  .number-font {
+    font-size: 16px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 23px;
+    margin-right: 4px;
+  }
+
+  .desc-font {
+    font-size: 14px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: grey;
+    line-height: 22px;
+  }
+
+  .normal-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .normal-space-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
   .line-row {
     display: flex;
@@ -410,10 +479,9 @@
     line-height: 22px;
   }
 
-
   .history-container {
     background: rgba(243, 245, 246, 1);
-    width: 1550px;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -422,9 +490,9 @@
   }
 
   .zoom-control-pos {
-    position: fixed;
+    position: absolute;
     left: 40px;
-    bottom: 100px;
+    bottom: 350px;
   }
 
   .zoom-constrol-bigger {
@@ -444,9 +512,9 @@
     border: 1px solid rgba(226, 226, 226, 1);
   }
 
-  .map {
+  .my-map {
     width: 1500px;
-    height: 900px;
+    height: 680px;
 
     // .window-style {
     //   width: 100px;

@@ -13,6 +13,8 @@ import AdminPage from '@/page/adminPage'
 import ArticleDetail from '@/page/articleDetail'
 import TestPage from '@/page/TestPage'
 import CivilInfo from '@/page/civilInfo'
+import UserPage from '@/page/userPage'
+import AddPicture from '@/page/addPicture'
 
 Vue.use(Router)
 
@@ -26,6 +28,11 @@ export default new Router({
       path: '/',
       name: 'Cover',
       component: Cover,
+    },
+     {
+      path: '/userPage',
+      name: 'UserPage',
+      component: UserPage,
     },
     {
       path: '/articleDetail',
@@ -59,6 +66,11 @@ export default new Router({
       path: '/design',
       name: 'DesignPage',
       component: DesignPage
+    },
+    {
+      path: '/addPicture',
+      name: 'AddPicture',
+      component: AddPicture
     },
     {
       path: '/civilization',

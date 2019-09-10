@@ -31,7 +31,7 @@
       </div>
       <ScrollTimeView></ScrollTimeView>
     </div>
-    <div class="view-title share-pos">
+    <div class="view-title share-pos" @click="gotoPage('/userPage')">
       <div style="margin-left: 86px; margin-top: 40px; ">
         用户分享
       </div>
@@ -59,6 +59,11 @@
     mounted() {
       console.log("mounted....");
     },
+    methods:{
+        gotoPage(path){
+            this.$router.push(path);
+        }
+    }
 
   }
 </script>
