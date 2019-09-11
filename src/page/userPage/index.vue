@@ -12,11 +12,63 @@
           </bm-marker>
         </div>
 
-        <!-- <bm-overlay style="background-color: red;" :draw="draw" pane="labelPane">
-          dongfusong
-        </bm-overlay> -->
+        <!-- 信息窗体 -->
+        <bm-overlay class="over-lay" @draw="draw" pane="labelPane" v-if="show">
+          <div @click="gotoPage('/addPicture')">
+            <div style="width:296px; height:168px; ">
+              <img :src="selectedLocation.picSrc" height="100%" width="100%" style="border-radius:8px 8px 0px 0px;">
+            </div>
+            <div style="padding: 16px;">
+              <div class="row-space-box title-font">
+                <div>
+                  {{selectedLocation.name}}
+                </div>
+                <div class="">
+                  4.0
+                </div>
+              </div>
+              <div class="content_font content-top">
+                {{selectedLocation.descript}}
+              </div>
+              <div class="normal-row" style="margin-top: 10px;">
+                <div>
+                  <div class="el-icon-location"></div>
+                </div>
+                <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
+                  地址
+                </div>
+                <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                  北京市东城区景山前街4号
+                </div>
+              </div>
 
-        <bm-info-window :position="selectedLocation.position" :width="windowWidth" :height="windowHeight" :show="show"
+              <div class="normal-row" style="margin-top: 4px;">
+                <div>
+                  <div class="el-icon-location"></div>
+                </div>
+                <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
+                  未打卡
+                </div>
+                <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                  已有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">379</span>人，打卡<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">6237</span>次
+                </div>
+              </div>
+              <div style="margin-top: 8px; width: 100%; height: 100%; display: flex; flex-direction: row; justify-content: center;">
+                <div class="upload-box">
+                  <div class="column-center" style="height: 100px; padding-top: 30px;">
+                    <div class="control-font">您还没有上传过打卡照片</div>
+                    <div style="width: 40px; height: 40px;">
+                      <img src="/static/icon/上传足迹.png" height="100%" width="100%">
+                    </div>
+                    <div class="control-font" style="color: rgba(221, 45, 74, 1);">立即打卡</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </bm-overlay>
+
+        <!-- <bm-info-window :position="selectedLocation.position" :width="windowWidth" :height="windowHeight" :show="show"
           @close="infoWindowClose" @open="infoWindowOpen" :offset="window_offset">
           <div @click="gotoPage('/addPicture')">
             <div style="width:296px; height:168px;">
@@ -63,9 +115,8 @@
               </div>
             </div>
           </div>
-        </bm-info-window>
+        </bm-info-window> -->
       </baidu-map>
-
     </div>
 
     <div style="width: 100%; position: absolute; top:670px">
@@ -257,9 +308,12 @@
         BMap,
         map
       }) {
-        const pixel = map.pointToOverlayPixel(new BMap.Point(116.404, 39.915))
+        console.log("draw", el.style);
+        var lng = this.centerPosition.lng;
+        var lat = this.centerPosition.lat;
+        const pixel = map.pointToOverlayPixel(new BMap.Point(lng, lat));
         el.style.left = pixel.x - 60 + 'px'
-        el.style.top = pixel.y - 20 + 'px'
+        el.style.top = pixel.y - 300 + 'px'
       },
       gotoPage(path) {
         this.$router.push(path);
@@ -313,6 +367,15 @@
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
 
+  .over-lay {
+    background-color: white;
+    box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    position: absolute;
+    top: 10px;
+    left: 10px
+  }
+
   .column-center {
     display: flex;
     flex-direction: column;
@@ -328,7 +391,7 @@
   }
 
   .upload-box {
-    width: 280px;
+    width: 264px;
     height: 160px;
     background: rgba(243, 245, 246, 1);
     border-radius: 8px;
