@@ -169,7 +169,6 @@
               lng: 136.404,
               lat: 39.915
             },
-            url: "/static/civil/历史遗迹.png",
             score: 4.9,
             footCount: 1500,
             name: '故宫博物院，中国',
@@ -177,12 +176,35 @@
             picSrc: '/static/design/door.jpeg',
           },
           {
+              type: "历史遗迹",
+              position: {
+                lng: 106.404,
+                lat: 35.915
+              },
+              score: 4.9,
+              footCount: 1500,
+              name: '故宫博物院，中国',
+              descript: '世界上最宏大的宫廷建筑群',
+              picSrc: '/static/design/door.jpeg',
+            },
+            {
+                type: "历史遗迹",
+                position: {
+                  lng: 116.404,
+                  lat: 32.915
+                },
+                score: 4.9,
+                footCount: 1500,
+                name: '故宫博物院，中国',
+                descript: '世界上最宏大的宫廷建筑群',
+                picSrc: '/static/design/door.jpeg',
+              },
+          {
             type: "历史遗迹",
             position: {
               lng: 400.404,
               lat: 69.915
             },
-            url: "/static/civil/历史遗迹.png",
             score: 4.8,
             footCount: 1314,
             name: '罗马角斗场，意大利',
@@ -195,7 +217,6 @@
               lng: 106.404,
               lat: 59.915
             },
-            url: "/static/civil/历史遗迹.png",
             score: 4.4,
             footCount: 914,
             name: '德国大教堂，德国',
@@ -208,7 +229,6 @@
               lng: 108.404,
               lat: 69.915
             },
-            url: "/static/civil/历史遗迹.png",
             score: 4.4,
             footCount: 904,
             name: '香港交易所，中国',
@@ -221,7 +241,6 @@
               lng: 116.404,
               lat: 49.915
             },
-            url: "/static/civil/历史遗迹.png",
             score: 4.4,
             footCount: 659,
             name: '中国银行，中国',
