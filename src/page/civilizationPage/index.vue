@@ -427,7 +427,7 @@
 
   .pop_window {
     width: 296px;
-    height: 598px;
+    height: 610px;
     background: rgba(255, 255, 255, 1);
     overflow: auto;
   }
