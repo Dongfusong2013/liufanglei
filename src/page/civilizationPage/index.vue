@@ -9,7 +9,7 @@
         <!-- <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_LEFT" :isOpen="true"></bm-overview-map> -->
 
         <div v-for="(item, index) in locationListByType" :key="index">
-          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" :icon="{url: item.url, size: {width: 40, height: 40}}">
+          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" :icon="{url: getIconUlr(item.position, item.type), size: {width: 20, height: 20}}">
             <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
           </bm-marker>
         </div>
@@ -221,7 +221,6 @@
               lng: 116.404,
               lat: 49.915
             },
-
             url: "/static/civil/历史遗迹.png",
             score: 4.4,
             footCount: 659,
@@ -233,6 +232,19 @@
       }
     },
     methods: {
+      getIconUlr(position, type) {
+        if (position != undefined && this.selectedLocation != {}
+         && position === this.selectedLocation.position){
+          return "/static/civil/选中建筑.png";
+        }
+        if (type === "历史遗迹") {
+          return "/static/civil/历史遗迹.png";
+        } else if (type === "现代建筑") {
+          return "/static/civil/现代建筑.png";
+        }else{
+          return "/static/civil/热门流行.png";
+        }
+      },
       gotoPage(path) {
         this.$router.push(path);
       },
@@ -371,7 +383,7 @@
   .left-search-control {
     position: fixed;
     top: @right-top;
-    left: 80px;
+    left: 120px;
     width: 354px;
   }
 
