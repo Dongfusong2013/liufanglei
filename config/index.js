@@ -8,7 +8,7 @@ module.exports = {
   dev: {
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
     // proxyTable: {
     //   '/liufanglei_server': {
     //     target: 'http://localhost:9931',

@@ -581,6 +581,7 @@
     top: 40px;
     left: 90px;
     background: rgba(216, 216, 216, 1);
+    color: black;
 
     width: 1200px;
     height: 732px;
@@ -593,8 +594,6 @@
     flex-direction: column;
     align-items: center;
   }
-
-
 
   .pic-desc-font {
     font-size: 12px;

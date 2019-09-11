@@ -1,7 +1,8 @@
 <template>
   <div class="history-container">
-
+  <!-- <div style="position: ; top:10px; left:0px; width: 100%;"> -->
     <AppHeader noBackground="false" />
+  <!-- </div> -->
 
     <div style="box-sizing: border-box; width: 100%; height: 100%">
       <baidu-map class="map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
@@ -65,15 +66,15 @@
           </el-select>
         </div>
         <div class="control-label box-center" @click="controlListTable">
-          <div v-if="!listShow" style="width: 24px; height: 24px;">
+          <div v-if="listShow" style="width: 24px; height: 24px;">
             <img src="/static/icon/排行关闭.png" height="100%" width="100%">
           </div>
-          <div v-if="listShow" style="width: 24px; height: 24px;">
+          <div v-if="!listShow" style="width: 24px; height: 24px;">
             <img src="/static/icon/排行打开.png" height="100%" width="100%">
           </div>
         </div>
       </div>
-      <div class="pop_window" v-if="!listShow">
+      <div class="pop_window" v-if="listShow">
         <div>
           <div style="padding-left: 20px; padding-top: 10px; padding-bottom: 10px;">
             <div style="display: flex; flex-direction: row;  align-items: center ;">
@@ -161,7 +162,7 @@
         zoom: 3,
         show: false,
         selectedLocation: {},
-        listShow: false,
+        listShow: true,
         location: '',
         locationList: [{
             type: "历史遗迹",
@@ -322,20 +323,11 @@
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
 
-
-
   .el-input__inner {
-    // width: 220px;
-    // border-top-width: 0px;
-    // border-left-width: 0px;
-    // border-right-width: 0px;
-    // border-bottom-width: 1px;
 
-    // border-bottom: 1px solid;
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
-    /*outline: medium;*/
   }
 
   .el-rate__text {
