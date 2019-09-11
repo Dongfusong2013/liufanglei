@@ -41,20 +41,34 @@
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
     <div class="pop-pic-window column-normal-center" v-if="showWindow" @click="closeDetailWindow">
-      <div style="margin-top: 10px;">
-        在2019年8月19日那时....
+      <div class="detail-pic-content column-normal-center">
+        <div style="margin-top: 10px;">
+          在2019年8月19日那时....
+        </div>
+        <div class="detail-pic-size" style="margin-top: 50px;">
+          <img src="/static/picShare/1.png" height="100%" width="100%">
+        </div>
+        <div style="margin-top: 10px;">
+          明国时期最厉害的武林高手齐聚一堂
+        </div>
       </div>
-      <div class="detail-pic-size" style="margin-top: 50px;">
-        <img src="/static/picShare/1.png" height="100%" width="100%">
-      </div>
-      <div style="margin-top: 10px;">
-        明国时期最厉害的武林高手齐聚一堂
-      </div>
-      <div style="display: flex; flex-direction: row;  justify-content: flex-start; margin-top: 40px; width: 800px; overflow: auto;">
+      <div style="display: flex; flex-direction: row;  justify-content: center; align-items: center;width: 420px; overflow: auto;">
         <div v-for="(item, index) in pictures1" :key="index">
-          <div style="width: 100px; height: 80px; margin-right: 10px;">
+          <div style="width: 40px; height: 40px; margin-right: 8px; margin-bottom: 16px;">
             <img :src="item.url" height="100%" width="100%">
           </div>
+        </div>
+      </div>
+
+      <div style="height: 100px; width: 100%; background-color: white;
+      box-shadow:0px 8px 16px 0px rgba(48,49,51,0.1);
+      border-radius:20px;"
+        class="detail-row">
+        <div style="width: 60px; height: 60px; margin-left: 16px;">
+          <img src="/static/icon/头像.png" height="100%" width="100%">
+        </div>
+        <div class="detail-title-font" style="margin-left: 23px;">
+          光速兔子
         </div>
       </div>
     </div>
@@ -528,11 +542,17 @@
   @pic_marginRight: 20px;
   @topOffset: 20px;
 
+  .detail-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
   .detail-row-space {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 
   .detail-pic-size {
@@ -540,14 +560,32 @@
     height: 300px;
   }
 
+  .detail-pic-content {
+    width: 1088px;
+    height: 552px;
+    background: rgba(246, 245, 243, 1);
+  }
+
+  .detail-title-font {
+    font-size: 24px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 32px;
+    color: black;
+  }
+
   .pop-pic-window {
     z-index: 100;
-    width: 1200px;
-    height: 600px;
-    background-color: black;
     position: fixed;
     top: 40px;
     left: 90px;
+    background: rgba(216, 216, 216, 1);
+
+    width: 1200px;
+    height: 732px;
+    box-shadow: 0px 8px 16px 0px rgba(48, 49, 51, 0.1);
+    border-radius: 20px;
   }
 
   .column-normal-center {
@@ -555,6 +593,7 @@
     flex-direction: column;
     align-items: center;
   }
+
 
 
   .pic-desc-font {
