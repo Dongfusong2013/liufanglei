@@ -16,7 +16,7 @@
 
         <bm-info-window :position="selectedLocation.position" :width="windowWidth" :height="windowHeight" :show="show"
           @close="infoWindowClose" @open="infoWindowOpen">
-          <div style="width: 100%; height: 157px;" @click="gotoPage('/civilInfo')">
+          <div style="width: 100%; height: 159px; margin-top: 10px;" @click="gotoPage('/civilInfo')">
             <img :src="selectedLocation.picSrc" height="100%" width="100%">
             <div class="row-space-box title-font title-top">
               <div>
