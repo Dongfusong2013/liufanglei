@@ -5,8 +5,8 @@
 
     <div style="box-sizing: border-box; width: 100%; height: 100%">
       <baidu-map class="map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
-        <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
-        <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map> -->
+        <bm-navigation anchor="BMAP_ANCHOR_TOP_LEFT"></bm-navigation>
+        <!-- <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_LEFT" :isOpen="true"></bm-overview-map> -->
 
         <div v-for="(item, index) in locationListByType" :key="index">
           <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" :icon="{url: item.url, size: {width: 40, height: 40}}">
@@ -46,14 +46,14 @@
         </div>
       </baidu-map>
     </div>
-    <div class="zoom-control-pos">
+    <!-- <div class="zoom-control-pos">
       <div class="zoom-constrol-bigger box-center" style="font-size: 26px; color: white;">
         +
       </div>
       <div class="zoom-control-smaller box-center" style="font-size: 26px; color:#D3D3D3">
         -
       </div>
-    </div>
+    </div> -->
     <div class="right-list-control row-space-box">
       <div class="row-space-box" style="align-self: flex-start; margin-top: 30px;">
         <div style="margin-right: 10px;">
@@ -371,7 +371,7 @@
   .left-search-control {
     position: fixed;
     top: @right-top;
-    left: 40px;
+    left: 80px;
     width: 354px;
   }
 

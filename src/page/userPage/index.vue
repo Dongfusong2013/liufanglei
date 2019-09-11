@@ -5,12 +5,16 @@
 
     <div style="box-sizing: border-box; width: 100%; height: 100%">
       <baidu-map class="my-map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
-
+        <bm-navigation anchor="BMAP_ANCHOR_TOP_LEFT"></bm-navigation>
         <div v-for="(item, index) in locationListByType" :key="index">
           <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)" :icon="{url: item.url, size: {width: 40, height: 40}}">
             <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
           </bm-marker>
         </div>
+
+        <!-- <bm-overlay style="background-color: red;" :draw="draw" pane="labelPane">
+          dongfusong
+        </bm-overlay> -->
 
         <bm-info-window :position="selectedLocation.position" :width="windowWidth" :height="windowHeight" :show="show"
           @close="infoWindowClose" @open="infoWindowOpen" :offset="window_offset">
@@ -97,7 +101,6 @@
             </div>
           </div>
           <div style="width: 100%;">
-
           </div>
           <div class="user-big-title normal-row" style="margin-top: 24px; margin-left: 10px;">
             <div style="margin-right: 48px;">
@@ -115,14 +118,14 @@
 
     </div>
 
-    <div class="zoom-control-pos">
+    <!-- <div class="zoom-control-pos">
       <div class="zoom-constrol-bigger box-center" style="font-size: 26px; color: white;">
         +
       </div>
       <div class="zoom-control-smaller box-center" style="font-size: 26px; color:#D3D3D3">
         -
       </div>
-    </div>
+    </div> -->
 
   </div>
 </template>
@@ -249,6 +252,15 @@
       }
     },
     methods: {
+      draw({
+        el,
+        BMap,
+        map
+      }) {
+        const pixel = map.pointToOverlayPixel(new BMap.Point(116.404, 39.915))
+        el.style.left = pixel.x - 60 + 'px'
+        el.style.top = pixel.y - 20 + 'px'
+      },
       gotoPage(path) {
         this.$router.push(path);
       },
@@ -301,12 +313,13 @@
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
 
-  .column-center{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
+  .column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
+
   .control-font {
     font-size: 12px;
     font-family: PingFangSC;
