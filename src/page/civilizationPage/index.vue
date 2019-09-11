@@ -414,7 +414,7 @@
   .left-search-control {
     position: fixed;
     top: @right-top;
-    left: 120px;
+    left: 80px;
     width: 354px;
   }
 
