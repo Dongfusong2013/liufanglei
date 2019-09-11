@@ -13,9 +13,9 @@
         </div>
 
         <!-- 信息窗体 -->
-        <bm-overlay class="over-lay" @draw="draw" pane="labelPane" v-if="show">
+        <bm-overlay class="over-lay" @draw="draw" pane="labelPane" v-if="show" ref="overlayWindow">
           <div @click="gotoPage('/addPicture')">
-            <div style="width:296px; height:168px; ">
+            <div style="width:296px; height:168px;">
               <img :src="selectedLocation.picSrc" height="100%" width="100%" style="border-radius:8px 8px 0px 0px;">
             </div>
             <div style="padding: 16px;">
@@ -354,7 +354,18 @@
       infoWindowOpen() {
         this.show = true
         console.log("----------open111-------1", this.selectedLocation);
-      }
+        document.addEventListener('click', this.hidePanel, false);
+      },
+      hide() {
+        this.show =  false
+        document.removeEventListener('click', this.hidePanel, false)
+      },
+      hidePanel(e) {
+         //点击除弹出层外的空白区域 && !this.$refs.overlayWindow.contains(e.target), 此处没有判断是否空白处
+        if (this.$refs.overlayWindow) {
+          this.hide()
+        }
+      },
     }
   }
 </script>
