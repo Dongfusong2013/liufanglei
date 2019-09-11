@@ -9,7 +9,7 @@
         <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map> -->
 
         <div v-for="(item, index) in locationListByType" :key="index">
-          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)" :icon="{url: item.url, size: {width: 40, height: 40}}">
+          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" :icon="{url: item.url, size: {width: 40, height: 40}}">
             <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
           </bm-marker>
         </div>
@@ -33,13 +33,13 @@
         </bm-info-window>
         <div class="left-search-control">
           <div class="line-row">
-            <div>
-              <el-input placeholder="搜索城市 输入关键字" style="width: 330px;" v-model="location" class="input-with-select">
-                <el-button slot="append" icon="el-icon-search"></el-button>
+            <div style="position: relative;">
+              <el-input placeholder="搜索城市 输入关键字" style="width: 310px;" v-model="location" class="input-with-select">
+                <!-- <el-button slot="append" icon="el-icon-search"></el-button> -->
               </el-input>
-              <!-- <div style="width: 21px; height:21px;">
+              <div class="search-icon" style="position:absolute; left: 280px; top:10px; width: 20px; height: 20px;">
                 <img src="/static/icon/搜索.png" height="100%" width="100%">
-              </div> -->
+              </div>
               <bm-local-search :auto-viewport="true" :keyword="location" :location="location"></bm-local-search>
             </div>
           </div>
@@ -95,10 +95,10 @@
                 <img :src="item.picSrc" height="100%" width="100%">
               </div>
               <div class="list-content-font">
-                <div>
+                <div class="fix-width-text">
                   {{item.name}}
                 </div>
-                <div style="width: 100px;">
+                <div style="margin-top: 5px;">
                   <el-rate v-model="item.score" text-color="#1F2D3D" disabled show-score>
                   </el-rate>
                 </div>
@@ -247,10 +247,11 @@
         }
       },
       gotoLocation(location) {
-        this.centerPosition = location.position;
+        // this.centerPosition = location.position;
         this.openLocationWindow(location);
       },
       openLocationWindow(location) {
+        this.centerPosition = location.position;
         this.show = false;
         this.selectedLocation = location;
         console.log(this.centerPosition);
@@ -271,19 +272,46 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" >
+<style lang="less">
   // @import '../appStyle';
 
   @headTopHeight: 68px;
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
 
-//   .top-header{
-//     width: 100%;
-//     background: rgba(243, 245, 246, 1);
-//     height: @headTopHeight;
-//   }
-//
+
+
+  .el-input__inner {
+    // width: 220px;
+    // border-top-width: 0px;
+    // border-left-width: 0px;
+    // border-right-width: 0px;
+    // border-bottom-width: 1px;
+
+    // border-bottom: 1px solid;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    /*outline: medium;*/
+  }
+
+  .el-rate__text {
+    font-size: 12px;
+    vertical-align: middle;
+    margin-left: 10px;
+  }
+
+  .el-rate__icon {
+    font-size: 13px;
+    margin-right: 1px;
+  }
+
+  //   .top-header{
+  //     width: 100%;
+  //     background: rgba(243, 245, 246, 1);
+  //     height: @headTopHeight;
+  //   }
+  //
   // .control-list-title {
   //   position: absolute;
   //   top: 10px;
@@ -296,6 +324,12 @@
   //   line-height: 24px;
   //   font-size: 18px;
   // }
+  .fix-width-text {
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   .line-row {
     display: flex;
@@ -349,7 +383,7 @@
   }
 
   .pop_window {
-    width: 316px;
+    width: 296px;
     height: 598px;
     background: rgba(255, 255, 255, 1);
   }
