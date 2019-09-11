@@ -176,29 +176,29 @@
             picSrc: '/static/design/door.jpeg',
           },
           {
-              type: "历史遗迹",
-              position: {
-                lng: 106.404,
-                lat: 35.915
-              },
-              score: 4.9,
-              footCount: 1500,
-              name: '故宫博物院，中国',
-              descript: '世界上最宏大的宫廷建筑群',
-              picSrc: '/static/design/door.jpeg',
+            type: "历史遗迹",
+            position: {
+              lng: 106.404,
+              lat: 35.915
             },
-            {
-                type: "历史遗迹",
-                position: {
-                  lng: 116.404,
-                  lat: 32.915
-                },
-                score: 4.9,
-                footCount: 1500,
-                name: '故宫博物院，中国',
-                descript: '世界上最宏大的宫廷建筑群',
-                picSrc: '/static/design/door.jpeg',
-              },
+            score: 4.9,
+            footCount: 1500,
+            name: '故宫博物院，中国',
+            descript: '世界上最宏大的宫廷建筑群',
+            picSrc: '/static/design/door.jpeg',
+          },
+          {
+            type: "历史遗迹",
+            position: {
+              lng: 116.404,
+              lat: 32.915
+            },
+            score: 4.9,
+            footCount: 1500,
+            name: '故宫博物院，中国',
+            descript: '世界上最宏大的宫廷建筑群',
+            picSrc: '/static/design/door.jpeg',
+          },
           {
             type: "历史遗迹",
             position: {
@@ -215,6 +215,18 @@
             type: "流行热门",
             position: {
               lng: 106.404,
+              lat: 59.915
+            },
+            score: 4.4,
+            footCount: 914,
+            name: '德国大教堂，德国',
+            descript: '网络观看最多的欧洲教堂',
+            picSrc: '/static/civil/德国大教堂.jpeg',
+          },
+          {
+            type: "流行热门",
+            position: {
+              lng: 96.404,
               lat: 59.915
             },
             score: 4.4,
@@ -252,15 +264,15 @@
     },
     methods: {
       getIconUlr(position, type) {
-        if (position != undefined && this.selectedLocation != {}
-         && position === this.selectedLocation.position){
+        if (position != undefined && this.selectedLocation != {} &&
+          position === this.selectedLocation.position) {
           return "/static/civil/选中建筑.png";
         }
         if (type === "历史遗迹") {
           return "/static/civil/历史遗迹.png";
         } else if (type === "现代建筑") {
           return "/static/civil/现代建筑.png";
-        }else{
+        } else {
           return "/static/civil/热门流行.png";
         }
       },
@@ -417,6 +429,7 @@
     width: 296px;
     height: 598px;
     background: rgba(255, 255, 255, 1);
+    overflow: auto;
   }
 
   .box-center {
