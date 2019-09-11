@@ -13,25 +13,27 @@
     <div class="scroll-pictures first-row" ref="divScroll_row1">
       <div v-for="(item, index) in pictures1" :key="index">
         <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle"
-          @mouseover="showOver(index)" @click="showDetail">
+          @mouseover="showOver(1, index)" @click="showDetail" @mouseleave="showOver(1, -1)">
           <img :src="item.url" height="100%" width="100%" />
-          <div v-if="isActivePicture(index)" style="position: absolute; left:48px; top:8px; color:beige;">2013.9.0</div>
+          <div v-if="isActivePicture(1, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
-        <div class="pic-title-font">故宫第12次</div>
+        <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
         <div class="pic-desc-font">2011.11.12</div>
       </div>
     </div>
+
     <div style="color: ;" class="scroll-pictures second-row" ref="divScroll_row2">
       <div v-for="(item, index) in pictures2" :key="index">
-        <div :style="{width: item.width +'px', height:item.height+'px'}" class="picStyle" @mouseover="showOver(index)"
-          @click="showDetail">
-          <img :src="item.url" height="100%" width="100%">
-          <div v-if="isActivePicture(index)" style="position: absolute; left:48px; top:8px; color:beige;">2013.9.0</div>
+        <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle"
+          @mouseover="showOver(2,index)" @mouseleave="showOver(2, -1)" @click="showDetail">
+          <img :src="item.url" height="100%" width="100%" />
+          <div v-if="isActivePicture(2, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
-        <div class="pic-title-font">故宫第12次</div>
+        <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
         <div class="pic-desc-font">2011.11.12</div>
       </div>
     </div>
+
     <div class="left-arrow arrow-size" @click="scrollTo('left')">
       <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
     </div>
@@ -45,7 +47,7 @@
       <div class="detail-pic-size" style="margin-top: 50px;">
         <img src="/static/picShare/1.png" height="100%" width="100%">
       </div>
-      <div>
+      <div style="margin-top: 10px;">
         明国时期最厉害的武林高手齐聚一堂
       </div>
       <div style="display: flex; flex-direction: row;  justify-content: flex-start; margin-top: 40px; width: 800px; overflow: auto;">
@@ -107,13 +109,20 @@
         this.showWindow = false;
       },
 
-      isActivePicture(index) {
-        // return false;
-        return index === this.activeIndex;
+      isActivePicture(type, index) {
+        if (type === 1) {
+          return index === this.activeIndex1;
+        } else {
+          return index === this.activeIndex2;
+        }
       },
-      showOver(index) {
+      showOver(type, index) {
         console.log("====show over=====", index);
-        this.activeIndex = index;
+        if (type === 1) {
+          this.activeIndex1 = index;
+        } else {
+          this.activeIndex2 = index;
+        }
       },
       //点击箭头，滑动scrollX
       scrollTo(type) {
@@ -283,7 +292,8 @@
     data() {
       return {
         showWindow: false,
-        activeIndex: -1,
+        activeIndex1: -1,
+        activeIndex2: -1,
         fixSurplusWidth: 0,
         unit_period: 5,
         total_period: 0,
@@ -301,7 +311,7 @@
             url: '/static/location/1.png',
             width: 316,
             height: 208,
-            description: '故宫第12次重新修缮',
+            description: '故宫第12次修缮',
             // timeStr:''
           },
           {
@@ -309,7 +319,7 @@
             url: '/static/location/2.png',
             width: 280,
             height: 194,
-            description: '故宫掠影：记录故宫的美丽',
+            description: '故宫掠影：记录的美丽',
           },
           {
             time: 1993,
@@ -323,74 +333,84 @@
             url: '/static/location/4.png',
             width: 171,
             height: 207,
-            description: '故宫掠影：记录故宫的美丽',
+            description: '故宫掠影：记录美丽',
           },
           {
             time: 1995,
             url: '/static/location/5.png',
             width: 204,
             height: 187,
-            description: '故宫掠影：记录故宫的美丽',
+            description: '故宫掠影：记录的美丽',
           },
           {
             time: 2000,
             url: '/static/location/5.png',
             width: 204,
             height: 187,
+            description: '故宫掠影：记录故宫',
           },
           {
             time: 2003,
             url: '/static/location/4.png',
             width: 171,
             height: 207,
+            description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2005,
             url: '/static/location/4.png',
             width: 171,
             height: 207,
+            description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2005,
             url: '/static/location/1.png',
             width: 316,
             height: 208,
+            description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2008,
             url: '/static/location/2.png',
             width: 280,
             height: 194,
+            description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2009,
             url: '/static/location/4.png',
             width: 171,
             height: 207,
+            description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2010,
             url: '/static/location/1.png',
             width: 316,
             height: 208,
+            description: '故宫掠影：记录美丽',
           },
           {
             time: 2012,
             url: '/static/location/2.png',
             width: 280,
             height: 194,
+            description: '故宫掠影：记录美丽',
           },
           {
             time: 2013,
             url: '/static/location/3.png',
             width: 338,
             height: 191,
+            description: '故宫掠影：记录美丽',
           },
           {
             time: 2020,
             url: '/static/location/1.png',
             width: 316,
             height: 208,
+            description: '故宫掠影：记录丽',
           },
         ],
 
@@ -399,7 +419,7 @@
             url: '/static/location/6.png',
             width: 216,
             height: 158,
-            description: '故宫第12次重新修缮',
+            description: '故宫第12修缮',
             // timeStr:''
           },
           {
@@ -407,14 +427,14 @@
             url: '/static/location/7.png',
             width: 317,
             height: 175,
-            description: '故宫掠影：记录故宫的美丽',
+            description: '故宫掠影：故宫的美丽',
           },
           {
             time: 1993,
             url: '/static/location/8.png',
             width: 300,
             height: 208,
-            description: '故宫掠影：记录故宫的美丽',
+            description: '故宫掠影：美丽',
           },
           {
             time: 1994,
@@ -435,12 +455,14 @@
             url: '/static/location/5.png',
             width: 204,
             height: 187,
+            description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2003,
             url: '/static/location/4.png',
             width: 227,
             height: 208,
+            description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2006,
@@ -461,31 +483,35 @@
             url: '/static/location/10.png',
             width: 164,
             height: 190,
-            description: '故宫掠影：记录故宫的美丽',
+            description: '故宫掠影：记的美丽',
           },
           {
             time: 2014,
             url: '/static/location/5.png',
             width: 204,
             height: 187,
+            description: '故宫掠影：记录故宫',
           },
           {
             time: 2016,
             url: '/static/location/4.png',
             width: 227,
             height: 208,
+            description: '故宫掠影：记录故宫',
           },
           {
             time: 2019,
             url: '/static/location/3.png',
             width: 338,
             height: 191,
+            description: '故宫掠影：记录故宫',
           },
           {
             time: 2020,
             url: '/static/location/1.png',
             width: 316,
             height: 208,
+            description: '故宫掠影：记录故宫',
           },
         ],
 
@@ -501,6 +527,13 @@
   @windowWidth: 1440px;
   @pic_marginRight: 20px;
   @topOffset: 20px;
+
+
+  .detail-row-space {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
   .detail-pic-size {
     width: 600px;
@@ -539,6 +572,9 @@
     font-weight: 400;
     color: rgba(23, 0, 0, 1);
     line-height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .arrow-size {
