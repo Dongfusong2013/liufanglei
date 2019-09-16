@@ -94,6 +94,7 @@
       },
       closeDetailWindow() {
         this.showWindow = false;
+        console.log("close detail window", this.showWindow);
       },
       isActivePicture(type, index) {
         if (type === 1) {

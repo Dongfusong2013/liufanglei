@@ -1,18 +1,34 @@
 <template>
   <div class="pic-wrapper">
     <div v-for="(item, index) in userShares" :key="index">
-      <div :style="{width:item.width + 'px', height:item.height + 'px',  marginTop:'8px', flex:item.width}" >
+      <div :style="{width:item.width + 'px', height:item.height + 'px',  marginTop:'8px', flex:item.width}" @click="showDetailWindow">
         <img :src="item.url" height="100%" width="100%">
       </div>
     </div>
+    <DetailWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailWindow>
   </div>
 </template>
 
 <script>
+  import DetailWindow from '@/components/DetailWindow.vue'
   export default {
     name: 'PicShare',
+    components:{
+      DetailWindow,
+    },
+    methods:{
+      showDetailWindow(){
+         this.showWindow = true;
+         console.log("click... showDetailWindow",this.showWindow);
+      },
+      closeDetailWindow(){
+        this.showWindow = false;
+        console.log("click... closedetailwindow",this.showWindow);
+      }
+    },
     data() {
       return {
+        showWindow : false,
         userShares: [{
             width: 297,
             height: 224,
