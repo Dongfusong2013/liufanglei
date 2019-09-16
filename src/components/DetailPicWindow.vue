@@ -34,13 +34,12 @@
 
 <script>
   export default {
-    name: 'DetailWindow',
+    name: 'DetailPicWindow',
     props:{
       showWindow:Boolean,
       pictures1:Array,
       closeDetailWindow:Function
     },
-
   }
 </script>
 

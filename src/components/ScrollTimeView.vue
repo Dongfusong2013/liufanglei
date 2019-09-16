@@ -40,20 +40,20 @@
     <div class="right-arrow arrow-size" @click="scrollTo('right')">
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
-    <DetailWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailWindow>
+    <DetailUserWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailUserWindow>
   </div>
 </template>
 
 <script>
   import BScroll from 'better-scroll';
-  import DetailWindow from '@/components/DetailWindow'
+  import DetailUserWindow from '@/components/DetailUserWindow'
 
   const windowWidth = 1350;
   const pic_marginRight = 20;
   export default {
     name: 'ScrollTimeView',
     components: {
-      DetailWindow,
+      DetailUserWindow,
     },
     created() {
       this.$nextTick(() => {

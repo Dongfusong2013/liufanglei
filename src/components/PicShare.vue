@@ -5,16 +5,16 @@
         <img :src="item.url" height="100%" width="100%">
       </div>
     </div>
-    <DetailWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailWindow>
+    <DetailPicWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailPicWindow>
   </div>
 </template>
 
 <script>
-  import DetailWindow from '@/components/DetailWindow.vue'
+  import DetailPicWindow from '@/components/DetailPicWindow.vue'
   export default {
     name: 'PicShare',
     components:{
-      DetailWindow,
+      DetailPicWindow,
     },
     methods:{
       showDetailWindow(){
