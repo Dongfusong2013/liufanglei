@@ -40,48 +40,21 @@
     <div class="right-arrow arrow-size" @click="scrollTo('right')">
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
-    <div class="pop-pic-window column-normal-center" v-if="showWindow" @click="closeDetailWindow">
-      <div class="detail-pic-content column-normal-center">
-        <div style="margin-top: 10px;">
-          在2019年8月19日那时....
-        </div>
-        <div class="detail-pic-size" style="margin-top: 50px;">
-          <img src="/static/picShare/1.png" height="100%" width="100%">
-        </div>
-        <div style="margin-top: 10px;">
-          明国时期最厉害的武林高手齐聚一堂
-        </div>
-      </div>
-      <div style="display: flex; flex-direction: row;  justify-content: center; align-items: center;width: 420px; overflow: auto;">
-        <div v-for="(item, index) in pictures1" :key="index">
-          <div style="width: 40px; height: 40px; margin-right: 8px; margin-bottom: 16px;">
-            <img :src="item.url" height="100%" width="100%">
-          </div>
-        </div>
-      </div>
-
-      <div style="height: 100px; width: 100%; background-color: white;
-      box-shadow:0px 8px 16px 0px rgba(48,49,51,0.1);
-      border-radius:20px;"
-        class="detail-row">
-        <div style="width: 60px; height: 60px; margin-left: 16px;">
-          <img src="/static/icon/头像.png" height="100%" width="100%">
-        </div>
-        <div class="detail-title-font" style="margin-left: 23px;">
-          光速兔子
-        </div>
-      </div>
-    </div>
+    <DetailWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailWindow>
   </div>
 </template>
 
 <script>
   import BScroll from 'better-scroll';
+  import DetailWindow from '@/components/DetailWindow'
+
   const windowWidth = 1350;
   const pic_marginRight = 20;
   export default {
     name: 'ScrollTimeView',
-
+    components: {
+      DetailWindow,
+    },
     created() {
       this.$nextTick(() => {
         let scroll1 = new BScroll(this.$refs.divScroll_row1, {
@@ -122,7 +95,6 @@
       closeDetailWindow() {
         this.showWindow = false;
       },
-
       isActivePicture(type, index) {
         if (type === 1) {
           return index === this.activeIndex1;
