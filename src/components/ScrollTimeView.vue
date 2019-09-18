@@ -660,13 +660,13 @@
   .left-arrow {
     position: absolute;
     left: 80px;
-    top: 270px + @topOffset;
+    top: 290px + @topOffset;
   }
 
   .right-arrow {
     position: absolute;
     right: 80px;
-    top: 270px + @topOffset;
+    top: 290px + @topOffset;
   }
 
   .slider-node {

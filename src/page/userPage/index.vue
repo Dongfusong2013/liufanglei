@@ -121,14 +121,14 @@
 
     <div style="width: 100%; position: absolute; top:670px">
       <div class="normal-row" style="margin-left: 0px; width: 100%;">
-        <div style="width: 96px; height: 96px; margin-left: 100px;">
+        <div style="width: 96px; height: 96px; margin-left: 0px;">
           <img src="/static/icon/头像.png" height="100%" width="100%">
         </div>
-        <div style="margin-left: 26px; display: flex; flex-direction: column; justify-content: center ; flex: 1;">
-          <div class="name-font">
+        <div style="margin-left: 0px; display: flex; flex-direction: column; justify-content: center ; flex: 1;">
+          <div class="name-font" style="margin-left: 40px;">
             光速兔子
           </div>
-          <div class="normal-space-row" style="margin-top: 10px;">
+          <div class="normal-space-row" style="margin-top: 10px; margin-left: 40px;">
             <div class="normal-row">
               <div class="desc-font">23429486</div>
               <div class="normal-row">
@@ -153,20 +153,34 @@
           </div>
           <div style="width: 100%;">
           </div>
-          <div class="user-big-title normal-row" style="margin-top: 24px; margin-left: 10px;">
-            <div style="margin-right: 48px;">
-              关于
+          <div class="user-big-title normal-row" style="margin-top: 24px; margin-left: 80px;">
+            <div style="margin-right: 48px;" :class="{'seleted-border':isActive()}" @click="setActive('location')">
+              {{selectedLocation.name}}
             </div>
-            <div style="margin-right: 48px;">
+            <div style="margin-right: 48px;" :class="{'seleted-border':isActive()}" @click="setActive('totalPic')">
               所有照片
             </div>
-            <div style="margin-right: 48px;">
+            <div style="margin-right: 48px;" :class="{'seleted-border':isActive()}" @click="setActive('story')">
               故事集
             </div>
           </div>
+          <div v-if="isActive('location')" style="margin-top: 50px; position: relative;">
+            <div style="width: 1380px; height: 200px; display: flex; flex-direction: row; justify-content: center;">
+              <div style="width: 1000px; height: 200px">
+                <img src="/static/civil/故宫-午门.png" height="100%" width="100%" />
+              </div>
+            </div>
+            <div style="margin-top: 10px;">
+              <ScrollTimeView></ScrollTimeView>
+            </div>
+
+
+          </div>
+          <div v-if="isActive('totalPic')" style="margin-top: 50px; width: 400px; height: 1500px; background-color: #2483D5;">
+
+          </div>
         </div>
       </div>
-
     </div>
 
     <!-- <div class="zoom-control-pos">
@@ -182,12 +196,19 @@
 </template>
 
 <script>
-  import AppHeader from '@/components/appHeader/index.vue'
+  import AppHeader from '@/components/appHeader/index.vue';
+  import ScrollTimeView from '@/components/ScrollTimeView';
+  import LocationShow from '@/components/LocationShow.vue'
 
   export default {
     name: 'UserPage',
     components: {
-      AppHeader
+      AppHeader,
+      ScrollTimeView,
+      LocationShow,
+    },
+    mounted() {
+      this.selectedLocation = this.locationList[0];
     },
     computed: {
       locationListByType() {
@@ -207,6 +228,7 @@
     },
     data() {
       return {
+        activeType: 'location',
         window_offset: {
           width: 800,
           height: 200
@@ -303,6 +325,13 @@
       }
     },
     methods: {
+      setActive(type) {
+        return this.activeType = type;
+      },
+      isActive(activeType) {
+        return this.activeType === activeType;
+      },
+
       getIconUlr(position, type) {
         if (position != undefined && this.selectedLocation != {} &&
           position === this.selectedLocation.position) {
@@ -370,11 +399,11 @@
         document.addEventListener('click', this.hidePanel, false);
       },
       hide() {
-        this.show =  false
+        this.show = false
         document.removeEventListener('click', this.hidePanel, false)
       },
       hidePanel(e) {
-         //点击除弹出层外的空白区域 && !this.$refs.overlayWindow.contains(e.target), 此处没有判断是否空白处
+        //点击除弹出层外的空白区域 && !this.$refs.overlayWindow.contains(e.target), 此处没有判断是否空白处
         if (this.$refs.overlayWindow) {
           this.hide()
         }
@@ -390,6 +419,10 @@
   @headTopHeight: 68px;
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
+
+  .seleted-border {
+    border-bottom: black solid 2px;
+  }
 
   .over-lay {
     background-color: white;
