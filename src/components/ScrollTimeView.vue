@@ -13,7 +13,7 @@
     <div class="scroll-pictures first-row" ref="divScroll_row1">
       <div v-for="(item, index) in pictures1" :key="index">
         <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle"
-          @mouseover="showOver(1, index)" @click="showDetail(index)"  @mouseleave="showOver(1, -1)" :class="{'border-box':isActivePicture(1,index)}">
+          @mouseover="showOver(1, index)" @click="showDetail(index)" @mouseleave="showOver(1, -1)" :class="{'border-box':isActivePicture(1,index)}">
           <img :src="item.url" height="100%" width="100%" />
           <div v-if="isActivePicture(1,index)" :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before">
           </div>
@@ -21,16 +21,17 @@
           </div>
           <div v-if="isActivePicture(1, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
-
-        <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
-        <div class="pic-desc-font">2011.11.12</div>
+        <div style="margin-top: 12px;">
+          <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
+          <div class="pic-desc-font">2011.11.12</div>
+        </div>
       </div>
     </div>
 
     <div style="color: ;" class="scroll-pictures second-row" ref="divScroll_row2">
       <div v-for="(item, index) in pictures2" :key="index">
         <div :style="{position:'relative', width: item.width +'px', height:item.height +'px'}" class="picStyle"
-          @mouseover="showOver(2,index)"  @click="showDetail(index)" @mouseleave="showOver(2, -1)" :class="{'border-box':isActivePicture(2,index)}">
+          @mouseover="showOver(2,index)" @click="showDetail(index)" @mouseleave="showOver(2, -1)" :class="{'border-box':isActivePicture(2,index)}">
           <img :src="item.url" height="100%" width="100%" />
           <div v-if="isActivePicture(2,index)" :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before">
           </div>
@@ -38,9 +39,10 @@
           </div>
           <div v-if="isActivePicture(2, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
-
-        <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
-        <div class="pic-desc-font">2011.11.12</div>
+        <div style="margin-top: 12px;">
+          <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
+          <div class="pic-desc-font">2011.11.12</div>
+        </div>
       </div>
     </div>
 
@@ -528,9 +530,6 @@
   @maxPicHeight: 270px;
 
   .border-box {
-    // margin-left: 3px;
-    // margin-right: 3px;
-    // padding: 3px;
     position: relative;
     border: 6px solid #fff;
     border: white solid 2px;
@@ -543,16 +542,13 @@
     content: "";
     background: yellowgreen;
     border: 6px solid #fff;
-
     position: absolute;
     z-index: -1;
     top: 0px;
     left: -10px;
-
     -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-
     -webkit-transform: rotate(-1deg);
     -moz-transform: rotate(-1deg);
     -o-transform: rotate(-1deg);
@@ -566,7 +562,7 @@
     border: 6px solid #fff;
     position: absolute;
     z-index: -1;
-    top: 5px;
+    top: -10px;
     left: 0px;
     -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
