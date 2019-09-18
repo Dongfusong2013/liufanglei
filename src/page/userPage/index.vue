@@ -173,7 +173,7 @@
                 <img src="/static/civil/故宫-午门.png" height="100%" width="100%" />
               </div>
             </div> -->
-            <LocationShow></LocationShow>
+            <!-- <LocationShow></LocationShow> -->
             <div style="margin-top: 40px;">
               <ScrollTimeView></ScrollTimeView>
             </div>
