@@ -513,7 +513,6 @@
             description: '故宫掠影：记录故宫',
           },
         ],
-
         time_tick_list: [
           // {time:'', content:''}
         ],
