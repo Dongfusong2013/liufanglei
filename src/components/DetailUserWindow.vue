@@ -76,20 +76,31 @@
             #儿子，#一家人，#故宫探秘之旅，#会议
           </div>
         </div>
-        <div style="height: 72px; padding-left: 16px;" class="border-bottom row-normal-start">
-          <div style="width: 24px; height: 24px;">
-            <img src="/static/icon/相册.png" width="100%" height="100%">
+        <div style="height: 72px; padding-left: 16px;" class="border-bottom row-normal-space">
+          <div class="row-normal-start">
+            <div style="width: 24px; height: 24px;">
+              <img src="/static/icon/相册.png" width="100%" height="100%">
+            </div>
+            <div class="big-title-font" style="margin-left: 8px;">
+                一家三口游故宫
+            </div>
           </div>
-          <div class="big-title-font" style="margin-left: 8px;">
-            一家三口游故宫
+          <div style="width:12px;height:6px; margin-right: 10px; line-height: 10px;">
+            <img src="/static/icon/向下.png" width="100%" height="100%">
           </div>
+
         </div>
-        <div style="height: 72px; padding-left: 16px;" class="row-normal-start border-bottom">
+        <div style="height: 72px; padding-left: 16px;" class="row-normal-space border-bottom">
+          <div class="row-normal-start">
           <div style="width: 24px; height: 24px;">
             <img src="/static/icon/detail.png" width="100%" height="100%">
           </div>
           <div class="big-title-font" style="margin-left: 8px;">
             详情
+          </div>
+          </div>
+          <div style="width:12px;height:6px; margin-right: 10px; line-height: 10px;">
+            <img src="/static/icon/向下.png" width="100%" height="100%">
           </div>
         </div>
         <div style="height: 254px; padding-left: 16px; background:rgba(246,245,243,1); overflow: auto;" class="border-bottom">
@@ -208,6 +219,12 @@
     line-height: 22px;
   }
 
+  .row-normal-space{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+  }
   .comment-sm {
     font-size: 12px;
     font-family: PingFangSC;

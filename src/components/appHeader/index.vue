@@ -42,14 +42,14 @@
             <div style="font-size: 24px;" class="el-icon-bell"></div>
           </div>
         </div>
-        <div class="menueItem row-box-center">
-          <div style="width: 24px; height: 24px;" @click="gotoPage('/userPage')">
+        <!-- <div class="menueItem row-box-center">
+          <div style="width: 24px; height: 24px;" @click="gotoPage('/userPage')"> -->
             <!-- <img src="/static/icon/地球.png" height="100%" width="100%"> -->
-            <div style="font-size: 24px;" class="el-icon-user"></div>
+            <!-- <div style="font-size: 24px;" class="el-icon-user"></div>
           </div>
-        </div>
+        </div> -->
         <div class="menueItem row-box-center">
-          <div class="myStyle">
+          <div class="myStyle"  @click="gotoPage('/userPage')">
             <img src="/static/icon/头像.png" height="100%" width="100%">
           </div>
         </div>

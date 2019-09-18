@@ -11,7 +11,6 @@
             <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
           </bm-marker>
         </div>
-
         <!-- 信息窗体 -->
         <bm-overlay class="over-lay" @draw="draw" pane="labelPane" v-if="show" ref="overlayWindow">
           <div @click="gotoPage('/addPicture')">
@@ -223,7 +222,6 @@
           if (this.locationList[i].type === this.selectType) {
             locationListResult.push(this.locationList[i]);
           }
-
         }
         return locationListResult;
       }
@@ -233,7 +231,7 @@
         activeType: 'location',
         window_offset: {
           width: 800,
-          height: 200
+          height: 400
         },
         mapStyle: {
           styleJson: [{
@@ -398,7 +396,7 @@
       infoWindowOpen() {
         this.show = true
         console.log("----------open111-------1", this.selectedLocation);
-        document.addEventListener('click', this.hidePanel, false);
+        // document.addEventListener('click', this.hidePanel, false);
       },
       hide() {
         this.show = false
