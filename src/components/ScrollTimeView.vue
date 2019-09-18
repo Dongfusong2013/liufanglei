@@ -13,8 +13,12 @@
     <div class="scroll-pictures first-row" ref="divScroll_row1">
       <div v-for="(item, index) in pictures1" :key="index">
         <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle"
-          @mouseover="showOver(1, index)" @click="showDetail" @mouseleave="showOver(1, -1)">
+          @mouseover="showOver(1, index)" @click="showDetail(index)"   :class="{'border-box':isActivePicture(1,index)}">
           <img :src="item.url" height="100%" width="100%" />
+          <div v-if="isActivePicture(1,index)" :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before">
+          </div>
+          <div v-if="isActivePicture(1,index)" :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-after">
+          </div>
           <div v-if="isActivePicture(1, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
         <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
@@ -25,8 +29,12 @@
     <div style="color: ;" class="scroll-pictures second-row" ref="divScroll_row2">
       <div v-for="(item, index) in pictures2" :key="index">
         <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle"
-          @mouseover="showOver(2,index)" @mouseleave="showOver(2, -1)" @click="showDetail">
+          @mouseover="showOver(2,index)"  @click="showDetail(index)" :class="{'border-box':isActivePicture(2,index)}">
           <img :src="item.url" height="100%" width="100%" />
+          <div v-if="isActivePicture(2,index)" :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before">
+          </div>
+          <div v-if="isActivePicture(2,index)" :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-after">
+          </div>
           <div v-if="isActivePicture(2, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
         <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
@@ -49,7 +57,7 @@
   import DetailUserWindow from '@/components/DetailUserWindow'
 
   const windowWidth = 1350;
-  const pic_marginRight = 20;
+  const pic_marginRight = 30;
   export default {
     name: 'ScrollTimeView',
     components: {
@@ -89,8 +97,9 @@
     },
 
     methods: {
-      showDetail() {
+      showDetail(index) {
         this.showWindow = true;
+        this.activeIndex = index;
       },
       closeDetailWindow() {
         this.showWindow = false;
@@ -278,6 +287,7 @@
     //多个照片行取并操作
     data() {
       return {
+        activeIndex: 0,
         showWindow: false,
         activeIndex1: -1,
         activeIndex2: -1,
@@ -512,8 +522,62 @@
 
 <style lang="less">
   @windowWidth: 1440px;
-  @pic_marginRight: 20px;
-  @topOffset: 20px;
+  @pic_marginRight: 30px;
+  @topOffset: 10px;
+  @maxPicHeight: 270px;
+
+  .border-box {
+    // margin-left: 3px;
+    // margin-right: 3px;
+    // padding: 3px;
+    position: relative;
+    border: 6px solid #fff;
+    border: white solid 2px;
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .border-box-before {
+    content: "";
+    background: yellowgreen;
+    border: 6px solid #fff;
+
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: -10px;
+
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+    -webkit-transform: rotate(-4deg);
+    -moz-transform: rotate(-4deg);
+    -o-transform: rotate(-4deg);
+    -ms-transform: rotate(-4deg);
+    transform: rotate(-4deg);
+  }
+
+  .border-box-after {
+    content: "";
+    height: 200px;
+    width: 200px;
+    background: lightblue;
+    border: 6px solid #fff;
+    position: absolute;
+    z-index: -1;
+    top: 5px;
+    left: 0px;
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    -webkit-transform: rotate(1deg);
+    -moz-transform: rotate(1deg);
+    -o-transform: rotate(1deg);
+    -ms-transform: rotate(1deg);
+    transform: rotate(1deg);
+  }
 
   .detail-row {
     display: flex;
@@ -688,18 +752,17 @@
   .first-row {
     top: @topOffset + 60px;
     left: 0px;
-    // margin-top: 80px;
   }
 
   .second-row {
-    top: @topOffset + 110px;
+    top: @topOffset + 60px;
     left: 0px;
-    // margin-top: 40px;
   }
 
   .scroll-pictures {
     position: relative;
     width: @windowWidth;
+    height: @maxPicHeight;
     // background-color: aliceblue;
     display: flex;
     align-items: flex-end;
