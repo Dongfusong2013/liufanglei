@@ -228,7 +228,6 @@
         if (this.selectType === "全部") {
           return this.locationList;
         }
-
         let locationListResult = [];
         for (let i = 0; i < this.locationList.length; i++) {
           if (this.locationList[i].type === this.selectType) {
