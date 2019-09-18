@@ -13,7 +13,7 @@
     <div class="scroll-pictures first-row" ref="divScroll_row1">
       <div v-for="(item, index) in pictures1" :key="index">
         <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle"
-          @mouseover="showOver(1, index)" @click="showDetail(index)"   :class="{'border-box':isActivePicture(1,index)}">
+          @mouseover="showOver(1, index)" @click="showDetail(index)"  @mouseleave="showOver(1, -1)" :class="{'border-box':isActivePicture(1,index)}">
           <img :src="item.url" height="100%" width="100%" />
           <div v-if="isActivePicture(1,index)" :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before">
           </div>
@@ -21,6 +21,7 @@
           </div>
           <div v-if="isActivePicture(1, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
+
         <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
         <div class="pic-desc-font">2011.11.12</div>
       </div>
@@ -28,8 +29,8 @@
 
     <div style="color: ;" class="scroll-pictures second-row" ref="divScroll_row2">
       <div v-for="(item, index) in pictures2" :key="index">
-        <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle"
-          @mouseover="showOver(2,index)"  @click="showDetail(index)" :class="{'border-box':isActivePicture(2,index)}">
+        <div :style="{position:'relative', width: item.width +'px', height:item.height +'px'}" class="picStyle"
+          @mouseover="showOver(2,index)"  @click="showDetail(index)" @mouseleave="showOver(2, -1)" :class="{'border-box':isActivePicture(2,index)}">
           <img :src="item.url" height="100%" width="100%" />
           <div v-if="isActivePicture(2,index)" :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before">
           </div>
@@ -37,6 +38,7 @@
           </div>
           <div v-if="isActivePicture(2, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
+
         <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
         <div class="pic-desc-font">2011.11.12</div>
       </div>
@@ -57,7 +59,7 @@
   import DetailUserWindow from '@/components/DetailUserWindow'
 
   const windowWidth = 1350;
-  const pic_marginRight = 30;
+  const pic_marginRight = 20;
   export default {
     name: 'ScrollTimeView',
     components: {
@@ -522,7 +524,7 @@
 
 <style lang="less">
   @windowWidth: 1440px;
-  @pic_marginRight: 30px;
+  @pic_marginRight: 20px;
   @topOffset: 10px;
   @maxPicHeight: 270px;
 
@@ -552,11 +554,11 @@
     -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 
-    -webkit-transform: rotate(-4deg);
-    -moz-transform: rotate(-4deg);
-    -o-transform: rotate(-4deg);
-    -ms-transform: rotate(-4deg);
-    transform: rotate(-4deg);
+    -webkit-transform: rotate(-1deg);
+    -moz-transform: rotate(-1deg);
+    -o-transform: rotate(-1deg);
+    -ms-transform: rotate(-1deg);
+    transform: rotate(-1deg);
   }
 
   .border-box-after {
@@ -755,7 +757,7 @@
   }
 
   .second-row {
-    top: @topOffset + 60px;
+    top: @topOffset + 100px;
     left: 0px;
   }
 
