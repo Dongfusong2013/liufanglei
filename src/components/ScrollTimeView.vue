@@ -40,7 +40,7 @@
     <div class="right-arrow arrow-size" @click="scrollTo('right')">
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
-    <DetailUserWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailUserWindow>
+    <DetailUserWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow" :pictures1="pictures1"></DetailUserWindow>
   </div>
 </template>
 
@@ -298,15 +298,15 @@
             url: '/static/location/1.png',
             width: 316,
             height: 208,
-            description: '故宫第12次修缮',
+            description: '第一次带小小牛去故宫',
             // timeStr:''
           },
           {
             time: 1992,
-            url: '/static/location/2.png',
+            url: '/static/picShare/familyDay-son.jpeg',
             width: 280,
             height: 194,
-            description: '故宫掠影：记录的美丽',
+            description: '第一次带小小牛去故宫',
           },
           {
             time: 1993,

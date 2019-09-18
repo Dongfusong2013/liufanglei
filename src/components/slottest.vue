@@ -15,7 +15,6 @@
 <script>
   export default {
     name: 'testSlot',
-
     data(){
       return {
         user1:{
@@ -25,7 +24,6 @@
           age:13,
           nickName:'hahaha'
         }
-
       }
     }
   }

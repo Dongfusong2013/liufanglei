@@ -1,45 +1,98 @@
 <template>
-  <div class="pop-pic-window column-normal-center" v-if="showWindow" @click="closeDetailWindow">
-    <div class="detail-pic-content column-normal-center">
-      <div style="margin-top: 10px;">
-        在2019年8月19日那时....
-      </div>
-      <div class="detail-pic-size" style="margin-top: 50px;">
-        <img src="/static/location/1.png" height="100%" width="100%">
-      </div>
-      <div style="margin-top: 10px;">
-        明国时期最厉害的武林高手齐聚一堂
-      </div>
+  <div class="pop-pic-window row-normal-start" v-if="showWindow">
+    <div style="position: absolute; top:10px; right: 10px; color: gray;" @click="closeDetailWindow">
+      关闭
     </div>
-    <div style="display: flex; flex-direction: row;  justify-content: center; align-items: center;width: 420px; overflow: auto;">
-      <!-- <div v-for="(item, index) in pictures1" :key="index">
-        <div style="width: 40px; height: 40px; margin-right: 8px; margin-bottom: 16px;">
-          <img :src="item.url" height="100%" width="100%">
+    <div style="width: 90%; height: 100%; position: relative;" class="column-normal-center ">
+      <div class="column-normal-space">
+        <div style="width: 830px; height: 640px;">
+          <img :src="activePicUrl" width="100%" height="100%">
         </div>
-      </div> -->
-    </div>
-    <div style="height: 100px; width: 100%; background-color: white;
-    box-shadow:0px 8px 16px 0px rgba(48,49,51,0.1);
-    border-radius:20px;"
-      class="detail-row">
-      <div style="width: 60px; height: 60px; margin-left: 16px;">
-        <img src="/static/icon/头像.png" height="100%" width="100%">
+        <div style="display: flex; flex-direction: row;  justify-content: start; align-items: flex-end; width: 420px; overflow: auto; margin-top: 10px;">
+          <div v-for="(item, index) in pictures1" :key="index" @click="showDetailPic(index)">
+            <div style="width: 30px; height: 30px; margin-right: 8px;" :class="{'border-style':isSelect(index)}">
+              <img :src="item.url" height="100%" width="100%">
+            </div>
+          </div>
+        </div>
+         <div class="left-arrow arrow-size" @click="scrollTo('left')">
+          <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
+        </div>
+        <div class="right-arrow arrow-size" @click="scrollTo('right')">
+          <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
+        </div>
       </div>
-      <div class="detail-title-font" style="margin-left: 23px;">
-        光速兔子
+
+    </div>
+    <div style="width: 30%; height: 100%;" class="border-left">
+      <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
+        <div style="width: 70px; height: 70px;">
+          <img src="/static/icon/头像1.png" height="100%" width="100%">
+        </div>
+        <div style="margin-left: 10px;">
+          <div style="margin-bottom: 14px;">光速兔子</div>
+          <div>关注</div>
+        </div>
+      </div>
+
+      <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
+        <div>北京故宫</div>
+      </div>
+
+      <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
+        <div>一家三口游故宫</div>
+      </div>
+      <div style="height: 15%; padding-left: 10px;" class="border-bottom">
+        <div>小牛在故宫</div>
+        <div>小牛在大雄宝殿，跟皇帝龙椅来了一张合影</div>
+      </div>
+      <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
+        详情
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
   export default {
     name: 'DetailUserWindow',
-    props:{
-      showWindow:Boolean,
-      pictures1:Array,
-      closeDetailWindow:Function
+    props: {
+      showWindow: Boolean,
+      pictures1: Array,
+      closeDetailWindow: Function
     },
+    computed: {
+      activePicUrl() {
+        return this.pictures1[this.activePicIndex].url;
+      }
+    },
+    data() {
+      return {
+        activePicIndex: 0,
+      }
+    },
+    methods: {
+      scrollTo(type){
+         if (type ==="left"){
+           if (this.activePicIndex >0 ){
+             this.activePicIndex -= 1;
+           }
+         }else{
+           if (this.activePicIndex < this.pictures1.length - 1 ){
+             this.activePicIndex += 1;
+           }
+         }
+      },
+      showDetailPic(index) {
+        this.activePicIndex = index;
+        console.log('index',index);
+      },
+      isSelect(index){
+          return index === this.activePicIndex;
+      }
+    }
+
 
   }
 </script>
@@ -49,25 +102,61 @@
   @pic_marginRight: 20px;
   @topOffset: 20px;
 
+  .border-style {
+    border: solid red 2px
+  }
+
+  .border-bottom {
+    border-bottom: darkgray solid 1px;
+  }
+
+  .border-left {
+    border-left: darkgray solid 1px;
+  }
+
   .pop-pic-window {
     z-index: 100;
     position: fixed;
-    top: 40px;
-    left: 90px;
-    background: rgba(216, 216, 216, 1);
+    top: 20px;
+    left: 15px;
+    background: white;
     color: black;
 
-    width: 1200px;
+    width: 1350px;
     height: 732px;
     box-shadow: 0px 8px 16px 0px rgba(48, 49, 51, 0.1);
     border-radius: 20px;
+  }
+
+  .row-normal-start {
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .row-normal-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
   }
 
   .column-normal-center {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
+
+  .column-normal-space {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
 
   .pic-desc-font {
     font-size: 12px;
@@ -101,14 +190,14 @@
 
   .left-arrow {
     position: absolute;
-    left: 80px;
-    top: 270px + @topOffset;
+    left: 40px;
+    top: 44%;
   }
 
   .right-arrow {
     position: absolute;
-    right: 80px;
-    top: 270px + @topOffset;
+    right: 40px;
+    top: 44%;
   }
 
   .slider-node {

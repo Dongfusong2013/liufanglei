@@ -12,11 +12,11 @@
       </div>
     </div>
     <div style="display: flex; flex-direction: row;  justify-content: center; align-items: center;width: 420px; overflow: auto;">
-      <!-- <div v-for="(item, index) in pictures1" :key="index">
+      <div v-for="(item, index) in pictures1" :key="index">
         <div style="width: 40px; height: 40px; margin-right: 8px; margin-bottom: 16px;">
           <img :src="item.url" height="100%" width="100%">
         </div>
-      </div> -->
+      </div>
     </div>
     <div style="height: 100px; width: 100%; background-color: white;
     box-shadow:0px 8px 16px 0px rgba(48,49,51,0.1);
