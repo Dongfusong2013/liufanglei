@@ -124,7 +124,7 @@
         <div style="width: 96px; height: 96px; margin-left: 0px;">
           <img src="/static/icon/头像.png" height="100%" width="100%">
         </div>
-        <div style="margin-left: 0px; display: flex; flex-direction: column; justify-content: center ; flex: 1;">
+        <div style="margin-left: 0px; width: 100%;">
           <div class="name-font" style="margin-left: 40px;">
             光速兔子
           </div>
@@ -154,23 +154,27 @@
           <div style="width: 100%;">
           </div>
           <div class="user-big-title normal-row" style="margin-top: 24px; margin-left: 80px;">
-            <div style="margin-right: 48px;" :class="{'seleted-border':isActive()}" @click="setActive('location')">
+            <div style="margin-right: 48px;" :class="{'seleted-border':isActive('about')}" @click="setActive('about')">
+              关于
+            </div>
+            <div style="margin-right: 48px;" :class="{'seleted-border':isActive('location')}" @click="setActive('location')">
               {{selectedLocation.name}}
             </div>
-            <div style="margin-right: 48px;" :class="{'seleted-border':isActive()}" @click="setActive('totalPic')">
-              所有照片
+            <div style="margin-right: 48px;" :class="{'seleted-border':isActive('totalPic')}" @click="setActive('totalPic')">
+              资源管理
             </div>
-            <div style="margin-right: 48px;" :class="{'seleted-border':isActive()}" @click="setActive('story')">
+            <div style="margin-right: 48px;" :class="{'seleted-border':isActive('story')}" @click="setActive('story')">
               故事集
             </div>
           </div>
           <div v-if="isActive('location')" style="margin-top: 30px; position: relative;">
-            <div style="width: 1380px; height: 200px; display: flex; flex-direction: row; justify-content: center;">
-              <div style="width: 1000px; height: 200px">
+            <!-- <div style="width: 1380px; height: 200px; display: flex; flex-direction: row; justify-content: center;">
+              <div style="width: 1240px; height: 200px">
                 <img src="/static/civil/故宫-午门.png" height="100%" width="100%" />
               </div>
-            </div>
-            <div style="margin-top: 10px;">
+            </div> -->
+            <LocationShow></LocationShow>
+            <div style="margin-top: 40px;">
               <ScrollTimeView></ScrollTimeView>
             </div>
           </div>

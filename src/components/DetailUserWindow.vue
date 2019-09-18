@@ -1,19 +1,27 @@
 <template>
   <div class="pop-pic-view" v-if="showWindow">
     <div class="pop-pic-window row-normal-start">
-      <div style="position: absolute; top:10px; right: 10px; color: gray;" @click="closeDetailWindow">
-        关闭
+      <div style="position: absolute; top:24px; right: 24px; color: gray;" @click="closeDetailWindow">
+        <div style="width: 12px; height: 12px;">
+          <img src="/static/icon/close.png" height="100%" width="100%">
+        </div>
       </div>
       <div style="width: 90%; height: 100%; position: relative;" class="column-normal-center ">
         <div class="column-normal-space">
-          <div style="width: 830px; height: 600px;">
+          <div style="width: 842px; height: 632px;">
             <img :src="activePicUrl" width="100%" height="100%">
           </div>
-          <div style="display: flex; flex-direction: row;  justify-content: start; align-items: flex-end; width: 420px; overflow: auto; margin-top: 10px;">
+          <div style="position: relative; display: flex; flex-direction: row;  justify-content: start; align-items: flex-end; width: 420px; overflow: auto; margin-top: 10px;">
             <div v-for="(item, index) in pictures1" :key="index" @click="showDetailPic(index)">
-              <div style="width: 30px; height: 30px; margin-right: 8px;" :class="{'border-style':isSelect(index)}">
+              <div style="width: 16px; height: 16px; margin-right: 8px;" :class="{'border-style':isSelect(index)}">
                 <img :src="item.url" height="100%" width="100%">
               </div>
+            </div>
+            <div class="left-arrow sm-arrow-size" @click="scrollTo('left')">
+              <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
+            </div>
+            <div class="right-arrow sm-arrow-size" @click="scrollTo('right')">
+              <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
             </div>
           </div>
           <div class="left-arrow arrow-size" @click="scrollTo('left')">
@@ -23,23 +31,25 @@
             <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
           </div>
         </div>
-
       </div>
-      <div style="width: 30%; height: 100%;" class="border-left">
+      <div style="width: 320px; height: 704px;" class="border-left">
         <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
-          <div style="width: 70px; height: 70px;">
+          <div style="width: 56px; height: 56px;">
             <img src="/static/icon/头像1.png" height="100%" width="100%">
           </div>
           <div style="margin-left: 10px;">
-            <div style="margin-bottom: 14px;">光速兔子</div>
-            <div>关注</div>
+            <div style="margin-bottom: 13px;" class="detail-title-font">光速兔子</div>
+            <div class="follow-style" style="display: flex; flex-direction: row; line-height: 22px;">
+              <div style="margin-left: 5px;">
+               + 关注
+              </div>
+            </div>
           </div>
         </div>
 
         <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
           <div>北京故宫</div>
         </div>
-
         <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
           <div>一家三口游故宫</div>
         </div>
@@ -105,16 +115,37 @@
   @pic_marginRight: 20px;
   @topOffset: 20px;
 
+
+  .detail-title-font {
+    font-size: 16px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 24px;
+  }
+
+  .follow-style {
+    width: 52px;
+    height: 24px;
+    border-radius: 5px;
+    border: 1px solid rgba(201, 41, 68, 1);
+    font-size: 12px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(221, 45, 74, 1);
+    line-height: 20px;
+  }
+
   .border-style {
     border: solid red 2px
   }
 
   .border-bottom {
-    border-bottom: darkgray solid 1px;
+    border-bottom: #FFD3D3D3 solid 1px;
   }
 
   .border-left {
-    border-left: darkgray solid 1px;
+    border-left: #FFD3D3D3 solid 1px;
   }
 
   .pop-pic-view {
@@ -125,7 +156,7 @@
     color: black;
     width: 1450px;
     height: 800px;
-    background-color: rgba(	220,220,220,0.7);
+    background-color: rgba(220, 220, 220, 0.7);
   }
 
 
@@ -133,12 +164,12 @@
     z-index: 100;
     position: fixed;
     top: 20px;
-    left: 30px;
+    left: 20px;
     background: white;
     color: black;
 
-    width: 1350px;
-    height: 682px;
+    width: 1368px;
+    height: 704px;
     box-shadow: 0px 8px 16px 0px rgba(48, 49, 51, 0.1);
     border-radius: 20px;
   }
@@ -194,6 +225,11 @@
   .arrow-size {
     width: 28px;
     height: 48px;
+  }
+
+  .sm-arrow-size {
+    width: 6px;
+    height: 12px;
   }
 
   .picStyle {
