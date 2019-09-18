@@ -6,21 +6,21 @@
           <img src="/static/icon/close.png" height="100%" width="100%">
         </div>
       </div>
-      <div style="width: 90%; height: 100%; position: relative;" class="column-normal-center ">
+      <div style="width: 1048px; height: 100%; position: relative;" class="column-normal-center ">
         <div class="column-normal-space">
           <div style="width: 842px; height: 632px;">
             <img :src="activePicUrl" width="100%" height="100%">
           </div>
-          <div style="position: relative; display: flex; flex-direction: row;  justify-content: start; align-items: flex-end; width: 420px; overflow: auto; margin-top: 10px;">
+          <div style="position: relative; display: flex; flex-direction: row;  justify-content: start; align-items: flex-end; width: 216px; overflow: auto; margin-top: 10px;">
+            <div class="sm-arrow-size" @click="scrollTo('left')">
+              <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
+            </div>
             <div v-for="(item, index) in pictures1" :key="index" @click="showDetailPic(index)">
               <div style="width: 16px; height: 16px; margin-right: 8px;" :class="{'border-style':isSelect(index)}">
                 <img :src="item.url" height="100%" width="100%">
               </div>
             </div>
-            <div class="left-arrow sm-arrow-size" @click="scrollTo('left')">
-              <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
-            </div>
-            <div class="right-arrow sm-arrow-size" @click="scrollTo('right')">
+            <div class="sm-arrow-size" @click="scrollTo('right')">
               <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
             </div>
           </div>
@@ -33,32 +33,115 @@
         </div>
       </div>
       <div style="width: 320px; height: 704px;" class="border-left">
-        <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
+        <div style="height: 80px; padding-left: 10px;" class="row-normal-start border-bottom">
           <div style="width: 56px; height: 56px;">
             <img src="/static/icon/头像1.png" height="100%" width="100%">
           </div>
-          <div style="margin-left: 10px;">
-            <div style="margin-bottom: 13px;" class="detail-title-font">光速兔子</div>
+          <div style="margin-left: 7px;">
+            <div style="margin-bottom: 6px;" class="detail-title-font">光速兔子</div>
             <div class="follow-style" style="display: flex; flex-direction: row; line-height: 22px;">
               <div style="margin-left: 5px;">
-               + 关注
+                + 关注
               </div>
             </div>
           </div>
         </div>
 
-        <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
-          <div>北京故宫</div>
+        <div style="height: 72px; padding-left: 10px;" class="row-normal-start border-bottom">
+          <div style="margin-right: 32px;" class="row-normal-start">
+            <div style="width: 24px; height: 24px;">
+              <img src="/static/icon/like.png" width="100%" height="100%">
+            </div>
+            <div style="margin-left: 6px;" class="title-font">
+              278
+            </div>
+          </div>
+          <div style="margin-right: 32px;" class="row-normal-start">
+            <div style="width: 24px; height: 24px;">
+              <img src="/static/icon/alumn.png" width="100%" height="100%">
+            </div>
+          </div>
+          <div style="margin-right: 32px;" class="row-normal-start">
+            <div style="width: 24px; height: 24px;">
+              <img src="/static/icon/share.png" width="100%" height="100%">
+            </div>
+          </div>
         </div>
-        <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
-          <div>一家三口游故宫</div>
+        <div style="height: 125px; padding-left: 16px; padding-top: 24px;" class="border-bottom">
+          <div class="title-font" style="margin-bottom: 8px;">小牛在故宫</div>
+          <div class="desc-font" style="margin-bottom: 8px;">
+            小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！
+          </div>
+          <div class="label-font">
+            #儿子，#一家人，#故宫探秘之旅，#会议
+          </div>
         </div>
-        <div style="height: 15%; padding-left: 10px;" class="border-bottom">
-          <div>小牛在故宫</div>
-          <div>小牛在大雄宝殿，跟皇帝龙椅来了一张合影</div>
+        <div style="height: 72px; padding-left: 16px;" class="border-bottom row-normal-start">
+          <div style="width: 24px; height: 24px;">
+            <img src="/static/icon/相册.png" width="100%" height="100%">
+          </div>
+          <div class="big-title-font" style="margin-left: 8px;">
+            一家三口游故宫
+          </div>
         </div>
-        <div style="height: 15%; padding-left: 10px;" class="row-normal-start border-bottom">
-          详情
+        <div style="height: 72px; padding-left: 16px;" class="row-normal-start border-bottom">
+          <div style="width: 24px; height: 24px;">
+            <img src="/static/icon/detail.png" width="100%" height="100%">
+          </div>
+          <div class="big-title-font" style="margin-left: 8px;">
+            详情
+          </div>
+        </div>
+        <div style="height: 254px; padding-left: 16px; background:rgba(246,245,243,1); overflow: auto;" class="border-bottom">
+          <div style="width: 288px; height: 54px; padding-top: 10px;">
+            <div style="width: 100%; display: flex; flex-direction: row; align-items: center;">
+              <div style="width: 24px; height: 24px;">
+                <img src="/static/icon/userIcon.png" width="100%" height="100%">
+              </div>
+              <div style="margin-left: 8px; width: 256px;">
+                <el-input placeholder="发表您的见解" style="width: 250px;" v-model="commentContent"> -->
+                  <!-- <el-button slot="append" icon="el-icon-search"></el-button> -->
+                </el-input>
+              </div>
+            </div>
+
+            <div style="width:288px;height:61px; margin-top: 10px; display: flex; flex-direction: row;">
+              <div style="width: 24px; height: 24px; margin-top: 5px;">
+                <img src="/static/icon/头像.png" width="100%" height="100%">
+              </div>
+              <div style="margin-left: 7px; margin-top: 5px;">
+                <div class="comment-big">朱哥</div>
+                <div class="comment-sm">牛哥儿子威武，已经长这么帅了呀~~</div>
+                <span class="back-font">回复:</span>
+                <span class="time-font">12小时前</span>
+              </div>
+            </div>
+
+            <div style="width:288px;height:61px; margin-top: 10px; display: flex; flex-direction: row;">
+              <div style="width: 24px; height: 24px; margin-top: 5px;">
+                <img src="/static/icon/default-user.png" width="100%" height="100%">
+              </div>
+              <div style="margin-left: 7px; margin-top: 5px;">
+                <div class="comment-big">游客</div>
+                <div class="comment-sm">牛哥儿子威武~~</div>
+                <span class="back-font">回复:</span>
+                <span class="time-font">12小时前</span>
+              </div>
+            </div>
+
+            <div style="width:288px;height:61px; margin-top: 10px; display: flex; flex-direction: row;">
+              <div style="width: 24px; height: 24px; margin-top: 5px;">
+                <img src="/static/icon/default-user.png" width="100%" height="100%">
+              </div>
+              <div style="margin-left: 7px; margin-top: 5px;">
+                <div class="comment-big">游客</div>
+                <div class="comment-sm">牛哥儿子威武~~</div>
+                <span class="back-font">回复:</span>
+                <span class="time-font">12小时前</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -82,6 +165,7 @@
     },
     data() {
       return {
+        commentContent: '',
         activePicIndex: 1,
       }
     },
@@ -116,12 +200,77 @@
   @topOffset: 20px;
 
 
+  .comment-big {
+    font-size: 14px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 22px;
+  }
+
+  .comment-sm {
+    font-size: 12px;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(23, 0, 0, 1);
+    line-height: 20px;
+  }
+
+  .back-font {
+    font-size: 12px;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(11, 168, 224, 1);
+    line-height: 20px;
+  }
+
+  .time-font {
+    font-size: 12px;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(23, 0, 0, 1);
+    line-height: 20px;
+  }
+
   .detail-title-font {
     font-size: 16px;
     font-family: PingFangSC;
     font-weight: 600;
     color: rgba(23, 0, 0, 1);
     line-height: 24px;
+  }
+
+  .big-title-font {
+    font-size: 16px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 24px;
+  }
+
+  .title-font {
+
+    font-size: 14px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 22px;
+  }
+
+  .desc-font {
+    font-size: 12px;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(23, 0, 0, 1);
+    line-height: 20px;
+  }
+
+  .label-font {
+    font-size: 12px;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(5, 153, 229, 1);
+    line-height: 20px;
   }
 
   .follow-style {
@@ -141,11 +290,11 @@
   }
 
   .border-bottom {
-    border-bottom: #FFD3D3D3 solid 1px;
+    border-bottom: #D3D3D3 solid 1px;
   }
 
   .border-left {
-    border-left: #FFD3D3D3 solid 1px;
+    border-left: #D3D3D3 solid 1px;
   }
 
   .pop-pic-view {
@@ -165,13 +314,13 @@
     position: fixed;
     top: 20px;
     left: 20px;
-    background: white;
     color: black;
-
     width: 1368px;
     height: 704px;
-    box-shadow: 0px 8px 16px 0px rgba(48, 49, 51, 0.1);
-    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
   }
 
   .row-normal-start {
@@ -248,6 +397,17 @@
     right: 40px;
     top: 44%;
   }
+
+  .sm-left-arrow {
+    left: 0px;
+    top: 44%;
+  }
+
+  .sm-right-arrow {
+    right: 0px;
+    top: 44%;
+  }
+
 
   .slider-node {
     position: absolute;
