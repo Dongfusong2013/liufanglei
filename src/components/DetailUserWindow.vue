@@ -88,7 +88,6 @@
           <div style="width:12px;height:6px; margin-right: 10px; line-height: 10px;">
             <img src="/static/icon/向下.png" width="100%" height="100%">
           </div>
-
         </div>
         <div style="height: 72px; padding-left: 16px;" class="row-normal-space border-bottom">
           <div class="row-normal-start">

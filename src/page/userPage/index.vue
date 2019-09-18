@@ -13,7 +13,7 @@
         </div>
         <!-- 信息窗体 -->
         <bm-overlay class="over-lay" @draw="draw" pane="labelPane" v-if="show" ref="overlayWindow">
-          <div @click="gotoPage('/addPicture')">
+          <div @click="handleClick()">
             <div style="width:296px; height:168px;">
               <img :src="selectedLocation.picSrc" height="100%" width="100%" style="border-radius:8px 8px 0px 0px;">
             </div>
@@ -41,18 +41,29 @@
                 </div>
               </div>
 
-              <div class="normal-row" style="margin-top: 4px;">
+              <div v-if="!selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;" >
                 <div>
                   <div class="el-icon-location"></div>
                 </div>
                 <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
                   未打卡
                 </div>
-                <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                <div  style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
                   已有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">379</span>人，打卡<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">6237</span>次
                 </div>
               </div>
-              <div style="margin-top: 8px; width: 100%; height: 100%; display: flex; flex-direction: row; justify-content: center;">
+              <div v-if="selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;" >
+                <div>
+                  <div class="el-icon-location"></div>
+                </div>
+                <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
+                  精彩影集
+                </div>
+                <div  style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                  共有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">800</span>张照片<span style="color: rgba(221, 45, 74, 1);font-weight:bold;"> 45个故事</span>
+                </div>
+              </div>
+              <div v-if="!selectedLocation.hasPic" style="margin-top: 8px; width: 100%; height: 100%; display: flex; flex-direction: row; justify-content: center;">
                 <div class="upload-box">
                   <div class="column-center" style="height: 100px; padding-top: 30px;">
                     <div class="control-font">您还没有上传过打卡照片</div>
@@ -210,6 +221,7 @@
     },
     mounted() {
       this.selectedLocation = this.locationList[0];
+      this.show = true;
     },
     computed: {
       locationListByType() {
@@ -257,6 +269,7 @@
         location: '',
         locationList: [{
             type: "历史遗迹",
+            hasPic:true,
             position: {
               lng: 136.404,
               lat: 39.915
@@ -270,6 +283,7 @@
           },
           {
             type: "历史遗迹",
+            hasPic:false,
             position: {
               lng: 400.404,
               lat: 69.915
@@ -283,6 +297,7 @@
           },
           {
             type: "流行热门",
+            hasPic:true,
             position: {
               lng: 106.404,
               lat: 59.915
@@ -296,6 +311,7 @@
           },
           {
             type: "现代建筑",
+            hasPic:false,
             position: {
               lng: 108.404,
               lat: 69.915
@@ -309,6 +325,7 @@
           },
           {
             type: "流行热门",
+            hasPic:false,
             position: {
               lng: 116.404,
               lat: 49.915
@@ -325,6 +342,13 @@
       }
     },
     methods: {
+      handleClick(){
+         if (!this.selectedLocation.hasPic){
+            this.gotoPage('/addPicture');
+         }else{
+            window.scrollTo(0, 800);
+         }
+      },
       setActive(type) {
         return this.activeType = type;
       },
@@ -396,7 +420,7 @@
       infoWindowOpen() {
         this.show = true
         console.log("----------open111-------1", this.selectedLocation);
-        // document.addEventListener('click', this.hidePanel, false);
+        document.addEventListener('click', this.hidePanel, false);
       },
       hide() {
         this.show = false
