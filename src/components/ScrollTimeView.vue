@@ -563,8 +563,6 @@
 
   .border-box-after {
     content: "";
-    height: 200px;
-    width: 200px;
     background: lightblue;
     border: 6px solid #fff;
     position: absolute;
