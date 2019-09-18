@@ -164,7 +164,7 @@
               故事集
             </div>
           </div>
-          <div v-if="isActive('location')" style="margin-top: 50px; position: relative;">
+          <div v-if="isActive('location')" style="margin-top: 30px; position: relative;">
             <div style="width: 1380px; height: 200px; display: flex; flex-direction: row; justify-content: center;">
               <div style="width: 1000px; height: 200px">
                 <img src="/static/civil/故宫-午门.png" height="100%" width="100%" />
@@ -173,8 +173,6 @@
             <div style="margin-top: 10px;">
               <ScrollTimeView></ScrollTimeView>
             </div>
-
-
           </div>
           <div v-if="isActive('totalPic')" style="margin-top: 50px; width: 400px; height: 1500px; background-color: #2483D5;">
 
