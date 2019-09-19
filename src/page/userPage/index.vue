@@ -451,7 +451,7 @@
   }
 
   .seleted-border {
-    border-bottom: black solid 2px;
+    border-bottom: black solid 3px;
   }
 
   .over-lay {
