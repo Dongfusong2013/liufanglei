@@ -445,7 +445,7 @@
   @right-top: @left-top + 30px;
 
 
-  .tab-block{
+  .tab-block {
     margin-right: 48px;
     line-height: 50px;
   }
@@ -584,6 +584,7 @@
     width: 316px;
     height: 598px;
     background: rgba(255, 255, 255, 1);
+    border-radius: 20px 0px 0px 20px;
   }
 
   .box-center {

@@ -38,7 +38,7 @@
           </div>
         </div>
       </div>
-      <div style="width: 320px; height: 704px;" class="border-left">
+      <div style="width: 320px; height: 704px; overflow: auto;" class="border-left">
         <div style="height: 80px; padding-left: 10px;" class="row-normal-start border-bottom">
           <div style="width: 56px; height: 56px;">
             <img src="/static/icon/头像1.png" height="100%" width="100%">
@@ -120,47 +120,22 @@
                 </el-input>
               </div>
             </div>
-
-            <div class="single-comment-block">
-              <div style="width: 24px; height: 24px; margin-top: 5px;">
-                <img src="/static/icon/头像.png" width="100%" height="100%">
-              </div>
-              <div style="margin-left: 7px; margin-top: 5px;">
-                <div class="comment-big">朱哥</div>
-                <div class="comment-sm">牛哥儿子威武，已经长这么帅了呀~~</div>
-                <span class="back-font">回复:</span>
-                <span class="time-font">12小时前</span>
-              </div>
-            </div>
-
-            <div class="single-comment-block">
-              <div style="width: 24px; height: 24px; margin-top: 5px;">
-                <img src="/static/icon/default-user.png" width="100%" height="100%">
-              </div>
-              <div style="margin-left: 7px; margin-top: 5px;">
-                <div class="comment-big">游客</div>
-                <div class="comment-sm">牛哥儿子威武~~</div>
-                <span class="back-font">回复:</span>
-                <span class="time-font">12小时前</span>
-              </div>
-            </div>
-
-            <div class="single-comment-block">
-              <div style="width: 24px; height: 24px; margin-top: 5px;">
-                <img src="/static/icon/default-user.png" width="100%" height="100%">
-              </div>
-              <div style="margin-left: 7px; margin-top: 5px;">
-                <div class="comment-big">游客</div>
-                <div class="comment-sm">牛哥儿子威武~~</div>
-                <span class="back-font">回复:</span>
-                <span class="time-font">12小时前</span>
+            <div v-for="(item, index) in commentList" :key="index">
+              <div class="single-comment-block">
+                <div style="width: 24px; height: 24px; margin-top: 5px;">
+                  <img :src="item.iconUrl" width="100%" height="100%">
+                </div>
+                <div style="margin-left: 7px; margin-top: 5px;">
+                  <div class="comment-big">{{item.userName}}</div>
+                  <div class="comment-sm">{{item.comment}}</div>
+                  <span class="back-font">回复:</span>
+                  <span class="time-font">{{item.time}}</span>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
 
@@ -183,6 +158,25 @@
       return {
         commentContent: '',
         activePicIndex: 1,
+        commentList: [{
+            userName: '朱哥',
+            iconUrl:'/static/icon/头像.png',
+            comment: '牛哥儿子威武，已经长这么帅了呀~~',
+            time: '1个小时前'
+          },
+          {
+            userName: '游客',
+            iconUrl:'/static/icon/头像.png',
+            comment: '牛哥儿子威武，已经长这么帅了呀~~',
+            time: '2个小时前'
+          },
+          {
+            userName: '朱哥',
+            iconUrl:'/static/icon/头像.png',
+            comment: '牛哥儿子威武，已经长这么帅了呀~~',
+            time: '12个小时前'
+          },
+        ]
       }
     },
     methods: {
@@ -215,8 +209,7 @@
   @pic_marginRight: 20px;
   @topOffset: 20px;
 
-
-  .single-comment-block{
+  .single-comment-block {
     width: 288px;
     height: 61px;
     margin-top: 10px;
@@ -225,7 +218,7 @@
   }
 
   .comment-box {
-    height: 254px;
+    height: 100%;
     padding-left: 16px;
     background: rgba(246, 245, 243, 1);
     border-radius: 10px;
