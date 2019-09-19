@@ -17,11 +17,12 @@
               选择要编辑的照片：
             </div>
           </div>
-          <div class="edit-title">
+          <div v-if="true" class="edit-title">
             <div style="margin-top: 17px; margin-left: 16px;">
               照片1名称
             </div>
-            <el-input style="width: 260px" v-model="postForm.name" :rows="1" type="textarea" class="article-textarea" autosize placeholder="请输入照片名称" />
+            <el-input style="width: 260px" v-model="postForm.name" :rows="1" type="textarea" class="article-textarea"
+              autosize placeholder="请输入照片名称" />
             <div style="margin-top: 17px; margin-left: 16px;">
               照片描述
             </div>
@@ -38,8 +39,8 @@
               <div style="margin-bottom: 0px; margin-left: 16px;">
                 拍照时间
               </div>
-              <el-date-picker style="width: 260px" v-model="postForm.makeTime" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期和时间"
-                class="time-picker" />
+              <el-date-picker style="width: 260px" v-model="postForm.makeTime" type="datetime" format="yyyy-MM-dd HH:mm:ss"
+                placeholder="选择日期和时间" class="time-picker" />
             </div>
             <div>
             </div>
@@ -285,7 +286,7 @@
     }
   }
 
-  .time-picker /deep/{
+  .time-picker /deep/ {
     input {
       border-width: 0px;
       border-bottom: 1px solid #bfcbd9;
