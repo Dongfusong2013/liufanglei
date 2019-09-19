@@ -1,7 +1,5 @@
 <template>
   <div>
-    <AppHeader noBackground="false" />
-
     <div class="content-view" style="position: relative;">
       <div style="position: absolute; top:40px; left:60px" @click="backPage()">
         返回
@@ -141,6 +139,16 @@
 
 <style lang="scss" scoped>
   // @import "~@/styles/mixin.scss";
+
+.history-container {
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
 
   .edit-title {
     font-size: 18px;

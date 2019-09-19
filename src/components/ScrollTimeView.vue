@@ -104,10 +104,12 @@
       showDetail(index) {
         this.showWindow = true;
         this.activeIndex = index;
+        document.body.style['overflow-y'] = 'hidden';
       },
       closeDetailWindow() {
         this.showWindow = false;
         console.log("close detail window", this.showWindow);
+        document.body.style['overflow-y'] = 'auto';
       },
       isActivePicture(type, index) {
         if (type === 1) {

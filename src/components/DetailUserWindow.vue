@@ -24,7 +24,6 @@
               <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
             </div>
           </div>
-
           <div class="left-arrow button-box" @click="scrollTo('left')">
             <div class="arrow-size">
               <img src="/static/works/left_arrow.jpg" height="100%" width="100%">

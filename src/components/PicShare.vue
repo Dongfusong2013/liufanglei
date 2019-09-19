@@ -1,11 +1,10 @@
 <template>
   <div class="pic-wrapper">
     <div v-for="(item, index) in userShares" :key="index">
-      <div :style="{width:item.width + 'px', height:item.height + 'px',  marginTop:'8px', flex:item.width}" @click="showDetailWindow">
+      <div :style="{width:item.width + 'px', height:item.height + 'px',  marginTop:'8px', flex:item.width}" @click="gotoMoreUserPage('/moreUserPage')">
         <img :src="item.url" height="100%" width="100%">
       </div>
     </div>
-    <DetailPicWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailPicWindow>
   </div>
 </template>
 
@@ -17,14 +16,9 @@
       DetailPicWindow,
     },
     methods:{
-      showDetailWindow(){
-         this.showWindow = true;
-         console.log("click... showDetailWindow",this.showWindow);
+      gotoMoreUserPage(path){
+          this.$router.push(path);
       },
-      closeDetailWindow(){
-        this.showWindow = false;
-        console.log("click... closedetailwindow",this.showWindow);
-      }
     },
     data() {
       return {
