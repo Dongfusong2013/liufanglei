@@ -53,10 +53,10 @@
                 </div>
               </div>
               <div v-if="selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;" >
-                <div>
-                  <div class="el-icon-location"></div>
+                <div style="width: 11px; height: 11px;">
+                  <img src="/static/icon/alumn.png.png" width="100%" height="100%">
                 </div>
-                <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
+                <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 10px;">
                   精彩影集
                 </div>
                 <div  style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
