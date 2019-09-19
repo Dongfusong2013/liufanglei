@@ -62,7 +62,7 @@
               278
             </div>
           </div>
-          <div style="margin-right: 32px; opacity: 0.5;" class="row-normal-start">
+          <div style="margin-right: 32px;" class="row-normal-start">
             <div style="width: 24px; height: 24px;">
               <img src="/static/icon/alumn.png" width="100%" height="100%">
             </div>

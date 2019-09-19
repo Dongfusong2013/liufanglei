@@ -41,26 +41,27 @@
                 </div>
               </div>
 
-              <div v-if="!selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;" >
+              <div v-if="!selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;">
                 <div>
                   <div class="el-icon-location"></div>
                 </div>
                 <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
                   未打卡
                 </div>
-                <div  style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
                   已有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">379</span>人，打卡<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">6237</span>次
                 </div>
               </div>
-              <div v-if="selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;" >
+              <div v-if="selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;">
                 <div style="width: 11px; height: 11px;">
                   <img src="/static/icon/alumn.png.png" width="100%" height="100%">
                 </div>
                 <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 10px;">
                   精彩影集
                 </div>
-                <div  style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
-                  共有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">800</span>张照片<span style="color: rgba(221, 45, 74, 1);font-weight:bold;"> 45个故事</span>
+                <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                  共有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">800</span>张照片<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">
+                    45个故事</span>
                 </div>
               </div>
               <div v-if="!selectedLocation.hasPic" style="margin-top: 8px; width: 100%; height: 100%; display: flex; flex-direction: row; justify-content: center;">
@@ -164,16 +165,16 @@
           <div style="width: 100%;">
           </div>
           <div class="user-big-title normal-row" style="margin-top: 24px; margin-left: 80px;">
-            <div style="margin-right: 48px;" :class="{'seleted-border':isActive('about')}" @click="setActive('about')">
+            <div class="tab-block" :class="{'seleted-border':isActive('about')}" @click="setActive('about')">
               关于
             </div>
-            <div style="margin-right: 48px;" :class="{'seleted-border':isActive('location')}" @click="setActive('location')">
+            <div class="tab-block" :class="{'seleted-border':isActive('location')}" @click="setActive('location')">
               {{selectedLocation.name}}
             </div>
-            <div style="margin-right: 48px;" :class="{'seleted-border':isActive('totalPic')}" @click="setActive('totalPic')">
+            <div class="tab-block" :class="{'seleted-border':isActive('totalPic')}" @click="setActive('totalPic')">
               资源管理
             </div>
-            <div style="margin-right: 48px;" :class="{'seleted-border':isActive('story')}" @click="setActive('story')">
+            <div class="tab-block" :class="{'seleted-border':isActive('story')}" @click="setActive('story')">
               故事集
             </div>
           </div>
@@ -268,7 +269,7 @@
         location: '',
         locationList: [{
             type: "历史遗迹",
-            hasPic:true,
+            hasPic: true,
             position: {
               lng: 136.404,
               lat: 39.915
@@ -282,7 +283,7 @@
           },
           {
             type: "历史遗迹",
-            hasPic:false,
+            hasPic: false,
             position: {
               lng: 400.404,
               lat: 69.915
@@ -296,7 +297,7 @@
           },
           {
             type: "流行热门",
-            hasPic:true,
+            hasPic: true,
             position: {
               lng: 106.404,
               lat: 59.915
@@ -310,7 +311,7 @@
           },
           {
             type: "现代建筑",
-            hasPic:false,
+            hasPic: false,
             position: {
               lng: 108.404,
               lat: 69.915
@@ -324,7 +325,7 @@
           },
           {
             type: "流行热门",
-            hasPic:false,
+            hasPic: false,
             position: {
               lng: 116.404,
               lat: 49.915
@@ -341,12 +342,12 @@
       }
     },
     methods: {
-      handleClick(){
-         if (!this.selectedLocation.hasPic){
-            this.gotoPage('/addPicture');
-         }else{
-            window.scrollTo(0, 800);
-         }
+      handleClick() {
+        if (!this.selectedLocation.hasPic) {
+          this.gotoPage('/addPicture');
+        } else {
+          window.scrollTo(0, 800);
+        }
       },
       setActive(type) {
         return this.activeType = type;
@@ -442,6 +443,12 @@
   @headTopHeight: 68px;
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
+
+
+  .tab-block{
+    margin-right: 48px;
+    line-height: 50px;
+  }
 
   .seleted-border {
     border-bottom: black solid 2px;
