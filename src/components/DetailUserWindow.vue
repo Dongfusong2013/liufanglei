@@ -24,11 +24,17 @@
               <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
             </div>
           </div>
-          <div class="left-arrow arrow-size" @click="scrollTo('left')">
-            <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
+
+          <div class="left-arrow button-box" @click="scrollTo('left')">
+            <div class="arrow-size">
+              <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
+            </div>
           </div>
-          <div class="right-arrow arrow-size" @click="scrollTo('right')">
-            <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
+
+          <div class="right-arrow button-box" @click="scrollTo('right')">
+            <div class="arrow-size">
+              <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
+            </div>
           </div>
         </div>
       </div>
@@ -52,16 +58,16 @@
             <div style="width: 24px; height: 24px;">
               <img src="/static/icon/like.png" width="100%" height="100%">
             </div>
-            <div style="margin-left: 6px;" class="title-font">
+            <div style="margin-left: 6px; opacity: 0.5;" class="title-font">
               278
             </div>
           </div>
-          <div style="margin-right: 32px;" class="row-normal-start">
+          <div style="margin-right: 32px; opacity: 0.5;" class="row-normal-start">
             <div style="width: 24px; height: 24px;">
               <img src="/static/icon/alumn.png" width="100%" height="100%">
             </div>
           </div>
-          <div style="margin-right: 32px;" class="row-normal-start">
+          <div style="margin-right: 32px; opacity: 0.5;" class="row-normal-start">
             <div style="width: 24px; height: 24px;">
               <img src="/static/icon/share.png" width="100%" height="100%">
             </div>
@@ -82,7 +88,7 @@
               <img src="/static/icon/相册.png" width="100%" height="100%">
             </div>
             <div class="big-title-font" style="margin-left: 8px;">
-                一家三口游故宫
+              一家三口游故宫
             </div>
           </div>
           <div style="width:12px;height:6px; margin-right: 10px; line-height: 10px;">
@@ -91,18 +97,18 @@
         </div>
         <div style="height: 72px; padding-left: 16px;" class="row-normal-space border-bottom">
           <div class="row-normal-start">
-          <div style="width: 24px; height: 24px;">
-            <img src="/static/icon/detail.png" width="100%" height="100%">
-          </div>
-          <div class="big-title-font" style="margin-left: 8px;">
-            详情
-          </div>
+            <div style="width: 24px; height: 24px;">
+              <img src="/static/icon/detail.png" width="100%" height="100%">
+            </div>
+            <div class="big-title-font" style="margin-left: 8px;">
+              详情
+            </div>
           </div>
           <div style="width:12px;height:6px; margin-right: 10px; line-height: 10px;">
             <img src="/static/icon/向下.png" width="100%" height="100%">
           </div>
         </div>
-        <div style="height: 254px; padding-left: 16px; background:rgba(246,245,243,1); overflow: auto;" class="border-bottom">
+        <div class="border-bottom comment-box">
           <div style="width: 288px; height: 54px; padding-top: 10px;">
             <div style="width: 100%; display: flex; flex-direction: row; align-items: center;">
               <div style="width: 24px; height: 24px;">
@@ -115,7 +121,7 @@
               </div>
             </div>
 
-            <div style="width:288px;height:61px; margin-top: 10px; display: flex; flex-direction: row;">
+            <div class="single-comment-block">
               <div style="width: 24px; height: 24px; margin-top: 5px;">
                 <img src="/static/icon/头像.png" width="100%" height="100%">
               </div>
@@ -127,7 +133,7 @@
               </div>
             </div>
 
-            <div style="width:288px;height:61px; margin-top: 10px; display: flex; flex-direction: row;">
+            <div class="single-comment-block">
               <div style="width: 24px; height: 24px; margin-top: 5px;">
                 <img src="/static/icon/default-user.png" width="100%" height="100%">
               </div>
@@ -139,7 +145,7 @@
               </div>
             </div>
 
-            <div style="width:288px;height:61px; margin-top: 10px; display: flex; flex-direction: row;">
+            <div class="single-comment-block">
               <div style="width: 24px; height: 24px; margin-top: 5px;">
                 <img src="/static/icon/default-user.png" width="100%" height="100%">
               </div>
@@ -210,21 +216,47 @@
   @topOffset: 20px;
 
 
+  .single-comment-block{
+    width: 288px;
+    height: 61px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .comment-box {
+    height: 254px;
+    padding-left: 16px;
+    background: rgba(246, 245, 243, 1);
+    overflow: auto;
+    border-radius: 10px;
+  }
+
+  .button-box {
+    width: 56px;
+    height: 56px;
+    background: rgba(246, 245, 243, 1);
+    border-radius: 5px;
+  }
+
   .comment-big {
     font-size: 14px;
     font-family: PingFangSC;
     font-weight: 600;
     color: rgba(23, 0, 0, 1);
     line-height: 22px;
+    opacity: 0.6;
   }
 
-  .row-normal-space{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+  .row-normal-space {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
+
   .comment-sm {
+    opacity: 0.6;
     font-size: 12px;
     font-family: PingFangSC;
     font-weight: 400;
@@ -233,6 +265,7 @@
   }
 
   .back-font {
+    opacity: 0.6;
     font-size: 12px;
     font-family: PingFangSC;
     font-weight: 400;
@@ -241,6 +274,7 @@
   }
 
   .time-font {
+    opacity: 0.6;
     font-size: 12px;
     font-family: PingFangSC;
     font-weight: 400;
@@ -257,6 +291,7 @@
   }
 
   .big-title-font {
+    opacity: 0.6;
     font-size: 16px;
     font-family: PingFangSC;
     font-weight: 600;
@@ -403,15 +438,25 @@
   }
 
   .left-arrow {
+    opacity: 0.5;
     position: absolute;
     left: 40px;
     top: 44%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .right-arrow {
+    opacity: 0.5;
     position: absolute;
     right: 40px;
     top: 44%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .sm-left-arrow {
