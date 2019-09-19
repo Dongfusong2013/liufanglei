@@ -17,6 +17,34 @@
               选择要编辑的照片：
             </div>
           </div>
+          <div class="edit-title">
+            <div style="margin-top: 17px; margin-left: 16px;">
+              照片1名称
+            </div>
+            <el-input style="width: 260px" v-model="postForm.name" :rows="1" type="textarea" class="article-textarea" autosize placeholder="请输入照片名称" />
+            <div style="margin-top: 17px; margin-left: 16px;">
+              照片描述
+            </div>
+
+            <div class="flex-row">
+              <el-input style="width: 260px" v-model="postForm.picDescription" :rows="1" type="textarea" class="article-textarea"
+                autosize placeholder="请输入照片描述" />
+              <div style="margin-left: 4px;" class="sm-font">
+                <div v-show="descripCount"> {{descripCount}}字</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 17px;">
+              <div style="margin-bottom: 0px; margin-left: 16px;">
+                拍照时间
+              </div>
+              <el-date-picker style="width: 260px" v-model="postForm.makeTime" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期和时间"
+                class="time-picker" />
+            </div>
+            <div>
+            </div>
+          </div>
+
         </div>
         <div>
           <div style="height: 72px;">
@@ -44,7 +72,10 @@
                   上传6张照片
                 </div>
               </div>
+              <div>
+              </div>
             </div>
+
           </div>
 
           <div class="pic-table flex-center ">
@@ -64,31 +95,60 @@
             </div>
           </div>
         </div>
-
       </div>
+
+
     </div>
+  </div>
   </div>
 
 </template>
 
 <script>
   import AppHeader from '@/components/appHeader/index.vue'
+  import MDinput from '@/components/MDinput/index.vue'
 
   export default {
     name: 'AddPicture',
     components: {
-      AppHeader
+      AppHeader,
+      MDinput
     },
-    methods:{
-      backPage(){
-         console.log("back page...");
-         this.$router.go(-1);
+    data() {
+      return {
+        postForm: {
+          picTitle: '',
+          picDescription: '',
+          makeTime: '',
+        }
       }
+    },
+    computed: {
+      descripCount() {
+        return this.postForm.picDescription.length;
+      }
+    },
+    methods: {
+      backPage() {
+        console.log("back page...");
+        this.$router.go(-1);
+      },
+
     }
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+  // @import "~@/styles/mixin.scss";
+
+  .edit-title {
+    font-size: 18px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 28px;
+  }
+
   .pic-center-table {
     width: 776px;
     height: 550px;
@@ -113,6 +173,13 @@
     line-height: 28px;
   }
 
+  .sm-font {
+    font-size: 12px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(221, 45, 74, 1);
+    line-height: 14px;
+  }
 
   .button-upload {
     width: 150px;
@@ -148,7 +215,6 @@
     line-height: 28px;
     opacity: 0.6;
   }
-
 
   .location-title {
     font-size: 24px;
@@ -188,6 +254,7 @@
     margin-top: 24px;
   }
 
+
   .content-view {
     display: flex;
     flex-direction: row;
@@ -206,5 +273,22 @@
     padding: 16px;
     width: 312px;
     height: 672px;
+  }
+
+  .article-textarea /deep/ {
+    textarea {
+      padding-right: 40px;
+      resize: none;
+      border: none;
+      border-radius: 0px;
+      border-bottom: 1px solid #bfcbd9;
+    }
+  }
+
+  .time-picker /deep/{
+    input {
+      border-width: 0px;
+      border-bottom: 1px solid #bfcbd9;
+    }
   }
 </style>

@@ -228,7 +228,6 @@
     height: 254px;
     padding-left: 16px;
     background: rgba(246, 245, 243, 1);
-    overflow: auto;
     border-radius: 10px;
   }
 
