@@ -350,7 +350,6 @@
     background-color: rgba(220, 220, 220, 0.7);
   }
 
-
   .pop-pic-window {
     z-index: 100;
     position: fixed;

@@ -12,7 +12,7 @@
           </bm-marker>
         </div>
 
-        <bm-overlay style="position: absolute; top:250px; right:180px; width: 285px; height: 80px;">
+        <bm-overlay style="position: absolute; top:220px; right:100px; width: 285px; height: 80px;">
           <div style="margin-bottom: 10px;">
             您记录的<span class="num-color"> 4 </span>个精彩岁月中，踏足了
             <span class="num-color"> 7 </span>个长江大川，游览了
@@ -122,7 +122,7 @@
               </div>
             </div>
 
-            <div class="normal-row" style="margin-right: 190px; align-items: center;">
+            <div class="normal-row" style="margin-right: 100px; align-items: center;">
               <div class="number-font" style="">天气 阵雨</div>
               <div class="el-icon-light-rain"></div>
               <!-- <div class="desc-font">张照片</div> -->
