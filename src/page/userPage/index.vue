@@ -152,16 +152,16 @@
                   {{tag.name}}
                 </el-tag>
               </div>
-              <div class="user-big-title" style="opacity: 0.6; margin-left: 10px;" v-if="!isFolder">
+              <div class="user-sm-title" style="opacity: 0.6; margin-left: 10px;" v-if="!isFolder">
                 当前影集:{{selectedLocation.name}}
               </div>
               <div @click="changeModel" style="margin-left: 10px;">
-                <div v-if="isFolder" style="font-size: 30px; display: flex; flex-direction: row;">
-                  <div class="user-big-title" style="margin-right: 15px; opacity: 0.6;">切换</div>
+                <div v-if="isFolder" style="font-size: 20px; display: flex; flex-direction: row; align-items: center;">
+                  <div class="user-sm-title" style="margin-right: 15px; opacity: 0.6;">切换</div>
                   <div class="el-icon-folder-opened"></div>
                 </div>
-                <div v-if="!isFolder" style="font-size: 30px; display: flex; flex-direction: row;">
-                  <div class="user-big-title" style="margin-right: 25px; opacity: 0.6;">切换</div>
+                <div v-if="!isFolder" style="font-size: 20px; display: flex; flex-direction: row; align-items: center;">
+                  <div class="user-sm-title" style="margin-right: 15px; opacity: 0.6;">切换</div>
                   <div class="el-icon-picture"></div>
                 </div>
               </div>
@@ -586,6 +586,15 @@
     height: 160px;
     background: rgba(243, 245, 246, 1);
     border-radius: 8px;
+  }
+
+  .user-sm-title{
+    font-size: 14px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    // color: rgba(23, 0, 0, 1);
+    color: darkred;
+    line-height: 28px;
   }
 
   .user-big-title {
