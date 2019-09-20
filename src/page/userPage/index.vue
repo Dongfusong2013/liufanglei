@@ -6,11 +6,26 @@
     <div style="box-sizing: border-box; width: 100%; height: 100%">
       <baidu-map class="my-map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
         <bm-navigation anchor="BMAP_ANCHOR_TOP_LEFT"></bm-navigation>
-        <div v-for="(item, index) in locationListByType" :key="index">
+        <div v-for="(item, index) in locationList" :key="index">
           <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)" :icon="{url: getIconUlr(item.position, item.type), size: {width: 20, height: 20}}">
             <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
           </bm-marker>
         </div>
+
+        <bm-overlay style="position: absolute; top:250px; right:180px; width: 285px; height: 80px;">
+          <div style="margin-bottom: 10px;">
+            您记录的<span class="num-color"> 4 </span>个精彩岁月中，踏足了
+            <span class="num-color"> 7 </span>个长江大川，游览了
+            <span class="num-color"> 4 </span>个名胜古迹，在 <span class="num-color"> 3 </span> 个工作地拼洒汗水，
+            拥有<span class="num-color"> 2 </span>个学习成长的图书馆......
+          </div>
+          <div style="margin-top: 30px">
+            您共跟 <span style="color:  firebrick; font-size: 20px;"> 4 </span> 位家人，<span style="color:  firebrick; font-size: 20px;">10</span>
+            个朋友，互相陪伴的 <span style="color:  firebrick; font-size: 20px;"> 21 </span> 天中记录了 <span style="color:  firebrick; font-size: 20px;">50</span>
+            个时刻......
+          </div>
+        </bm-overlay>
+
         <!-- 信息窗体 -->
         <bm-overlay class="over-lay" @draw="draw" pane="labelPane" v-if="show" ref="overlayWindow">
           <div @click="handleClick()">
@@ -78,55 +93,6 @@
             </div>
           </div>
         </bm-overlay>
-
-        <!-- <bm-info-window :position="selectedLocation.position" :width="windowWidth" :height="windowHeight" :show="show"
-          @close="infoWindowClose" @open="infoWindowOpen" :offset="window_offset">
-          <div @click="gotoPage('/addPicture')">
-            <div style="width:296px; height:168px;">
-              <img :src="selectedLocation.picSrc" height="100%" width="100%">
-            </div>
-            <div class="row-space-box title-font title-top">
-              <div>
-                {{selectedLocation.name}}
-              </div>
-              <div class="">
-                4.0
-              </div>
-            </div>
-            <div class="content_font content-top">
-              {{selectedLocation.descript}}
-            </div>
-            <div class="normal-row" style="margin-top: 10px;">
-              <div>
-                <div class="el-icon-location"></div>
-              </div>
-              <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
-                地址
-              </div>
-              <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
-                北京市东城区景山前街4号
-              </div>
-            </div>
-
-            <div class="normal-row" style="margin-left: 8px; margin-top: 10px;">
-              <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px;">
-                未打卡
-              </div>
-              <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
-                已有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">379</span>人，打卡<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">6237</span>次
-              </div>
-            </div>
-            <div class="upload-box" style=" margin-left: 8px; margin-top: 10px;">
-              <div class="column-center" style="height: 100px; padding-top: 30px;">
-                <div class="control-font">您还没有上传过打卡照片</div>
-                <div style="width: 40px; height: 40px;">
-                  <img src="/static/icon/上传足迹.png" height="100%" width="100%">
-                </div>
-                <div class="control-font" style="color: rgba(221, 45, 74, 1);">立即打卡</div>
-              </div>
-            </div>
-          </div>
-        </bm-info-window> -->
       </baidu-map>
     </div>
 
@@ -164,30 +130,119 @@
           </div>
           <div style="width: 100%;">
           </div>
-          <div class="user-big-title normal-row" style="margin-top: 24px; margin-left: 80px;">
+          <div class="user-big-title normal-row" style="margin-top: 24px; margin-left: -70px;">
             <div class="tab-block" :class="{'seleted-border':isActive('about')}" @click="setActive('about')">
               关于
             </div>
             <div class="tab-block" :class="{'seleted-border':isActive('location')}" @click="setActive('location')">
-              {{selectedLocation.name}}
-            </div>
-            <div class="tab-block" :class="{'seleted-border':isActive('totalPic')}" @click="setActive('totalPic')">
-              资源管理
+              <div style="display: flex; flex-direction: row;">
+                <div>
+                  摄影集
+                </div>
+              </div>
             </div>
             <div class="tab-block" :class="{'seleted-border':isActive('story')}" @click="setActive('story')">
               故事集
             </div>
           </div>
-          <div v-if="isActive('location')" style="margin-top: 30px; position: relative;">
-            <!-- <div style="width: 1380px; height: 200px; display: flex; flex-direction: row; justify-content: center;">
-              <div style="width: 1240px; height: 200px">
-                <img src="/static/civil/故宫-午门.png" height="100%" width="100%" />
+          <div v-if="isActive('location')" class="location-pic-window" style="margin-top: 10px;">
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 90%;">
+              <div v-if="isFolder" style="margin-top: 10px; margin-left: 10px;">
+                <el-tag v-for="tag in tags" :key="tag.name" closable :type="tag.type" style="margin-right: 10px;">
+                  {{tag.name}}
+                </el-tag>
               </div>
-            </div> -->
-            <!-- <LocationShow></LocationShow> -->
-            <div style="margin-top: 40px;">
-              <ScrollTimeView></ScrollTimeView>
+              <div class="user-big-title" style="opacity: 0.6;" v-if="!isFolder">
+                当前影集:{{selectedLocation.name}}
+              </div>
+              <div @click="changeModel" style="margin-left: 10px;">
+                <div v-if="isFolder" style="font-size: 30px; display: flex; flex-direction: row;">
+                  <div class="user-big-title" style="margin-right: 10px; opacity: 0.6;">切换</div>
+                  <div class="el-icon-folder-opened"></div>
+                </div>
+                <div v-if="!isFolder" style="font-size: 30px; display: flex; flex-direction: row;">
+                  <div class="user-big-title" style="margin-right: 10px; opacity: 0.6;">切换</div>
+                  <div class="el-icon-picture"></div>
+                </div>
+              </div>
             </div>
+            <div v-if="!isFolder">
+              <div style="margin-top: 40px;">
+                <ScrollTimeView></ScrollTimeView>
+              </div>
+            </div>
+            <div v-if="isFolder" style="width: 100%;">
+              <div style="margin-top: 20px; margin-bottom: 40px;">
+                <div style="margin-bottom: 10px;" class="user-big-title">
+                  当前影集
+                </div>
+                <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;">
+                  <div style="position: absolute; top:40%; left:15px; color: white;">
+                    {{selectedLocation.name}}
+                  </div>
+                  <img :src="selectedLocation.picSrc" width="100%" height="100%">
+                </div>
+                <!-- <div style="margin-top: 10px; width: 100%; height: 1px; background-color: #000000;"></div> -->
+              </div>
+
+              <div style="margin-top: 20px;">
+                <div style="margin-bottom: 10px;" class="user-big-title">
+                  历史遗迹
+                </div>
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                  <div v-for="(item, index) in locationListByType('历史遗迹')" :key='index'>
+                    <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
+                      <div style="position: absolute; top:40%; left:15px; color: white;">
+                        {{item.name}}
+                      </div>
+                      <img :src="item.picSrc" width="100%" height="100%" class="dim">
+                    </div>
+                  </div>
+                  <div v-for="(item, index) in locationListByType('历史遗迹')" :key='index'>
+                    <div style="width: 230px; position: relative; height: 200px; margin-right: 20px;" class="dimback">
+                      <div style="position: absolute; top:40%; left:15px; color: white;">
+                        {{item.name}}
+                      </div>
+                      <img :src="item.picSrc" width="100%" height="100%" class="dim">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 20px;">
+                <div style="margin-bottom: 10px;" class="user-big-title">
+                  现代建筑
+                </div>
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                  <div v-for="(item, index) in locationListByType('流行热门')" :key='index'>
+                    <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
+                      <div style="position: absolute; top:40%; left:15px; color: white;">
+                        {{item.name}}
+                      </div>
+                      <img :src="item.picSrc" width="100%" height="100%" class="dim">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 20px;">
+                <div style="margin-bottom: 10px;" class="user-big-title">
+                  神秘探索
+                </div>
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                  <div v-for="(item, index) in locationListByType('现代建筑')" :key='index'>
+                    <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
+                      <div style="position: absolute; top:40%; left:15px; color: white;">
+                        {{item.name}}
+                      </div>
+                      <img :src="item.picSrc" width="100%" height="100%" class="dim">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
           </div>
           <div v-if="isActive('totalPic')" style="margin-top: 50px; width: 400px; height: 1500px; background-color: #2483D5;">
 
@@ -225,26 +280,49 @@
       this.show = true;
     },
     computed: {
-      locationListByType() {
-        if (this.selectType === "全部") {
-          return this.locationList;
-        }
-        let locationListResult = [];
-        for (let i = 0; i < this.locationList.length; i++) {
-          if (this.locationList[i].type === this.selectType) {
-            locationListResult.push(this.locationList[i]);
-          }
-        }
-        return locationListResult;
-      }
+
+      // locationList() {
+      //   if (this.selectType === "全部") {
+      //     return this.locationList;
+      //   }
+      //   let locationListResult = [];
+      //   for (let i = 0; i < this.locationList.length; i++) {
+      //     if (this.locationList[i].type === this.selectType) {
+      //       locationListResult.push(this.locationList[i]);
+      //     }
+      //   }
+      //   return locationListResult;
+      // }
     },
     data() {
       return {
+        isFolder: false,
         activeType: 'location',
         window_offset: {
-          width: 800,
+          width: 100,
           height: 400
         },
+        tags: [{
+            name: '爸爸',
+            type: ''
+          },
+          {
+            name: '妈妈',
+            type: 'success'
+          },
+          {
+            name: '生活娱乐',
+            type: 'info'
+          },
+          {
+            name: '小牛',
+            type: 'warning'
+          },
+          {
+            name: '美丽时光',
+            type: 'danger'
+          }
+        ],
         mapStyle: {
           styleJson: [{
             "featureType": "all",
@@ -342,6 +420,20 @@
       }
     },
     methods: {
+      locationListByType(type) {
+        console.log("location by type")
+        var list = [];
+        for (let i = 0; i < this.locationList.length; i++) {
+          if (type === this.locationList[i].type) {
+            console.log("this.location", this.locationList[i]);
+            list.push(this.locationList[i])
+          }
+        }
+        return list;
+      },
+      changeModel() {
+        this.isFolder = !this.isFolder;
+      },
       handleClick() {
         if (!this.selectedLocation.hasPic) {
           this.gotoPage('/addPicture');
@@ -378,7 +470,7 @@
         var lng = this.centerPosition.lng;
         var lat = this.centerPosition.lat;
         const pixel = map.pointToOverlayPixel(new BMap.Point(lng, lat));
-        el.style.left = pixel.x - 60 + 'px'
+        el.style.left = pixel.x - 320 + 'px'
         el.style.top = pixel.y - 300 + 'px'
       },
       gotoPage(path) {
@@ -444,6 +536,23 @@
   @left-top: @headTopHeight + 8px;
   @right-top: @left-top + 30px;
 
+  .location-pic-window {
+    margin-left: -80px;
+    // margin-top: 30px;
+    width: 100%;
+    position: relative;
+    padding-top: 10px;
+    background: rgba(243, 245, 246, 1);
+  }
+
+  .dim {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+  }
+
+  .dimback {
+    background: #000;
+  }
 
   .tab-block {
     margin-right: 48px;
@@ -461,6 +570,11 @@
     position: absolute;
     top: 10px;
     left: 10px
+  }
+
+  .num-color {
+    color: #2196F3;
+    font-size: 20px;
   }
 
   .column-center {
@@ -677,7 +791,7 @@
   }
 
   .my-map {
-    width: 1500px;
+    width: 100%;
     height: 680px;
 
     // .window-style {
