@@ -7,8 +7,8 @@
       <baidu-map class="my-map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
         <bm-navigation anchor="BMAP_ANCHOR_TOP_LEFT"></bm-navigation>
         <div v-for="(item, index) in locationList" :key="index">
-          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)" :icon="{url: getIconUlr(item.position, item.type), size: {width: 20, height: 20}}">
-            <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
+          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)"
+          :icon="{url: getIconUlr(item.position, item.type), size: {width: 20, height: 20}}">
           </bm-marker>
         </div>
 
@@ -98,8 +98,8 @@
 
     <div style="width: 100%; position: absolute; top:670px">
       <div class="normal-row" style="margin-left: 0px; width: 100%;">
-        <div style="width: 96px; height: 96px; margin-left: 0px;">
-          <img src="/static/icon/头像.png" height="100%" width="100%">
+        <div style="width: 96px; height: 96px;">
+          <img src="/static/icon/头像1.png" height="100%" width="100%">
         </div>
         <div style="margin-left: 0px; width: 100%;">
           <div class="name-font" style="margin-left: 40px;">
@@ -122,15 +122,16 @@
               </div>
             </div>
 
-            <div class="normal-row" style="margin-right: 190px;">
-              <div class="number-font" style="">57</div>
-              <div class="desc-font">张照片</div>
-              <div class="number-font" style="margin-left: 40px;">2019</div>
+            <div class="normal-row" style="margin-right: 190px; align-items: center;">
+              <div class="number-font" style="">天气 阵雨</div>
+              <div class="el-icon-light-rain"></div>
+              <!-- <div class="desc-font">张照片</div> -->
+              <div class="number-font" style="margin-left: 40px;">2019-9-19</div>
             </div>
           </div>
           <div style="width: 100%;">
           </div>
-          <div class="user-big-title normal-row" style="margin-top: 24px; margin-left: -70px;">
+          <div class="user-big-title normal-row" style="margin-top: 40px; margin-left: -70px;">
             <div class="tab-block" :class="{'seleted-border':isActive('about')}" @click="setActive('about')">
               关于
             </div>
@@ -146,7 +147,7 @@
             </div>
           </div>
           <div v-if="isActive('location')" class="location-pic-window" style="margin-top: 10px;">
-            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 90%;">
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 92%;">
               <div v-if="isFolder" style="margin-left: 10px;">
                 <el-tag v-for="tag in tags" :key="tag.name" closable :type="tag.type" style="margin-right: 10px;">
                   {{tag.name}}
@@ -162,12 +163,12 @@
                 </div>
                 <div v-if="!isFolder" style="font-size: 20px; display: flex; flex-direction: row; align-items: center;">
                   <div class="user-sm-title" style="margin-right: 15px; opacity: 0.6;">切换</div>
-                  <div class="el-icon-picture"></div>
+                  <div class="el-icon-picture-outline"></div>
                 </div>
               </div>
             </div>
             <div v-if="!isFolder">
-              <div style="margin-top: 40px;">
+              <div style="margin-top:30px;">
                 <ScrollTimeView></ScrollTimeView>
               </div>
             </div>
@@ -239,7 +240,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
 
           </div>
@@ -424,11 +424,10 @@
           this.gotoPage('/addPicture');
         } else {
           if (this.isFolder) {
-            window.scrollTo(0, 400);
+            window.scrollTo(0, 420);
           } else {
-            window.scrollTo(0, 800);
+            window.scrollTo(0, 900);
           }
-
         }
       },
       setActive(type) {
@@ -529,7 +528,7 @@
   .location-pic-window {
     margin-left: -80px;
     // margin-top: 30px;
-    width: 100%;
+    width: 105%;
     position: relative;
     padding-top: 10px;
     background: rgba(243, 245, 246, 1);

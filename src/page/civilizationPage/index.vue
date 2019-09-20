@@ -35,7 +35,7 @@
         <div class="left-search-control">
           <div class="line-row">
             <div style="position: relative;">
-              <el-input placeholder="搜索城市 输入关键字" style="width: 310px;" v-model="location" class="input-with-select">
+              <el-input class="article-textarea input-with-select" placeholder="搜索城市 输入关键字" style="width: 310px;" v-model="location">
                 <!-- <el-button slot="append" icon="el-icon-search"></el-button> -->
               </el-input>
               <div class="search-icon" style="position:absolute; left: 280px; top:10px; width: 20px; height: 20px;">
@@ -135,7 +135,6 @@
           if (this.locationList[i].type === this.selectType) {
             locationListResult.push(this.locationList[i]);
           }
-
         }
         return locationListResult;
       }
@@ -307,7 +306,6 @@
         console.log("----------close-------");
       },
       infoWindowOpen() {
-
         this.show = true
         console.log("----------open-------");
       }
@@ -324,7 +322,6 @@
   @right-top: @left-top + 30px;
 
   .el-input__inner {
-
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
@@ -523,5 +520,14 @@
     //   height: 200px;
     //   background-color: aliceblue;
     // }
+  }
+  .article-textarea /deep/ {
+    textarea {
+      padding-right: 40px;
+      resize: none;
+      border: none;
+      border-radius: 0px;
+      border-bottom: 1px solid #bfcbd9;
+    }
   }
 </style>
