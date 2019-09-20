@@ -61,7 +61,7 @@
             #儿子，#一家人，#故宫探秘之旅，#会议
           </div>
         </div>
-        <div style="height: 72px; padding-left: 16px;" class="border-bottom row-normal-space">
+        <!-- <div style="height: 72px; padding-left: 16px;" class="border-bottom row-normal-space">
           <div class="row-normal-start">
             <div style="width: 24px; height: 24px;">
               <img src="/static/icon/相册.png" width="100%" height="100%">
@@ -73,7 +73,7 @@
           <div style="width:12px;height:6px; margin-right: 10px; line-height: 10px;">
             <img src="/static/icon/向下.png" width="100%" height="100%">
           </div>
-        </div>
+        </div> -->
         <div style="height: 72px; padding-left: 16px;" class="row-normal-space border-bottom">
           <div class="row-normal-start">
             <div style="width: 24px; height: 24px;">
