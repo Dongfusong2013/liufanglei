@@ -147,21 +147,21 @@
           </div>
           <div v-if="isActive('location')" class="location-pic-window" style="margin-top: 10px;">
             <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 90%;">
-              <div v-if="isFolder" style="margin-top: 10px; margin-left: 10px;">
+              <div v-if="isFolder" style="margin-left: 10px;">
                 <el-tag v-for="tag in tags" :key="tag.name" closable :type="tag.type" style="margin-right: 10px;">
                   {{tag.name}}
                 </el-tag>
               </div>
-              <div class="user-big-title" style="opacity: 0.6;" v-if="!isFolder">
+              <div class="user-big-title" style="opacity: 0.6; margin-left: 10px;" v-if="!isFolder">
                 当前影集:{{selectedLocation.name}}
               </div>
               <div @click="changeModel" style="margin-left: 10px;">
                 <div v-if="isFolder" style="font-size: 30px; display: flex; flex-direction: row;">
-                  <div class="user-big-title" style="margin-right: 10px; opacity: 0.6;">切换</div>
+                  <div class="user-big-title" style="margin-right: 15px; opacity: 0.6;">切换</div>
                   <div class="el-icon-folder-opened"></div>
                 </div>
                 <div v-if="!isFolder" style="font-size: 30px; display: flex; flex-direction: row;">
-                  <div class="user-big-title" style="margin-right: 10px; opacity: 0.6;">切换</div>
+                  <div class="user-big-title" style="margin-right: 25px; opacity: 0.6;">切换</div>
                   <div class="el-icon-picture"></div>
                 </div>
               </div>
@@ -177,12 +177,11 @@
                   当前影集
                 </div>
                 <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;">
-                  <div style="position: absolute; top:40%; left:15px; color: white;">
+                  <div style="position: absolute; top:40%; left:25px; color: white;">
                     {{selectedLocation.name}}
                   </div>
                   <img :src="selectedLocation.picSrc" width="100%" height="100%">
                 </div>
-                <!-- <div style="margin-top: 10px; width: 100%; height: 1px; background-color: #000000;"></div> -->
               </div>
 
               <div style="margin-top: 20px;">
@@ -192,7 +191,7 @@
                 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
                   <div v-for="(item, index) in locationListByType('历史遗迹')" :key='index'>
                     <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
-                      <div style="position: absolute; top:40%; left:15px; color: white;">
+                      <div style="position: absolute; top:40%; left:25px; color: white;">
                         {{item.name}}
                       </div>
                       <img :src="item.picSrc" width="100%" height="100%" class="dim">
@@ -200,7 +199,23 @@
                   </div>
                   <div v-for="(item, index) in locationListByType('历史遗迹')" :key='index'>
                     <div style="width: 230px; position: relative; height: 200px; margin-right: 20px;" class="dimback">
-                      <div style="position: absolute; top:40%; left:15px; color: white;">
+                      <div style="position: absolute; top:40%; left:25px; color: white;">
+                        {{item.name}}
+                      </div>
+                      <img :src="item.picSrc" width="100%" height="100%" class="dim">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 20px;">
+                <div style="margin-bottom: 10px;" class="user-big-title">
+                  流行热门
+                </div>
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                  <div v-for="(item, index) in locationListByType('流行热门')" :key='index'>
+                    <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
+                      <div style="position: absolute; top:40%; left:25px; color: white;">
                         {{item.name}}
                       </div>
                       <img :src="item.picSrc" width="100%" height="100%" class="dim">
@@ -214,25 +229,9 @@
                   现代建筑
                 </div>
                 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-                  <div v-for="(item, index) in locationListByType('流行热门')" :key='index'>
-                    <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
-                      <div style="position: absolute; top:40%; left:15px; color: white;">
-                        {{item.name}}
-                      </div>
-                      <img :src="item.picSrc" width="100%" height="100%" class="dim">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div style="margin-top: 20px;">
-                <div style="margin-bottom: 10px;" class="user-big-title">
-                  神秘探索
-                </div>
-                <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
                   <div v-for="(item, index) in locationListByType('现代建筑')" :key='index'>
                     <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
-                      <div style="position: absolute; top:40%; left:15px; color: white;">
+                      <div style="position: absolute; top:40%; left:25px; color: white;">
                         {{item.name}}
                       </div>
                       <img :src="item.picSrc" width="100%" height="100%" class="dim">
@@ -279,21 +278,7 @@
       this.selectedLocation = this.locationList[0];
       this.show = true;
     },
-    computed: {
-
-      // locationList() {
-      //   if (this.selectType === "全部") {
-      //     return this.locationList;
-      //   }
-      //   let locationListResult = [];
-      //   for (let i = 0; i < this.locationList.length; i++) {
-      //     if (this.locationList[i].type === this.selectType) {
-      //       locationListResult.push(this.locationList[i]);
-      //     }
-      //   }
-      //   return locationListResult;
-      // }
-    },
+    computed: {},
     data() {
       return {
         isFolder: false,
@@ -438,7 +423,12 @@
         if (!this.selectedLocation.hasPic) {
           this.gotoPage('/addPicture');
         } else {
-          window.scrollTo(0, 800);
+          if (this.isFolder) {
+            window.scrollTo(0, 400);
+          } else {
+            window.scrollTo(0, 800);
+          }
+
         }
       },
       setActive(type) {
