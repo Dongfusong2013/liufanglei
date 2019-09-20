@@ -6,7 +6,6 @@
     <div style="margin-top: 68px;" class="border-bottom">
       <DetailPicWindow></DetailPicWindow>
     </div>
-    dddd
   </div>
 </template>
 
@@ -16,6 +15,9 @@
 
   export default {
     name: 'MoreUserPage',
+    mounted(){
+       window.scrollTo(0,0);
+    },
     components: {
       DetailPicWindow,
       AppHeader
@@ -24,7 +26,6 @@
       return {
 
       }
-
     }
   }
 </script>
@@ -38,7 +39,7 @@
   .history-container {
     color: white;
     width: 100%;
-    height: 100%;
+    height: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
