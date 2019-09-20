@@ -7,12 +7,11 @@
       <baidu-map class="my-map" :center="centerPosition" :mapStyle="mapStyle" :zoom="zoom">
         <bm-navigation anchor="BMAP_ANCHOR_TOP_LEFT"></bm-navigation>
         <div v-for="(item, index) in locationList" :key="index">
-          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)"
-          :icon="{url: getIconUlr(item.position, item.type), size: {width: 20, height: 20}}">
+          <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" @click="gotoLocation(item)" :icon="{url: getIconUlr(item.position, item.type), size: {width: 20, height: 20}}">
           </bm-marker>
         </div>
 
-        <bm-overlay style="position: absolute; top:220px; right:100px; width: 285px; height: 80px;">
+        <bm-overlay style="position: absolute; top:220px; right:175px; width: 285px; height: 80px;">
           <div style="margin-bottom: 10px;">
             您记录的<span class="num-color"> 4 </span>个精彩岁月中，踏足了
             <span class="num-color"> 7 </span>个长江大川，游览了
@@ -28,70 +27,95 @@
 
         <!-- 信息窗体 -->
         <bm-overlay class="over-lay" @draw="draw" pane="labelPane" v-if="show" ref="overlayWindow">
-          <div @click="handleClick()">
-            <div style="width:296px; height:168px;">
-              <img :src="selectedLocation.picSrc" height="100%" width="100%" style="border-radius:8px 8px 0px 0px;">
-            </div>
-            <div style="padding: 16px;">
-              <div class="row-space-box title-font">
-                <div>
-                  {{selectedLocation.name}}
-                </div>
-                <div class="">
-                  4.0
-                </div>
+          <div style="display: flex; flex-direction: row;">
+            <div @click="handleClick()">
+              <div style="width:296px; height:168px;">
+                <img :src="selectedLocation.picSrc" height="100%" width="100%" style="border-radius:8px 8px 0px 0px;">
               </div>
-              <div class="content_font content-top">
-                {{selectedLocation.descript}}
-              </div>
-              <div class="normal-row" style="margin-top: 10px;">
-                <div>
-                  <div class="el-icon-location"></div>
+              <div style="padding: 16px;">
+                <div class="row-space-box title-font">
+                  <div>
+                    {{selectedLocation.name}}
+                  </div>
+                  <div class="">
+                    4.0
+                  </div>
                 </div>
-                <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
-                  地址
+                <div class="content_font content-top">
+                  {{selectedLocation.descript}}
                 </div>
-                <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
-                  北京市东城区景山前街4号
+                <div class="normal-row" style="margin-top: 10px;">
+                  <div>
+                    <div class="el-icon-location"></div>
+                  </div>
+                  <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
+                    地址
+                  </div>
+                  <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                    北京市东城区景山前街4号
+                  </div>
                 </div>
-              </div>
 
-              <div v-if="!selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;">
-                <div>
-                  <div class="el-icon-location"></div>
+                <div v-if="!selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;">
+                  <div>
+                    <div class="el-icon-location"></div>
+                  </div>
+                  <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
+                    未打卡
+                  </div>
+                  <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                    已有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">379</span>人，打卡<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">6237</span>次
+                  </div>
                 </div>
-                <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 5px;">
-                  未打卡
+                <div v-if="selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;">
+                  <div style="width: 11px; height: 11px;">
+                    <img src="/static/icon/alumn.png.png" width="100%" height="100%">
+                  </div>
+                  <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 10px;">
+                    精彩影集
+                  </div>
+                  <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
+                    共有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">800</span>张照片<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">
+                      45个故事</span>
+                  </div>
                 </div>
-                <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
-                  已有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">379</span>人，打卡<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">6237</span>次
-                </div>
-              </div>
-              <div v-if="selectedLocation.hasPic" class="normal-row" style="margin-top: 4px;">
-                <div style="width: 11px; height: 11px;">
-                  <img src="/static/icon/alumn.png.png" width="100%" height="100%">
-                </div>
-                <div style="font-size:14px;font-family:PingFangSC;font-weight:600;color:rgba(23,0,0,1);line-height:22px; margin-left: 10px;">
-                  精彩影集
-                </div>
-                <div style="font-size:12px;font-family:PingFangSC;font-weight:400;color:rgba(23,0,0,1);line-height:24px; margin-left: 10px;">
-                  共有<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">800</span>张照片<span style="color: rgba(221, 45, 74, 1);font-weight:bold;">
-                    45个故事</span>
-                </div>
-              </div>
-              <div v-if="!selectedLocation.hasPic" style="margin-top: 8px; width: 100%; height: 100%; display: flex; flex-direction: row; justify-content: center;">
-                <div class="upload-box">
-                  <div class="column-center" style="height: 100px; padding-top: 30px;">
-                    <div class="control-font">您还没有上传过打卡照片</div>
-                    <div style="width: 40px; height: 40px;">
-                      <img src="/static/icon/上传足迹.png" height="100%" width="100%">
+                <div v-if="!selectedLocation.hasPic" style="margin-top: 8px; width: 100%; height: 100%; display: flex; flex-direction: row; justify-content: center;">
+                  <div class="upload-box">
+                    <div class="column-center" style="height: 100px; padding-top: 30px;">
+                      <div class="control-font">您还没有上传过打卡照片</div>
+                      <div style="width: 40px; height: 40px;">
+                        <img src="/static/icon/上传足迹.png" height="100%" width="100%">
+                      </div>
+                      <div class="control-font" style="color: rgba(221, 45, 74, 1);">立即打卡</div>
                     </div>
-                    <div class="control-font" style="color: rgba(221, 45, 74, 1);">立即打卡</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="position: absolute; top:40%; right: -70px;">
+                <el-button @click="collapse">详情</el-button>
+              </div>
+              <div class="dimback" v-if="collapseFlg" @click="gotoPage('/civilInfo')" style="position: absolute; width: 400px; height: 310px; top:0px; left: 310px; border-radius: 10px;">
+                <div style="position: absolute; top:40px; left:0px; width: 100px; height: 100px; margin-top: -50px; margin-left: 30px;">
+                  <RaddarChart></RaddarChart>
+                </div>
+                <img src="/static/civil/故宫-午门.png" width="100%" height="100%" class="dim" style="border-radius: 10px;">
+                <div style="color: white; position: absolute; left: 160px; top: 25%;">
+                  <div style="margin-bottom: 10px;">
+                    每天有30万人游览故宫
+                  </div>
+                  <div style="margin-bottom: 10px;">
+                    故宫占地面积100公顷
+                  </div>
+                  <div style="margin-bottom: 10px;">
+                    是世界最大的宫殿
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
         </bm-overlay>
       </baidu-map>
     </div>
@@ -126,7 +150,7 @@
               <div class="number-font" style="">天气 阵雨</div>
               <div class="el-icon-light-rain"></div>
               <!-- <div class="desc-font">张照片</div> -->
-              <div class="number-font" style="margin-left: 40px;">2019-9-19</div>
+              <div class="number-font" style="margin-left: 40px;">2019-09-19</div>
             </div>
           </div>
           <div style="width: 100%;">
@@ -265,7 +289,8 @@
 <script>
   import AppHeader from '@/components/appHeader/index.vue';
   import ScrollTimeView from '@/components/ScrollTimeView';
-  import LocationShow from '@/components/LocationShow.vue'
+  import LocationShow from '@/components/LocationShow.vue';
+  import RaddarChart from '@/components/RaddarChart.vue';
 
   export default {
     name: 'UserPage',
@@ -273,6 +298,7 @@
       AppHeader,
       ScrollTimeView,
       LocationShow,
+      RaddarChart,
     },
     mounted() {
       this.selectedLocation = this.locationList[0];
@@ -281,6 +307,7 @@
     computed: {},
     data() {
       return {
+        collapseFlg: false,
         isFolder: false,
         activeType: 'location',
         window_offset: {
@@ -405,6 +432,9 @@
       }
     },
     methods: {
+      collapse() {
+        this.collapseFlg = !this.collapseFlg;
+      },
       locationListByType(type) {
         console.log("location by type")
         var list = [];
@@ -459,8 +489,8 @@
         var lng = this.centerPosition.lng;
         var lat = this.centerPosition.lat;
         const pixel = map.pointToOverlayPixel(new BMap.Point(lng, lat));
-        el.style.left = pixel.x - 320 + 'px'
-        el.style.top = pixel.y - 300 + 'px'
+        el.style.left = pixel.x - 620 + 'px'
+        el.style.top = pixel.y - 240 + 'px'
       },
       gotoPage(path) {
         this.$router.push(path);
@@ -501,11 +531,11 @@
       infoWindowOpen() {
         this.show = true
         console.log("----------open111-------1", this.selectedLocation);
-        document.addEventListener('click', this.hidePanel, false);
+        // document.addEventListener('click', this.hidePanel, false);
       },
       hide() {
         this.show = false
-        document.removeEventListener('click', this.hidePanel, false)
+        // document.removeEventListener('click', this.hidePanel, false)
       },
       hidePanel(e) {
         //点击除弹出层外的空白区域 && !this.$refs.overlayWindow.contains(e.target), 此处没有判断是否空白处
@@ -587,7 +617,7 @@
     border-radius: 8px;
   }
 
-  .user-sm-title{
+  .user-sm-title {
     font-size: 14px;
     font-family: PingFangSC;
     font-weight: 600;

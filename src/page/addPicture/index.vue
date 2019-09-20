@@ -49,26 +49,32 @@
           <div style="height: 72px;">
             <div class="control-bar flex-row" style="margin-top: 16px; width: 100%;">
               <div class="flex-row">
-                <div>
-                  +
+                <div style="width: 32px; height: 32px;">
+                  <img src="/static/icon/添加.png" width="100%" height="100%">
                 </div>
-                <div>
-                  -
+                <div style="margin-left: 16px; width: 32px; height: 32px;">
+                  <img src="/static/icon/减少.png" width="100%" height="100%">
                 </div>
               </div>
 
               <div class="flex-row" style="margin-left: 60px;">
-                <div>大小</div>
-                <div>排序</div>
+                <div style="line-height: 30px;padding-left: 10px; padding-right: 10px;
+    height:32px; border: 1px solid gray; border-radius: 5px;">大小</div>
+                <div style="line-height: 30px;padding-left: 10px; padding-right: 10px;
+    height:32px; border: 1px solid gray; border-radius: 5px; margin-left: 20px;">排序</div>
               </div>
 
               <div class="flex-row" style="margin-left: 197px;">
-                <div>全选</div>
-                <div>详细信息</div>
+                <div style="margin-left: 16px; width: 48px; height: 32px;">
+                  <img src="/static/icon/全选.png" width="100%" height="100%">
+                </div>
+                <div style="margin-left: 16px; width: 82px; height: 32px; margin-right: 15px;">
+                  <img src="/static/icon/详细信息.png" width="100%" height="100%">
+                </div>
               </div>
               <div class="flex-row button-upload" style="margin-left: 40px;">
-                <div style="margin-left: 12px;">
-                  上传6张照片
+                <div style="margin-left: 16px; width: 150px; height: 40px;">
+                  <img src="/static/icon/上传.png" width="100%" height="100%">
                 </div>
               </div>
               <div>
@@ -140,7 +146,7 @@
 <style lang="scss" scoped>
   // @import "~@/styles/mixin.scss";
 
-.history-container {
+  .history-container {
     color: white;
     width: 100%;
     height: 100%;
