@@ -115,6 +115,9 @@
 
   export default {
     name: 'AddPicture',
+    mounted(){
+      window.scrollTo(0,0);
+    },
     components: {
       AppHeader,
       MDinput

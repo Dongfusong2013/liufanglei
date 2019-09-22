@@ -18,9 +18,9 @@
           </div>
         </div>
       </div>
-      <div style="width: 480px; height: 704px; overflow: auto;" class="border-left">
+      <div style="width: 480px; height: 704px; overflow: auto;" class="border-left" @click="gotoPage('/userPage')">
         <div style="height: 80px; padding-left: 10px;" class="row-normal-start border-bottom">
-          <div style="width: 56px; height: 56px;">
+          <div style="width: 56px; height: 56px;" >
             <img :src="recommendUser.picIcon" height="100%" width="100%">
           </div>
           <div style="margin-left: 7px;">
@@ -128,7 +128,7 @@
       closeDetailWindow: Function
     },
     computed: {
-      recommendUser(){
+      recommendUser() {
         return this.userList[this.activePicIndex];
       }
     },
@@ -140,10 +140,10 @@
             userName: '光速兔子',
             picName: '小牛在故宫',
             picDescription: '小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
-            picIcon:'/static/icon/头像.png',
-            activePic:{
-                url: '/static/picShare/1.png',
-                praiseCount:13,
+            picIcon: '/static/icon/头像.png',
+            activePic: {
+              url: '/static/picShare/1.png',
+              praiseCount: 13,
             },
             tagArray: ['儿子', '一家人', '故宫探秘之旅', '会议'],
             picAlumn: '一家三口游故宫',
@@ -168,59 +168,61 @@
             ]
           },
           {
-              userName: '董甫耸',
-              picName: '雕像',
-              picIcon:'/static/icon/头像1.png',
-              picDescription: '这么歪的雕像会不会倒下来砸到人呀？有没有点太子样子？有点逗，哈哈哈哈哈！',
-              activePic:{
-                  url: '/static/picShare/2.png',
-                  praiseCount:278,
-              },
-              tagArray: ['儿子', '一家人', '故宫探秘之旅', '会议'],
-              picAlumn: '巨石雕像',
-              commentList: [{
-                  userName: '老李',
-                  iconUrl: '/static/icon/头像.png',
-                  comment: '董甫耸，你这是去哪里了？',
-                  time: '1个小时前'
-                },
-              ]
+            userName: '董甫耸',
+            picName: '雕像',
+            picIcon: '/static/icon/头像1.png',
+            picDescription: '这么歪的雕像会不会倒下来砸到人呀？有没有点太子样子？有点逗，哈哈哈哈哈！',
+            activePic: {
+              url: '/static/picShare/2.png',
+              praiseCount: 278,
             },
-            {
-                userName: '光速兔子',
-                picName: '小牛在故宫',
-                picIcon:'/static/icon/default-user.png',
-                picDescription: '小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
-                activePic:{
-                    url: '/static/picShare/1.png',
-                    praiseCount:278,
-                },
-                tagArray: ['儿子', '一家人', '故宫探秘之旅', '会议'],
-                picAlumn: '一家三口游故宫',
-                commentList: [{
-                    userName: '朱哥',
-                    iconUrl: '/static/icon/头像.png',
-                    comment: '牛哥儿子威武，已经长这么帅了呀~~',
-                    time: '1个小时前'
-                  },
-                  {
-                    userName: '游客',
-                    iconUrl: '/static/icon/头像.png',
-                    comment: '牛哥儿子威武，已经长这么帅了呀~~',
-                    time: '2个小时前'
-                  },
-                  {
-                    userName: '朱哥',
-                    iconUrl: '/static/icon/头像.png',
-                    comment: '牛哥儿子威武，已经长这么帅了呀~~',
-                    time: '12个小时前'
-                  },
-                ]
+            tagArray: ['儿子', '一家人', '故宫探秘之旅', '会议'],
+            picAlumn: '巨石雕像',
+            commentList: [{
+              userName: '老李',
+              iconUrl: '/static/icon/头像.png',
+              comment: '董甫耸，你这是去哪里了？',
+              time: '1个小时前'
+            }, ]
+          },
+          {
+            userName: '光速兔子',
+            picName: '小牛在故宫',
+            picIcon: '/static/icon/default-user.png',
+            picDescription: '小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
+            activePic: {
+              url: '/static/picShare/1.png',
+              praiseCount: 278,
+            },
+            tagArray: ['儿子', '一家人', '故宫探秘之旅', '会议'],
+            picAlumn: '一家三口游故宫',
+            commentList: [{
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '1个小时前'
               },
+              {
+                userName: '游客',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '2个小时前'
+              },
+              {
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '12个小时前'
+              },
+            ]
+          },
         ],
       }
     },
     methods: {
+      gotoPage(path) {
+        this.$router.push(path);
+      },
       nextTo(type) {
         if (type === "left") {
           if (this.activePicIndex > 0) {
@@ -229,7 +231,7 @@
         } else {
           if (this.activePicIndex < this.userList.length - 1) {
             this.activePicIndex += 1;
-            console.log("====",this.activePicIndex);
+            console.log("====", this.activePicIndex);
           }
         }
       },

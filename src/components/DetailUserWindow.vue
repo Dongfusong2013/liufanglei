@@ -38,9 +38,9 @@
         </div>
       </div>
       <div style="width: 320px; height: 704px; overflow: auto;" class="border-left">
-        <div style="height: 80px; padding-left: 10px;" class="row-normal-start border-bottom">
+        <div style="height: 80px; padding-left: 10px;" class="row-normal-start border-bottom" @click="gotoPage('/userPage')">
           <div style="width: 56px; height: 56px;">
-            <img src="/static/icon/头像1.png" height="100%" width="100%">
+            <img src="/static/icon/头像.png" height="100%" width="100%">
           </div>
           <div style="margin-left: 7px;">
             <div style="margin-bottom: 6px;" class="detail-title-font">光速兔子</div>
@@ -159,19 +159,19 @@
         activePicIndex: 1,
         commentList: [{
             userName: '朱哥',
-            iconUrl:'/static/icon/头像.png',
+            iconUrl: '/static/icon/头像.png',
             comment: '牛哥儿子威武，已经长这么帅了呀~~',
             time: '1个小时前'
           },
           {
             userName: '游客',
-            iconUrl:'/static/icon/头像.png',
+            iconUrl: '/static/icon/头像.png',
             comment: '牛哥儿子威武，已经长这么帅了呀~~',
             time: '2个小时前'
           },
           {
             userName: '朱哥',
-            iconUrl:'/static/icon/头像.png',
+            iconUrl: '/static/icon/头像.png',
             comment: '牛哥儿子威武，已经长这么帅了呀~~',
             time: '12个小时前'
           },
@@ -179,6 +179,10 @@
       }
     },
     methods: {
+      gotoPage(path) {
+        console.log("detail user window", path);
+        this.$router.push(path);
+      },
       scrollTo(type) {
         if (type === "left") {
           if (this.activePicIndex > 0) {
