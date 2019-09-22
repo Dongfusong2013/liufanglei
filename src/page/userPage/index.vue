@@ -263,15 +263,14 @@
               <!-- <div class="user-sm-title" style="opacity: 0.6; margin-left: 10px;" v-if="!isFolder">
                 当前相簿:{{selectedLocation.name}}
               </div> -->
-
               <div @click="changeModel" style="margin-right: 50px;">
                 <div v-if="isFolder" style="font-size: 20px; display: flex; flex-direction: row; align-items: center;">
-                  <div class="user-sm-title" style="margin-right: 15px;">平铺</div>
-                  <div class="el-icon-folder-opened"></div>
+                  <div class="user-sm-title" style="margin-right: 5px;">展示</div>
+                  <div class="el-icon-view"></div>
                 </div>
                 <div v-if="!isFolder" style="font-size: 20px; display: flex; flex-direction: row; align-items: center;">
-                  <div class="user-sm-title" style="margin-right: 15px;">展示</div>
-                  <div class="el-icon-picture-outline"></div>
+                  <div class="user-sm-title" style="margin-right: 5px;">编辑</div>
+                  <div class="el-icon-edit-outline"></div>
                 </div>
               </div>
             </div>
@@ -678,6 +677,7 @@
         this.isFolder = !this.isFolder;
       },
       handleClick() {
+        this.setActive('location');
         if (!this.selectedLocation.hasPic) {
           window.scrollTo(0, 420);
           this.isFolder = true;
