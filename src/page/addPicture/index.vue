@@ -48,7 +48,6 @@
                 <div v-show="descripCount"> {{descripCount}}字</div>
               </div>
             </div>
-
             <div>
             </div>
           </div>

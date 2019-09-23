@@ -100,12 +100,13 @@
             <span class="num-color"> 7 </span>个长江大川，游览了
             <span class="num-color"> 4 </span>个名胜古迹，在 <span class="num-color"> 3 </span> 个工作地拼洒汗水，
             拥有<span class="num-color"> 2 </span>个学习成长的图书馆......
+            <span style="margin-left: 10px;">
+              您共跟 <span class="num-color" > 4 </span> 位家人，<span class="num-color">10</span>
+              个朋友，互相陪伴的 <span class="num-color"> 21 </span> 天中记录了 <span class="num-color">50</span>
+              个时刻......
+            </span>
           </div>
-          <div>
-            您共跟 <span class="num-color"> 4 </span> 位家人，<span class="num-color">10</span>
-            个朋友，互相陪伴的 <span class="num-color"> 21 </span> 天中记录了 <span class="num-color">50</span>
-            个时刻......
-          </div>
+
         </bm-overlay>
 
         <!-- 信息窗体 -->
@@ -280,7 +281,7 @@
             </div>
             <div v-if="!isFolder">
               <div style="margin-top:30px;">
-                <ScrollTimeView></ScrollTimeView>
+                <ScrollTimeView :pictures1="pictures1" :pictures2="pictures2"></ScrollTimeView>
               </div>
             </div>
             <div v-if="isFolder" style="width: 100%;">
@@ -293,7 +294,7 @@
                     创建相簿:{{selectedLocation.name}}
                   </div>
                 </div>
-                <div style="width: 300px; height:180px; margin-bottom: 80px; border: solid;" @click="gotoPage('/addPicture')">
+                <div style="width: 300px; height:180px; margin-bottom: 40px; border: solid;" @click="gotoPage('/addPicture')">
                   <!-- <img src="" width="100%" height="100%"> -->
                   <div style="height: 100%; display: flex; flex-direction: column;
                   justify-content: center; align-items: center;">
@@ -680,56 +681,59 @@
             height: 207,
             description: '故宫掠影：记录故宫的美丽',
           },
+        ],
+        pictures2:[
           {
             time: 2005,
-            url: '/static/location/1.png',
+            url: '/static/location/7.png',
             width: 316,
             height: 208,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2008,
-            url: '/static/location/2.png',
+            url: '/static/location/8.png',
             width: 280,
             height: 194,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2009,
-            url: '/static/location/4.png',
+            url: '/static/location/9.png',
             width: 171,
             height: 207,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2010,
-            url: '/static/location/1.png',
+            url: '/static/location/10.png',
             width: 316,
             height: 208,
             description: '故宫掠影：记录美丽',
           },
           {
             time: 2012,
-            url: '/static/location/2.png',
+            url: '/static/location/1.png',
             width: 280,
             height: 194,
             description: '故宫掠影：记录美丽',
           },
           {
             time: 2013,
-            url: '/static/location/3.png',
+            url: '/static/location/8.png',
             width: 338,
             height: 191,
             description: '故宫掠影：记录美丽',
           },
           {
             time: 2020,
-            url: '/static/location/1.png',
+            url: '/static/location/7.png',
             width: 316,
             height: 208,
             description: '故宫掠影：记录丽',
           },
-        ],
+        ]
+
       }
     },
     methods: {

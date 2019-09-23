@@ -17,7 +17,7 @@
 
         <bm-info-window :position="selectedLocation.position" :width="windowWidth" :height="windowHeight" :show="show"
           @close="infoWindowClose" @open="infoWindowOpen">
-          <div style="width: 100%; height: 159px; margin-top: 10px;" @click="gotoPage('/civilInfo')">
+          <div style="width: 100%; height: 159px; margin-top: 10px;" @click="gotoPage('/civilInfo', selectedLocation)">
             <img :src="selectedLocation.picSrc" height="100%" width="100%">
             <div class="row-space-box title-font title-top">
               <div>
@@ -171,21 +171,9 @@
             },
             score: 4.9,
             footCount: 1500,
-            name: '故宫博物院，中国',
-            descript: '世界上最宏大的宫廷建筑群',
-            picSrc: '/static/design/door.jpeg',
-          },
-          {
-            type: "历史遗迹",
-            position: {
-              lng: 106.404,
-              lat: 35.915
-            },
-            score: 4.9,
-            footCount: 1500,
-            name: '故宫博物院，中国',
-            descript: '世界上最宏大的宫廷建筑群',
-            picSrc: '/static/design/door.jpeg',
+            name: '天启城, 天界',
+            descript: '九州缥缈录中的都城',
+            picSrc: '/static/civil/天启城.png',
           },
           {
             type: "历史遗迹",
@@ -197,7 +185,7 @@
             footCount: 1500,
             name: '故宫博物院，中国',
             descript: '世界上最宏大的宫廷建筑群',
-            picSrc: '/static/design/door.jpeg',
+            picSrc: '/static/civil/故宫.jpeg',
           },
           {
             type: "历史遗迹",
@@ -210,18 +198,6 @@
             name: '罗马角斗场，意大利',
             descript: '世界上最大的角斗场',
             picSrc: '/static/civil/罗马角斗场.jpeg',
-          },
-          {
-            type: "流行热门",
-            position: {
-              lng: 106.404,
-              lat: 59.915
-            },
-            score: 4.4,
-            footCount: 914,
-            name: '德国大教堂，德国',
-            descript: '网络观看最多的欧洲教堂',
-            picSrc: '/static/civil/德国大教堂.jpeg',
           },
           {
             type: "流行热门",
@@ -276,7 +252,8 @@
           return "/static/civil/热门流行.png";
         }
       },
-      gotoPage(path) {
+      gotoPage(path, location) {
+        // locatoin
         this.$router.push(path);
       },
       controlListTable() {
