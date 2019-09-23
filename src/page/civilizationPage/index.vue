@@ -208,7 +208,7 @@
             score: 4.4,
             footCount: 914,
             name: '德国大教堂，德国',
-            descript: '网络观看最多的欧洲教堂',
+            descript: '教皇时期最具代表性的教堂',
             picSrc: '/static/civil/德国大教堂.jpeg',
           },
           {
@@ -220,7 +220,7 @@
             score: 4.4,
             footCount: 904,
             name: '香港交易所，中国',
-            descript: '世界上最宏大的宫廷建筑群',
+            descript: '最具特色的金融建筑',
             picSrc: '/static/civil/现代建筑2.jpeg',
           },
           {
@@ -232,7 +232,7 @@
             score: 4.4,
             footCount: 659,
             name: '中国银行，中国',
-            descript: '世界上最宏大的宫廷建筑群',
+            descript: '贝聿铭的收官制作',
             picSrc: '/static/civil/现代建筑1.jpeg',
           },
         ]

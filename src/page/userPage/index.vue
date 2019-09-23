@@ -4,14 +4,6 @@
     <AppHeader noBackground="false" />
     <div class="right-list-control1 row-space-box">
       <div class="row-space-box" style="align-self: flex-start; margin-top: 30px;">
-        <!-- <div style="margin-right: 10px;">
-          <el-select v-model="selectType" style="width: 110px;" slot="prepend" placeholder="请选择">
-            <el-option label="全部相簿" value="全部相簿"></el-option>
-            <el-option label="历史遗迹" value="历史遗迹"></el-option>
-            <el-option label="现代建筑" value="现代建筑"></el-option>
-            <el-option label="流行热门" value="流行热门"></el-option>
-          </el-select>
-        </div> -->
         <div class="control-label box-center" @click="controlListTable">
           <div v-if="listShow" style="width: 24px; height: 24px;">
             <img src="/static/icon/排行关闭.png" height="100%" width="100%">
@@ -94,19 +86,18 @@
           </bm-marker>
         </div>
 
-        <bm-overlay style="position: absolute; top:100px; left:90px; width: 700px; height: 80px; font-size: 14px; opacity: 0.8;">
+        <bm-overlay style="position: absolute; top:150px; right:150px; width: 250px; height: 80px; font-size: 14px; opacity: 0.8;">
           <div style="margin-bottom: 5px;">
             您记录的<span class="num-color"> 4 </span>个精彩岁月中，踏足了
             <span class="num-color"> 7 </span>个长江大川，游览了
             <span class="num-color"> 4 </span>个名胜古迹，在 <span class="num-color"> 3 </span> 个工作地拼洒汗水，
             拥有<span class="num-color"> 2 </span>个学习成长的图书馆......
-            <span style="margin-left: 10px;">
-              您共跟 <span class="num-color"> 4 </span> 位家人，<span class="num-color">10</span>
-              个朋友，互相陪伴的 <span class="num-color"> 21 </span> 天中记录了 <span class="num-color">50</span>
-              个时刻......
-            </span>
           </div>
-
+          <div style="margin-top: 10px;">
+            您共跟 <span class="num-color"> 4 </span> 位家人，<span class="num-color">10</span>
+            个朋友，互相陪伴的 <span class="num-color"> 21 </span> 天中记录了 <span class="num-color">50</span>
+            个时刻......
+          </div>
         </bm-overlay>
 
         <!-- 信息窗体 -->
@@ -188,7 +179,7 @@
                 <img :src="selectedLocation.goback" width="100%" height="100%" class="dim" style="border-radius: 10px;">
                 <div style="color: white; position: absolute; left: 160px; top: 25%;">
                   <div style="margin-bottom: 10px;">
-                    世界最大的古代宫殿
+                    {{selectedLocation.descript}}
                   </div>
                   <div style="margin-bottom: 10px;">
                     很多可歌可泣的故事发生在2000年前
@@ -280,7 +271,7 @@
               </div>
             </div>
             <div v-if="!isFolder">
-              <div style="margin-top:30px;">
+              <div style="margin-top:10px; margin-left: 30px;">
                 <ScrollTimeView :pictures1="pictures1" :pictures2="pictures2"></ScrollTimeView>
               </div>
             </div>
@@ -306,13 +297,13 @@
                     </div>
                   </div>
                 </div>
-                <el-collapse v-model="activeNames" @change="handleChange">
+                <el-collapse v-if="selectedLocation.hasPic" v-model="activeNames" @change="handleChange">
                   <el-collapse-item title="最近：2019年9月19日 (20张)" name="1">
                     <div style="margin-top: 20px; margin-bottom: 10px;">
                       <span style="font-size: 20px; font-weight: bold;">主题: 带孩子去故宫游玩</span>
                       <div class="el-icon-edit-outline" @click="gotoPage('/addPicture')"></div>
                     </div>
-                    <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; justify-content: center; width: 1200px; flex-wrap: wrap;">
+                    <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; width: 1000px; flex-wrap: wrap;">
                       <div v-for="(item, index) in pictures1" :key="index">
                         <div style="margin-right: 35px; margin-bottom: 20px; display: flex;
                         flex-direction: column; justify-content: center; align-items: center;">
@@ -331,7 +322,7 @@
                       <span style="font-size: 20px; font-weight: bold;">主题: 去春游</span>
                       <div class="el-icon-edit-outline"></div>
                     </div>
-                    <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; justify-content: center; width: 1200px; flex-wrap: wrap;">
+                    <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; width: 1000px; flex-wrap: wrap;">
                       <div v-for="(item, index) in pictures1" :key="index">
                         <div style="margin-right: 35px; margin-bottom: 20px; display: flex;
                         flex-direction: column; justify-content: center; align-items: center;">
@@ -350,8 +341,8 @@
                       <span style="font-size: 20px; font-weight: bold;">主题: 跟小倩去旅游</span>
                       <div class="el-icon-edit-outline"></div>
                     </div>
-                    <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; justify-content: center; width: 1200px; flex-wrap: wrap;">
-                      <div v-for="(item, index) in pictures1" :key="index">
+                    <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; width: 1000px; flex-wrap: wrap;">
+                      <div v-for="(item, index) in pictures2" :key="index">
                         <div style="margin-right: 35px; margin-bottom: 20px; display: flex;
                         flex-direction: column; justify-content: center; align-items: center;">
                           <div style="width: 300px; height:180px; ">
@@ -389,7 +380,7 @@
                 所有相簿 （发布、未发布）
               </div>
               <div v-if="isType('照片')">
-                <div style="display: flex; flex-direction: row; flex-wrap: wrap; width: 1300px; margin-left: 10px;">
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap; width: 1000px; margin-left: 10px;">
                   <div v-for="(item, index) in pictures1" :key="index">
                     <div style="margin-right: 35px; margin-bottom: 20px; display: flex;
                     flex-direction: column; justify-content: center; align-items: center;">
@@ -466,6 +457,15 @@
         </div>
       </div>
     </div>
+    <div class="view-title-1 share-pos-1">
+      <div style="margin-left: 30px; ">
+      <div style="margin-top: 0px; ">
+        相关人物:
+      </div>
+      <span style="font-size: 14px;">爸爸（牛牧）、 妈妈（郭诗光）、儿子（牛子淳）</span>
+      </div>
+
+    </div>
 
     <!-- <div class="zoom-control-pos">
       <div class="zoom-constrol-bigger box-center" style="font-size: 26px; color: white;">
@@ -484,6 +484,7 @@
   import ScrollTimeView from '@/components/ScrollTimeView';
   import LocationShow from '@/components/LocationShow.vue';
   import RaddarChart from '@/components/RaddarChart.vue';
+
 
   export default {
     name: 'UserPage',
@@ -565,7 +566,7 @@
             footCount: 1500,
             name: '故宫博物院，中国',
             descript: '世界上最宏大的宫廷建筑群',
-            picSrc: '/static/design/door.jpeg',
+            picSrc: '/static/civil/故宫-午门.png',
           },
           {
             type: "历史遗迹",
@@ -594,7 +595,7 @@
             score: 4.4,
             footCount: 914,
             name: '德国大教堂，德国',
-            descript: '网络观看最多的欧洲教堂',
+            descript: '教皇时期最伟大的教堂',
             picSrc: '/static/civil/德国大教堂.jpeg',
           },
           {
@@ -609,7 +610,7 @@
             score: 4.4,
             footCount: 904,
             name: '香港交易所，中国',
-            descript: '世界上最宏大的宫廷建筑群',
+            descript: '最具特色的金融交易所',
             picSrc: '/static/civil/现代建筑2.jpeg',
           },
           {
@@ -624,7 +625,7 @@
             score: 4.4,
             footCount: 659,
             name: '中国银行，中国',
-            descript: '世界上最宏大的宫廷建筑群',
+            descript: '贝聿铭的收官制作',
             picSrc: '/static/civil/现代建筑1.jpeg',
           },
         ],
@@ -666,7 +667,7 @@
           },
           {
             time: 2000,
-            url: '/static/user_location/5.png',
+            url: '/static/user_location/9.png',
             width: 204,
             height: 187,
             description: '故宫掠影：记录故宫',
@@ -680,7 +681,7 @@
           },
           {
             time: 2005,
-            url: '/static/user_location/4.png',
+            url: '/static/user_location/10.png',
             width: 171,
             height: 207,
             description: '故宫掠影：记录故宫的美丽',
@@ -723,7 +724,7 @@
           },
           {
             time: 2013,
-            url: '/static/user_location/8.png',
+            url: '/static/user_location/4.png',
             width: 338,
             height: 191,
             description: '故宫掠影：记录美丽',
@@ -899,6 +900,16 @@
     background: rgba(243, 245, 246, 1);
   }
 
+.share-pos-1 {
+    position: relative;
+    top:700px;
+    margin-top: 100px;
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    // background-color: aliceblue;
+  }
+
   .dim {
     opacity: 0.6;
     filter: alpha(opacity=60);
@@ -1027,6 +1038,23 @@
     border-radius: 5px;
   }
 
+
+  .view-pos {
+    color: #000000;
+    margin-left: 86px;
+    margin-top: 40px;
+    margin-bottom: 27px;
+  }
+
+  .view-title-1 {
+    font-size: 24px;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(23, 0, 0, 1);
+    line-height: 32px;
+  }
+
+
   .list-content-font {
     font-size: 14px;
     font-family: PingFangSC;
@@ -1123,7 +1151,7 @@
 
   .history-container {
     background: rgba(243, 245, 246, 1);
-    width: 100%;
+    width: 1440px;
     height: 100%;
     display: flex;
     flex-direction: column;

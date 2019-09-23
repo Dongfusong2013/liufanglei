@@ -109,7 +109,7 @@
             <div v-if="isNew" style="display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; align-items: stretch; ">
               <div v-for="(item, index) in pictures1" :key='index'>
                 <div style="margin-top: 10px; margin-left: 20px; display: flex;flex-direction: row; width: 100%; height: 100%;">
-                  <div style="width: 100px; height: 100px; margin-right: 10px;" @click="selectPicture(item, index)"
+                  <div style="width: 100px; height: 100px; margin-right: 10px; margin-top: 10px;" @click="selectPicture(item, index)"
                     :class="{'border-selected':isSelected(index)}">
                     <img :src="item.url" width="100%" height="100%">
                   </div>
@@ -155,7 +155,7 @@
         pictures1: [{
             picName: '五角的故宫',
             time: 1990,
-            url: '/static/location/1.png',
+            url: '/static/user_location/1.png',
             width: 316,
             height: 208,
             description: '第一次带小小牛去故宫',
@@ -164,7 +164,7 @@
           {
             picName: '小小牛',
             time: 1992,
-            url: '/static/picShare/familyDay-son.jpeg',
+            url: '/static/user_location/2.png',
             width: 280,
             height: 194,
             description: '第一次带小小牛去故宫',
@@ -172,7 +172,7 @@
           {
             picName: '建筑美景',
             time: 1993,
-            url: '/static/location/3.png',
+            url: '/static/user_location/3.png',
             width: 338,
             height: 191,
             description: '故宫掠影：记录故宫的美丽',
@@ -180,7 +180,7 @@
           {
             picName: '故宫一片',
             time: 1994,
-            url: '/static/location/4.png',
+            url: '/static/user_location/4.png',
             width: 171,
             height: 207,
             description: '故宫掠影：记录美丽',
@@ -188,7 +188,7 @@
           {
             picName: '嘻嘻的一个场景',
             time: 1995,
-            url: '/static/location/5.png',
+            url: '/static/user_location/5.png',
             width: 204,
             height: 187,
             description: '故宫掠影：记录的美丽',
@@ -196,7 +196,7 @@
           {
             picName: '故宫一片',
             time: 2000,
-            url: '/static/location/5.png',
+            url: '/static/user_location/6.png',
             width: 204,
             height: 187,
             description: '故宫掠影：记录故宫',
@@ -204,7 +204,7 @@
           {
             picName: '建筑美景',
             time: 2003,
-            url: '/static/location/4.png',
+            url: '/static/user_location/7.png',
             width: 171,
             height: 207,
             description: '故宫掠影：记录故宫的美丽',
@@ -212,65 +212,26 @@
           {
             picName: '嘻嘻的一个场景',
             time: 2005,
-            url: '/static/location/4.png',
+            url: '/static/user_location/8.png',
             width: 171,
             height: 207,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2005,
-            url: '/static/location/1.png',
+            url: '/static/user_location/9.png',
             width: 316,
             height: 208,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2008,
-            url: '/static/location/2.png',
+            url: '/static/user_location/10.png',
             width: 280,
             height: 194,
             description: '故宫掠影：记录故宫的美丽',
-          },
-          {
-            picName: '建筑美景',
-            time: 2009,
-            url: '/static/location/4.png',
-            width: 171,
-            height: 207,
-            description: '故宫掠影：记录故宫的美丽',
-          },
-          {
-            picName: '建筑美景',
-            time: 2010,
-            url: '/static/location/1.png',
-            width: 316,
-            height: 208,
-            description: '故宫掠影：记录美丽',
-          },
-          {
-            picName: '建筑美景',
-            time: 2012,
-            url: '/static/location/2.png',
-            width: 280,
-            height: 194,
-            description: '故宫掠影：记录美丽',
-          },
-          {
-            picName: '建筑美景',
-            time: 2013,
-            url: '/static/location/3.png',
-            width: 338,
-            height: 191,
-            description: '故宫掠影：记录美丽',
-          },
-          {
-            picName: '建筑美景',
-            time: 2020,
-            url: '/static/location/1.png',
-            width: 316,
-            height: 208,
-            description: '故宫掠影：记录丽',
-          },
+          }
+
         ],
         postForm: {
           topic: '带孩子去故宫游玩',
