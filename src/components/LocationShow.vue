@@ -1,16 +1,14 @@
 <template>
   <div>
-    <div class="backgroundImg">
-      <img src="/static/civil/故宫-午门.png" alt height="100%" width="100%" />
+    <div style="width: 1430px; height: 800px;">
+      <img :src="bgUrl" height="100%" width="100%" />
     </div>
     <div class="location-view row-space">
       <div class="bigTitle">
         <div>
-          北京、沈阳明清皇宫
+          {{name}}
         </div>
-        <div>
-          中国
-        </div>
+
         <div style="margin-top: 32px; width: 655px; height: 120px;" class="sm-title">
           作为15至20世纪明清皇帝的皇室住所，北京和沉阳的明清皇宫是晚期封建中国的国家权力中心。明朝皇帝朱棣在1406年至1420年间建造了明清故宫，
           由明朝皇帝朱棣于1406年至1420年建造，见证了明朝和明朝十五位皇帝在接下来的505年中的登基。沉阳故宫建于1625年至1637年间由Nurgaci为
@@ -32,6 +30,10 @@
     components: {
       RaddarChart,
     },
+    props:{
+       bgUrl:String,
+       name:String,
+    }
   }
 </script>
 

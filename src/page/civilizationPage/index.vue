@@ -185,7 +185,7 @@
             footCount: 1500,
             name: '故宫博物院，中国',
             descript: '世界上最宏大的宫廷建筑群',
-            picSrc: '/static/civil/故宫.jpeg',
+            picSrc: '/static/civil/故宫-午门.png',
           },
           {
             type: "历史遗迹",
@@ -253,8 +253,13 @@
         }
       },
       gotoPage(path, location) {
-        // locatoin
-        this.$router.push(path);
+        var info = {
+          path: path,
+          query: {
+            location:location
+          }
+        }
+        this.$router.push(info);
       },
       controlListTable() {
         this.listShow = !this.listShow;

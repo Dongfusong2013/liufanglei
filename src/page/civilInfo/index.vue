@@ -3,15 +3,18 @@
     <div style="position: absolute; top:0; width:100%">
       <AppHeader noBackground="true" />
     </div>
-    <LocationShow></LocationShow>
+    <LocationShow :bgUrl="bgUrl" :name="name"></LocationShow>
     <div style="width: 100%; height: 100%;">
       <div class="view-title view-pos">
         历史文明
       </div>
-      <ScrollTimeView :pictures1="pictures1" :pictures2="pictures2"></ScrollTimeView>
+      <div style="margin-left: 30px;">
+      <ScrollTimeView :pictures1="pictures1" :pictures2="pictures2"></ScrollTimeView><!--  -->
+      </div>
+
     </div>
     <div class="view-title share-pos">
-      <div style="margin-left: 86px; margin-top: 40px; ">
+      <div style="margin-left: 86px; margin-top: 0px; ">
         用户分享
       </div>
       <div style="margin-top: 40px; ">
@@ -32,6 +35,8 @@
     name: 'Civilnfo',
     data(){
        return {
+         bgUrl:'/static/civil/故宫-午门.png',
+         name:'',
          pictures1: [{
              time: 1990,
              url: '/static/public_location/1.png',
@@ -149,8 +154,11 @@
       ScrollTimeView,
       PicShare,
     },
-    mounted() {
-      console.log("mounted....");
+    created() {
+      var location = this.$route.query.location;
+      this.bgUrl = location.picSrc;
+      this.name = location.name;
+      console.log("create....", query);
     },
     methods:{
         gotoPage(path){

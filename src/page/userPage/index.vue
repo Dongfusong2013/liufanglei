@@ -101,7 +101,7 @@
             <span class="num-color"> 4 </span>个名胜古迹，在 <span class="num-color"> 3 </span> 个工作地拼洒汗水，
             拥有<span class="num-color"> 2 </span>个学习成长的图书馆......
             <span style="margin-left: 10px;">
-              您共跟 <span class="num-color" > 4 </span> 位家人，<span class="num-color">10</span>
+              您共跟 <span class="num-color"> 4 </span> 位家人，<span class="num-color">10</span>
               个朋友，互相陪伴的 <span class="num-color"> 21 </span> 天中记录了 <span class="num-color">50</span>
               个时刻......
             </span>
@@ -178,23 +178,23 @@
             </div>
             <div>
               <div style="position: absolute; top:40%; right: -60px;">
-                <el-button type="small" class="user-sm-title" @click="collapse">历史</el-button>
+                <el-button type="small" class="user-sm-title" @click="collapse">穿跃</el-button>
               </div>
-              <div class="dimback" v-if="collapseFlg" @click="gotoPage('/civilInfo')" style="cursor: pointer;position: absolute; width: 400px; height: 310px; top:0px; left: 310px; border-radius: 10px;">
+              <div class="dimback" v-if="collapseFlg" @click="gotoPage('/civilInfo', selectedLocation)" style="cursor: pointer;position: absolute; width: 400px; height: 310px; top:0px; left: 310px; border-radius: 10px;">
                 <div style="position: absolute; top:50%; left:10px; width: 100px; height: 40px; margin-top: -50px; margin-left: 30px;">
                   <!-- <RaddarChart></RaddarChart> -->
                   <img src="/static/icon/Logo.png" height="100%" width="100%">
                 </div>
-                <img src="/static/civil/故宫-午门.png" width="100%" height="100%" class="dim" style="border-radius: 10px;">
+                <img :src="selectedLocation.goback" width="100%" height="100%" class="dim" style="border-radius: 10px;">
                 <div style="color: white; position: absolute; left: 160px; top: 25%;">
                   <div style="margin-bottom: 10px;">
-                    每天有30万人游览故宫
+                    世界最大的古代宫殿
                   </div>
                   <div style="margin-bottom: 10px;">
-                    故宫占地面积100公顷
+                    很多可歌可泣的故事发生在2000年前
                   </div>
                   <div style="margin-bottom: 10px;">
-                    是世界最大的宫殿
+                    让我们回到那个时代....
                   </div>
                 </div>
               </div>
@@ -307,10 +307,10 @@
                   </div>
                 </div>
                 <el-collapse v-model="activeNames" @change="handleChange">
-                  <el-collapse-item title="最近：2019年9月19日 (20张)" name="1" >
+                  <el-collapse-item title="最近：2019年9月19日 (20张)" name="1">
                     <div style="margin-top: 20px; margin-bottom: 10px;">
-                     <span style="font-size: 20px; font-weight: bold;">主题: 带孩子去故宫游玩</span>
-                        <div class="el-icon-edit-outline" @click="gotoPage('/addPicture')"></div>
+                      <span style="font-size: 20px; font-weight: bold;">主题: 带孩子去故宫游玩</span>
+                      <div class="el-icon-edit-outline" @click="gotoPage('/addPicture')"></div>
                     </div>
                     <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; justify-content: center; width: 1200px; flex-wrap: wrap;">
                       <div v-for="(item, index) in pictures1" :key="index">
@@ -559,6 +559,7 @@
               lng: 136.404,
               lat: 39.915
             },
+            goback: '/static/time_cross/time1.jpg',
             url: "/static/civil/历史遗迹.png",
             score: 4.9,
             footCount: 1500,
@@ -568,11 +569,12 @@
           },
           {
             type: "历史遗迹",
-            hasPic: false,
+            hasPic: true,
             position: {
               lng: 400.404,
               lat: 69.915
             },
+            goback: '/static/time_cross/time2.jpg',
             url: "/static/civil/历史遗迹.png",
             score: 4.8,
             footCount: 1314,
@@ -587,6 +589,7 @@
               lng: 106.404,
               lat: 59.915
             },
+            goback: '/static/time_cross/time3.jpg',
             url: "/static/civil/历史遗迹.png",
             score: 4.4,
             footCount: 914,
@@ -601,6 +604,7 @@
               lng: 108.404,
               lat: 69.915
             },
+            goback: '/static/time_cross/time4.jpg',
             url: "/static/civil/历史遗迹.png",
             score: 4.4,
             footCount: 904,
@@ -615,7 +619,7 @@
               lng: 116.404,
               lat: 49.915
             },
-
+            goback: '/static/time_cross/time5.jpg',
             url: "/static/civil/历史遗迹.png",
             score: 4.4,
             footCount: 659,
@@ -626,7 +630,7 @@
         ],
         pictures1: [{
             time: 1990,
-            url: '/static/location/1.png',
+            url: '/static/user_location/6.png',
             width: 316,
             height: 208,
             description: '第一次带小小牛去故宫',
@@ -634,100 +638,99 @@
           },
           {
             time: 1992,
-            url: '/static/picShare/familyDay-son.jpeg',
+            url: '/static/user_location/1.png',
             width: 280,
             height: 194,
             description: '第一次带小小牛去故宫',
           },
           {
             time: 1993,
-            url: '/static/location/3.png',
+            url: '/static/user_location/3.png',
             width: 338,
             height: 191,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 1994,
-            url: '/static/location/4.png',
+            url: '/static/user_location/4.png',
             width: 171,
             height: 207,
             description: '故宫掠影：记录美丽',
           },
           {
             time: 1995,
-            url: '/static/location/5.png',
+            url: '/static/user_location/5.png',
             width: 204,
             height: 187,
             description: '故宫掠影：记录的美丽',
           },
           {
             time: 2000,
-            url: '/static/location/5.png',
+            url: '/static/user_location/5.png',
             width: 204,
             height: 187,
             description: '故宫掠影：记录故宫',
           },
           {
             time: 2003,
-            url: '/static/location/4.png',
+            url: '/static/user_location/4.png',
             width: 171,
             height: 207,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2005,
-            url: '/static/location/4.png',
+            url: '/static/user_location/4.png',
             width: 171,
             height: 207,
             description: '故宫掠影：记录故宫的美丽',
           },
         ],
-        pictures2:[
-          {
+        pictures2: [{
             time: 2005,
-            url: '/static/location/7.png',
+            url: '/static/user_location/7.png',
             width: 316,
             height: 208,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2008,
-            url: '/static/location/8.png',
+            url: '/static/user_location/8.png',
             width: 280,
             height: 194,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2009,
-            url: '/static/location/9.png',
+            url: '/static/user_location/9.png',
             width: 171,
             height: 207,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2010,
-            url: '/static/location/10.png',
+            url: '/static/user_location/10.png',
             width: 316,
             height: 208,
             description: '故宫掠影：记录美丽',
           },
           {
             time: 2012,
-            url: '/static/location/1.png',
+            url: '/static/user_location/1.png',
             width: 280,
             height: 194,
             description: '故宫掠影：记录美丽',
           },
           {
             time: 2013,
-            url: '/static/location/8.png',
+            url: '/static/user_location/8.png',
             width: 338,
             height: 191,
             description: '故宫掠影：记录美丽',
           },
           {
             time: 2020,
-            url: '/static/location/7.png',
+            url: '/static/user_location/7.png',
             width: 316,
             height: 208,
             description: '故宫掠影：记录丽',
@@ -799,9 +802,21 @@
         el.style.left = pixel.x - 620 + 'px'
         el.style.top = pixel.y - 240 + 'px'
       },
-      gotoPage(path) {
-        this.$router.push(path);
+      gotoPage(path, location) {
+        if (location !== undefined) {
+          var info = {
+            path: path,
+            query: {
+              location: location
+            }
+          }
+          this.$router.push(info);
+        } else {
+          this.$router.push(path);
+        }
+
       },
+
       controlListTable() {
         this.listShow = !this.listShow;
       },
