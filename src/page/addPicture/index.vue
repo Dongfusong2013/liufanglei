@@ -17,6 +17,20 @@
           </div>
           <div v-if="true" class="edit-title">
             <div style="margin-top: 17px; margin-left: 16px;">
+              主题
+            </div>
+            <el-input style="width: 260px" v-model="postForm.name" :rows="1" type="textarea" class="article-textarea"
+              autosize placeholder="输入当天主题" />
+
+            <div style="margin-top: 17px;">
+              <div style="margin-bottom: 0px; margin-left: 16px;">
+                拍照时间
+              </div>
+              <el-date-picker style="width: 260px" v-model="postForm.makeTime" type="datetime" format="yyyy-MM-dd HH:mm:ss"
+                placeholder="选择日期和时间" class="time-picker" />
+            </div>
+
+            <div style="margin-top: 17px; margin-left: 16px;">
               照片1名称
             </div>
             <el-input style="width: 260px" v-model="postForm.name" :rows="1" type="textarea" class="article-textarea"
@@ -33,13 +47,7 @@
               </div>
             </div>
 
-            <div style="margin-top: 17px;">
-              <div style="margin-bottom: 0px; margin-left: 16px;">
-                拍照时间
-              </div>
-              <el-date-picker style="width: 260px" v-model="postForm.makeTime" type="datetime" format="yyyy-MM-dd HH:mm:ss"
-                placeholder="选择日期和时间" class="time-picker" />
-            </div>
+
             <div>
             </div>
           </div>
@@ -115,8 +123,8 @@
 
   export default {
     name: 'AddPicture',
-    mounted(){
-      window.scrollTo(0,0);
+    mounted() {
+      window.scrollTo(0, 0);
     },
     components: {
       AppHeader,

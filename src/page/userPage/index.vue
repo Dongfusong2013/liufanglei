@@ -28,6 +28,9 @@
               <div style="margin-left: 10px;">
                 公开相簿
               </div>
+              <div style="margin-left: 40px;">
+                全部相簿
+              </div>
             </div>
           </div>
           <div style="margin-left: 20px; background-color: darkred; width: 80px; height: 2px;">
@@ -91,7 +94,7 @@
           </bm-marker>
         </div>
 
-        <bm-overlay v-if="selectedLocation==={}" style="position: absolute; top:88px; left:180px; width: 100%; height: 80px;">
+        <bm-overlay style="position: absolute; top:100px; left:90px; width: 700px; height: 80px; font-size: 14px; opacity: 0.8;">
           <div style="margin-bottom: 5px;">
             您记录的<span class="num-color"> 4 </span>个精彩岁月中，踏足了
             <span class="num-color"> 7 </span>个长江大川，游览了
@@ -99,8 +102,8 @@
             拥有<span class="num-color"> 2 </span>个学习成长的图书馆......
           </div>
           <div>
-            您共跟 <span style="color:  firebrick; font-size: 20px;"> 4 </span> 位家人，<span style="color:  firebrick; font-size: 20px;">10</span>
-            个朋友，互相陪伴的 <span style="color:  firebrick; font-size: 20px;"> 21 </span> 天中记录了 <span style="color:  firebrick; font-size: 20px;">50</span>
+            您共跟 <span class="num-color"> 4 </span> 位家人，<span class="num-color">10</span>
+            个朋友，互相陪伴的 <span class="num-color"> 21 </span> 天中记录了 <span class="num-color">50</span>
             个时刻......
           </div>
         </bm-overlay>
@@ -177,8 +180,9 @@
                 <el-button type="small" class="user-sm-title" @click="collapse">历史</el-button>
               </div>
               <div class="dimback" v-if="collapseFlg" @click="gotoPage('/civilInfo')" style="cursor: pointer;position: absolute; width: 400px; height: 310px; top:0px; left: 310px; border-radius: 10px;">
-                <div style="position: absolute; top:40px; left:0px; width: 100px; height: 100px; margin-top: -50px; margin-left: 30px;">
-                  <RaddarChart></RaddarChart>
+                <div style="position: absolute; top:50%; left:10px; width: 100px; height: 40px; margin-top: -50px; margin-left: 30px;">
+                  <!-- <RaddarChart></RaddarChart> -->
+                  <img src="/static/icon/Logo.png" height="100%" width="100%">
                 </div>
                 <img src="/static/civil/故宫-午门.png" width="100%" height="100%" class="dim" style="border-radius: 10px;">
                 <div style="color: white; position: absolute; left: 160px; top: 25%;">
@@ -264,12 +268,12 @@
                 当前相簿:{{selectedLocation.name}}
               </div> -->
               <div @click="changeModel" style="margin-right: 50px;">
-                <div v-if="isFolder" style="font-size: 20px; display: flex; flex-direction: row; align-items: center;">
-                  <div class="user-sm-title" style="margin-right: 5px;">展示</div>
+                <div v-if="!isFolder" style="font-size: 20px; display: flex; flex-direction: row; align-items: center;">
+                  <div class="user-sm-title" style="margin-right: 5px;">时间轴</div>
                   <div class="el-icon-view"></div>
                 </div>
-                <div v-if="!isFolder" style="font-size: 20px; display: flex; flex-direction: row; align-items: center;">
-                  <div class="user-sm-title" style="margin-right: 5px;">编辑</div>
+                <div v-if="isFolder" style="font-size: 20px; display: flex; flex-direction: row; align-items: center;">
+                  <div class="user-sm-title" style="margin-right: 5px;">查看</div>
                   <div class="el-icon-edit-outline"></div>
                 </div>
               </div>
@@ -301,7 +305,90 @@
                     </div>
                   </div>
                 </div>
-                <div v-if="selectedLocation.hasPic" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                <el-collapse v-model="activeNames" @change="handleChange">
+                  <el-collapse-item title="最近：2019年9月19日 (20张)" name="1">
+                    <div style="margin-top: 20px; margin-bottom: 10px;">
+                     <span style="font-size: 20px; font-weight: bold;">主题: 带孩子去故宫游玩</span>
+                        <div class="el-icon-edit-outline"></div>
+                    </div>
+                    <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; justify-content: center; width: 1200px; flex-wrap: wrap;">
+                      <div v-for="(item, index) in pictures1" :key="index">
+                        <div style="margin-right: 35px; margin-bottom: 20px; display: flex;
+                        flex-direction: column; justify-content: center; align-items: center;">
+                          <div style="width: 300px; height:180px; ">
+                            <img :src="item.url" width="100%" height="100%">
+                          </div>
+                          <div class="user-sm-title">
+                            {{item.description}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </el-collapse-item>
+                  <el-collapse-item title="2017年10月40日 (24张)" name="2">
+                    <div style="margin-top: 20px; margin-bottom: 10px;">
+                      <span style="font-size: 20px; font-weight: bold;">主题: 去春游</span>
+                      <div class="el-icon-edit-outline"></div>
+                    </div>
+                    <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; justify-content: center; width: 1200px; flex-wrap: wrap;">
+                      <div v-for="(item, index) in pictures1" :key="index">
+                        <div style="margin-right: 35px; margin-bottom: 20px; display: flex;
+                        flex-direction: column; justify-content: center; align-items: center;">
+                          <div style="width: 300px; height:180px; ">
+                            <img :src="item.url" width="100%" height="100%">
+                          </div>
+                          <div class="user-sm-title">
+                            {{item.description}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </el-collapse-item>
+                  <el-collapse-item title="2010年08月40日 (24张)" name="3">
+                    <div style="margin-top: 20px; margin-bottom: 10px;">
+                      <span style="font-size: 20px; font-weight: bold;">主题: 跟小倩去旅游</span>
+                      <div class="el-icon-edit-outline"></div>
+                    </div>
+                    <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; justify-content: center; width: 1200px; flex-wrap: wrap;">
+                      <div v-for="(item, index) in pictures1" :key="index">
+                        <div style="margin-right: 35px; margin-bottom: 20px; display: flex;
+                        flex-direction: column; justify-content: center; align-items: center;">
+                          <div style="width: 300px; height:180px; ">
+                            <img :src="item.url" width="100%" height="100%">
+                          </div>
+                          <div class="user-sm-title">
+                            {{item.description}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </el-collapse-item>
+                </el-collapse>
+              </div>
+            </div>
+          </div>
+          <div v-if="isActive('totalPic')" class="location-pic-window" style="margin-top: 10px;">
+            <div style="width: 300px; height:180px; margin-bottom: 80px; border: solid;" @click="gotoPage('/addPicture')">
+              <!-- <img src="" width="100%" height="100%"> -->
+              <div style="height: 100%; display: flex; flex-direction: column;
+                justify-content: center; align-items: center;">
+                <div>
+                  记录美好时光
+                </div>
+                <div>
+                  +
+                </div>
+              </div>
+            </div>
+            <div style="margin-top: 20px;">
+              <div class="user-big-title" style=" margin-bottom: 20px;" @click="showType('相簿')" v-if="isType('照片')">
+                所有照片（发布、未发布）
+              </div>
+              <div class="user-big-title" style=" margin-bottom: 20px;" @click="showType('照片')" v-if="isType('相簿')">
+                所有相簿 （发布、未发布）
+              </div>
+              <div v-if="isType('照片')">
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap; width: 1300px; margin-left: 10px;">
                   <div v-for="(item, index) in pictures1" :key="index">
                     <div style="margin-right: 35px; margin-bottom: 20px; display: flex;
                     flex-direction: column; justify-content: center; align-items: center;">
@@ -314,77 +401,62 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div v-if="isActive('totalPic')"
-              class="location-pic-window" style="margin-top: 10px;">
-              <div style="width: 300px; height:180px; margin-bottom: 80px; border: solid;" @click="gotoPage('/addPicture')">
-                <!-- <img src="" width="100%" height="100%"> -->
-                <div style="height: 100%; display: flex; flex-direction: column;
-                justify-content: center; align-items: center;">
-                  <div>
-                    记录美好时光
-                  </div>
-                  <div>
-                    +
-                  </div>
-                </div>
-              </div>
-            <div style="margin-top: 20px;">
-              <div class="user-big-title" style=" margin-bottom: 20px;">
-                所有相簿 （发布、未发布）
-              </div>
-              <div style="margin-bottom: 10px;" class="user-sm-title">
-                历史遗迹
-              </div>
-              <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-                <div v-for="(item, index) in locationListByType('历史遗迹')" :key='index'>
-                  <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
-                    <div style="position: absolute; top:40%; left:25px; color: white;">
-                      {{item.name}}
-                    </div>
-                    <img :src="item.picSrc" width="100%" height="100%" class="dim">
-                  </div>
-                </div>
-                <div v-for="(item, index) in locationListByType('历史遗迹')" :key='index'>
-                  <div style="width: 230px; position: relative; height: 200px; margin-right: 20px;" class="dimback">
-                    <div style="position: absolute; top:40%; left:25px; color: white;">
-                      {{item.name}}
-                    </div>
-                    <img :src="item.picSrc" width="100%" height="100%" class="dim">
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div style="margin-top: 20px;">
-              <div style="margin-bottom: 10px;" class="user-sm-title">
-                流行热门
               </div>
-              <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-                <div v-for="(item, index) in locationListByType('流行热门')" :key='index'>
-                  <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
-                    <div style="position: absolute; top:40%; left:25px; color: white;">
-                      {{item.name}}
+
+              <div v-if="isType('相簿')">
+                <div style="margin-bottom: 10px;" class="user-sm-title">
+                  历史遗迹
+                </div>
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                  <div v-for="(item, index) in locationListByType('历史遗迹')" :key='index'>
+                    <div @click="gotoPictureGroup(item)" style="width: 230px; height: 200px; margin-right: 20px; position: relative;"
+                      class="dimback">
+                      <div style="position: absolute; top:40%; left:25px; color: white;">
+                        {{item.name}}
+                      </div>
+                      <img :src="item.picSrc" width="100%" height="100%" class="dim">
                     </div>
-                    <img :src="item.picSrc" width="100%" height="100%" class="dim">
+                  </div>
+                  <div v-for="(item, index) in locationListByType('历史遗迹')" :key='index'>
+                    <div @click="gotoPictureGroup(item)" style="width: 230px; position: relative; height: 200px; margin-right: 20px;"
+                      class="dimback">
+                      <div style="position: absolute; top:40%; left:25px; color: white;">
+                        {{item.name}}
+                      </div>
+                      <img :src="item.picSrc" width="100%" height="100%" class="dim">
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div style="margin-top: 20px;">
-              <div style="margin-bottom: 10px;" class="user-sm-title">
-                现代建筑
-              </div>
-              <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-                <div v-for="(item, index) in locationListByType('现代建筑')" :key='index'>
-                  <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
-                    <div style="position: absolute; top:40%; left:25px; color: white;">
-                      {{item.name}}
+                <div style="margin-top: 20px;">
+                  <div style="margin-bottom: 10px;" class="user-sm-title">
+                    流行热门
+                  </div>
+                  <div @click="gotoPictureGroup(item)" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                    <div v-for="(item, index) in locationListByType('流行热门')" :key='index'>
+                      <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
+                        <div style="position: absolute; top:40%; left:25px; color: white;">
+                          {{item.name}}
+                        </div>
+                        <img :src="item.picSrc" width="100%" height="100%" class="dim">
+                      </div>
                     </div>
-                    <img :src="item.picSrc" width="100%" height="100%" class="dim">
+                  </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                  <div style="margin-bottom: 10px;" class="user-sm-title">
+                    现代建筑
+                  </div>
+                  <div @click="gotoPictureGroup(item)" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                    <div v-for="(item, index) in locationListByType('现代建筑')" :key='index'>
+                      <div style="width: 230px; height: 200px; margin-right: 20px; position: relative;" class="dimback">
+                        <div style="position: absolute; top:40%; left:25px; color: white;">
+                          {{item.name}}
+                        </div>
+                        <img :src="item.picSrc" width="100%" height="100%" class="dim">
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -427,6 +499,7 @@
     computed: {},
     data() {
       return {
+        activeNames: ['1'],
         collapseFlg: false,
         isFolder: false,
         activeType: 'location',
@@ -434,6 +507,7 @@
           width: 100,
           height: 400
         },
+        showTypeStr: '照片',
         tags: [{
             name: '爸爸',
             type: ''
@@ -666,7 +740,7 @@
         console.log("location by type")
         var list = [];
         for (let i = 0; i < this.locationList.length; i++) {
-          if (type === this.locationList[i].type || type === '全部' &&  this.locationList[i].hasPic) {
+          if (type === this.locationList[i].type || type === '全部' && this.locationList[i].hasPic) {
             console.log("this.location", this.locationList[i]);
             list.push(this.locationList[i])
           }
@@ -734,6 +808,12 @@
           return number;
         }
       },
+      gotoPictureGroup(item) {
+        console.log("group ....");
+        // this.openLocationWindow(item);
+        this.setActive('location');
+        this.isFolder = true;
+      },
       gotoLocation(location) {
         console.log("gotoLocation", location);
         this.centerPosition = {
@@ -773,6 +853,12 @@
           this.hide()
         }
       },
+      showType(type) {
+        this.showTypeStr = type;
+      },
+      isType(type) {
+        return this.showTypeStr === type;
+      }
     }
   }
 </script>
@@ -822,8 +908,8 @@
   }
 
   .num-color {
-    color: #2196F3;
-    font-size: 20px;
+    color: darkred;
+    font-size: 16px;
   }
 
   .column-center {

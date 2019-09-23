@@ -1,55 +1,55 @@
 <template>
   <div style="position: relative; height: 100%; width: 100%;">
-    <div class="scroll-view" style="margin-top: 10px; margin-left: 80px;">
-      <div class="time-line">
-        <div class="slider-node" :style="{left: slider.left + '%', width:  slider.width + '%'}"></div>
+    <div class="scroll-view-1" style="margin-top: 10px; margin-left: 80px;">
+      <div class="time-line-1">
+        <div class="slider-node-1" :style="{left: slider.left + '%', width:  slider.width + '%'}"></div>
         <div v-for="(item, index) in time_tick_list" :key="index">
-          <div class="time-tick" :style="{left: timeToLeft(item) + '%'}" @click="gotoTickTime(item)">
+          <div class="time-tick-1" :style="{left: timeToLeft(item) + '%'}" @click="gotoTickTime(item)">
             <div class="label">{{item}}</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="scroll-pictures first-row" ref="divScroll_row1">
+    <div class="scroll-pictures-1 first-row-1" ref="divScroll_row1">
       <div v-for="(item, index) in pictures1" :key="index">
-        <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle border-box"
+        <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle-1 border-box1"
           @mouseover="showOver(1, index)" @click="showDetail(index)" @mouseleave="showOver(1, -1)" >
           <img :src="item.url" height="100%" width="100%" />
-          <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before">
+          <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before1">
           </div>
-          <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-after">
+          <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-after1">
           </div>
           <div v-if="isActivePicture(1, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
         <div style="margin-top: 12px;">
-          <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
-          <div class="pic-desc-font">2011.11.12</div>
+          <div class="pic-title-font-1" :style="{width: item.width+'px'}">{{item.description}}</div>
+          <div style="color: darkred;" class="pic-desc-font-1">{{item.time}}</div>
         </div>
       </div>
     </div>
 
-    <div style="color: ;" class="scroll-pictures second-row" ref="divScroll_row2">
+    <div class="scroll-pictures-1 second-row-1" ref="divScroll_row2">
       <div v-for="(item, index) in pictures2" :key="index">
-        <div :style="{position:'relative', width: item.width +'px', height:item.height +'px'}" class="picStyle border-box"
+        <div :style="{position:'relative', width: item.width +'px', height:item.height +'px'}" class="picStyle-1 border-box1"
           @mouseover="showOver(2,index)" @click="showDetail(index)" @mouseleave="showOver(2, -1)" >
           <img :src="item.url" height="100%" width="100%" />
-          <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before">
+          <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before1">
           </div>
-          <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-after">
+          <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-after1">
           </div>
           <div v-if="isActivePicture(2, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
         <div style="margin-top: 12px;">
-          <div class="pic-title-font" :style="{width: item.width+'px'}">{{item.description}}</div>
-          <div class="pic-desc-font">2011.11.12</div>
+          <div class="pic-title-font-1" :style="{width: item.width+'px'}">{{item.description}}</div>
+          <div style="color: darkred;" class="pic-desc-font-1">{{item.time}}</div>
         </div>
       </div>
     </div>
 
-    <div class="left-arrow arrow-size" @click="scrollTo('left')">
+    <div class="left-arrow-1 arrow-size-1" @click="scrollTo('left')">
       <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
     </div>
-    <div class="right-arrow arrow-size" @click="scrollTo('right')">
+    <div class="right-arrow-1 arrow-size-1" @click="scrollTo('right')">
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
     <DetailUserWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow" :pictures1="pictures1"></DetailUserWindow>
@@ -60,7 +60,7 @@
   import BScroll from 'better-scroll';
   import DetailUserWindow from '@/components/DetailUserWindow'
 
-  const windowWidth = 1350;
+  const windowWidth = 1360;
   const pic_marginRight = 20;
   export default {
     name: 'ScrollTimeView',
@@ -315,7 +315,6 @@
             width: 316,
             height: 208,
             description: '第一次带小小牛去故宫',
-            // timeStr:''
           },
           {
             time: 1992,
@@ -526,12 +525,12 @@
 </script>
 
 <style lang="less">
-  @windowWidth: 1440px;
-  @pic_marginRight: 20px;
-  @topOffset: 10px;
-  @maxPicHeight: 270px;
+  // @windowWidth: 1360px;
+  // @pic_marginRight: 20px;
+  // @topOffset: 10px;
+  // @maxPicHeight: 270px;
 
-  .border-box {
+  .border-box1 {
     position: relative;
     border: 6px solid #fff;
     border: white solid 2px;
@@ -540,7 +539,7 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   }
 
-  .border-box-before {
+  .border-box-before1 {
     content: "";
     background: yellowgreen;
     border: 3px solid #fff;
@@ -558,7 +557,7 @@
     // transform: rotate(-1deg);
   }
 
-  .border-box-after {
+  .border-box-after1 {
     content: "";
     background: lightblue;
     border: 3px solid #fff;
@@ -576,60 +575,7 @@
     // transform: rotate(1deg);
   }
 
-  .detail-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .detail-row-space {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .detail-pic-size {
-    width: 600px;
-    height: 300px;
-  }
-
-  .detail-pic-content {
-    width: 1088px;
-    height: 552px;
-    background: rgba(246, 245, 243, 1);
-  }
-
-  .detail-title-font {
-    font-size: 24px;
-    font-family: PingFangSC;
-    font-weight: 600;
-    color: rgba(23, 0, 0, 1);
-    line-height: 32px;
-    color: black;
-  }
-
-  .pop-pic-window {
-    z-index: 100;
-    position: fixed;
-    top: 40px;
-    left: 90px;
-    background: rgba(216, 216, 216, 1);
-    color: black;
-
-    width: 1200px;
-    height: 732px;
-    box-shadow: 0px 8px 16px 0px rgba(48, 49, 51, 0.1);
-    border-radius: 20px;
-  }
-
-  .column-normal-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .pic-desc-font {
+  .pic-desc-font-1 {
     font-size: 12px;
     font-family: PingFangSC;
     font-weight: 400;
@@ -637,7 +583,7 @@
     line-height: 20px;
   }
 
-  .pic-title-font {
+  .pic-title-font-1 {
     // z-index: 4;
     font-size: 16px;
     font-family: PingFangSC;
@@ -649,29 +595,31 @@
     text-overflow: ellipsis;
   }
 
-  .arrow-size {
+  .arrow-size-1{
     width: 28px;
     height: 48px;
   }
 
-  .picStyle {
-    margin-right: @pic_marginRight;
-    background-color: bisque;
+  .picStyle-1 {
+    // margin-right: @pic_marginRight;
+    margin-right:20px;
   }
 
-  .left-arrow {
+  .left-arrow-1 {
     position: absolute;
     left: 80px;
-    top: 290px + @topOffset;
+    // top: 290px + @topOffset;
+    top:300px;
   }
 
-  .right-arrow {
+  .right-arrow-1 {
     position: absolute;
     right: 80px;
-    top: 290px + @topOffset;
+    top:300px;
+    // top: 290px + @topOffset;
   }
 
-  .slider-node {
+  .slider-node-1 {
     position: absolute;
     top: -6px;
     height: 14px;
@@ -682,7 +630,7 @@
     transition: left .5s, width .5s;
   }
 
-  .time-line {
+  .time-line-1 {
     border-top: 1px solid #939598;
     display: flex;
     color: #939598;
@@ -707,7 +655,7 @@
     color: black;
   }
 
-  .time-tick:before {
+  .time-tick-1:before {
     content: "";
     display: block;
     height: 12px;
@@ -716,7 +664,7 @@
   }
 
 
-  .time-tick {
+  .time-tick-1 {
     position: absolute;
     opacity: 1;
     width: 1px;
@@ -727,7 +675,7 @@
     vertical-align: baseline;
   }
 
-  .scroll-view {
+  .scroll-view-1 {
     display: flex;
     justify-content: center;
     position: absolute;
@@ -742,24 +690,29 @@
   .toTopStyle {
     position: absolute;
     right: 80px;
-    top: @topOffset;
+    // top: @topOffset;
+    top:10px;
     // align-self: flex-end;
   }
 
-  .first-row {
-    top: @topOffset + 60px;
+  .first-row-1 {
+    // top: @topOffset + 60px;
+    top:70px;
     left: 0px;
   }
 
-  .second-row {
-    top: @topOffset + 100px;
+  .second-row-1 {
+    // top: @topOffset + 100px;
+    top:70px;
     left: 0px;
   }
 
-  .scroll-pictures {
+  .scroll-pictures-1 {
     position: relative;
-    width: @windowWidth;
-    height: @maxPicHeight;
+    // width: @windowWidth;
+    // height: @maxPicHeight;
+    width: 1350px;
+    height: 270px;
     // background-color: aliceblue;
     display: flex;
     align-items: flex-end;
