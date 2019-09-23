@@ -306,10 +306,10 @@
                   </div>
                 </div>
                 <el-collapse v-model="activeNames" @change="handleChange">
-                  <el-collapse-item title="最近：2019年9月19日 (20张)" name="1">
+                  <el-collapse-item title="最近：2019年9月19日 (20张)" name="1" >
                     <div style="margin-top: 20px; margin-bottom: 10px;">
                      <span style="font-size: 20px; font-weight: bold;">主题: 带孩子去故宫游玩</span>
-                        <div class="el-icon-edit-outline"></div>
+                        <div class="el-icon-edit-outline" @click="gotoPage('/addPicture')"></div>
                     </div>
                     <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; justify-content: center; width: 1200px; flex-wrap: wrap;">
                       <div v-for="(item, index) in pictures1" :key="index">

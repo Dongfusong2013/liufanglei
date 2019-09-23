@@ -2,12 +2,14 @@
   <div>
     <div class="content-view" style="position: relative;">
       <div style="position: absolute; top:40px; left:60px" @click="backPage()">
-        返回
+        <div style="width:24px;height:17px;">
+          <img src="/static/icon/back.png" width="100%" height="100%" >
+        </div>
       </div>
       <div class="upload-box flex-row">
         <div class="left-control">
           <div style="padding: 16px;">
-            <div class="location-title">北京明清故宫</div>
+            <div class="location-title">相簿: 北京明清故宫</div>
             <div class="title-font">
               北京市东城区景山前街4号
             </div>
@@ -19,7 +21,7 @@
             <div style="margin-top: 17px; margin-left: 16px;">
               主题
             </div>
-            <el-input style="width: 260px" v-model="postForm.name" :rows="1" type="textarea" class="article-textarea"
+            <el-input style="width: 260px" v-model="postForm.topic" :rows="1" type="textarea" class="article-textarea"
               autosize placeholder="输入当天主题" />
 
             <div style="margin-top: 17px;">
@@ -31,9 +33,9 @@
             </div>
 
             <div style="margin-top: 17px; margin-left: 16px;">
-              照片1名称
+              照片名称
             </div>
-            <el-input style="width: 260px" v-model="postForm.name" :rows="1" type="textarea" class="article-textarea"
+            <el-input style="width: 260px" v-model="postForm.picTitle" :rows="1" type="textarea" class="article-textarea"
               autosize placeholder="请输入照片名称" />
             <div style="margin-top: 17px; margin-left: 16px;">
               照片描述
@@ -46,7 +48,6 @@
                 <div v-show="descripCount"> {{descripCount}}字</div>
               </div>
             </div>
-
 
             <div>
             </div>
@@ -92,7 +93,7 @@
           </div>
 
           <div class="pic-table flex-center ">
-            <div class="pic-center-table" style="position: relative;">
+            <div v-if="!isNew" class="pic-center-table" style="position: relative;">
               <div style="position: absolute; top:43%; left:35%" class="flex-center">
                 <div style="width: 40px; height: 40px;">
                   <img src="/static/icon/上传足迹.png" height="100%" width="100%">
@@ -104,12 +105,21 @@
                   推荐：使用小于32M的高质量 .jpg 文件
                 </div>
               </div>
+            </div>
 
+            <div v-if="isNew" style="display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; align-items: stretch; ">
+              <div v-for="(item, index) in pictures1" :key='index'>
+                <div style="margin-top: 10px; margin-left: 20px; display: flex;flex-direction: row; width: 100%; height: 100%;">
+                  <div style="width: 100px; height: 100px; margin-right: 10px;" @click="selectPicture(item, index)"
+                    :class="{'border-selected':isSelected(index)}">
+                    <img :src="item.url" width="100%" height="100%">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
 
     </div>
   </div>
@@ -130,12 +140,145 @@
       AppHeader,
       MDinput
     },
+    props: {
+      topic: String,
+    },
+    mounted() {
+      // todo:
+      const query = this.$route.query;
+      // this.postForm.topic = query.topic;
+      this.isNew = true;
+    },
     data() {
       return {
+        isNew: Boolean,
+        selectedPicIndex: 0,
+        pictures1: [{
+            picName: '五角的故宫',
+            time: 1990,
+            url: '/static/location/1.png',
+            width: 316,
+            height: 208,
+            description: '第一次带小小牛去故宫',
+            // timeStr:''
+          },
+          {
+            picName: '小小牛',
+            time: 1992,
+            url: '/static/picShare/familyDay-son.jpeg',
+            width: 280,
+            height: 194,
+            description: '第一次带小小牛去故宫',
+          },
+          {
+            picName: '建筑美景',
+            time: 1993,
+            url: '/static/location/3.png',
+            width: 338,
+            height: 191,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            picName: '故宫一片',
+            time: 1994,
+            url: '/static/location/4.png',
+            width: 171,
+            height: 207,
+            description: '故宫掠影：记录美丽',
+          },
+          {
+            picName: '嘻嘻的一个场景',
+            time: 1995,
+            url: '/static/location/5.png',
+            width: 204,
+            height: 187,
+            description: '故宫掠影：记录的美丽',
+          },
+          {
+            picName: '故宫一片',
+            time: 2000,
+            url: '/static/location/5.png',
+            width: 204,
+            height: 187,
+            description: '故宫掠影：记录故宫',
+          },
+          {
+            picName: '建筑美景',
+            time: 2003,
+            url: '/static/location/4.png',
+            width: 171,
+            height: 207,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            picName: '嘻嘻的一个场景',
+            time: 2005,
+            url: '/static/location/4.png',
+            width: 171,
+            height: 207,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            time: 2005,
+            url: '/static/location/1.png',
+            width: 316,
+            height: 208,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            time: 2008,
+            url: '/static/location/2.png',
+            width: 280,
+            height: 194,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            picName: '建筑美景',
+            time: 2009,
+            url: '/static/location/4.png',
+            width: 171,
+            height: 207,
+            description: '故宫掠影：记录故宫的美丽',
+          },
+          {
+            picName: '建筑美景',
+            time: 2010,
+            url: '/static/location/1.png',
+            width: 316,
+            height: 208,
+            description: '故宫掠影：记录美丽',
+          },
+          {
+            picName: '建筑美景',
+            time: 2012,
+            url: '/static/location/2.png',
+            width: 280,
+            height: 194,
+            description: '故宫掠影：记录美丽',
+          },
+          {
+            picName: '建筑美景',
+            time: 2013,
+            url: '/static/location/3.png',
+            width: 338,
+            height: 191,
+            description: '故宫掠影：记录美丽',
+          },
+          {
+            picName: '建筑美景',
+            time: 2020,
+            url: '/static/location/1.png',
+            width: 316,
+            height: 208,
+            description: '故宫掠影：记录丽',
+          },
+        ],
         postForm: {
-          picTitle: '',
+          topic: '带孩子去故宫游玩',
+          picTitle: '第一次带小孩',
           picDescription: '',
-          makeTime: '',
+          makeTime: '2010-10-4',
+          name: ''
         }
       }
     },
@@ -145,6 +288,15 @@
       }
     },
     methods: {
+      selectPicture(item, index) {
+        this.postForm.picTitle = item.picName;
+        this.postForm.picDescription = item.description;
+        this.postForm.makeTime = item.time;
+        return this.selectedPicIndex = index;
+      },
+      isSelected(index) {
+        return index === this.selectedPicIndex;
+      },
       backPage() {
         console.log("back page...");
         this.$router.go(-1);
@@ -165,6 +317,10 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+  }
+
+  .border-selected {
+    border: solid 2px darkcyan;
   }
 
   .edit-title {
