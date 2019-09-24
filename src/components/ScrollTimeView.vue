@@ -52,6 +52,7 @@
     <div class="right-arrow-1 arrow-size-1" @click="scrollTo('right')">
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
+    <!-- personFlg是否是私人标识 -->
     <DetailUserWindow :personFlg="personFlg" :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailUserWindow>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="pop-pic-view" v-if="showWindow">
     <div class="pop-pic-window row-normal-start">
-      <div style="position: absolute; top:24px; right: 24px; color: gray;" @click="closeDetailWindow">
+      <div style="position: absolute; top:24px; right: 24px; color: gray;" @click="closeDetailWindowInner">
         <div style="width: 12px; height: 12px;">
           <img src="/static/icon/close.png" height="100%" width="100%">
         </div>
@@ -11,15 +11,19 @@
           <div style="width: 842px; height: 632px;">
             <img :src="activePic.url" width="100%" height="100%">
           </div>
-          <div style="position: relative; display: flex; flex-direction: row;  justify-content: start; align-items: flex-end; width: 216px; overflow: auto; margin-top: 10px;">
+          <div style="position: relative; display: flex; flex-direction: row;  justify-content: start; align-items: flex-end;
+           width: 216px; overflow: auto; margin-top: 10px;">
             <div class="sm-arrow-size" @click="scrollTo('left')">
               <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
             </div>
-            <div v-for="(item, index) in pictures" :key="index" @click="showDetailPic(index)">
-              <div style="width: 16px; height: 16px; margin-right: 8px;" :class="{'border-style':isSelect(index)}">
-                <img :src="item.url" height="100%" width="100%">
+            <div style="display: flex; flex-direction: row; justify-content: center;">
+              <div v-for="(item, index) in pictures" :key="index" @click="showDetailPic(index)">
+                <div style="width: 16px; height: 16px; margin-right: 8px;" :class="{'border-style':isSelect(index)}">
+                  <img :src="item.url" height="100%" width="100%">
+                </div>
               </div>
             </div>
+
             <div class="sm-arrow-size" @click="scrollTo('right')">
               <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
             </div>
@@ -153,22 +157,15 @@
       },
     },
     mounted() {
+      this.activePicIndex = 0;
       if (this.personFlg === 'true') {
         this.ownerName = '光速兔子';
         this.ownerPicUrl = '/static/person/牛牧.png';
-      }
-    },
-    data() {
-      return {
-        ownerName: '穿跃',
-        ownerPicUrl: '/static/person/官方.jpeg',
-        commentContent: '',
-        activePicIndex: 0,
-        topic: '朱棣建造故宫',
-        pictures: [{
+        this.topic = '小小牛去故宫';
+        this.pictures = [{
             praiseCount: 278,
-            picName: '朱棣驾到',
-            url: '/static/public_location/2.png',
+            picName: '小朋友去故宫',
+            url: '/static/user_location/2.png',
             relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
             picDescription: '历时十四年，永乐18年建成了举世瞩目的故宫...',
             commentList: [{
@@ -193,9 +190,146 @@
           },
           {
             picName: '故宫建筑图',
-            url: '/static/public_location/1.png',
+            url: '/static/user_location/1.png',
             relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
             picDescription: '小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
+            commentList: [{
+                userName: '牛牧',
+                iconUrl: '/static/person/牛牧.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '1个小时前'
+              },
+              {
+                userName: '董甫耸',
+                iconUrl: '/static/person/董甫耸.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '2个小时前'
+              },
+              {
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '12个小时前'
+              },
+            ]
+          },
+          {
+            picName: '故宫建筑图',
+            url: '/static/user_location/3.png',
+            relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
+            picDescription: '小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
+            commentList: [{
+                userName: '牛牧',
+                iconUrl: '/static/person/牛牧.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '1个小时前'
+              },
+              {
+                userName: '董甫耸',
+                iconUrl: '/static/person/董甫耸.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '2个小时前'
+              },
+              {
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '12个小时前'
+              },
+            ]
+          },
+          {
+            picName: '故宫建筑图',
+            url: '/static/user_location/4.png',
+            relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
+            picDescription: '小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
+            commentList: [{
+                userName: '牛牧',
+                iconUrl: '/static/person/牛牧.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '1个小时前'
+              },
+              {
+                userName: '董甫耸',
+                iconUrl: '/static/person/董甫耸.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '2个小时前'
+              },
+              {
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '12个小时前'
+              },
+            ]
+          },
+          {
+            picName: '小小牛有意思',
+            url: '/static/user_location/5.png',
+            relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
+            picDescription: '小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
+            commentList: [{
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '1个小时前'
+              },
+              {
+                userName: '游客',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '2个小时前'
+              },
+              {
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '12个小时前'
+              },
+            ]
+          }
+        ];
+
+      }
+    },
+    data() {
+      return {
+        ownerName: '穿跃',
+        ownerPicUrl: '/static/person/官方.jpeg',
+        commentContent: '',
+        activePicIndex: 0,
+        topic: '朱棣建造故宫',
+        pictures: [{
+            praiseCount: 278,
+            picName: '朱棣驾到',
+            url: '/static/public_location/2.png',
+            relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
+            picDescription: '历时十四年，永乐十八年故宫建成，朱棣迁都故宫',
+            commentList: [{
+                userName: '朱哥',
+                iconUrl: '/static/person/董甫耸.png',
+                comment: '朱棣是不是就是永乐大帝？~',
+                time: '1个小时前'
+              },
+              {
+                userName: '游客',
+                iconUrl: '/static/person/牛牧.png',
+                comment: '原来故宫的历史，这个网站做的太有feel了~~',
+                time: '2个小时前'
+              },
+              {
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '一边社交一边学习，牛x~~',
+                time: '12个小时前'
+              },
+            ]
+          },
+          {
+            picName: '故宫建筑图',
+            url: '/static/public_location/1.png',
+            relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
+            picDescription: '宣统三年，辛亥革命后，紫禁城宫殿本应全部收归国有',
             commentList: [{
                 userName: '牛牧',
                 iconUrl: '/static/person/牛牧.png',
@@ -240,7 +374,33 @@
                 time: '12个小时前'
               },
             ]
+          },
+          {
+            picName: '朱棣驾到',
+            url: '/static/public_location/5.png',
+            relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
+            picDescription: '小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
+            commentList: [{
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '1个小时前'
+              },
+              {
+                userName: '游客',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '2个小时前'
+              },
+              {
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '12个小时前'
+              },
+            ]
           }
+
         ],
 
         // ownerName: '光速兔子',
@@ -253,6 +413,10 @@
       }
     },
     methods: {
+      closeDetailWindowInner(){
+          this.activePicIndex = 0;
+          this.closeDetailWindow();
+      },
       gotoPage(path) {
         console.log("detail user window", path);
         this.$router.push(path);
@@ -270,7 +434,6 @@
       },
       showDetailPic(index) {
         this.activePicIndex = index;
-        console.log('index', index);
       },
       isSelect(index) {
         return index === this.activePicIndex;
@@ -494,8 +657,8 @@
   }
 
   .sm-arrow-size {
-    width: 6px;
-    height: 12px;
+    width: 12px;
+    height: 6px;
   }
 
   .picStyle {
