@@ -43,7 +43,7 @@
             <img src="/static/icon/头像.png" height="100%" width="100%">
           </div>
           <div style="margin-left: 7px;">
-            <div style="margin-bottom: 6px;" class="detail-title-font">光速兔子</div>
+            <div style="margin-bottom: 6px;" class="detail-title-font">{{ownerName}}</div>
             <div class="follow-style" style="display: flex; flex-direction: row; line-height: 22px;">
               <div style="margin-left: 5px;">
                 + 关注
@@ -155,6 +155,8 @@
     },
     data() {
       return {
+        ownerName: '光速兔子',
+
         commentContent: '',
         activePicIndex: 1,
         commentList: [{

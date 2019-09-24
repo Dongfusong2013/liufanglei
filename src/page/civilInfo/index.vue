@@ -1,7 +1,7 @@
 <template>
   <div class="history-container">
-    <div style="position: absolute; top:0; width:100%">
-      <AppHeader noBackground="true" />
+    <div style="position: absolute; top:0; width:100%; z-index: 10;">
+      <AppHeader noBackground="true" selectedType="earth" />
     </div>
     <LocationShow :bgUrl="bgUrl" :name="name"></LocationShow>
     <div style="width: 100%; height: 100%;">

@@ -1,7 +1,7 @@
 <template>
   <div class="history-container">
 
-    <AppHeader noBackground="false" />
+    <AppHeader noBackground="false" selectedType='user' />
     <div class="right-list-control1 row-space-box">
       <div class="row-space-box" style="align-self: flex-start; margin-top: 30px;">
         <div class="control-label box-center" @click="controlListTable">
@@ -300,8 +300,8 @@
                 <el-collapse v-if="selectedLocation.hasPic" v-model="activeNames" @change="handleChange">
                   <el-collapse-item title="最近：2019年9月19日 (20张)" name="1">
                     <div style="margin-top: 20px; margin-bottom: 10px;">
-                      <span style="font-size: 20px; font-weight: bold;">主题: 带孩子去故宫游玩</span>
-                      <div class="el-icon-edit-outline" @click="gotoPage('/addPicture')"></div>
+                      <span style="font-size: 20px; font-weight: bold; margin-right: 10px;">主题: 带孩子去故宫游玩</span>
+                      <div style="font-size: 20px;" class="el-icon-edit-outline" @click="gotoPage('/addPicture')"></div>
                     </div>
                     <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; width: 1000px; flex-wrap: wrap;">
                       <div v-for="(item, index) in pictures1" :key="index">
@@ -319,8 +319,8 @@
                   </el-collapse-item>
                   <el-collapse-item title="2017年10月40日 (24张)" name="2">
                     <div style="margin-top: 20px; margin-bottom: 10px;">
-                      <span style="font-size: 20px; font-weight: bold;">主题: 去春游</span>
-                      <div class="el-icon-edit-outline"></div>
+                      <span style="font-size: 20px; font-weight: bold; margin-right: 10px;">主题: 去春游</span>
+                      <div style="font-size: 20px;" class="el-icon-edit-outline"></div>
                     </div>
                     <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; width: 1000px; flex-wrap: wrap;">
                       <div v-for="(item, index) in pictures1" :key="index">
@@ -338,8 +338,8 @@
                   </el-collapse-item>
                   <el-collapse-item title="2010年08月40日 (24张)" name="3">
                     <div style="margin-top: 20px; margin-bottom: 10px;">
-                      <span style="font-size: 20px; font-weight: bold;">主题: 跟小倩去旅游</span>
-                      <div class="el-icon-edit-outline"></div>
+                      <span style="font-size: 20px; font-weight: bold; margin-right: 10px;">主题: 跟小倩去旅游</span>
+                      <div style="font-size: 20px;" class="el-icon-edit-outline"></div>
                     </div>
                     <div v-if="selectedLocation.hasPic" style=" display: flex; flex-direction: row; width: 1000px; flex-wrap: wrap;">
                       <div v-for="(item, index) in pictures2" :key="index">
@@ -457,12 +457,45 @@
         </div>
       </div>
     </div>
-    <div class="view-title-1 share-pos-1">
+    <div class="view-title-1 share-pos-1" v-if="!isFolder">
       <div style="margin-left: 30px; ">
-      <div style="margin-top: 0px; ">
-        相关人物:
-      </div>
-      <span style="font-size: 14px;">爸爸（牛牧）、 妈妈（郭诗光）、儿子（牛子淳）</span>
+        <div style="margin-bottom: 10px;">
+          相关人物:
+        </div>
+        <div style="font-size: 14px; display: flex; flex-direction: row;" >
+          <div style="margin-right: 10px; width: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div style="width: 48px; height: 48px;">
+              <img src="/static/person/牛牧.png" width="100%" height="100%">
+            </div>
+            <div>
+              爸爸（牛牧）
+            </div>
+          </div>
+          <div style="margin-right: 10px; width: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div style="width: 48px; height: 48px;">
+              <img src="/static/person/郭诗光.png" width="100%" height="100%">
+            </div>
+            <div>
+              妈妈（郭诗光）
+            </div>
+          </div>
+          <div style="margin-right: 10px; width: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div style="width: 48px; height: 48px;">
+              <img src="/static/person/牛子淳.png" width="100%" height="100%">
+            </div>
+            <div>
+              儿子（牛子淳）
+            </div>
+          </div>
+          <div style="margin-right: 10px; width: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div style="width: 48px; height: 48px;">
+              <img src="/static/person/董甫耸.png" width="100%" height="100%">
+            </div>
+            <div>
+              好友（董甫耸）
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -631,110 +664,119 @@
         ],
         pictures1: [{
             time: 1990,
-            url: '/static/user_location/6.png',
+            url: '/static/user_location/1.png',
             width: 316,
             height: 208,
-            description: '第一次带小小牛去故宫',
+            description: '去故宫旅游',
             // timeStr:''
           },
           {
             time: 1992,
-            url: '/static/user_location/1.png',
+            url: '/static/user_location/2.png',
             width: 280,
             height: 194,
-            description: '第一次带小小牛去故宫',
+            description: '我丈母娘',
           },
           {
             time: 1993,
             url: '/static/user_location/3.png',
             width: 338,
             height: 191,
-            description: '故宫掠影：记录故宫的美丽',
+            description: '故宫书法纪念品，不错！',
           },
           {
-            time: 1994,
+            time: 1996,
             url: '/static/user_location/4.png',
             width: 171,
             height: 207,
-            description: '故宫掠影：记录美丽',
+            description: '“无为”——无为而治！',
           },
           {
-            time: 1995,
+            time: 1998,
             url: '/static/user_location/5.png',
             width: 204,
             height: 187,
-            description: '故宫掠影：记录的美丽',
+            description: '老中青三人组',
+          },
+
+          {
+            time: 2010,
+            url: '/static/user_location/1.png',
+            width: 316,
+            height: 208,
+            description: '去故宫旅游',
+            // timeStr:''
           },
           {
-            time: 2000,
-            url: '/static/user_location/9.png',
-            width: 204,
-            height: 187,
-            description: '故宫掠影：记录故宫',
+            time: 2013,
+            url: '/static/user_location/2.png',
+            width: 280,
+            height: 194,
+            description: '我丈母娘',
           },
           {
-            time: 2003,
+            time: 2015,
+            url: '/static/user_location/3.png',
+            width: 338,
+            height: 191,
+            description: '故宫书法纪念品，不错！',
+          },
+          {
+            time: 2017,
             url: '/static/user_location/4.png',
             width: 171,
             height: 207,
-            description: '故宫掠影：记录故宫的美丽',
+            description: '“无为”——无为而治！',
           },
           {
-            time: 2005,
-            url: '/static/user_location/10.png',
-            width: 171,
-            height: 207,
-            description: '故宫掠影：记录故宫的美丽',
+            time: 2020,
+            url: '/static/user_location/5.png',
+            width: 204,
+            height: 187,
+            description: '老中青三人组',
           },
         ],
         pictures2: [{
             time: 2005,
-            url: '/static/user_location/7.png',
-            width: 316,
+            url: '/static/user_location/6.png',
+            width: 139,
             height: 208,
             description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2008,
-            url: '/static/user_location/8.png',
-            width: 280,
-            height: 194,
-            description: '故宫掠影：记录故宫的美丽',
+            url: '/static/user_location/7.png',
+            width: 317,
+            height: 175,
+            description: '金镶珍珠宝石七珍，清（1644年-1911年）',
           },
           {
             time: 2009,
-            url: '/static/user_location/9.png',
-            width: 171,
-            height: 207,
-            description: '故宫掠影：记录故宫的美丽',
+            url: '/static/user_location/8.png',
+            width: 300,
+            height: 208,
+            description: '我儿子的大头贴',
           },
           {
             time: 2010,
-            url: '/static/user_location/10.png',
-            width: 316,
+            url: '/static/user_location/9.png',
+            width: 174,
             height: 208,
-            description: '故宫掠影：记录美丽',
+            description: '牛子淳在金銮宝殿大门前跟鎏金大门',
           },
           {
             time: 2012,
-            url: '/static/user_location/1.png',
-            width: 280,
-            height: 194,
-            description: '故宫掠影：记录美丽',
+            url: '/static/user_location/10.png',
+            width: 164,
+            height: 190,
+            description: '故宫掠影：儿子和珠宝，照次了~~',
           },
           {
-            time: 2013,
-            url: '/static/user_location/4.png',
-            width: 338,
-            height: 191,
-            description: '故宫掠影：记录美丽',
-          },
-          {
-            time: 2020,
-            url: '/static/user_location/7.png',
-            width: 316,
+            time: 2012,
+            url: '/static/user_location/11.png',
+            width: 226,
             height: 208,
-            description: '故宫掠影：记录丽',
+            description: '儿子和大雄宝殿，挺帅^_^',
           },
         ]
 
@@ -900,9 +942,9 @@
     background: rgba(243, 245, 246, 1);
   }
 
-.share-pos-1 {
+  .share-pos-1 {
     position: relative;
-    top:700px;
+    top: 700px;
     margin-top: 100px;
     width: 100%;
     height: 100px;

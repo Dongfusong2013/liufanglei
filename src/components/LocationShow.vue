@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div style="width: 1430px; height: 800px;">
-      <img :src="bgUrl" height="100%" width="100%" />
+    <div style="width: 1430px; height: 800px;" class="dimback">
+      <img :src="bgUrl" height="100%" width="100%"  class="dim"/>
     </div>
     <div class="location-view row-space">
       <div class="bigTitle">
@@ -30,14 +30,23 @@
     components: {
       RaddarChart,
     },
-    props:{
-       bgUrl:String,
-       name:String,
+    props: {
+      bgUrl: String,
+      name: String,
     }
   }
 </script>
 
 <style lang="less" scoped>
+  .dim {
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+  }
+
+  .dimback {
+    background: #000;
+  }
+
   .location-view {
     position: absolute;
     left: 189px;

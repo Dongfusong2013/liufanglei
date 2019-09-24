@@ -1,7 +1,7 @@
 <template>
   <div class="history-container">
   <!-- <div style="position: ; top:10px; left:0px; width: 100%;"> -->
-    <AppHeader noBackground="false" />
+    <AppHeader noBackground="false" selectedType='earth'/>
   <!-- </div> -->
 
     <div style="box-sizing: border-box; width: 100%; height: 100%">
