@@ -88,7 +88,6 @@
               <div>
               </div>
             </div>
-
           </div>
 
           <div class="pic-table flex-center ">
@@ -132,9 +131,6 @@
 
   export default {
     name: 'AddPicture',
-    mounted() {
-      window.scrollTo(0, 0);
-    },
     components: {
       AppHeader,
       MDinput
@@ -143,7 +139,7 @@
       topic: String,
     },
     mounted() {
-      // todo:
+      window.scrollTo(0, 0);
       const query = this.$route.query;
       // this.postForm.topic = query.topic;
       this.isNew = true;

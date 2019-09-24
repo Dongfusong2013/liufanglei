@@ -52,7 +52,7 @@
     <div class="right-arrow-1 arrow-size-1" @click="scrollTo('right')">
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
-    <DetailUserWindow :showWindow="showWindow" :closeDetailWindow="closeDetailWindow" :pictures1="pictures1"></DetailUserWindow>
+    <DetailUserWindow :personFlg="personFlg" :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailUserWindow>
   </div>
 </template>
 
@@ -290,6 +290,7 @@
 
     },
     props:{
+       personFlg:Boolean,
        pictures1:Array,
        pictures2:Array,
     },
@@ -500,7 +501,7 @@
 
   .second-row-1 {
     // top: @topOffset + 100px;
-    top:70px;
+    top:90px;
     left: 0px;
   }
 

@@ -11,7 +11,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -61,11 +60,12 @@
         this.$router.push(path);
         this.setActiveIndex(index);
       },
-
+      
       gotoPage(path) {
         this.$router.push(path);
         console.log('-----gotopage=====');
       },
+      
       isActive(index) {
         return index == this.activeIndex;
       }

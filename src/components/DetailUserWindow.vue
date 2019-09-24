@@ -9,13 +9,13 @@
       <div style="width: 1048px; height: 100%; position: relative;" class="column-normal-center ">
         <div class="column-normal-space">
           <div style="width: 842px; height: 632px;">
-            <img :src="activePicUrl" width="100%" height="100%">
+            <img :src="activePic.url" width="100%" height="100%">
           </div>
           <div style="position: relative; display: flex; flex-direction: row;  justify-content: start; align-items: flex-end; width: 216px; overflow: auto; margin-top: 10px;">
             <div class="sm-arrow-size" @click="scrollTo('left')">
               <img src="/static/works/left_arrow.jpg" height="100%" width="100%">
             </div>
-            <div v-for="(item, index) in pictures1" :key="index" @click="showDetailPic(index)">
+            <div v-for="(item, index) in pictures" :key="index" @click="showDetailPic(index)">
               <div style="width: 16px; height: 16px; margin-right: 8px;" :class="{'border-style':isSelect(index)}">
                 <img :src="item.url" height="100%" width="100%">
               </div>
@@ -40,7 +40,7 @@
       <div style="width: 320px; height: 704px; overflow: auto;" class="border-left">
         <div style="height: 80px; padding-left: 10px;" class="row-normal-start border-bottom" @click="gotoPage('/userPage')">
           <div style="width: 56px; height: 56px;">
-            <img src="/static/icon/头像.png" height="100%" width="100%">
+            <img :src="ownerPicUrl" height="100%" width="100%">
           </div>
           <div style="margin-left: 7px;">
             <div style="margin-bottom: 6px;" class="detail-title-font">{{ownerName}}</div>
@@ -58,7 +58,7 @@
               <img src="/static/icon/like.png" width="100%" height="100%">
             </div>
             <div style="margin-left: 6px; opacity: 0.5;" class="title-font">
-              278
+              {{activePic.praiseCount}}
             </div>
           </div>
           <div style="margin-right: 32px;" class="row-normal-start">
@@ -73,12 +73,12 @@
           </div>
         </div>
         <div style="height: 125px; padding-left: 16px; padding-top: 24px;" class="border-bottom">
-          <div class="title-font" style="margin-bottom: 8px;">小牛在故宫</div>
+          <div class="title-font" style="margin-bottom: 8px;">{{activePic.picName}}</div>
           <div class="desc-font" style="margin-bottom: 8px;">
-            小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！
+            {{activePic.picDescription}}
           </div>
           <div class="label-font">
-            #儿子，#一家人，#故宫探秘之旅，#会议
+            {{activePic.relatedPersonList}}
           </div>
         </div>
         <div style="height: 72px; padding-left: 16px;" class="border-bottom row-normal-space">
@@ -87,7 +87,7 @@
               <img src="/static/icon/相册.png" width="100%" height="100%">
             </div>
             <div class="big-title-font" style="margin-left: 8px;">
-              一家三口游故宫
+              {{topic}}
             </div>
           </div>
           <div style="width:12px;height:6px; margin-right: 10px; line-height: 10px;">
@@ -114,12 +114,12 @@
                 <img src="/static/icon/userIcon.png" width="100%" height="100%">
               </div>
               <div style="margin-left: 8px; width: 256px;">
-                <el-input placeholder="发表您的见解" style="width: 250px;" v-model="commentContent"> -->
+                <el-input placeholder="发表您的见解" style="width: 250px;" v-model="commentContent">
                   <!-- <el-button slot="append" icon="el-icon-search"></el-button> -->
                 </el-input>
               </div>
             </div>
-            <div v-for="(item, index) in commentList" :key="index">
+            <div v-for="(item, index) in activePic.commentList" :key="index">
               <div class="single-comment-block">
                 <div style="width: 24px; height: 24px; margin-top: 5px;">
                   <img :src="item.iconUrl" width="100%" height="100%">
@@ -137,7 +137,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -145,39 +144,112 @@
     name: 'DetailUserWindow',
     props: {
       showWindow: Boolean,
-      pictures1: Array,
-      closeDetailWindow: Function
+      closeDetailWindow: Function,
+      personFlg: Boolean,
     },
     computed: {
-      activePicUrl() {
-        return this.pictures1[this.activePicIndex].url;
+      activePic() {
+        return this.pictures[this.activePicIndex];
+      },
+    },
+    mounted() {
+      if (this.personFlg === 'true') {
+        this.ownerName = '光速兔子';
+        this.ownerPicUrl = '/static/person/牛牧.png';
       }
     },
     data() {
       return {
-        ownerName: '光速兔子',
-
+        ownerName: '穿跃',
+        ownerPicUrl: '/static/person/官方.jpeg',
         commentContent: '',
-        activePicIndex: 1,
-        commentList: [{
-            userName: '朱哥',
-            iconUrl: '/static/icon/头像.png',
-            comment: '牛哥儿子威武，已经长这么帅了呀~~',
-            time: '1个小时前'
+        activePicIndex: 0,
+        topic: '朱棣建造故宫',
+        pictures: [{
+            praiseCount: 278,
+            picName: '朱棣驾到',
+            url: '/static/public_location/2.png',
+            relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
+            picDescription: '历时十四年，永乐18年建成了举世瞩目的故宫...',
+            commentList: [{
+                userName: '朱哥',
+                iconUrl: '/static/person/董甫耸.png',
+                comment: '朱棣是不是就是永乐大帝？~',
+                time: '1个小时前'
+              },
+              {
+                userName: '游客',
+                iconUrl: '/static/person/牛牧.png',
+                comment: '原来故宫的历史，这个网站做的太有feel了~~',
+                time: '2个小时前'
+              },
+              {
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '一边社交一边学习，牛x~~',
+                time: '12个小时前'
+              },
+            ]
           },
           {
-            userName: '游客',
-            iconUrl: '/static/icon/头像.png',
-            comment: '牛哥儿子威武，已经长这么帅了呀~~',
-            time: '2个小时前'
+            picName: '故宫建筑图',
+            url: '/static/public_location/1.png',
+            relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
+            picDescription: '小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
+            commentList: [{
+                userName: '牛牧',
+                iconUrl: '/static/person/牛牧.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '1个小时前'
+              },
+              {
+                userName: '董甫耸',
+                iconUrl: '/static/person/董甫耸.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '2个小时前'
+              },
+              {
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '12个小时前'
+              },
+            ]
           },
           {
-            userName: '朱哥',
-            iconUrl: '/static/icon/头像.png',
-            comment: '牛哥儿子威武，已经长这么帅了呀~~',
-            time: '12个小时前'
-          },
-        ]
+            picName: '朱棣驾到',
+            url: '/static/public_location/3.png',
+            relatedPersonList: '#朱棣，#于成龙，#故宫，#建筑',
+            picDescription: '小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
+            commentList: [{
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '1个小时前'
+              },
+              {
+                userName: '游客',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '2个小时前'
+              },
+              {
+                userName: '朱哥',
+                iconUrl: '/static/icon/头像.png',
+                comment: '牛哥儿子威武，已经长这么帅了呀~~',
+                time: '12个小时前'
+              },
+            ]
+          }
+        ],
+
+        // ownerName: '光速兔子',
+        // ownerPicUrl:'/static/icon/头像.png',
+        // commentContent: '',
+        // activePicIndex: 1,
+        // topic:'一家三口有故宫',
+        // relatedPersonList:'#儿子，#一家人，#故宫探秘之旅，#会议',
+        // picDescription:'小牛在大雄宝殿，跟皇帝的龙椅来了一张合照。咋样？有没有点太子样子？有点逗，哈哈哈哈哈！',
       }
     },
     methods: {
@@ -191,7 +263,7 @@
             this.activePicIndex -= 1;
           }
         } else {
-          if (this.activePicIndex < this.pictures1.length - 1) {
+          if (this.activePicIndex < this.pictures.length - 1) {
             this.activePicIndex += 1;
           }
         }
@@ -204,8 +276,6 @@
         return index === this.activePicIndex;
       }
     }
-
-
   }
 </script>
 

@@ -1,6 +1,5 @@
 <template>
   <div class="history-container">
-
     <AppHeader noBackground="false" selectedType='user' />
     <div class="right-list-control1 row-space-box">
       <div class="row-space-box" style="align-self: flex-start; margin-top: 30px;">
@@ -86,7 +85,7 @@
           </bm-marker>
         </div>
 
-        <bm-overlay style="position: absolute; top:150px; right:150px; width: 250px; height: 80px; font-size: 14px; opacity: 0.8;">
+        <bm-overlay v-if="!listShow"  style="position: absolute; top:150px; right:150px; width: 250px; height: 80px; font-size: 14px; opacity: 0.8;">
           <div style="margin-bottom: 5px;">
             您记录的<span class="num-color"> 4 </span>个精彩岁月中，踏足了
             <span class="num-color"> 7 </span>个长江大川，游览了
@@ -199,7 +198,7 @@
     <div style="width: 100%; position: absolute; top:670px">
       <div class="normal-row" style="margin-left: 0px; width: 100%;">
         <div style="width: 96px; height: 96px;">
-          <img src="/static/icon/头像1.png" height="100%" width="100%">
+          <img src="/static/icon/头像.png" height="100%" width="100%">
         </div>
         <div style="margin-left: 0px; width: 100%;">
           <div class="name-font" style="margin-left: 40px;">
@@ -250,15 +249,6 @@
           </div>
           <div v-if="isActive('location')" class="location-pic-window" style="margin-top: 10px;">
             <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 92%;">
-              <!-- <div v-if="isFolder" style="margin-left: 10px;">
-                <el-tag v-for="tag in tags" :key="tag.name" closable :type="tag.type" style="margin-right: 10px;">
-                  {{tag.name}}
-                </el-tag>
-              </div> -->
-
-              <!-- <div class="user-sm-title" style="opacity: 0.6; margin-left: 10px;" v-if="!isFolder">
-                当前相簿:{{selectedLocation.name}}
-              </div> -->
               <div @click="changeModel" style="margin-right: 50px;">
                 <div v-if="!isFolder" style="font-size: 20px; display: flex; flex-direction: row; align-items: center;">
                   <div class="user-sm-title" style="margin-right: 5px;">时间轴</div>
@@ -272,7 +262,7 @@
             </div>
             <div v-if="!isFolder">
               <div style="margin-top:10px; margin-left: 30px;">
-                <ScrollTimeView :pictures1="pictures1" :pictures2="pictures2"></ScrollTimeView>
+                <ScrollTimeView personFlg="true" :pictures1="pictures1" :pictures2="pictures2"></ScrollTimeView>
               </div>
             </div>
             <div v-if="isFolder" style="width: 100%;">
@@ -393,7 +383,6 @@
                     </div>
                   </div>
                 </div>
-
               </div>
 
               <div v-if="isType('相簿')">
@@ -459,10 +448,10 @@
     </div>
     <div class="view-title-1 share-pos-1" v-if="!isFolder">
       <div style="margin-left: 30px; ">
-        <div style="margin-bottom: 10px;">
+        <div style="margin-bottom: 20px;">
           相关人物:
         </div>
-        <div style="font-size: 14px; display: flex; flex-direction: row;" >
+        <div style="font-size: 12px; display: flex; flex-direction: row;" >
           <div style="margin-right: 10px; width: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
             <div style="width: 48px; height: 48px;">
               <img src="/static/person/牛牧.png" width="100%" height="100%">
@@ -518,6 +507,10 @@
   import LocationShow from '@/components/LocationShow.vue';
   import RaddarChart from '@/components/RaddarChart.vue';
 
+  import {
+    mapState,
+    mapMutations
+  } from "vuex";
 
   export default {
     name: 'UserPage',
@@ -531,9 +524,10 @@
       this.selectedLocation = this.locationList[0];
       this.show = true;
     },
-    computed: {},
+
     data() {
       return {
+
         activeNames: ['1'],
         collapseFlg: false,
         isFolder: false,
@@ -783,6 +777,7 @@
       }
     },
     methods: {
+      ...mapMutations('civilInfoData', ['setCivilInfo']),
       collapse() {
         this.collapseFlg = !this.collapseFlg;
       },
@@ -847,17 +842,14 @@
       },
       gotoPage(path, location) {
         if (location !== undefined) {
-          var info = {
-            path: path,
-            query: {
-              location: location
-            }
-          }
-          this.$router.push(info);
+           this.setCivilInfo({
+            'bgUrl':location.picSrc,
+            'name':location.name,
+            })
+          this.$router.push(path);
         } else {
           this.$router.push(path);
         }
-
       },
 
       controlListTable() {

@@ -100,7 +100,7 @@
               fontSize: 12, //字体大小
               color: '#ffffff' //字体颜色
             },
-            data: ['沈阳故宫', '现代建筑', '生活坐标']
+            data: ['历史遗迹', '现代建筑', '生活坐标']
           },
           series: [{
             type: 'radar',

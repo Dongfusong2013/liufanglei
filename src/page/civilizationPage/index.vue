@@ -119,6 +119,11 @@
 <script>
   import AppHeader from '@/components/appHeader/index.vue'
 
+  import {
+    mapState,
+    mapMutations
+  } from "vuex";
+
   export default {
     name: 'civilizationPage',
     components: {
@@ -129,7 +134,6 @@
         if (this.selectType === "全部") {
           return this.locationList;
         }
-
         let locationListResult = [];
         for (let i = 0; i < this.locationList.length; i++) {
           if (this.locationList[i].type === this.selectType) {
@@ -239,6 +243,7 @@
       }
     },
     methods: {
+      ...mapMutations('civilInfoData', ['setCivilInfo']),
       getIconUlr(position, type) {
         if (position != undefined && this.selectedLocation != {} &&
           position === this.selectedLocation.position) {
@@ -253,13 +258,11 @@
         }
       },
       gotoPage(path, location) {
-        var info = {
-          path: path,
-          query: {
-            location:location
-          }
-        }
-        this.$router.push(info);
+        this.setCivilInfo({
+          'bgUrl':location.picSrc,
+          'name':location.name,
+          })
+        this.$router.push(path);
       },
       controlListTable() {
         this.listShow = !this.listShow;
