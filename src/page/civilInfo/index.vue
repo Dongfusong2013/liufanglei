@@ -11,7 +11,6 @@
       <div style="margin-left: 30px;">
         <ScrollTimeView personFlg="false" :pictures1="pictures1" :pictures2="pictures2"></ScrollTimeView><!--  -->
       </div>
-
     </div>
     <div class="view-title share-pos">
       <div style="margin-left: 86px; margin-top: 0px; ">
@@ -41,6 +40,10 @@
     computed: {
       ...mapState('civilInfoData', ['bgUrl', 'name']),
     },
+    mounted(){
+        // this.pictures1 =
+    },
+
 
     data() {
       return {
@@ -68,28 +71,28 @@
           },
           {
             time: 1994,
-            url: '/static/public_location/6.png',
+            url: '/static/public_location/4.png',
             width: 140,
             height: 208,
             description: '明崇祯十七年十月，清世祖顺治帝迁都…',
           },
           {
             time: 1995,
-            url: '/static/public_location/4.png',
+            url: '/static/public_location/5.png',
             width: 204,
             height: 187,
-            description: '宣统三年，辛亥革命后，紫禁城宫殿本应全部收归国有',
+            description: '故宫掠影：记录故宫的美丽',
           },
           {
             time: 2000,
-            url: '/static/public_location/5.png',
+            url: '/static/public_location/6.png',
             width: 204,
             height: 187,
             description: '1949年解放，毛主席登上故宫天安门城楼，新中国成立',
           },
           {
             time: 2003,
-            url: '/static/public_location/4.png',
+            url: '/static/public_location/7.png',
             width: 171,
             height: 207,
             description: '故宫掠影：记录故宫的美丽',
@@ -103,7 +106,7 @@
           },
           {
             time: 2005,
-            url: '/static/public_location/6.png',
+            url: '/static/public_location/4.png',
             width: 316,
             height: 208,
             description: '故宫掠影：记录故宫的美丽',

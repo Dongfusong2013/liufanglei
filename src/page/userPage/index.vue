@@ -85,7 +85,7 @@
           </bm-marker>
         </div>
 
-        <bm-overlay v-if="!listShow"  style="position: absolute; top:150px; right:150px; width: 250px; height: 80px; font-size: 14px; opacity: 0.8;">
+        <bm-overlay v-if="!listShow" style="position: absolute; top:150px; right:150px; width: 250px; height: 80px; font-size: 14px; opacity: 0.8;">
           <div style="margin-bottom: 5px;">
             您记录的<span class="num-color"> 4 </span>个精彩岁月中，踏足了
             <span class="num-color"> 7 </span>个长江大川，游览了
@@ -451,7 +451,7 @@
         <div style="margin-bottom: 20px;">
           相关人物:
         </div>
-        <div style="font-size: 12px; display: flex; flex-direction: row;" >
+        <div style="font-size: 12px; display: flex; flex-direction: row; margin-bottom: 40px;">
           <div style="margin-right: 10px; width: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
             <div style="width: 48px; height: 48px;">
               <img src="/static/person/牛牧.png" width="100%" height="100%">
@@ -487,6 +487,16 @@
         </div>
       </div>
 
+
+    </div>
+
+    <div style="position: absolute;  top: 1800px; width: 1300px; display: flex; overflow: auto; flex-direction: row;
+    align-items: flex-end;">
+      <div v-for="(item, index) in pictures1" :key="index">
+        <div style="margin-right: 34px;">
+          <img :src="item.url" height="100%" width="100%">
+        </div>
+      </div>
     </div>
 
     <!-- <div class="zoom-control-pos">
@@ -842,10 +852,10 @@
       },
       gotoPage(path, location) {
         if (location !== undefined) {
-           this.setCivilInfo({
-            'bgUrl':location.picSrc,
-            'name':location.name,
-            })
+          this.setCivilInfo({
+            'bgUrl': location.picSrc,
+            'name': location.name,
+          })
           this.$router.push(path);
         } else {
           this.$router.push(path);

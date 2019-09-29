@@ -79,11 +79,11 @@
           <div style="padding-left: 20px; padding-top: 10px; padding-bottom: 10px;">
             <div style="display: flex; flex-direction: row;  align-items: center ;">
               <div style="margin-left: 10px;">
-                排行榜
+                世界建筑排行榜
               </div>
             </div>
           </div>
-          <div style="margin-left: 20px; background-color: darkred; width: 80px; height: 2px;">
+          <div style="margin-left: 20px; background-color: darkred; width: 130px; height: 2px;">
           </div>
         </div>
         <div style="padding-top: 20px;">
@@ -228,6 +228,18 @@
             picSrc: '/static/civil/现代建筑2.jpeg',
           },
           {
+            type: "历史遗迹",
+            position: {
+              lng: 400.404,
+              lat: 69.915
+            },
+            score: 4.8,
+            footCount: 1314,
+            name: '罗马角斗场，意大利',
+            descript: '世界上最大的角斗场',
+            picSrc: '/static/civil/罗马角斗场.jpeg',
+          },
+          {
             type: "现代建筑",
             position: {
               lng: 116.404,
@@ -238,6 +250,42 @@
             name: '中国银行，中国',
             descript: '贝聿铭的收官制作',
             picSrc: '/static/civil/现代建筑1.jpeg',
+          },
+          {
+            type: "历史遗迹",
+            position: {
+              lng: 400.404,
+              lat: 69.915
+            },
+            score: 4.8,
+            footCount: 1314,
+            name: '罗马角斗场，意大利',
+            descript: '世界上最大的角斗场',
+            picSrc: '/static/civil/罗马角斗场.jpeg',
+          },
+          {
+            type: "现代建筑",
+            position: {
+              lng: 116.404,
+              lat: 49.915
+            },
+            score: 4.4,
+            footCount: 659,
+            name: '中国银行，中国',
+            descript: '贝聿铭的收官制作',
+            picSrc: '/static/civil/现代建筑1.jpeg',
+          },
+          {
+            type: "历史遗迹",
+            position: {
+              lng: 400.404,
+              lat: 69.915
+            },
+            score: 4.8,
+            footCount: 1314,
+            name: '罗马角斗场，意大利',
+            descript: '世界上最大的角斗场',
+            picSrc: '/static/civil/罗马角斗场.jpeg',
           },
         ]
       }

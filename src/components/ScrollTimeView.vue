@@ -21,6 +21,7 @@
           </div>
           <div v-if="isActivePicture(1, index)" style="position: absolute; left:0px; top:8px; color:white; font-weight: bold;">{{ item.time + " "+ item.description}}</div>
         </div>
+
         <div style="margin-top: 12px;">
           <div class="pic-title-font-1" :style="{width: item.width+'px'}">{{item.description}}</div>
           <div style="color: darkred;" class="pic-desc-font-1">{{item.time}}</div>
@@ -31,7 +32,7 @@
     <div class="scroll-pictures-1 second-row-1" ref="divScroll_row2">
       <div v-for="(item, index) in pictures2" :key="index">
         <div :style="{position:'relative', width: item.width +'px', height:item.height +'px'}" class="picStyle-1 border-box1"
-          @mouseover="showOver(2,index)" @click="showDetail(index)" @mouseleave="showOver(2, -1)" >
+          @mouseover="showOver(2,index)" @click="showDetail(index)" @mouseleave="showOver(2, -1)">
           <img :src="item.url" height="100%" width="100%" />
           <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before1">
           </div>
@@ -290,10 +291,10 @@
       },
 
     },
-    props:{
-       personFlg:Boolean,
-       pictures1:Array,
-       pictures2:Array,
+    props: {
+      personFlg: Boolean,
+      pictures1: Array,
+      pictures2: Array,
     },
 
     //多个照片行取并操作
@@ -394,27 +395,27 @@
     text-overflow: ellipsis;
   }
 
-  .arrow-size-1{
+  .arrow-size-1 {
     width: 28px;
     height: 48px;
   }
 
   .picStyle-1 {
     // margin-right: @pic_marginRight;
-    margin-right:20px;
+    margin-right: 20px;
   }
 
   .left-arrow-1 {
     position: absolute;
     left: 80px;
     // top: 290px + @topOffset;
-    top:300px;
+    top: 300px;
   }
 
   .right-arrow-1 {
     position: absolute;
     right: 80px;
-    top:300px;
+    top: 300px;
     // top: 290px + @topOffset;
   }
 
@@ -490,19 +491,19 @@
     position: absolute;
     right: 80px;
     // top: @topOffset;
-    top:10px;
+    top: 10px;
     // align-self: flex-end;
   }
 
   .first-row-1 {
     // top: @topOffset + 60px;
-    top:70px;
+    top: 70px;
     left: 0px;
   }
 
   .second-row-1 {
     // top: @topOffset + 100px;
-    top:90px;
+    top: 90px;
     left: 0px;
   }
 
