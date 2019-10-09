@@ -100,8 +100,8 @@
                   {{item.name}}
                 </div>
                 <div style="margin-top: 5px;">
-                  <el-rate v-model="item.score" text-color="#1F2D3D" disabled show-score>
-                  </el-rate>
+                  <!-- <el-rate v-model="item.score" text-color="#1F2D3D" disabled show-score>
+                  </el-rate> -->
                 </div>
               </div>
               <div class="list-sm-content-font" style="align-self: flex-end;">
@@ -118,6 +118,7 @@
 
 <script>
   import AppHeader from '@/components/appHeader/index.vue'
+  import {getLocationCivilInfoList} from '@/api/civilInfo.js'
 
   import {
     mapState,
@@ -129,9 +130,17 @@
     components: {
       AppHeader
     },
+    beforeMount(){
+      getLocationCivilInfoList().then((data)=>{
+        this.locationList = data.data;
+        console.log("beforeMount....",this.locationList);
+      });
+    },
     computed: {
       locationListByType() {
+        console.log("locationListByType....");
         if (this.selectType === "全部") {
+          console.log("locationListByType 全部....",this.locationList.length);
           return this.locationList;
         }
         let locationListResult = [];
@@ -140,6 +149,7 @@
             locationListResult.push(this.locationList[i]);
           }
         }
+        console.log("locationListByType....",locationListResult.length);
         return locationListResult;
       }
     },
@@ -330,7 +340,7 @@
         this.centerPosition = location.position;
         this.show = false;
         this.selectedLocation = location;
-        console.log(this.centerPosition);
+        console.log("====centerposition===="+this.centerPosition);
         this.infoWindowOpen();
       },
 

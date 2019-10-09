@@ -1,4 +1,3 @@
-
 import axios from 'axios'
 export function fetchCivilInfo(name) {
   return axios({
@@ -7,5 +6,17 @@ export function fetchCivilInfo(name) {
     params: {
       name
     }
+  });
+}
+
+
+
+export function getLocationCivilInfoList() {
+  return axios({
+    method: 'get',
+    url: "liufanglei_server/civilInfo/list",
+    // params: {
+    //   name
+    // }
   });
 }
