@@ -167,9 +167,7 @@
       PicShare,
     },
     created() {
-      // var location = this.$route.query.location;
-
-      console.log("create....", this.name, this.civilData);
+      console.log("create....", this.name);
     },
     methods: {
       gotoPage(path) {

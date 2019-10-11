@@ -158,7 +158,7 @@
       pictures(){
         var dayPic =  this.activeDayPic();
         console.log("====dayPic",dayPic);
-        return dayPic.pictureList;
+        return dayPic.pictures;
       }
     },
     mounted() {
