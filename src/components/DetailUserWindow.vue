@@ -149,15 +149,20 @@
     props: {
       showWindow: Boolean,
       closeDetailWindow: Function,
-      datePic:Object
+      activeDayPic:Function,
     },
     computed: {
       activePic() {
         return this.pictures[this.activePicIndex];
       },
+      pictures(){
+        var dayPic =  this.activeDayPic();
+        console.log("====dayPic",dayPic);
+        return dayPic.pictureList;
+      }
     },
     mounted() {
-
+        // console.log("=======detail user window mounted=====", this.datePic);
     },
     data() {
       return {

@@ -54,7 +54,7 @@
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
 
-    <DetailUserWindow :datePic="datePic"  :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailUserWindow>
+    <DetailUserWindow :activeDayPic="activeDayPic"  :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailUserWindow>
   </div>
 </template>
 
@@ -104,12 +104,16 @@
     },
 
     methods: {
+      activeDayPic(){
+        console.log("activeDayPic=======",this.datePic);
+        return this.datePic;
+      },
       showDetail(index, datePicId) {
-        this.showWindow = true;
-        this.activeIndex = index;
         fetchDatePicsInfo(datePicId).then((data)=>{
            this.datePic = data.data;
-           console.log("datePic", this.datePic);
+           this.showWindow = true;
+           this.activeIndex = index;
+           console.log("datePic ---- show", this.datePic);
         })
 
         document.body.style['overflow-y'] = 'hidden';
