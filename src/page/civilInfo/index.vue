@@ -9,7 +9,7 @@
         历史文明
       </div>
       <div style="margin-left: 30px;">
-        <ScrollTimeView personFlg="false" :pictures1="pictures1" :pictures2="pictures2"></ScrollTimeView><!--  -->
+        <ScrollTimeView personFlg="false" :pictures1="pictures1" :pictures2="pictures1"></ScrollTimeView><!--  -->
       </div>
     </div>
     <div class="view-title share-pos">
@@ -28,7 +28,7 @@
   import ScrollTimeView from '@/components/ScrollTimeView';
   import PicShare from '@/components/PicShare.vue'
   import LocationShow from '@/components/LocationShow.vue'
-  // import
+  import {fetchDatePics} from '@/api/album.js'
 
   import {
     mapState,
@@ -42,7 +42,10 @@
     },
 
     mounted(){
-
+     fetchDatePics(1, this.id).then((data)=>{
+           this.pictures1 = data.data;
+           console.log("----mounted",this.pictures1);
+      })
     },
 
     data() {

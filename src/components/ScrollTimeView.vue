@@ -13,7 +13,7 @@
     <div class="scroll-pictures-1 first-row-1" ref="divScroll_row1">
       <div v-for="(item, index) in pictures1" :key="index">
         <div :style="{position:'relative', width: item.width +'px', height:item.height+'px'}" class="picStyle-1 border-box1"
-          @mouseover="showOver(1, index)" @click="showDetail(index)" @mouseleave="showOver(1, -1)" >
+          @mouseover="showOver(1, index)" @click="showDetail(index, item.datePicId)" @mouseleave="showOver(1, -1)" >
           <img :src="item.url" height="100%" width="100%" />
           <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before1">
           </div>
@@ -32,7 +32,7 @@
     <div class="scroll-pictures-1 second-row-1" ref="divScroll_row2">
       <div v-for="(item, index) in pictures2" :key="index">
         <div :style="{position:'relative', width: item.width +'px', height:item.height +'px'}" class="picStyle-1 border-box1"
-          @mouseover="showOver(2,index)" @click="showDetail(index)" @mouseleave="showOver(2, -1)">
+          @mouseover="showOver(2,index)" @click="showDetail(index, item.datePicId)" @mouseleave="showOver(2, -1)">
           <img :src="item.url" height="100%" width="100%" />
           <div :style="{width: item.width +'px', height:item.height+'px'}" class="border-box-before1">
           </div>
@@ -53,14 +53,15 @@
     <div class="right-arrow-1 arrow-size-1" @click="scrollTo('right')">
       <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
     </div>
-    <!-- personFlg是否是私人标识 -->
-    <DetailUserWindow :personFlg="personFlg" :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailUserWindow>
+
+    <DetailUserWindow :datePic="datePic"  :showWindow="showWindow" :closeDetailWindow="closeDetailWindow"></DetailUserWindow>
   </div>
 </template>
 
 <script>
   import BScroll from 'better-scroll';
   import DetailUserWindow from '@/components/DetailUserWindow'
+  import {fetchDatePicsInfo} from '@/api/album.js'
 
   const windowWidth = 1360;
   const pic_marginRight = 20;
@@ -103,9 +104,14 @@
     },
 
     methods: {
-      showDetail(index) {
+      showDetail(index, datePicId) {
         this.showWindow = true;
         this.activeIndex = index;
+        fetchDatePicsInfo(datePicId).then((data)=>{
+           this.datePic = data.data;
+           console.log("datePic", this.datePic);
+        })
+
         document.body.style['overflow-y'] = 'hidden';
       },
       closeDetailWindow() {
@@ -292,7 +298,6 @@
 
     },
     props: {
-      personFlg: Boolean,
       pictures1: Array,
       pictures2: Array,
     },
@@ -300,7 +305,9 @@
     //多个照片行取并操作
     data() {
       return {
+        datePic:{},
         activeIndex: 0,
+        detailPictures:[],
         showWindow: false,
         activeIndex1: -1,
         activeIndex2: -1,
