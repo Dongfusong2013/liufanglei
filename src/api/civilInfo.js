@@ -4,7 +4,7 @@ export function fetchCivilInfo(name) {
     method: 'get',
     url: "liufanglei_server/civil/pictures",
     params: {
-      name
+      id
     }
   });
 }

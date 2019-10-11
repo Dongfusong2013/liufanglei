@@ -28,7 +28,7 @@
   import ScrollTimeView from '@/components/ScrollTimeView';
   import PicShare from '@/components/PicShare.vue'
   import LocationShow from '@/components/LocationShow.vue'
-
+  // import
 
   import {
     mapState,
@@ -38,12 +38,12 @@
   export default {
     name: 'Civilnfo',
     computed: {
-      ...mapState('civilInfoData', ['bgUrl', 'name']),
-    },
-    mounted(){
-        // this.pictures1 =
+      ...mapState('civilInfoData', ['bgUrl', 'name', 'id']),
     },
 
+    mounted(){
+
+    },
 
     data() {
       return {

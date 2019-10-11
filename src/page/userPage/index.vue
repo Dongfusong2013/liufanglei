@@ -855,6 +855,7 @@
           this.setCivilInfo({
             'bgUrl': location.picSrc,
             'name': location.name,
+            'id':location.id,
           })
           this.$router.push(path);
         } else {

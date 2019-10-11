@@ -11,7 +11,6 @@
 
         <div v-for="(item, index) in locationListByType" :key="index">
           <bm-marker :position="item.position" @mouseover="openLocationWindow(item)" :icon="{url: getIconUlr(item.position, item.type), size: {width: 20, height: 20}}">
-            <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
           </bm-marker>
         </div>
 
@@ -168,7 +167,7 @@
         selectType: "全部",
         centerPosition: {
           lng: 126.404,
-          lat: 39.915
+          lat: 39.915,
         },
         windowWidth: 296,
         windowHeight: 232,
@@ -338,8 +337,8 @@
       },
       openLocationWindow(location) {
         this.centerPosition = location.position;
-        this.show = false;
         this.selectedLocation = location;
+        this.show = false;
         console.log("====centerposition===="+this.centerPosition);
         this.infoWindowOpen();
       },

@@ -6,10 +6,12 @@ const state = {
 const mutations = {
   setCivilInfo(state, {
     bgUrl,
-    name
+    name,
+    id
   }) {
-    console.log("bgurl, name", bgUrl, name);
+    console.log("bgurl, name, id", bgUrl, name, id);
     state.bgUrl = bgUrl;
+    state.id = id;
     state.name = name;
   }
 }
