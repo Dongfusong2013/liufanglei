@@ -23,7 +23,6 @@
                 </div>
               </div>
             </div>
-
             <div class="sm-arrow-size" @click="scrollTo('right')">
               <img src="/static/works/right_arrow.jpg" height="100%" width="100%">
             </div>
@@ -91,7 +90,7 @@
               <img src="/static/icon/相册.png" width="100%" height="100%">
             </div>
             <div class="big-title-font" style="margin-left: 8px;">
-              {{topic}}
+              {{dayDescription}}
             </div>
           </div>
           <div style="width:12px;height:6px; margin-right: 10px; line-height: 10px;">
@@ -149,20 +148,24 @@
     props: {
       showWindow: Boolean,
       closeDetailWindow: Function,
-      activeDayPic:Function,
+      activeDayPic: Function,
     },
     computed: {
+      currentDayPic() {
+        return this.activeDayPic();
+      },
+      pictures() {
+        return this.currentDayPic.pictures;
+      },
+      dayDescription() {
+        return this.currentDayPic.dayDescription;
+      },
       activePic() {
         return this.pictures[this.activePicIndex];
       },
-      pictures(){
-        var dayPic =  this.activeDayPic();
-        console.log("====dayPic",dayPic);
-        return dayPic.pictures;
-      }
     },
     mounted() {
-        // console.log("=======detail user window mounted=====", this.datePic);
+      // console.log("=======detail user window mounted=====", this.datePic);
     },
     data() {
       return {
@@ -171,6 +174,7 @@
         commentContent: '',
         activePicIndex: 0,
         topic: '朱棣建造故宫',
+        commentList:[],
 
         // ownerName: '光速兔子',
         // ownerPicUrl:'/static/icon/头像.png',
@@ -182,9 +186,9 @@
       }
     },
     methods: {
-      closeDetailWindowInner(){
-          this.activePicIndex = 0;
-          this.closeDetailWindow();
+      closeDetailWindowInner() {
+        this.activePicIndex = 0;
+        this.closeDetailWindow();
       },
       gotoPage(path) {
         console.log("detail user window", path);
@@ -202,7 +206,12 @@
         }
       },
       showDetailPic(index) {
+        //获取评论内容
+
         this.activePicIndex = index;
+        getPicCommentList(this.activePic.id).then((data)=>{
+          this.commentList = data.data;
+        })
       },
       isSelect(index) {
         return index === this.activePicIndex;

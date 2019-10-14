@@ -19,3 +19,13 @@ export function fetchDatePicsInfo(datePicId) {
     }
   });
 }
+
+export function getPicCommentList(picId){
+  return axios({
+    method:'get',
+    url:'liufanglei_server/album/commentList',
+    params:{
+      picId,
+    }
+  })
+}
